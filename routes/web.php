@@ -53,6 +53,27 @@ Route::get('/check/store/{pid}', [
 	'as' => 'checkStore'
 	]);
 	
+Route::get('/open/transactions', [
+	'uses' => 'HomeController@openTransactions',
+	'as' => 'openTransactions'
+	]);
+	
+Route::get('/decline/transaction/{tid}', [
+	'uses' => 'HomeController@declineTransaction',
+	'as' => 'declineTransaction'
+	]);
+	
+Route::get('/auth/details/', [
+	'uses' => 'HomeController@authDetails',
+	'as' => 'authDetails'
+	]);
+	
+	
+Route::get('/closed/transactions', [
+	'uses' => 'HomeController@closedTransactions',
+	'as' => 'closedTransactions'
+	]);
+	
 	
 Route::get('/find/sellers/{pid}/{cid}', [
 	'uses' => 'HomeController@findSellers',
@@ -69,13 +90,26 @@ Route::get('/remove/product/{pid}', [
 	'as' => 'removeProduct'
 	]);
 	
-
+Route::get('/get/chat/{tid}', [
+	'uses' => 'HomeController@getChat',
+	'as' => 'getChat'
+	]);
+	
+Route::get('/create/transaction/{sid}/{pid}/{cid}', [
+	'uses' => 'HomeController@createTransaction',
+	'as' => 'createTransaction'
+	]);
 	
 Route::post('/upload/image', [
 	'uses' => 'HomeController@image',
 	'as' => 'image'
 	]);	
 	
+	
+Route::post('/send/chat', [
+	'uses' => 'HomeController@sendChat',
+	'as' => 'sendChat'
+	]);	
 	
 Route::post('/submit/product', [
 	'uses' => 'HomeController@submitProduct',

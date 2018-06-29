@@ -1,0 +1,1558 @@
+.hidden {
+	
+display:none;	
+	
+}
+
+.menu-bar{
+display: block;
+position: absolute;
+width: 35px;
+right: 2px;
+top:2px;
+
+	
+}
+
+
+
+
+
+@media only screen and (min-width: 641px) {
+
+#hide {
+
+display:block;
+
+
+}
+
+.header{
+
+height:200px;
+
+}	
+	
+}
+
+@media only screen and (min-width: 0px) {
+
+
+body {
+	background: #fff;
+	width: 100%;
+	font-family: candara;
+
+}
+
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:0px; 
+width: 96.75%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}
+
+.navigation-links{
+
+	
+}
+
+.navigation-links li{
+list-style-type:none;
+margin:10px;
+margin-left:0px;
+padding:10px;
+padding-left:0px;
+color: #fff;
+font-weight:bold;
+cursor:pointer;
+border-bottom: 2px solid transparent;
+display: inline-block;
+}
+
+.navigation-links li:hover{
+	
+border-bottom: 2px solid #fff;	
+	
+	
+}
+
+li button {
+	background: transparent;
+	border:none;
+	color: #fff;
+	font-weight:bold;
+	outline: none !important;
+	cursor:pointer;
+	
+}
+
+.fake-search-input{
+	
+background: #fff;
+display: inline-block;
+color:#ddd;	
+padding: 10px 50px 10px 10px;
+border-radius: 25px;
+
+	
+}
+
+.search-icon {
+display: inline-block;
+position:relative;	
+left:-40px;
+top:5px;	
+	
+}
+.content-body {
+	
+position:absolute;
+top:250px;
+width:90%;
+	
+}
+
+hr{
+	border:none;
+	
+}
+
+
+/* for products and categories */
+
+.products {
+	
+width: 100%;
+margin:auto;
+margin-left: 90px;
+
+}
+
+.products div {
+background:#fff;
+color:#000;	
+display: inline-block; 
+vertical-align: top;
+width:300px;
+margin:20px;
+border-radius: 10px 10px 0 0;
+
+ /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+		
+	
+}
+
+.categories button {
+	
+cursor: pointer;	
+}
+
+.products div:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);	
+	
+}
+
+.products div img{
+
+border-radius: 10px 10px 0 0;	
+	
+	
+}
+
+.products div .product-details{
+	
+padding: 2px 5px;
+width: 70%;
+border-radius: 0px;
+border:none;
+box-shadow: 0 0 0 0;	
+}
+
+.products div .product-details button{
+	
+background: green;
+color:#fff;
+width: 250px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+padding: 10px ;
+outline: none !important;
+	
+}
+
+
+.others{
+position:relative;
+left:-7px;	
+width:111%;
+background:#ddd
+	
+}
+
+
+/* Style Chat Box */
+
+.chat-box {
+	
+	position: fixed;
+	top: 200px;
+	left:40%;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:500px;
+	height:400px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chatBody{
+	
+	overflow-y:auto;
+	height:300px;
+}
+
+.chat-box input {
+	
+	width:90%;
+	margin-top: 5px;
+	border:none;
+	outline: none !important;
+}
+
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 515px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 10px 0px 0px 490px ;
+}
+
+.chat-box .close span:hover{
+color:#000;
+}
+
+
+.myChat, .theirChat{
+margin: 3px;
+max-width:450px;	
+min-width:50px;
+border-radius:25px;	
+padding-left: 10px;
+padding-right:5px;
+display: inline-block;
+
+}
+
+.chatWidth {
+	
+	
+}
+
+.myChat{
+background:rgba(146,208,80,0.5);
+color:#000;
+position:relative;
+left:0px;
+
+}
+
+.theirChat{
+background:#eee;
+
+
+
+}
+
+.chatBody {
+	
+	height: 300px;
+	overflow-y:scroll;
+	
+	
+}
+/* Copied from welcome.css */
+
+
+.welcome-search-page, .start-selling {
+	
+position: fixed;
+top: 0px;
+left:0px;
+width:100%;
+background: rgba(0,0,0,0.9);
+color:#fff;
+height:5000px;
+}
+
+.start-selling {
+	
+position: fixed;
+height:5000px;	
+	
+}
+
+.form-container {
+	
+position: fixed;
+top: 5px;
+left:15%;
+background: rgb(255, 0, 0);
+color: #fff;
+min-height: 200px;
+padding:20px;
+font-weight:bold;
+width: 70%;
+height:800px;
+overflow-y: auto;
+	
+}
+
+.start-selling .close:hover {
+background: red;	
+	
+}
+
+.start-selling .close {
+	
+background: #000;
+padding:10px;
+top:20px;
+border-radius:25px;
+	
+}
+
+.form-container form, .form-container .form{
+	
+position: absolute;
+left: 20%;	
+top:100px;
+	
+}
+
+
+.form-container form input, .form-container .form input, .image-picker{
+	
+width: 200%;
+max-width: 500px;
+height:	20px;	
+padding-left:5px;
+margin: 5px;
+}
+
+.form-container .form select {
+	
+margin:10px;
+height: 30px;
+border-radius:5px;	
+margin-left: 5px;	
+	
+}
+
+.form-container .form button {
+	
+	margin:10px;
+	font-size: 10px;
+	margin-left: 5px;
+}
+
+.form-container form td{
+max-width: 500px;	
+	
+}
+
+.form-container button {
+	
+margin:5px;	
+background: #fff;
+color: rgb(255,0,0);
+border: none;
+font-weight:bold;
+padding: 10px;
+border: 2px solid #eee;
+border-radius:5px;	
+
+	
+}
+
+.form-message {
+
+font-size: 20px;
+margin: 10px;	
+	
+}
+
+.close{
+position: fixed;
+right: 20px;
+top: 10px;
+font-size: 20px;
+cursor: pointer;
+}
+
+.search-message {
+font-weight: bold;
+font-size: 30px;
+position: fixed;
+top: 10px;
+left: 25%;
+
+}
+
+.search-box {
+
+position:fixed;
+top:70px;
+left:18%;
+background:#fff;
+width:60%;
+height: 50px;
+padding:20px;
+border-radius: 25px;
+border: 1px solid red;
+}
+
+.search-box input{
+
+width: 80%;
+height: 45px;
+border:none;
+padding-left: 10px;
+font-weight:bold;
+font-size: large;
+margin-left:10%;
+border: 1px dotted red;
+
+}
+
+.main-search-icon, .panafri-icon{
+
+position:fixed;
+top:90px;
+left:75%;
+z-index:5;
+
+
+}
+
+#search-page .categories {
+position: relative;	
+top:170px;
+height: 380px;
+overflow-y: auto;
+margin: auto;	
+}
+
+
+
+.panafri-icon{
+left:20%;	
+	
+}
+
+/*Scollbar Css*/
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: red; 
+}
+
+
+/* Handle Forms */
+
+.form-container {
+	top:20px;
+	overflow-y: auto;
+	height:500px;
+	
+}
+
+.learn-more {
+text-decoration:underline;
+cursor:pointer;	
+	
+}
+
+	
+}
+
+
+
+
+@media only screen and (max-width: 384px) {
+	
+
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 84%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}	
+	
+
+	
+/* for products and categories */
+
+.products {
+	
+width: 100%;
+margin:auto;
+margin-left: -5px;
+
+}
+
+
+
+.others{
+position:relative;
+left:-7px;	
+width:92.5%;
+background:#ddd;
+
+}
+
+h1 {
+	
+font-size:15px;	
+	
+}
+
+
+
+	
+	
+}
+
+
+@media only screen and (max-width: 800px) {
+
+.chat-box {
+	
+	position: fixed;
+	top: 500px;
+	left:20px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:700px;
+	height:700px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box input {
+font-size:25px;	
+	
+}
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 720px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;
+	
+}
+
+.chatBody{
+height:570px;	
+	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 650px;
+overflow-y: auto;
+font-size:30px;
+}
+
+.myChat, .theirChat{
+font-size:25px;
+
+}
+
+.form-container {
+
+top:80px;
+left:9px;
+
+min-height: 900px;
+}
+
+.form-container form{
+
+margin-left:-70px;
+top: 250px;
+
+}
+
+.form-container table td{
+	max-width:50px;
+}
+
+.form-container form input{
+
+width: 250px;
+
+}
+	
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 96.8%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}	
+	
+.products div, .product div img {
+width:500px;
+		
+	
+}
+
+.products div .product-details{
+	
+margin-left: 5px;	
+	
+}
+
+.products div {
+	
+margin-left: 70px;
+	
+}
+
+.products {
+	
+width: 100%;
+margin-left: -20px;
+
+
+
+}
+
+.others{
+position:relative;
+left:-8px;	
+width:101%;
+background:#ddd;
+
+}
+
+}
+
+
+@media only screen and (max-width: 640px) {
+
+
+.chat-box {
+	
+	position: fixed;
+	top: 200px;
+	left:30px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:500px;
+	height:700px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box input {
+font-size:21px;	
+	
+}
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 520px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;
+	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 480px;
+overflow-y: auto;
+font-size:30px;
+}
+
+.myChat, .theirChat{
+font-size:25px;
+
+}
+
+.form-container {
+
+top:100px;
+min-height: 700px;
+}
+
+.form-container form{
+
+margin-left:-70px;
+top: 150px;
+
+}
+
+.form-container form input{
+
+width: 330px;
+
+}
+
+.search-message {
+font-weight: bold;
+font-size: 20px;
+position: fixed;
+top: 30px;
+left:5px;
+
+}
+
+.search-box {
+
+position:fixed;
+top:100px;
+left:5px;;
+background:#fff;
+width:90%;
+height: 50px;
+padding:5px;
+border-radius: 25px;
+border: 1px solid red;
+}
+
+.search-box input{
+
+width: 80%;
+height: 45px;
+border:none;
+padding-left: 10px;
+font-weight:bold;
+font-size: 10px;
+margin-left:10%;
+border: 1px dotted red;
+
+}
+
+.main-search-icon, .panafri-icon{
+display:none;
+position:fixed;
+top:90px;
+left:75%;
+z-index:5;
+
+
+}
+
+#search-page .categories {
+position: relative;	
+top:170px;
+height: 500px;
+overflow-y: auto;
+margin: auto;	
+}
+
+
+
+.panafri-icon{
+left:20%;	
+	
+}	
+
+
+.hidden {
+
+display:none;	
+	
+	
+}	
+
+.content-body {
+	
+	top:80px;
+	
+}
+
+.menu-bar:hover{
+
+background:rgb(0,0,0,0.5);
+}
+
+.menu-bar div {
+
+height: 3px;
+width: 25px;
+background: #eee;
+margin: 5px;	
+	
+}
+	
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 95.6%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}	
+	
+.products div {
+width:400px;		
+margin-left:100px;
+}
+
+
+
+.products {
+	
+width: 100%;
+
+
+
+}
+
+.products div img{
+
+width:400px;	
+	
+	
+}
+
+
+
+.others{
+position:relative;
+left:-8px;	
+width:110.9%;
+background:#ddd;
+
+}
+	
+	
+}
+
+@media only screen and (max-width: 480px) {
+
+.chat-box {
+	
+	position: fixed;
+	top: 200px;
+	left:20px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:300px;
+	height:400px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box input {
+font-size:15px;	
+	
+}
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 315px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;
+	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 290px;
+overflow-y: auto;
+font-size:25px;
+}
+
+.myChat, .theirChat{
+font-size:25px;
+
+}
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 94.5%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}	
+	
+
+	
+/* for products and categories */
+
+.products {
+	
+width: 100%;
+margin:auto;
+margin-left: -5px;
+
+}
+
+.products div, .products div img{
+width:330px;		
+
+}
+
+.products div {
+margin-left:7px;	
+	
+}
+
+.others{
+position:relative;
+left:-8px;	
+width:101.55%;
+background:#ddd;
+
+}
+
+h1 {
+	
+font-size:15px;	
+	
+}
+
+
+
+	
+	
+}
+
+@media only screen and (max-width: 412px) {
+
+
+.chat-box {
+	
+	position: fixed;
+	top: 200px;
+	left:5px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:380px;
+	height:400px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 395px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 370px;
+overflow-y: auto;
+}
+
+.form-container {
+
+top:80px;
+left:9px;
+width: 355px;
+min-height: 400px;
+}
+
+.form-container form{
+
+margin-left:-70px;
+top: 250px;
+
+}
+
+.form-container table td{
+	max-width:50px;
+}
+
+.form-container form input{
+
+width: 260px;
+
+}
+
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 94%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}	
+	
+}
+
+
+@media only screen and (max-width: 384px) {
+
+.chat-box {
+	
+	position: fixed;
+	top: 100px;
+	left:20px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:330px;
+	height:500px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box input {
+font-size:15px;	
+	
+}
+
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 350px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;
+	
+}
+
+.chatBody{
+height:400px;	
+	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 315px;
+overflow-y: auto;
+font-size:30px;
+}
+
+.myChat, .theirChat{
+font-size:15px;
+
+}
+
+	
+.form-container {
+
+top:80px;
+left:9px;
+width: 325px;
+min-height: 400px;
+}
+
+.form-container form{
+
+margin-left:-70px;
+top: 250px;
+
+}
+
+.form-container table td{
+	max-width:50px;
+}
+
+.form-container form input{
+
+width: 260px;
+
+}
+
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 93.2%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}
+
+.others{
+position:relative;
+left:-8px;	
+width:102%;
+background:#ddd;
+
+}	
+	
+	
+}
+	
+@media only screen and (max-width: 360px) {
+
+.chat-box {
+	
+	position: fixed;
+	top: 130px;
+	left:20px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:300px;
+	height:500px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box input {
+font-size:15px;	
+	
+}
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 315px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;
+	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 290px;
+overflow-y: auto;
+font-size:25px;
+}
+
+.myChat, .theirChat{
+font-size:15px;
+
+}
+
+
+.form-container {
+
+top:80px;
+left:9px;
+width: 300px;
+min-height: 400px;
+}
+
+.form-container form{
+
+margin-left:-70px;
+top: 250px;
+
+}
+
+.form-container table td{
+	max-width:50px;
+	padding-right:10px;
+}
+.form-container form input{
+
+width: 250px;
+
+}
+
+
+	
+.fake-search-input{
+position:relative;	
+background: #fff;
+display: inline-block;
+color:#ddd;	
+padding: 10px 50px 10px 10px;
+border-radius: 25px;
+left:-1px;
+	
+}
+
+.search-icon {
+display: inline-block;
+position:relative;	
+left:140px;
+top:-30px;
+	
+}
+
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 93%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}
+
+.search-message {
+font-weight: bold;
+font-size: 20px;
+position: fixed;
+top: 40px;
+left:0px;
+
+}
+
+.search-box {
+
+position:fixed;
+top:100px;
+left:5px;;
+background:#fff;
+width:90%;
+height: 50px;
+padding:5px;
+border-radius: 25px;
+border: 1px solid red;
+}
+
+.search-box input{
+
+width: 80%;
+height: 45px;
+border:none;
+padding-left: 10px;
+font-weight:bold;
+font-size: 10px;
+margin-left:10%;
+border: 1px dotted red;
+
+}
+
+.main-search-icon, .panafri-icon{
+display:none;
+position:fixed;
+top:90px;
+left:75%;
+z-index:5;
+
+
+}
+
+#search-page .categories {
+position: relative;	
+top:170px;
+height: 380px;
+overflow-y: auto;
+margin: auto;	
+}
+
+
+
+.panafri-icon{
+left:20%;	
+	
+}	
+	
+.others{
+position:relative;
+left:-8px;	
+width:111%;
+background:#ddd;
+
+}
+	
+}
+@media only screen and (max-width: 320px) {
+
+
+.chat-box {
+	
+	position: fixed;
+	top: 70px;
+	left:20px;
+	background:#fff;
+	font-size: small;
+	padding: 10px;
+	width:270px;
+	height:400px;
+	
+	border:1px solid #eee;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.chat-box input {
+font-size:15px;	
+	
+}
+.chat-box .close {
+cursor:default;	
+position: relative;	
+left:-10px;
+top:-10px;
+width: 286px;
+height: 50px;
+border-bottom: 1px solid #eee;
+padding-left:5px;
+background:red;
+border-radius: 10px 10px 0px 0px;
+	
+}
+
+.chat-box .close span{
+color:#ddd;
+cursor:pointer;
+margin: 50px 0px 0px 245px;
+overflow-y: auto;
+font-size:25px;
+}
+
+.myChat, .theirChat{
+font-size:15px;
+
+}
+
+#search-page .categories {
+
+top:150px;
+
+}
+
+.form-container {
+
+top:80px;
+left:5px;
+width: 270px;
+min-height: 300px;
+}
+
+.form-container form{
+
+margin-left:-60px;
+top: 250px;
+
+
+}
+
+.form-container table td{
+	max-width:60px;
+}
+
+.form-container form input{
+
+width: 200px;
+
+}
+
+	
+.fake-search-input{
+position:relative;	
+background: #fff;
+display: inline-block;
+color:#ddd;	
+padding: 10px 50px 10px 10px;
+border-radius: 25px;
+left:-0.5px;
+font-size:small;
+	
+}
+
+
+.search-icon {
+
+position:relative;
+left:-85.9px;
+top: -27px;	
+display: inline-block;	
+margin-left:1px;
+display:none;	
+}
+
+
+.header {
+background:rgb(255,00,0);
+position: absolute;
+top:0px;
+left:-15px; 
+width: 92%;
+
+padding:20px;
+padding-top: 5px;	
+	
+}	
+	
+
+	
+/* for products and categories */
+
+.products {
+	
+width: 90%;
+margin:auto;
+margin-left: -5px;
+
+}
+
+.products div, .products div img{
+width:290px;		
+
+}
+
+.products div {
+margin-left:7px;	
+	
+}
+
+#search-page .categories {
+position: relative;	
+top:170px;
+left: 10px;
+height: 380px;
+overflow-y: auto;
+margin: auto;	
+}
+
+.product-details h2, .product-details button{
+	
+margin-top:-20px;	
+}
+
+.others{
+position:relative;
+left:-8px;	
+width:111%;
+background:#ddd;
+
+}
+
+h1 {
+	
+font-size:15px;	
+	
+}
+
+
+
+	
+	
+}
+
+@media only screen and (max-height: 360px) {
+
+.form-container {
+
+top:10px;
+left:9px;
+max-height: 100px;
+}
+
+}
+
+
+

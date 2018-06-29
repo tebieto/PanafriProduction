@@ -15,6 +15,11 @@ top:20px;
 top:120px;	
 }
 
+hr {
+border: 1px solid transparent;	
+	
+}
+
 #search-page .panafri-icon {
 	
 top:120px;	
@@ -344,11 +349,6 @@ min-height: 500px;
 left:0px;
 width:100%;
 }
-
-
-
-
-@media only screen and (min-width: 550px) and (max-width: 1200px) {
 	
 	
 .form-container {
@@ -804,5 +804,3 @@ animation: spin 0.2s infinite linear
 
 	
 
-
-	

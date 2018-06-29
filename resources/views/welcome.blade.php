@@ -1,21 +1,13 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		
+       
+        <title>Buy and Sell in Realtime on Panafri</title>
+		 @extends('layouts.app2') 
 		<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>Buy and Sell in Realtime on Panafri</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-         <!-- Styles -->
-    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
-	
+	<!-- Styles -->
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
 <body>
 
@@ -99,9 +91,10 @@
 			<div class="fake-search-input">
 			
 			<span>Search Anything...Request Everything!</span>
-			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
 			</div>
+			
+			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
 			</center>
 			
@@ -120,19 +113,19 @@
 		
 		<!--Begin content-body class div-->
 		
-		<div class="content-body">
+		<div id="content-body" class="content-body">
 		
 		
 		<!--Begin categories class div-->
 		
-		<div class="categories">
+		<div class="categories" v-if="products.length>0">
 			<center>
 				<h1>Top Products</h1>
 			</center>
 			
 			<!-- Begin Products Class -->
 			
-			<div class="products">
+			<div class="products" >
 			 <div  v-for="product in products" v-if="product.category_id != 3">
 			
 			 <img :src="product.image" height="200px" width="300px"  :alt="product.name" />
@@ -154,7 +147,7 @@
 		
 		<!-- Begin Category Class -->
 		
-		<div class="categories">
+		<div class="categories" v-if="products.length>0">
 			<center>
 				<h1>Top Services</h1>
 			</center>
@@ -185,7 +178,7 @@
 			</center>
 		</div>
 		-->
-		
+		<div class="others">
 		<div class="categories">
 			<center>
 				<h1>About Panafri</h1>
@@ -233,7 +226,7 @@
  <div id="map"></div>
  
  -->
-		
+		</div>
 			
 		
 		</div>
@@ -264,7 +257,7 @@
 		
 		<!-- Begin Search Category Class -->
 		
-		<div class="categories">
+		<div class="categories" v-if="results.length>0">
 			
 			
 			<!-- Begin Products Class -->
@@ -676,8 +669,8 @@
 	  <!--End of freelance class div--> 
 	  
 	  
-	
-	 <!--Begin welcome-login class div-->
+	 
+	  <!--Begin welcome-login class div-->
 
 	
 	 <div id="welcome-login" 
@@ -737,7 +730,7 @@
 	 
 	 <tr>
 	 <td></td>
-	 <td><button type="submit">Login</button></td>
+	 <td><button type="submit" >Login</button><a @click="showRecoverForm()" class="learn-more">Recover Lost Password</a></td>
 	 </tr>
 	 
 	 
@@ -754,11 +747,79 @@
 	 
 	  <!--End of welcome-login class div-->
 	  
+	  <!--Begin recover form class div-->
+
+	
+	 <div id="recover-form" 
+	 class="start-selling {{old('recover') ? ' ' : 'hidden' }}" @click="hideRecoverForm()">
+	
+	 
+	 <!--Begin form-container class div-->	
+	  <div class="close">
+		x
+	 </div>
+	 
+	 <div class="form-container" @click.stop >
+	
+	 <div class="logo">
+			
+		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
+	 </div>
+	 <div class="form-message">
+	Recover your account, password reset link will be sent to your email account 
+	 <a class="learn-more">Learn more</a>
+	 </div>
+	  <form class="welcome-recover-form" method="POST" action="{{ route('password.email') }}">
+                        {{ csrf_field() }}
+	 
+	 <table>
+	 
+	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
+	 <tr>
+	 
+	 <tr>
+	 <td>Email</td>
+	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 </tr>
+	 @if ($errors->has('email'))
+     <tr>
+        <td></td><td><strong>{{ $errors->first('email') }}</strong></td>
+     </tr>
+     @endif
+
+	 
+	 
+	 
+	 <tr>
+        <td></td><td><strong>By clicking "Reset Password" you agree that you are over 13 years of age and you are the rightful owner of this account, see our <a class="learn-more">Terms of Service</a> </strong></td>
+     </tr>
+	 
+	 <tr>
+	 <td></td>
+	 <td><button type="submit">Reset Password</button></td>
+	 </tr>
+	 
+	 
+	 </table>
+	 
+	  <input type="hidden" name="recover" value="recover">
+	 </form>
+	 
+	 </div>
+	 
+	 <!--End of form-container class div-->
+	 
+	 </div>
+	 
+	  <!--End of recover class div-->
+	  
+	 
+	 
 	  <!--Begin welcome-login class div-->
 
 	
 	 <div id="login-first" 
-	 class="start-selling {{old('login-first') ? ' ' : 'hidden' }}" @click="hideLoginFirst()">
+	 class="start-selling {{old('first') ? '' : 'hidden' }}" @click="hideLoginFirst()">
 	
 	 
 	 <!--Begin form-container class div-->	
@@ -815,13 +876,13 @@
 	 
 	 <tr>
 	 <td></td>
-	 <td><button type="submit">Login</button></td>
+	 <td><button type="submit">Login</button><a @click="showRecoverForm()" class="learn-more">Recover Lost Password</a></td>
 	 </tr>
 	 
 	 
 	 </table>
 	 
-	  <input type="hidden" name="login-first" value="login-first">
+	  <input type="hidden" name="first" value="login-first">
 	 </form>
 	 
 	 </div>

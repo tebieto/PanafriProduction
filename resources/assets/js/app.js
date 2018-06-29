@@ -19,6 +19,8 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('welcome', require('./components/Welcome.vue'));
 Vue.component('sell-button', require('./components/SellButton.vue'));
+Vue.component('product', require('./components/ActiveProduct.vue'));
+Vue.component('chat-body', require('./components/ChatBody.vue'));
 
 var algoliasearch = require('algoliasearch');
 var client = algoliasearch('VEOFPEJRLG', '6e163e296a3af0e603000750a01a4743');
@@ -61,6 +63,14 @@ const app = new Vue({
 				activeProductId: '',
 				activeSellerId: '',
 				activeCategoryId: '',
+				activeChat: [],
+				activeTransaction: [],
+				openTransactions: [],
+				closedTransactions: [],
+				showTransaction:false,
+				authDetails: [],
+				typedChat:'',
+				showOpenTransactions: ''
 		
 				
 				
@@ -75,14 +85,60 @@ mounted() {
 	
 	
 
-	
+this.getOpenTransactions()
+this.getClosedTransactions()	
 this.authStore()	
 this.allCategories()
 this.allProducts()
-	
+this.getAuthDetails()	
 },
 	
 methods: {
+
+sendTypedMessage(tid) {
+	var sid
+	if(this.activeChat[0].sender_id == this.authDetails.id) {
+	sid = this.activeChat[0].receiver_id	
+		
+	} else {
+		
+		sid= this.activeChat[0].sender_id	
+		
+	}
+	var body = this.typedChat
+	let data = JSON.stringify({
+        transaction: tid,
+		receiver: sid,
+        body: body,
+	
+    })
+				
+				
+				axios.post('/send/chat', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				
+				this.getChat(tid)
+				this.typedChat=''
+				
+				
+				})
+	
+	
+},
+getAuthDetails(){
+	
+	axios.get('/auth/details').then(response=>{
+		
+		this.authDetails.push(response.data)
+	})
+	
+},
 
 showError(error) {
 	
@@ -291,16 +347,223 @@ findSeller(pid, cid){
 
 		this.showActivePage()
 
-},	
+},
 
-
-hireSeller(sid) {
+getOpenTransactions() {
 	
-	this.hideActivePage()
-	this.activeSellerId = sid
+	
+	this.showOpentansaction= false
+	this.openTransactions= []
+	axios.get('/open/transactions/').then(response=>{
+	
+		this.openTransactions = []
+		response.data.reverse().forEach((transaction) => {
+			
+			this.openTransactions.push(transaction)
+			
+		})
+		this.showOpenTransactions=true
+	})
+	
+	
 	
 	
 },
+
+
+getClosedTransactions() {
+	
+	axios.get('/closed/transactions/').then(response=>{
+		this.closedTransactions = []
+		
+		response.data.forEach((transaction) => {
+			
+			
+			this.closedTransactions.push(transaction)
+			
+		})
+		
+	})
+	
+	
+},
+
+
+hireSeller(sid) {
+	var cid
+	if (this.activeCategoryId == 3) {
+	cid = 3
+	} else {
+		
+	cid = 0
+	
+	}
+	
+	axios.get('/create/transaction/' + sid + '/' + this.activeProductId + '/' + cid).then(response=>{
+		
+		this.activeTransaction= []
+		this.activeTransaction.push(response.data)
+		this.sendChat1(response.data.id, sid) 
+		this.getOpenTransactions()
+
+	})	
+	
+	this.hideActivePage()
+	this.showChatBox()
+	this.activeSellerId = sid
+	
+},
+
+sendChat1(tid, sid) {
+	
+	var body = 'Hello there, trust you are doing great'
+	let data = JSON.stringify({
+        transaction: tid,
+		receiver: sid,
+        body: body,
+	
+    })
+				
+				
+				axios.post('/send/chat', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				
+				this.getChat(tid)
+				
+				this.sendChat2(tid, sid)
+				
+				
+				})
+	
+	
+},
+
+sendChat2(tid, sid) {
+	
+		if (this.activeCategoryId == 3) {
+		
+		var body = 'How much will it cost me to hire you as my ' + this.activeProduct[0].name
+		
+	} else {
+		
+		
+		var body = 'How much will it cost to buy ' + this.activeProduct[0].name + ' from you'
+		
+	}
+	
+	let data = JSON.stringify({
+       transaction: tid,
+		receiver:sid,
+        body: body,
+		
+	
+    })
+				
+				
+				axios.post('/send/chat', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				
+				this.getChat(tid)
+				this.sendChat3(tid, sid)
+				
+				
+				})
+	
+	
+},
+
+
+
+
+sendChat3(tid, sid) {
+	
+	if (this.activeCategoryId == 3) {
+		
+		var body = 'Let me know your transport fee and any other complementary services and their charges also, Thanks. '
+		
+	} else {
+		
+		
+		var body = 'Let me know your delivery fee and any other complementary product you have and their cost also, Thanks. '
+		
+	}
+	
+	let data = JSON.stringify({
+        transaction: tid,
+		receiver: sid,
+        body: body,
+		
+	
+    })
+				
+				
+				axios.post('/send/chat', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				
+				this.getChat(tid)
+				
+					
+					
+				})
+				
+				
+	
+	
+},
+
+declineTransaction(tid){
+	
+axios.get('/decline/transaction/' + tid).then(response=>{
+
+this.getOpenTransactions();
+
+
+})	
+	
+	
+},
+
+getChat(tid) {
+	var container = document.getElementById('chatBody')
+	container.scrollTop = container.scrollHeight
+	this.showChatBox()
+	axios.get('/get/chat/' + tid).then(response=>{
+	          this.activeChat = []
+			  
+			  response.data.forEach((message) => {
+			 this.activeChat.push(message)
+			 
+			 
+		     container.scrollTop = container.scrollHeight
+			 
+			  })
+			   
+
+	});			
+	
+	
+		
+},
+
+
 getActiveProduct(pid) {
 	
 	axios.get('/active/product/' + pid).then(response=>{
@@ -362,11 +625,12 @@ let data = JSON.stringify({
 //  Handling modal hiding and display methods			
 		
 showMenu() {
-
+var bodyTop = document.getElementById('content-body')
 var hiddenDiv = document.getElementById('hide')
 var showmenu = document.getElementById('showmenu')
 var hidemenu = document.getElementById('hidemenu')
 
+bodyTop.style.top = 240 + 'px'
 hiddenDiv.classList.remove('hidden')
 showmenu.classList.add('hidden')
 hidemenu.classList.remove('hidden')
@@ -376,17 +640,17 @@ hidemenu.classList.remove('hidden')
 
 hideMenu() {
 
+var bodyTop = document.getElementById('content-body')
 var hiddenDiv = document.getElementById('hide')
 var hidemenu = document.getElementById('hidemenu')
 var showmenu = document.getElementById('showmenu')
 
+bodyTop.style.top = 80 + 'px'
 hiddenDiv.classList.add('hidden')
 showmenu.classList.remove('hidden')
 hidemenu.classList.add('hidden')
 
 },
-
-
 
 
 verifyPassword() {
@@ -418,8 +682,7 @@ activeModal.classList.remove('hidden')
 },
 
 hideActivePage() {
-this.activeSellers= []
-this.activeProduct= []	
+	
 var activeModal = document.getElementById('active-page')	
 activeModal.classList.add('hidden')	
 	
@@ -440,6 +703,20 @@ loginFirst.classList.add('hidden')
 
 },
 
+showChatBox() {
+	
+var showChat = document.getElementById('chat-box')	
+showChat.classList.remove('hidden')
+
+},
+
+hideChatBox() {
+	
+var showChat = document.getElementById('chat-box')	
+showChat.classList.add('hidden')
+
+},
+
 startSellingModal() {
 	
 var startSelling = document.getElementById('start-selling')	
@@ -453,6 +730,22 @@ startSelling = document.getElementById('start-selling')
 startSelling.classList.add('hidden')
 
 },
+
+showRecoverForm() {
+this.hideWelcomeLoginModal()
+this.hideLoginFirst()	
+var recoverForm = document.getElementById('recover-form')	
+recoverForm.classList.remove('hidden')
+
+},
+
+hideRecoverForm() {
+	
+var recoverForm = document.getElementById('recover-form')	
+recoverForm.classList.add('hidden')
+
+},
+
 
 welcomeLoginModal() {
 	

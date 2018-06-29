@@ -1,21 +1,12 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		
+	 <title>Your Dashboard</title>
+      @extends('layouts.app2') 
 		<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{auth::user()->fname}}'s Dashboard</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-         <!-- Styles -->
-    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
-	
+	<!-- Styles -->
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
 <body>
 
@@ -89,7 +80,7 @@
 				<li >
 				<form method="post" action="/logout">
 				{{ csrf_field() }}
-				<button style="background: red; color: #fff; border:1px solid #fff; border-radius:10px; font-weight:bold; padding:5px; cursor:pointer" >Logout</button>
+				<button>Logout</button>
 				</form>
 				</li>
 			</div>
@@ -106,9 +97,9 @@
 			<div class="fake-search-input">
 			
 			<span>Search Anything...Request Everything!</span>
-			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
 			</div>
+			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
 			</center>
 			
@@ -127,7 +118,41 @@
 		
 		<!--Begin content-body class div-->
 		
-		<div class="content-body">
+		<div id="content-body" class="content-body">
+		
+		
+		<!--Begin categories class div-->
+		
+		<div class="categories" v-if="products.length>0 && openTransactions.length>0 && showOpenTransactions==true" >
+			<center>
+				<h1>Active Transactions</h1>
+			</center>
+			
+			<!-- Begin Open Transaction Class -->
+			
+			<div class="products">
+			 <div v-for="transaction in openTransactions">
+			
+			 <div class="product-details">
+			 <h2> <b> Transaction #@{{transaction.id}} </b></h2>
+			 @if(auth::user()->status == 5)
+			 <button @click="getChat(transaction.id)">Continue Transaction</button>
+			 @else
+			 <button @click="getChat(transaction.id)">Continue Transaction</button>
+			 @endif
+			 <hr>
+			 <button style="background:red" @click="declineTransaction(transaction.id)">Decline Transaction</button>
+			</div>
+			
+		</div>
+		<!-- End Product in products Class -->
+		</div>
+		<!-- End of Open transactions class-->
+		</div>
+		<!-- End of Categories class-->
+		
+		
+		
 		
 		<!--Begin categories class div-->
 		
@@ -161,7 +186,7 @@
 		
 		<!--Begin categories class div-->
 		
-		<div class="categories">
+		<div class="categories" v-if="products.length>0">
 			<center>
 				<h1>Top Products</h1>
 			</center>
@@ -192,7 +217,7 @@
 		
 		<!-- Begin Category Class -->
 		
-		<div class="categories">
+		<div class="categories" v-if="products.length>0">
 			<center>
 				<h1>Top Services</h1>
 			</center>
@@ -227,7 +252,7 @@
 			</center>
 		</div>
 		-->
-		
+		<div class="others">
 		<div class="categories">
 			<center>
 				<h1>How Panafri Works</h1>
@@ -272,7 +297,7 @@
 			
 		<!--End of categories class div-->
 		</div>
-		
+		</div>
 		<!--End of content-body class div-->
 		
 		
@@ -365,10 +390,31 @@
 		<!-- End Users Class -->
 		</div>
 		</div>
-		<!-- End Search Category Class -->
+		<!-- End active Category Class -->
 		</div>
 		
 	<!--End of active-page class div-->
+	
+	
+	<!--Begin chat-box class div-->
+		
+		<div id="chat-box" class="chat-box hidden">
+		<div class="close"  >
+		<span @click="hideChatBox()">x</span>
+		</div>
+		
+
+		<div id="chatBody" class="chatBody">
+		<div class="chat-message" v-for="chat in activeChat">
+		
+		<chat-body :id="chat.sender_id" :body="chat.body"></chat-body>
+		</div>
+		</div>	
+		
+		<input type="text"@keyup.enter="sendTypedMessage(activeChat[0].transaction_id)" placeholder="Type message here and hit enter" v-model="typedChat" /> 
+		</div>
+		
+	<!--End of chat-box class div-->
 	 
 	 
 	 <!--Begin admin-category class div-->

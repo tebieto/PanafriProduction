@@ -1,4 +1,13 @@
-@extends('layouts.app')
+ <!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <title>Buy and Sell in Realtime on Panafri</title>
+
+        @extends('layouts.app2') 
+		<!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+	
+    </head>
 
 @section('content')
 <div class="container">

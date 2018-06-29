@@ -60,18 +60,29 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__(3);
-var isBuffer = __webpack_require__(19);
+var bind = __webpack_require__(14);
+var isBuffer = __webpack_require__(34);
 
 /*global toString:true*/
 
@@ -374,7 +385,16 @@ module.exports = {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -401,125 +421,273 @@ module.exports = g;
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(21);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(5);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(5);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function bind(fn, thisArg) {
-  return function wrap() {
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return fn.apply(thisArg, args);
-  };
-};
-
-
-/***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// This file hosts our error definitions
+// We use custom error "types" so that we can act on them when we need it
+// e.g.: if error instanceof errors.UnparsableJSON then..
+
+var inherits = __webpack_require__(8);
+
+function AlgoliaSearchError(message, extraProperties) {
+  var forEach = __webpack_require__(5);
+
+  var error = this;
+
+  // try to get a stacktrace
+  if (typeof Error.captureStackTrace === 'function') {
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    error.stack = (new Error()).stack || 'Cannot get a stacktrace, browser is too old';
+  }
+
+  this.name = 'AlgoliaSearchError';
+  this.message = message || 'Unknown error';
+
+  if (extraProperties) {
+    forEach(extraProperties, function addToErrorObject(value, key) {
+      error[key] = value;
+    });
+  }
+}
+
+inherits(AlgoliaSearchError, Error);
+
+function createCustomError(name, message) {
+  function AlgoliaSearchCustomError() {
+    var args = Array.prototype.slice.call(arguments, 0);
+
+    // custom message not set, use default
+    if (typeof args[0] !== 'string') {
+      args.unshift(message);
+    }
+
+    AlgoliaSearchError.apply(this, args);
+    this.name = 'AlgoliaSearch' + name + 'Error';
+  }
+
+  inherits(AlgoliaSearchCustomError, AlgoliaSearchError);
+
+  return AlgoliaSearchCustomError;
+}
+
+// late exports to let various fn defs and inherits take place
+module.exports = {
+  AlgoliaSearchError: AlgoliaSearchError,
+  UnparsableJSON: createCustomError(
+    'UnparsableJSON',
+    'Could not parse the incoming response as JSON, see err.more for details'
+  ),
+  RequestTimeout: createCustomError(
+    'RequestTimeout',
+    'Request timedout before getting a response'
+  ),
+  Network: createCustomError(
+    'Network',
+    'Network issue, see err.more for details'
+  ),
+  JSONPScriptFail: createCustomError(
+    'JSONPScriptFail',
+    '<script> was loaded but did not call our provided callback'
+  ),
+  JSONPScriptError: createCustomError(
+    'JSONPScriptError',
+    '<script> unable to load due to an `error` event on it'
+  ),
+  Unknown: createCustomError(
+    'Unknown',
+    'Unknown error occured'
+  )
+};
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+
+var hasOwn = Object.prototype.hasOwnProperty;
+var toString = Object.prototype.toString;
+
+module.exports = function forEach (obj, fn, ctx) {
+    if (toString.call(fn) !== '[object Function]') {
+        throw new TypeError('iterator must be a function');
+    }
+    var l = obj.length;
+    if (l === +l) {
+        for (var i = 0; i < l; i++) {
+            fn.call(ctx, obj[i], i, obj);
+        }
+    } else {
+        for (var k in obj) {
+            if (hasOwn.call(obj, k)) {
+                fn.call(ctx, obj[k], k, obj);
+            }
+        }
+    }
+};
+
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var foreach = __webpack_require__(5);
+
+module.exports = function map(arr, fn) {
+  var newArr = [];
+  foreach(arr, function(item, itemIndex) {
+    newArr.push(fn(item, itemIndex, arr));
+  });
+  return newArr;
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -709,19 +877,363 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * This is the web browser implementation of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = __webpack_require__(81);
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+exports.storage = 'undefined' != typeof chrome
+               && 'undefined' != typeof chrome.storage
+                  ? chrome.storage.local
+                  : localstorage();
+
+/**
+ * Colors.
+ */
+
+exports.colors = [
+  'lightseagreen',
+  'forestgreen',
+  'goldenrod',
+  'dodgerblue',
+  'darkorchid',
+  'crimson'
+];
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+function useColors() {
+  // NB: In an Electron preload script, document will be defined but not fully
+  // initialized. Since we know we're in Chrome, we'll just detect this case
+  // explicitly
+  if (typeof window !== 'undefined' && window.process && window.process.type === 'renderer') {
+    return true;
+  }
+
+  // is webkit? http://stackoverflow.com/a/16459606/376773
+  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+  return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
+    // is firebug? http://stackoverflow.com/a/398120/376773
+    (typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
+    // is firefox >= v31?
+    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+    // double check webkit in userAgent just in case we are in a worker
+    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+}
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+exports.formatters.j = function(v) {
+  try {
+    return JSON.stringify(v);
+  } catch (err) {
+    return '[UnexpectedJSONParseError]: ' + err.message;
+  }
+};
+
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+function formatArgs(args) {
+  var useColors = this.useColors;
+
+  args[0] = (useColors ? '%c' : '')
+    + this.namespace
+    + (useColors ? ' %c' : ' ')
+    + args[0]
+    + (useColors ? '%c ' : ' ')
+    + '+' + exports.humanize(this.diff);
+
+  if (!useColors) return;
+
+  var c = 'color: ' + this.color;
+  args.splice(1, 0, c, 'color: inherit')
+
+  // the final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+  var index = 0;
+  var lastC = 0;
+  args[0].replace(/%[a-zA-Z%]/g, function(match) {
+    if ('%%' === match) return;
+    index++;
+    if ('%c' === match) {
+      // we only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+
+  args.splice(lastC, 0, c);
+}
+
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+function log() {
+  // this hackery is required for IE8/9, where
+  // the `console.log` function doesn't have 'apply'
+  return 'object' === typeof console
+    && console.log
+    && Function.prototype.apply.call(console.log, console, arguments);
+}
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+function save(namespaces) {
+  try {
+    if (null == namespaces) {
+      exports.storage.removeItem('debug');
+    } else {
+      exports.storage.debug = namespaces;
+    }
+  } catch(e) {}
+}
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+function load() {
+  var r;
+  try {
+    r = exports.storage.debug;
+  } catch(e) {}
+
+  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+  if (!r && typeof process !== 'undefined' && 'env' in process) {
+    r = Object({"NODE_ENV":"development"}).DEBUG;
+  }
+
+  return r;
+}
+
+/**
+ * Enable namespaces listed in `localStorage.debug` initially.
+ */
+
+exports.enable(load());
+
+/**
+ * Localstorage attempts to return the localstorage.
+ *
+ * This is necessary because safari throws
+ * when a user disables cookies/localstorage
+ * and you attempt to access it.
+ *
+ * @return {LocalStorage}
+ * @api private
+ */
+
+function localstorage() {
+  try {
+    return window.localStorage;
+  } catch (e) {}
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(1);
+var normalizeHeaderName = __webpack_require__(36);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(15);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(15);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = function deprecate(fn, message) {
+  var warned = false;
+
+  function deprecated() {
+    if (!warned) {
+      /* eslint no-console:0 */
+      console.warn(message);
+      warned = true;
+    }
+
+    return fn.apply(this, arguments);
+  }
+
+  return deprecated;
+};
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = function deprecatedMessage(previousUsage, newUsage) {
+  var githubAnchorLink = previousUsage.toLowerCase()
+    .replace(/[\.\(\)]/g, '');
+
+  return 'algoliasearch: `' + previousUsage + '` was replaced by `' + newUsage +
+    '`. Please see https://github.com/algolia/algoliasearch-client-javascript/wiki/Deprecated#' + githubAnchorLink;
+};
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
-var settle = __webpack_require__(22);
-var buildURL = __webpack_require__(24);
-var parseHeaders = __webpack_require__(25);
-var isURLSameOrigin = __webpack_require__(26);
-var createError = __webpack_require__(6);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(1);
+var settle = __webpack_require__(37);
+var buildURL = __webpack_require__(39);
+var parseHeaders = __webpack_require__(40);
+var isURLSameOrigin = __webpack_require__(41);
+var createError = __webpack_require__(16);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(42);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -818,7 +1330,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(28);
+      var cookies = __webpack_require__(43);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -896,13 +1408,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 6 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(23);
+var enhanceError = __webpack_require__(38);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -921,7 +1433,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 7 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -933,7 +1445,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 8 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -959,124 +1471,548 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/* globals __VUE_SSR_CONTEXT__ */
+"use strict";
 
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
 
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
+var AlgoliaSearch = __webpack_require__(73);
+var createAlgoliasearch = __webpack_require__(84);
 
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
+module.exports = createAlgoliasearch(AlgoliaSearch);
 
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
 
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
 
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
+var buildSearchMethod = __webpack_require__(21);
+var deprecate = __webpack_require__(12);
+var deprecatedMessage = __webpack_require__(13);
 
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
+module.exports = IndexCore;
 
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
+/*
+* Index class constructor.
+* You should not use this method directly but use initIndex() function
+*/
+function IndexCore(algoliasearch, indexName) {
+  this.indexName = indexName;
+  this.as = algoliasearch;
+  this.typeAheadArgs = null;
+  this.typeAheadValueOption = null;
+
+  // make sure every index instance has it's own cache
+  this.cache = {};
+}
+
+/*
+* Clear all queries in cache
+*/
+IndexCore.prototype.clearCache = function() {
+  this.cache = {};
+};
+
+/*
+* Search inside the index using XMLHttpRequest request (Using a POST query to
+* minimize number of OPTIONS queries: Cross-Origin Resource Sharing).
+*
+* @param {string} [query] the full text query
+* @param {object} [args] (optional) if set, contains an object with query parameters:
+* - page: (integer) Pagination parameter used to select the page to retrieve.
+*                   Page is zero-based and defaults to 0. Thus,
+*                   to retrieve the 10th page you need to set page=9
+* - hitsPerPage: (integer) Pagination parameter used to select the number of hits per page. Defaults to 20.
+* - attributesToRetrieve: a string that contains the list of object attributes
+* you want to retrieve (let you minimize the answer size).
+*   Attributes are separated with a comma (for example "name,address").
+*   You can also use an array (for example ["name","address"]).
+*   By default, all attributes are retrieved. You can also use '*' to retrieve all
+*   values when an attributesToRetrieve setting is specified for your index.
+* - attributesToHighlight: a string that contains the list of attributes you
+*   want to highlight according to the query.
+*   Attributes are separated by a comma. You can also use an array (for example ["name","address"]).
+*   If an attribute has no match for the query, the raw value is returned.
+*   By default all indexed text attributes are highlighted.
+*   You can use `*` if you want to highlight all textual attributes.
+*   Numerical attributes are not highlighted.
+*   A matchLevel is returned for each highlighted attribute and can contain:
+*      - full: if all the query terms were found in the attribute,
+*      - partial: if only some of the query terms were found,
+*      - none: if none of the query terms were found.
+* - attributesToSnippet: a string that contains the list of attributes to snippet alongside
+* the number of words to return (syntax is `attributeName:nbWords`).
+*    Attributes are separated by a comma (Example: attributesToSnippet=name:10,content:10).
+*    You can also use an array (Example: attributesToSnippet: ['name:10','content:10']).
+*    By default no snippet is computed.
+* - minWordSizefor1Typo: the minimum number of characters in a query word to accept one typo in this word.
+* Defaults to 3.
+* - minWordSizefor2Typos: the minimum number of characters in a query word
+* to accept two typos in this word. Defaults to 7.
+* - getRankingInfo: if set to 1, the result hits will contain ranking
+* information in _rankingInfo attribute.
+* - aroundLatLng: search for entries around a given
+* latitude/longitude (specified as two floats separated by a comma).
+*   For example aroundLatLng=47.316669,5.016670).
+*   You can specify the maximum distance in meters with the aroundRadius parameter (in meters)
+*   and the precision for ranking with aroundPrecision
+*   (for example if you set aroundPrecision=100, two objects that are distant of
+*   less than 100m will be considered as identical for "geo" ranking parameter).
+*   At indexing, you should specify geoloc of an object with the _geoloc attribute
+*   (in the form {"_geoloc":{"lat":48.853409, "lng":2.348800}})
+* - insideBoundingBox: search entries inside a given area defined by the two extreme points
+* of a rectangle (defined by 4 floats: p1Lat,p1Lng,p2Lat,p2Lng).
+*   For example insideBoundingBox=47.3165,4.9665,47.3424,5.0201).
+*   At indexing, you should specify geoloc of an object with the _geoloc attribute
+*   (in the form {"_geoloc":{"lat":48.853409, "lng":2.348800}})
+* - numericFilters: a string that contains the list of numeric filters you want to
+* apply separated by a comma.
+*   The syntax of one filter is `attributeName` followed by `operand` followed by `value`.
+*   Supported operands are `<`, `<=`, `=`, `>` and `>=`.
+*   You can have multiple conditions on one attribute like for example numericFilters=price>100,price<1000.
+*   You can also use an array (for example numericFilters: ["price>100","price<1000"]).
+* - tagFilters: filter the query by a set of tags. You can AND tags by separating them by commas.
+*   To OR tags, you must add parentheses. For example, tags=tag1,(tag2,tag3) means tag1 AND (tag2 OR tag3).
+*   You can also use an array, for example tagFilters: ["tag1",["tag2","tag3"]]
+*   means tag1 AND (tag2 OR tag3).
+*   At indexing, tags should be added in the _tags** attribute
+*   of objects (for example {"_tags":["tag1","tag2"]}).
+* - facetFilters: filter the query by a list of facets.
+*   Facets are separated by commas and each facet is encoded as `attributeName:value`.
+*   For example: `facetFilters=category:Book,author:John%20Doe`.
+*   You can also use an array (for example `["category:Book","author:John%20Doe"]`).
+* - facets: List of object attributes that you want to use for faceting.
+*   Comma separated list: `"category,author"` or array `['category','author']`
+*   Only attributes that have been added in **attributesForFaceting** index setting
+*   can be used in this parameter.
+*   You can also use `*` to perform faceting on all attributes specified in **attributesForFaceting**.
+* - queryType: select how the query words are interpreted, it can be one of the following value:
+*    - prefixAll: all query words are interpreted as prefixes,
+*    - prefixLast: only the last word is interpreted as a prefix (default behavior),
+*    - prefixNone: no query word is interpreted as a prefix. This option is not recommended.
+* - optionalWords: a string that contains the list of words that should
+* be considered as optional when found in the query.
+*   Comma separated and array are accepted.
+* - distinct: If set to 1, enable the distinct feature (disabled by default)
+* if the attributeForDistinct index setting is set.
+*   This feature is similar to the SQL "distinct" keyword: when enabled
+*   in a query with the distinct=1 parameter,
+*   all hits containing a duplicate value for the attributeForDistinct attribute are removed from results.
+*   For example, if the chosen attribute is show_name and several hits have
+*   the same value for show_name, then only the best
+*   one is kept and others are removed.
+* - restrictSearchableAttributes: List of attributes you want to use for
+* textual search (must be a subset of the attributesToIndex index setting)
+* either comma separated or as an array
+* @param {function} [callback] the result callback called with two arguments:
+*  error: null or Error('message'). If false, the content contains the error.
+*  content: the server answer that contains the list of results.
+*/
+IndexCore.prototype.search = buildSearchMethod('query');
+
+/*
+* -- BETA --
+* Search a record similar to the query inside the index using XMLHttpRequest request (Using a POST query to
+* minimize number of OPTIONS queries: Cross-Origin Resource Sharing).
+*
+* @param {string} [query] the similar query
+* @param {object} [args] (optional) if set, contains an object with query parameters.
+*   All search parameters are supported (see search function), restrictSearchableAttributes and facetFilters
+*   are the two most useful to restrict the similar results and get more relevant content
+*/
+IndexCore.prototype.similarSearch = buildSearchMethod('similarQuery');
+
+/*
+* Browse index content. The response content will have a `cursor` property that you can use
+* to browse subsequent pages for this query. Use `index.browseFrom(cursor)` when you want.
+*
+* @param {string} query - The full text query
+* @param {Object} [queryParameters] - Any search query parameter
+* @param {Function} [callback] - The result callback called with two arguments
+*   error: null or Error('message')
+*   content: the server answer with the browse result
+* @return {Promise|undefined} Returns a promise if no callback given
+* @example
+* index.browse('cool songs', {
+*   tagFilters: 'public,comments',
+*   hitsPerPage: 500
+* }, callback);
+* @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
+*/
+IndexCore.prototype.browse = function(query, queryParameters, callback) {
+  var merge = __webpack_require__(22);
+
+  var indexObj = this;
+
+  var page;
+  var hitsPerPage;
+
+  // we check variadic calls that are not the one defined
+  // .browse()/.browse(fn)
+  // => page = 0
+  if (arguments.length === 0 || arguments.length === 1 && typeof arguments[0] === 'function') {
+    page = 0;
+    callback = arguments[0];
+    query = undefined;
+  } else if (typeof arguments[0] === 'number') {
+    // .browse(2)/.browse(2, 10)/.browse(2, fn)/.browse(2, 10, fn)
+    page = arguments[0];
+    if (typeof arguments[1] === 'number') {
+      hitsPerPage = arguments[1];
+    } else if (typeof arguments[1] === 'function') {
+      callback = arguments[1];
+      hitsPerPage = undefined;
     }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
+    query = undefined;
+    queryParameters = undefined;
+  } else if (typeof arguments[0] === 'object') {
+    // .browse(queryParameters)/.browse(queryParameters, cb)
+    if (typeof arguments[1] === 'function') {
+      callback = arguments[1];
+    }
+    queryParameters = arguments[0];
+    query = undefined;
+  } else if (typeof arguments[0] === 'string' && typeof arguments[1] === 'function') {
+    // .browse(query, cb)
+    callback = arguments[1];
+    queryParameters = undefined;
   }
 
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
+  // otherwise it's a .browse(query)/.browse(query, queryParameters)/.browse(query, queryParameters, cb)
 
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
+  // get search query parameters combining various possible calls
+  // to .browse();
+  queryParameters = merge({}, queryParameters || {}, {
+    page: page,
+    hitsPerPage: hitsPerPage,
+    query: query
+  });
+
+  var params = this.as._getSearchParams(queryParameters, '');
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/browse',
+    body: {params: params},
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+* Continue browsing from a previous position (cursor), obtained via a call to `.browse()`.
+*
+* @param {string} query - The full text query
+* @param {Object} [queryParameters] - Any search query parameter
+* @param {Function} [callback] - The result callback called with two arguments
+*   error: null or Error('message')
+*   content: the server answer with the browse result
+* @return {Promise|undefined} Returns a promise if no callback given
+* @example
+* index.browseFrom('14lkfsakl32', callback);
+* @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
+*/
+IndexCore.prototype.browseFrom = function(cursor, callback) {
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/browse',
+    body: {cursor: cursor},
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+* Search for facet values
+* https://www.algolia.com/doc/rest-api/search#search-for-facet-values
+*
+* @param {string} params.facetName Facet name, name of the attribute to search for values in.
+* Must be declared as a facet
+* @param {string} params.facetQuery Query for the facet search
+* @param {string} [params.*] Any search parameter of Algolia,
+* see https://www.algolia.com/doc/api-client/javascript/search#search-parameters
+* Pagination is not supported. The page and hitsPerPage parameters will be ignored.
+* @param callback (optional)
+*/
+IndexCore.prototype.searchForFacetValues = function(params, callback) {
+  var clone = __webpack_require__(2);
+  var omit = __webpack_require__(23);
+  var usage = 'Usage: index.searchForFacetValues({facetName, facetQuery, ...params}[, callback])';
+
+  if (params.facetName === undefined || params.facetQuery === undefined) {
+    throw new Error(usage);
+  }
+
+  var facetName = params.facetName;
+  var filteredParams = omit(clone(params), function(keyName) {
+    return keyName === 'facetName';
+  });
+  var searchParameters = this.as._getSearchParams(filteredParams, '');
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' +
+      encodeURIComponent(this.indexName) + '/facets/' + encodeURIComponent(facetName) + '/query',
+    hostType: 'read',
+    body: {params: searchParameters},
+    callback: callback
+  });
+};
+
+IndexCore.prototype.searchFacet = deprecate(function(params, callback) {
+  return this.searchForFacetValues(params, callback);
+}, deprecatedMessage(
+  'index.searchFacet(params[, callback])',
+  'index.searchForFacetValues(params[, callback])'
+));
+
+IndexCore.prototype._search = function(params, url, callback, additionalUA) {
+  return this.as._jsonRequest({
+    cache: this.cache,
+    method: 'POST',
+    url: url || '/1/indexes/' + encodeURIComponent(this.indexName) + '/query',
+    body: {params: params},
+    hostType: 'read',
+    fallback: {
+      method: 'GET',
+      url: '/1/indexes/' + encodeURIComponent(this.indexName),
+      body: {params: params}
+    },
+    callback: callback,
+    additionalUA: additionalUA
+  });
+};
+
+/*
+* Get an object from this index
+*
+* @param objectID the unique identifier of the object to retrieve
+* @param attrs (optional) if set, contains the array of attribute names to retrieve
+* @param callback (optional) the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the object to retrieve or the error message if a failure occured
+*/
+IndexCore.prototype.getObject = function(objectID, attrs, callback) {
+  var indexObj = this;
+
+  if (arguments.length === 1 || typeof attrs === 'function') {
+    callback = attrs;
+    attrs = undefined;
+  }
+
+  var params = '';
+  if (attrs !== undefined) {
+    params = '?attributes=';
+    for (var i = 0; i < attrs.length; ++i) {
+      if (i !== 0) {
+        params += ',';
       }
+      params += attrs[i];
     }
   }
 
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
+  return this.as._jsonRequest({
+    method: 'GET',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(objectID) + params,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+* Get several objects from this index
+*
+* @param objectIDs the array of unique identifier of objects to retrieve
+*/
+IndexCore.prototype.getObjects = function(objectIDs, attributesToRetrieve, callback) {
+  var isArray = __webpack_require__(0);
+  var map = __webpack_require__(6);
+
+  var usage = 'Usage: index.getObjects(arrayOfObjectIDs[, callback])';
+
+  if (!isArray(objectIDs)) {
+    throw new Error(usage);
   }
+
+  var indexObj = this;
+
+  if (arguments.length === 1 || typeof attributesToRetrieve === 'function') {
+    callback = attributesToRetrieve;
+    attributesToRetrieve = undefined;
+  }
+
+  var body = {
+    requests: map(objectIDs, function prepareRequest(objectID) {
+      var request = {
+        indexName: indexObj.indexName,
+        objectID: objectID
+      };
+
+      if (attributesToRetrieve) {
+        request.attributesToRetrieve = attributesToRetrieve.join(',');
+      }
+
+      return request;
+    })
+  };
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/*/objects',
+    hostType: 'read',
+    body: body,
+    callback: callback
+  });
+};
+
+IndexCore.prototype.as = null;
+IndexCore.prototype.indexName = null;
+IndexCore.prototype.typeAheadArgs = null;
+IndexCore.prototype.typeAheadValueOption = null;
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = buildSearchMethod;
+
+var errors = __webpack_require__(4);
+
+/**
+ * Creates a search method to be used in clients
+ * @param {string} queryParam the name of the attribute used for the query
+ * @param {string} url the url
+ * @return {function} the search method
+ */
+function buildSearchMethod(queryParam, url) {
+  /**
+   * The search method. Prepares the data and send the query to Algolia.
+   * @param {string} query the string used for query search
+   * @param {object} args additional parameters to send with the search
+   * @param {function} [callback] the callback to be called with the client gets the answer
+   * @return {undefined|Promise} If the callback is not provided then this methods returns a Promise
+   */
+  return function search(query, args, callback) {
+    // warn V2 users on how to search
+    if (typeof query === 'function' && typeof args === 'object' ||
+      typeof callback === 'object') {
+      // .search(query, params, cb)
+      // .search(cb, params)
+      throw new errors.AlgoliaSearchError('index.search usage is index.search(query, params, cb)');
+    }
+
+    // Normalizing the function signature
+    if (arguments.length === 0 || typeof query === 'function') {
+      // Usage : .search(), .search(cb)
+      callback = query;
+      query = '';
+    } else if (arguments.length === 1 || typeof args === 'function') {
+      // Usage : .search(query/args), .search(query, cb)
+      callback = args;
+      args = undefined;
+    }
+    // At this point we have 3 arguments with values
+
+    // Usage : .search(args) // careful: typeof null === 'object'
+    if (typeof query === 'object' && query !== null) {
+      args = query;
+      query = undefined;
+    } else if (query === undefined || query === null) { // .search(undefined/null)
+      query = '';
+    }
+
+    var params = '';
+
+    if (query !== undefined) {
+      params += queryParam + '=' + encodeURIComponent(query);
+    }
+
+    var additionalUA;
+    if (args !== undefined) {
+      if (args.additionalUA) {
+        additionalUA = args.additionalUA;
+        delete args.additionalUA;
+      }
+      // `_getSearchParams` will augment params, do not be fooled by the = versus += from previous if
+      params = this.as._getSearchParams(args, params);
+    }
+
+
+    return this._search(params, url, callback, additionalUA);
+  };
 }
 
 
 /***/ }),
-/* 10 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
-module.exports = __webpack_require__(44);
+var foreach = __webpack_require__(5);
+
+module.exports = function merge(destination/* , sources */) {
+  var sources = Array.prototype.slice.call(arguments);
+
+  foreach(sources, function(source) {
+    for (var keyName in source) {
+      if (source.hasOwnProperty(keyName)) {
+        if (typeof destination[keyName] === 'object' && typeof source[keyName] === 'object') {
+          destination[keyName] = merge({}, destination[keyName], source[keyName]);
+        } else if (source[keyName] !== undefined) {
+          destination[keyName] = source[keyName];
+        }
+      }
+    }
+  });
+
+  return destination;
+};
 
 
 /***/ }),
-/* 11 */
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function omit(obj, test) {
+  var keys = __webpack_require__(75);
+  var foreach = __webpack_require__(5);
+
+  var filtered = {};
+
+  foreach(keys(obj), function doFilter(keyName) {
+    if (test(keyName) !== true) {
+      filtered[keyName] = obj[keyName];
+    }
+  });
+
+  return filtered;
+};
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+// Parse cloud does not supports setTimeout
+// We do not store a setTimeout reference in the client everytime
+// We only fallback to a fake setTimeout when not available
+// setTimeout cannot be override globally sadly
+module.exports = function exitPromise(fn, _setTimeout) {
+  _setTimeout(fn, 0);
+};
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(26);
+module.exports = __webpack_require__(92);
+
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1086,9 +2022,9 @@ module.exports = __webpack_require__(44);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(12);
+__webpack_require__(27);
 
-window.Vue = __webpack_require__(36);
+window.Vue = __webpack_require__(51);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -1096,11 +2032,13 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(39));
-Vue.component('welcome', __webpack_require__(42));
-Vue.component('sell-button', __webpack_require__(55));
+Vue.component('example', __webpack_require__(54));
+Vue.component('welcome', __webpack_require__(57));
+Vue.component('sell-button', __webpack_require__(59));
+Vue.component('product', __webpack_require__(62));
+Vue.component('chat-body', __webpack_require__(65));
 
-var algoliasearch = __webpack_require__(67);
+var algoliasearch = __webpack_require__(19);
 var client = algoliasearch('VEOFPEJRLG', '6e163e296a3af0e603000750a01a4743');
 var index = client.initIndex('products');
 
@@ -1138,19 +2076,68 @@ var app = new Vue({
 			activeProduct: [],
 			activeProductId: '',
 			activeSellerId: '',
-			activeCategoryId: ''
+			activeCategoryId: '',
+			activeChat: [],
+			activeTransaction: [],
+			openTransactions: [],
+			closedTransactions: [],
+			showTransaction: false,
+			authDetails: [],
+			typedChat: '',
+			showOpenTransactions: ''
 
 		};
 	},
 	mounted: function mounted() {
 
+		this.getOpenTransactions();
+		this.getClosedTransactions();
 		this.authStore();
 		this.allCategories();
 		this.allProducts();
+		this.getAuthDetails();
 	},
 
 
 	methods: {
+		sendTypedMessage: function sendTypedMessage(tid) {
+			var _this = this;
+
+			var sid;
+			if (this.activeChat[0].sender_id == this.authDetails.id) {
+				sid = this.activeChat[0].receiver_id;
+			} else {
+
+				sid = this.activeChat[0].sender_id;
+			}
+			var body = this.typedChat;
+			var data = JSON.stringify({
+				transaction: tid,
+				receiver: sid,
+				body: body
+
+			});
+
+			axios.post('/send/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this.getChat(tid);
+				_this.typedChat = '';
+			});
+		},
+		getAuthDetails: function getAuthDetails() {
+			var _this2 = this;
+
+			axios.get('/auth/details').then(function (response) {
+
+				_this2.authDetails.push(response.data);
+			});
+		},
 		showError: function showError(error) {
 
 			var x = document.getElementById("demo");
@@ -1186,62 +2173,62 @@ var app = new Vue({
 			}
 		},
 		searchProducts: function searchProducts() {
-			var _this = this;
+			var _this3 = this;
 
 			if (!this.query.length) {
 				return;
 			}
 			index.search(this.query, function (err, content) {
 
-				_this.results = content.hits;
+				_this3.results = content.hits;
 			});
 		},
 		removeProduct: function removeProduct(pid) {
-			var _this2 = this;
+			var _this4 = this;
 
 			axios.get('/remove/product/' + pid).then(function (response) {
 
-				_this2.authStore();
+				_this4.authStore();
 			});
 		},
 		allProducts: function allProducts() {
-			var _this3 = this;
+			var _this5 = this;
 
 			axios.get('/all/products').then(function (response) {
 
-				_this3.products = [];
+				_this5.products = [];
 				response.data.forEach(function (product) {
 
-					_this3.products.push(product);
+					_this5.products.push(product);
 				});
 			});
 		},
 		guestProducts: function guestProducts() {
-			var _this4 = this;
+			var _this6 = this;
 
 			axios.get('guest/all/products').then(function (response) {
 
-				_this4.products = [];
+				_this6.products = [];
 				response.data.forEach(function (product) {
 
-					_this4.products.push(product);
+					_this6.products.push(product);
 				});
 			});
 		},
 		allCategories: function allCategories() {
-			var _this5 = this;
+			var _this7 = this;
 
 			axios.get('/all/categories').then(function (response) {
 				console.log(response.data);
-				_this5.categories = [];
+				_this7.categories = [];
 				response.data.forEach(function (category) {
 
-					_this5.categories.push(category);
+					_this7.categories.push(category);
 				});
 			});
 		},
 		sendCategory: function sendCategory() {
-			var _this6 = this;
+			var _this8 = this;
 
 			if (this.ncategory.length == 0) {
 				return;
@@ -1249,17 +2236,17 @@ var app = new Vue({
 
 			axios.get('/save/category/' + this.ncategory).then(function (response) {
 
-				_this6.categories = [];
+				_this8.categories = [];
 				response.data.forEach(function (category) {
 
-					_this6.categories.push(category);
+					_this8.categories.push(category);
 				});
 
-				_this6.ncategory = '';
+				_this8.ncategory = '';
 			});
 		},
 		submitProduct: function submitProduct() {
-			var _this7 = this;
+			var _this9 = this;
 
 			if (this.productImage.length > 0 && this.ocategory > 0 && this.ncategory.length == 0 && this.productName.length > 0) {
 
@@ -1286,46 +2273,198 @@ var app = new Vue({
 
 			}).then(function (response) {
 
-				_this7.productImage = [];
-				_this7.productName = '';
-				_this7.show_post_spinner = false;
+				_this9.productImage = [];
+				_this9.productName = '';
+				_this9.show_post_spinner = false;
 
-				_this7.allProducts();
+				_this9.allProducts();
 			});
 		},
 		findSeller: function findSeller(pid, cid) {
-			var _this8 = this;
+			var _this10 = this;
 
 			this.getActiveProduct(pid);
 			this.activeProductId = pid;
 			this.activeCategoryId = cid;
 
 			axios.get('/find/sellers/' + pid + '/' + cid).then(function (response) {
-				_this8.activeSellers = [];
+				_this10.activeSellers = [];
 				response.data.forEach(function (seller) {
 
-					_this8.activeSellers.push(seller);
+					_this10.activeSellers.push(seller);
 				});
 			});
 
 			this.showActivePage();
 		},
+		getOpenTransactions: function getOpenTransactions() {
+			var _this11 = this;
+
+			this.showOpentansaction = false;
+			this.openTransactions = [];
+			axios.get('/open/transactions/').then(function (response) {
+
+				_this11.openTransactions = [];
+				response.data.reverse().forEach(function (transaction) {
+
+					_this11.openTransactions.push(transaction);
+				});
+				_this11.showOpenTransactions = true;
+			});
+		},
+		getClosedTransactions: function getClosedTransactions() {
+			var _this12 = this;
+
+			axios.get('/closed/transactions/').then(function (response) {
+				_this12.closedTransactions = [];
+
+				response.data.forEach(function (transaction) {
+
+					_this12.closedTransactions.push(transaction);
+				});
+			});
+		},
 		hireSeller: function hireSeller(sid) {
+			var _this13 = this;
+
+			var cid;
+			if (this.activeCategoryId == 3) {
+				cid = 3;
+			} else {
+
+				cid = 0;
+			}
+
+			axios.get('/create/transaction/' + sid + '/' + this.activeProductId + '/' + cid).then(function (response) {
+
+				_this13.activeTransaction = [];
+				_this13.activeTransaction.push(response.data);
+				_this13.sendChat1(response.data.id, sid);
+				_this13.getOpenTransactions();
+			});
 
 			this.hideActivePage();
+			this.showChatBox();
 			this.activeSellerId = sid;
 		},
+		sendChat1: function sendChat1(tid, sid) {
+			var _this14 = this;
+
+			var body = 'Hello there, trust you are doing great';
+			var data = JSON.stringify({
+				transaction: tid,
+				receiver: sid,
+				body: body
+
+			});
+
+			axios.post('/send/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this14.getChat(tid);
+
+				_this14.sendChat2(tid, sid);
+			});
+		},
+		sendChat2: function sendChat2(tid, sid) {
+			var _this15 = this;
+
+			if (this.activeCategoryId == 3) {
+
+				var body = 'How much will it cost me to hire you as my ' + this.activeProduct[0].name;
+			} else {
+
+				var body = 'How much will it cost to buy ' + this.activeProduct[0].name + ' from you';
+			}
+
+			var data = JSON.stringify({
+				transaction: tid,
+				receiver: sid,
+				body: body
+
+			});
+
+			axios.post('/send/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this15.getChat(tid);
+				_this15.sendChat3(tid, sid);
+			});
+		},
+		sendChat3: function sendChat3(tid, sid) {
+			var _this16 = this;
+
+			if (this.activeCategoryId == 3) {
+
+				var body = 'Let me know your transport fee and any other complementary services and their charges also, Thanks. ';
+			} else {
+
+				var body = 'Let me know your delivery fee and any other complementary product you have and their cost also, Thanks. ';
+			}
+
+			var data = JSON.stringify({
+				transaction: tid,
+				receiver: sid,
+				body: body
+
+			});
+
+			axios.post('/send/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this16.getChat(tid);
+			});
+		},
+		declineTransaction: function declineTransaction(tid) {
+			var _this17 = this;
+
+			axios.get('/decline/transaction/' + tid).then(function (response) {
+
+				_this17.getOpenTransactions();
+			});
+		},
+		getChat: function getChat(tid) {
+			var _this18 = this;
+
+			var container = document.getElementById('chatBody');
+			container.scrollTop = container.scrollHeight;
+			this.showChatBox();
+			axios.get('/get/chat/' + tid).then(function (response) {
+				_this18.activeChat = [];
+
+				response.data.forEach(function (message) {
+					_this18.activeChat.push(message);
+
+					container.scrollTop = container.scrollHeight;
+				});
+			});
+		},
 		getActiveProduct: function getActiveProduct(pid) {
-			var _this9 = this;
+			var _this19 = this;
 
 			axios.get('/active/product/' + pid).then(function (response) {
 
-				_this9.activeProduct = [];
-				_this9.activeProduct.push(response.data);
+				_this19.activeProduct = [];
+				_this19.activeProduct.push(response.data);
 			});
 		},
 		submitSeller: function submitSeller() {
-			var _this10 = this;
+			var _this20 = this;
 
 			if (this.sellerEmail.length > 0 && this.sellerImage.length > 0 && this.adminEmail.length > 0) {
 
@@ -1353,10 +2492,10 @@ var app = new Vue({
 			}).then(function (response) {
 
 				console.log(response.data);
-				_this10.sellerImage = [];
-				_this10.sellerEmail = '';
-				_this10.adminEmail = '';
-				_this10.show_post_spinner = false;
+				_this20.sellerImage = [];
+				_this20.sellerEmail = '';
+				_this20.adminEmail = '';
+				_this20.show_post_spinner = false;
 			});
 		},
 
@@ -1364,21 +2503,24 @@ var app = new Vue({
 		//  Handling modal hiding and display methods			
 
 		showMenu: function showMenu() {
-
+			var bodyTop = document.getElementById('content-body');
 			var hiddenDiv = document.getElementById('hide');
 			var showmenu = document.getElementById('showmenu');
 			var hidemenu = document.getElementById('hidemenu');
 
+			bodyTop.style.top = 240 + 'px';
 			hiddenDiv.classList.remove('hidden');
 			showmenu.classList.add('hidden');
 			hidemenu.classList.remove('hidden');
 		},
 		hideMenu: function hideMenu() {
 
+			var bodyTop = document.getElementById('content-body');
 			var hiddenDiv = document.getElementById('hide');
 			var hidemenu = document.getElementById('hidemenu');
 			var showmenu = document.getElementById('showmenu');
 
+			bodyTop.style.top = 80 + 'px';
 			hiddenDiv.classList.add('hidden');
 			showmenu.classList.remove('hidden');
 			hidemenu.classList.add('hidden');
@@ -1404,8 +2546,7 @@ var app = new Vue({
 			activeModal.classList.remove('hidden');
 		},
 		hideActivePage: function hideActivePage() {
-			this.activeSellers = [];
-			this.activeProduct = [];
+
 			var activeModal = document.getElementById('active-page');
 			activeModal.classList.add('hidden');
 		},
@@ -1419,6 +2560,16 @@ var app = new Vue({
 			var loginFirst = document.getElementById('login-first');
 			loginFirst.classList.add('hidden');
 		},
+		showChatBox: function showChatBox() {
+
+			var showChat = document.getElementById('chat-box');
+			showChat.classList.remove('hidden');
+		},
+		hideChatBox: function hideChatBox() {
+
+			var showChat = document.getElementById('chat-box');
+			showChat.classList.add('hidden');
+		},
 		startSellingModal: function startSellingModal() {
 
 			var startSelling = document.getElementById('start-selling');
@@ -1428,6 +2579,17 @@ var app = new Vue({
 
 			startSelling = document.getElementById('start-selling');
 			startSelling.classList.add('hidden');
+		},
+		showRecoverForm: function showRecoverForm() {
+			this.hideWelcomeLoginModal();
+			this.hideLoginFirst();
+			var recoverForm = document.getElementById('recover-form');
+			recoverForm.classList.remove('hidden');
+		},
+		hideRecoverForm: function hideRecoverForm() {
+
+			var recoverForm = document.getElementById('recover-form');
+			recoverForm.classList.add('hidden');
 		},
 		welcomeLoginModal: function welcomeLoginModal() {
 
@@ -1483,14 +2645,14 @@ var app = new Vue({
 
 		//Handle Product Sales
 		authStore: function authStore() {
-			var _this11 = this;
+			var _this21 = this;
 
 			axios.get('/auth/store').then(function (response) {
-				_this11.store = [];
+				_this21.store = [];
 
 				response.data.forEach(function (item) {
 
-					_this11.store.push(item);
+					_this21.store.push(item);
 				});
 			});
 		},
@@ -1511,7 +2673,7 @@ var app = new Vue({
 			this.productImage = [];
 		},
 		imageChange: function imageChange(e) {
-			var _this12 = this;
+			var _this22 = this;
 
 			console.log('hi');
 
@@ -1534,20 +2696,20 @@ var app = new Vue({
 
 
 				if (response.data.length == 0) {
-					_this12.uploadDelay = [];
+					_this22.uploadDelay = [];
 
 					return;
 				}
 
-				_this12.productImage = [];
-				_this12.uploadDelay = [];
-				_this12.productImage.push(response.data);
+				_this22.productImage = [];
+				_this22.uploadDelay = [];
+				_this22.productImage.push(response.data);
 			}).catch(function (response) {
 				//errors
 			});
 		},
 		sellerImageChange: function sellerImageChange(e) {
-			var _this13 = this;
+			var _this23 = this;
 
 			var selected = e.target.files[0];
 
@@ -1568,14 +2730,14 @@ var app = new Vue({
 
 
 				if (response.data.length == 0) {
-					_this13.uploadDelay = [];
+					_this23.uploadDelay = [];
 
 					return;
 				}
 
-				_this13.sellerImage = [];
-				_this13.uploadDelay = [];
-				_this13.sellerImage.push(response.data);
+				_this23.sellerImage = [];
+				_this23.uploadDelay = [];
+				_this23.sellerImage.push(response.data);
 			}).catch(function (response) {
 				//errors
 			});
@@ -1664,11 +2826,11 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 12 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(13);
+window._ = __webpack_require__(28);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -1677,9 +2839,9 @@ window._ = __webpack_require__(13);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(15);
+  window.$ = window.jQuery = __webpack_require__(30);
 
-  __webpack_require__(16);
+  __webpack_require__(31);
 } catch (e) {}
 
 /**
@@ -1688,7 +2850,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(17);
+window.axios = __webpack_require__(32);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -1722,7 +2884,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 13 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -18824,10 +19986,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(14)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(29)(module)))
 
 /***/ }),
-/* 14 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -18855,7 +20017,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 15 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -29226,7 +30388,7 @@ return jQuery;
 
 
 /***/ }),
-/* 16 */
+/* 31 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31609,22 +32771,22 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 17 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(18);
+module.exports = __webpack_require__(33);
 
 /***/ }),
-/* 18 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
-var bind = __webpack_require__(3);
-var Axios = __webpack_require__(20);
-var defaults = __webpack_require__(2);
+var utils = __webpack_require__(1);
+var bind = __webpack_require__(14);
+var Axios = __webpack_require__(35);
+var defaults = __webpack_require__(11);
 
 /**
  * Create an instance of Axios
@@ -31657,15 +32819,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(8);
-axios.CancelToken = __webpack_require__(34);
-axios.isCancel = __webpack_require__(7);
+axios.Cancel = __webpack_require__(18);
+axios.CancelToken = __webpack_require__(49);
+axios.isCancel = __webpack_require__(17);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(35);
+axios.spread = __webpack_require__(50);
 
 module.exports = axios;
 
@@ -31674,7 +32836,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 19 */
+/* 34 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31701,18 +32863,18 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 20 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
-var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(29);
-var dispatchRequest = __webpack_require__(30);
-var isAbsoluteURL = __webpack_require__(32);
-var combineURLs = __webpack_require__(33);
+var defaults = __webpack_require__(11);
+var utils = __webpack_require__(1);
+var InterceptorManager = __webpack_require__(44);
+var dispatchRequest = __webpack_require__(45);
+var isAbsoluteURL = __webpack_require__(47);
+var combineURLs = __webpack_require__(48);
 
 /**
  * Create a new instance of Axios
@@ -31794,13 +32956,13 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 21 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -31813,13 +32975,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 22 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(6);
+var createError = __webpack_require__(16);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -31846,7 +33008,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 23 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31874,13 +33036,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 24 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -31949,13 +33111,13 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 25 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 /**
  * Parse headers into an object
@@ -31993,13 +33155,13 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 26 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -32068,7 +33230,7 @@ module.exports = (
 
 
 /***/ }),
-/* 27 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32111,13 +33273,13 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 28 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -32171,13 +33333,13 @@ module.exports = (
 
 
 /***/ }),
-/* 29 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -32230,16 +33392,16 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 30 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
-var transformData = __webpack_require__(31);
-var isCancel = __webpack_require__(7);
-var defaults = __webpack_require__(2);
+var utils = __webpack_require__(1);
+var transformData = __webpack_require__(46);
+var isCancel = __webpack_require__(17);
+var defaults = __webpack_require__(11);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -32316,13 +33478,13 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 31 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(0);
+var utils = __webpack_require__(1);
 
 /**
  * Transform the data for a request or a response
@@ -32343,7 +33505,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 32 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32364,7 +33526,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 33 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32385,13 +33547,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 34 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(8);
+var Cancel = __webpack_require__(18);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -32449,7 +33611,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 35 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32483,7 +33645,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 36 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43297,10 +44459,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(37).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(52).setImmediate))
 
 /***/ }),
-/* 37 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -43353,7 +44515,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(38);
+__webpack_require__(53);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -43364,10 +44526,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 38 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -43557,18 +44719,18 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(9)))
 
 /***/ }),
-/* 39 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(9)
+var normalizeComponent = __webpack_require__(7)
 /* script */
-var __vue_script__ = __webpack_require__(40)
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(41)
+var __vue_template__ = __webpack_require__(56)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43607,7 +44769,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43636,7 +44798,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 41 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43679,15 +44841,15 @@ if (false) {
 }
 
 /***/ }),
-/* 42 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(9)
+var normalizeComponent = __webpack_require__(7)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43726,7 +44888,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43746,31 +44908,15 @@ if (false) {
 }
 
 /***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(9)
+var normalizeComponent = __webpack_require__(7)
 /* script */
-var __vue_script__ = __webpack_require__(56)
+var __vue_script__ = __webpack_require__(60)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(61)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43809,7 +44955,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43897,7 +45043,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 57 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43963,940 +45109,624 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports) {
-
-module.exports = function clone(obj) {
-  return JSON.parse(JSON.stringify(obj));
-};
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// This file hosts our error definitions
-// We use custom error "types" so that we can act on them when we need it
-// e.g.: if error instanceof errors.UnparsableJSON then..
-
-var inherits = __webpack_require__(63);
-
-function AlgoliaSearchError(message, extraProperties) {
-  var forEach = __webpack_require__(61);
-
-  var error = this;
-
-  // try to get a stacktrace
-  if (typeof Error.captureStackTrace === 'function') {
-    Error.captureStackTrace(this, this.constructor);
-  } else {
-    error.stack = (new Error()).stack || 'Cannot get a stacktrace, browser is too old';
-  }
-
-  this.name = 'AlgoliaSearchError';
-  this.message = message || 'Unknown error';
-
-  if (extraProperties) {
-    forEach(extraProperties, function addToErrorObject(value, key) {
-      error[key] = value;
-    });
-  }
-}
-
-inherits(AlgoliaSearchError, Error);
-
-function createCustomError(name, message) {
-  function AlgoliaSearchCustomError() {
-    var args = Array.prototype.slice.call(arguments, 0);
-
-    // custom message not set, use default
-    if (typeof args[0] !== 'string') {
-      args.unshift(message);
-    }
-
-    AlgoliaSearchError.apply(this, args);
-    this.name = 'AlgoliaSearch' + name + 'Error';
-  }
-
-  inherits(AlgoliaSearchCustomError, AlgoliaSearchError);
-
-  return AlgoliaSearchCustomError;
-}
-
-// late exports to let various fn defs and inherits take place
-module.exports = {
-  AlgoliaSearchError: AlgoliaSearchError,
-  UnparsableJSON: createCustomError(
-    'UnparsableJSON',
-    'Could not parse the incoming response as JSON, see err.more for details'
-  ),
-  RequestTimeout: createCustomError(
-    'RequestTimeout',
-    'Request timedout before getting a response'
-  ),
-  Network: createCustomError(
-    'Network',
-    'Network issue, see err.more for details'
-  ),
-  JSONPScriptFail: createCustomError(
-    'JSONPScriptFail',
-    '<script> was loaded but did not call our provided callback'
-  ),
-  JSONPScriptError: createCustomError(
-    'JSONPScriptError',
-    '<script> unable to load due to an `error` event on it'
-  ),
-  Unknown: createCustomError(
-    'Unknown',
-    'Unknown error occured'
-  )
-};
-
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports) {
-
-
-var hasOwn = Object.prototype.hasOwnProperty;
-var toString = Object.prototype.toString;
-
-module.exports = function forEach (obj, fn, ctx) {
-    if (toString.call(fn) !== '[object Function]') {
-        throw new TypeError('iterator must be a function');
-    }
-    var l = obj.length;
-    if (l === +l) {
-        for (var i = 0; i < l; i++) {
-            fn.call(ctx, obj[i], i, obj);
-        }
-    } else {
-        for (var k in obj) {
-            if (hasOwn.call(obj, k)) {
-                fn.call(ctx, obj[k], k, obj);
-            }
-        }
-    }
-};
-
-
-
-/***/ }),
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var foreach = __webpack_require__(61);
+var disposed = false
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(63)
+/* template */
+var __vue_template__ = __webpack_require__(64)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ActiveProduct.vue"
 
-module.exports = function map(arr, fn) {
-  var newArr = [];
-  foreach(arr, function(item, itemIndex) {
-    newArr.push(fn(item, itemIndex, arr));
-  });
-  return newArr;
-};
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08578ebc", Component.options)
+  } else {
+    hotAPI.reload("data-v-08578ebc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
 /* 63 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+
+			activeProduct: []
+
+		};
+	}
+});
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * This is the web browser implementation of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = __webpack_require__(81);
-exports.log = log;
-exports.formatArgs = formatArgs;
-exports.save = save;
-exports.load = load;
-exports.useColors = useColors;
-exports.storage = 'undefined' != typeof chrome
-               && 'undefined' != typeof chrome.storage
-                  ? chrome.storage.local
-                  : localstorage();
-
-/**
- * Colors.
- */
-
-exports.colors = [
-  'lightseagreen',
-  'forestgreen',
-  'goldenrod',
-  'dodgerblue',
-  'darkorchid',
-  'crimson'
-];
-
-/**
- * Currently only WebKit-based Web Inspectors, Firefox >= v31,
- * and the Firebug extension (any Firefox version) are known
- * to support "%c" CSS customizations.
- *
- * TODO: add a `localStorage` variable to explicitly enable/disable colors
- */
-
-function useColors() {
-  // NB: In an Electron preload script, document will be defined but not fully
-  // initialized. Since we know we're in Chrome, we'll just detect this case
-  // explicitly
-  if (typeof window !== 'undefined' && window.process && window.process.type === 'renderer') {
-    return true;
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-08578ebc", module.exports)
   }
-
-  // is webkit? http://stackoverflow.com/a/16459606/376773
-  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-  return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
-    // is firebug? http://stackoverflow.com/a/398120/376773
-    (typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
-    // is firefox >= v31?
-    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
-    // double check webkit in userAgent just in case we are in a worker
-    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
 }
-
-/**
- * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
- */
-
-exports.formatters.j = function(v) {
-  try {
-    return JSON.stringify(v);
-  } catch (err) {
-    return '[UnexpectedJSONParseError]: ' + err.message;
-  }
-};
-
-
-/**
- * Colorize log arguments if enabled.
- *
- * @api public
- */
-
-function formatArgs(args) {
-  var useColors = this.useColors;
-
-  args[0] = (useColors ? '%c' : '')
-    + this.namespace
-    + (useColors ? ' %c' : ' ')
-    + args[0]
-    + (useColors ? '%c ' : ' ')
-    + '+' + exports.humanize(this.diff);
-
-  if (!useColors) return;
-
-  var c = 'color: ' + this.color;
-  args.splice(1, 0, c, 'color: inherit')
-
-  // the final "%c" is somewhat tricky, because there could be other
-  // arguments passed either before or after the %c, so we need to
-  // figure out the correct index to insert the CSS into
-  var index = 0;
-  var lastC = 0;
-  args[0].replace(/%[a-zA-Z%]/g, function(match) {
-    if ('%%' === match) return;
-    index++;
-    if ('%c' === match) {
-      // we only are interested in the *last* %c
-      // (the user may have provided their own)
-      lastC = index;
-    }
-  });
-
-  args.splice(lastC, 0, c);
-}
-
-/**
- * Invokes `console.log()` when available.
- * No-op when `console.log` is not a "function".
- *
- * @api public
- */
-
-function log() {
-  // this hackery is required for IE8/9, where
-  // the `console.log` function doesn't have 'apply'
-  return 'object' === typeof console
-    && console.log
-    && Function.prototype.apply.call(console.log, console, arguments);
-}
-
-/**
- * Save `namespaces`.
- *
- * @param {String} namespaces
- * @api private
- */
-
-function save(namespaces) {
-  try {
-    if (null == namespaces) {
-      exports.storage.removeItem('debug');
-    } else {
-      exports.storage.debug = namespaces;
-    }
-  } catch(e) {}
-}
-
-/**
- * Load `namespaces`.
- *
- * @return {String} returns the previously persisted debug modes
- * @api private
- */
-
-function load() {
-  var r;
-  try {
-    r = exports.storage.debug;
-  } catch(e) {}
-
-  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
-  if (!r && typeof process !== 'undefined' && 'env' in process) {
-    r = Object({"NODE_ENV":"development"}).DEBUG;
-  }
-
-  return r;
-}
-
-/**
- * Enable namespaces listed in `localStorage.debug` initially.
- */
-
-exports.enable(load());
-
-/**
- * Localstorage attempts to return the localstorage.
- *
- * This is necessary because safari throws
- * when a user disables cookies/localstorage
- * and you attempt to access it.
- *
- * @return {LocalStorage}
- * @api private
- */
-
-function localstorage() {
-  try {
-    return window.localStorage;
-  } catch (e) {}
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 65 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function deprecate(fn, message) {
-  var warned = false;
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(66)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(71)
+/* template */
+var __vue_template__ = __webpack_require__(72)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ChatBody.vue"
 
-  function deprecated() {
-    if (!warned) {
-      /* eslint no-console:0 */
-      console.warn(message);
-      warned = true;
-    }
-
-    return fn.apply(this, arguments);
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d91e42de", Component.options)
+  } else {
+    hotAPI.reload("data-v-d91e42de", Component.options)
   }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
-  return deprecated;
-};
+module.exports = Component.exports
 
 
 /***/ }),
 /* 66 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function deprecatedMessage(previousUsage, newUsage) {
-  var githubAnchorLink = previousUsage.toLowerCase()
-    .replace(/[\.\(\)]/g, '');
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-  return 'algoliasearch: `' + previousUsage + '` was replaced by `' + newUsage +
-    '`. Please see https://github.com/algolia/algoliasearch-client-javascript/wiki/Deprecated#' + githubAnchorLink;
-};
-
+// load the styles
+var content = __webpack_require__(67);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(69)("4062d149", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d91e42de\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChatBody.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d91e42de\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChatBody.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+exports = module.exports = __webpack_require__(68)(false);
+// imports
 
 
-var AlgoliaSearch = __webpack_require__(73);
-var createAlgoliasearch = __webpack_require__(84);
+// module
+exports.push([module.i, "\n.hidden {\r\ndisplay:none;\n}\r\n\r\n\r\n", ""]);
 
-module.exports = createAlgoliasearch(AlgoliaSearch);
+// exports
 
 
 /***/ }),
 /* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var buildSearchMethod = __webpack_require__(69);
-var deprecate = __webpack_require__(65);
-var deprecatedMessage = __webpack_require__(66);
-
-module.exports = IndexCore;
+/***/ (function(module, exports) {
 
 /*
-* Index class constructor.
-* You should not use this method directly but use initIndex() function
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
 */
-function IndexCore(algoliasearch, indexName) {
-  this.indexName = indexName;
-  this.as = algoliasearch;
-  this.typeAheadArgs = null;
-  this.typeAheadValueOption = null;
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
 
-  // make sure every index instance has it's own cache
-  this.cache = {};
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
 }
 
-/*
-* Clear all queries in cache
-*/
-IndexCore.prototype.clearCache = function() {
-  this.cache = {};
-};
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
 
-/*
-* Search inside the index using XMLHttpRequest request (Using a POST query to
-* minimize number of OPTIONS queries: Cross-Origin Resource Sharing).
-*
-* @param {string} [query] the full text query
-* @param {object} [args] (optional) if set, contains an object with query parameters:
-* - page: (integer) Pagination parameter used to select the page to retrieve.
-*                   Page is zero-based and defaults to 0. Thus,
-*                   to retrieve the 10th page you need to set page=9
-* - hitsPerPage: (integer) Pagination parameter used to select the number of hits per page. Defaults to 20.
-* - attributesToRetrieve: a string that contains the list of object attributes
-* you want to retrieve (let you minimize the answer size).
-*   Attributes are separated with a comma (for example "name,address").
-*   You can also use an array (for example ["name","address"]).
-*   By default, all attributes are retrieved. You can also use '*' to retrieve all
-*   values when an attributesToRetrieve setting is specified for your index.
-* - attributesToHighlight: a string that contains the list of attributes you
-*   want to highlight according to the query.
-*   Attributes are separated by a comma. You can also use an array (for example ["name","address"]).
-*   If an attribute has no match for the query, the raw value is returned.
-*   By default all indexed text attributes are highlighted.
-*   You can use `*` if you want to highlight all textual attributes.
-*   Numerical attributes are not highlighted.
-*   A matchLevel is returned for each highlighted attribute and can contain:
-*      - full: if all the query terms were found in the attribute,
-*      - partial: if only some of the query terms were found,
-*      - none: if none of the query terms were found.
-* - attributesToSnippet: a string that contains the list of attributes to snippet alongside
-* the number of words to return (syntax is `attributeName:nbWords`).
-*    Attributes are separated by a comma (Example: attributesToSnippet=name:10,content:10).
-*    You can also use an array (Example: attributesToSnippet: ['name:10','content:10']).
-*    By default no snippet is computed.
-* - minWordSizefor1Typo: the minimum number of characters in a query word to accept one typo in this word.
-* Defaults to 3.
-* - minWordSizefor2Typos: the minimum number of characters in a query word
-* to accept two typos in this word. Defaults to 7.
-* - getRankingInfo: if set to 1, the result hits will contain ranking
-* information in _rankingInfo attribute.
-* - aroundLatLng: search for entries around a given
-* latitude/longitude (specified as two floats separated by a comma).
-*   For example aroundLatLng=47.316669,5.016670).
-*   You can specify the maximum distance in meters with the aroundRadius parameter (in meters)
-*   and the precision for ranking with aroundPrecision
-*   (for example if you set aroundPrecision=100, two objects that are distant of
-*   less than 100m will be considered as identical for "geo" ranking parameter).
-*   At indexing, you should specify geoloc of an object with the _geoloc attribute
-*   (in the form {"_geoloc":{"lat":48.853409, "lng":2.348800}})
-* - insideBoundingBox: search entries inside a given area defined by the two extreme points
-* of a rectangle (defined by 4 floats: p1Lat,p1Lng,p2Lat,p2Lng).
-*   For example insideBoundingBox=47.3165,4.9665,47.3424,5.0201).
-*   At indexing, you should specify geoloc of an object with the _geoloc attribute
-*   (in the form {"_geoloc":{"lat":48.853409, "lng":2.348800}})
-* - numericFilters: a string that contains the list of numeric filters you want to
-* apply separated by a comma.
-*   The syntax of one filter is `attributeName` followed by `operand` followed by `value`.
-*   Supported operands are `<`, `<=`, `=`, `>` and `>=`.
-*   You can have multiple conditions on one attribute like for example numericFilters=price>100,price<1000.
-*   You can also use an array (for example numericFilters: ["price>100","price<1000"]).
-* - tagFilters: filter the query by a set of tags. You can AND tags by separating them by commas.
-*   To OR tags, you must add parentheses. For example, tags=tag1,(tag2,tag3) means tag1 AND (tag2 OR tag3).
-*   You can also use an array, for example tagFilters: ["tag1",["tag2","tag3"]]
-*   means tag1 AND (tag2 OR tag3).
-*   At indexing, tags should be added in the _tags** attribute
-*   of objects (for example {"_tags":["tag1","tag2"]}).
-* - facetFilters: filter the query by a list of facets.
-*   Facets are separated by commas and each facet is encoded as `attributeName:value`.
-*   For example: `facetFilters=category:Book,author:John%20Doe`.
-*   You can also use an array (for example `["category:Book","author:John%20Doe"]`).
-* - facets: List of object attributes that you want to use for faceting.
-*   Comma separated list: `"category,author"` or array `['category','author']`
-*   Only attributes that have been added in **attributesForFaceting** index setting
-*   can be used in this parameter.
-*   You can also use `*` to perform faceting on all attributes specified in **attributesForFaceting**.
-* - queryType: select how the query words are interpreted, it can be one of the following value:
-*    - prefixAll: all query words are interpreted as prefixes,
-*    - prefixLast: only the last word is interpreted as a prefix (default behavior),
-*    - prefixNone: no query word is interpreted as a prefix. This option is not recommended.
-* - optionalWords: a string that contains the list of words that should
-* be considered as optional when found in the query.
-*   Comma separated and array are accepted.
-* - distinct: If set to 1, enable the distinct feature (disabled by default)
-* if the attributeForDistinct index setting is set.
-*   This feature is similar to the SQL "distinct" keyword: when enabled
-*   in a query with the distinct=1 parameter,
-*   all hits containing a duplicate value for the attributeForDistinct attribute are removed from results.
-*   For example, if the chosen attribute is show_name and several hits have
-*   the same value for show_name, then only the best
-*   one is kept and others are removed.
-* - restrictSearchableAttributes: List of attributes you want to use for
-* textual search (must be a subset of the attributesToIndex index setting)
-* either comma separated or as an array
-* @param {function} [callback] the result callback called with two arguments:
-*  error: null or Error('message'). If false, the content contains the error.
-*  content: the server answer that contains the list of results.
-*/
-IndexCore.prototype.search = buildSearchMethod('query');
-
-/*
-* -- BETA --
-* Search a record similar to the query inside the index using XMLHttpRequest request (Using a POST query to
-* minimize number of OPTIONS queries: Cross-Origin Resource Sharing).
-*
-* @param {string} [query] the similar query
-* @param {object} [args] (optional) if set, contains an object with query parameters.
-*   All search parameters are supported (see search function), restrictSearchableAttributes and facetFilters
-*   are the two most useful to restrict the similar results and get more relevant content
-*/
-IndexCore.prototype.similarSearch = buildSearchMethod('similarQuery');
-
-/*
-* Browse index content. The response content will have a `cursor` property that you can use
-* to browse subsequent pages for this query. Use `index.browseFrom(cursor)` when you want.
-*
-* @param {string} query - The full text query
-* @param {Object} [queryParameters] - Any search query parameter
-* @param {Function} [callback] - The result callback called with two arguments
-*   error: null or Error('message')
-*   content: the server answer with the browse result
-* @return {Promise|undefined} Returns a promise if no callback given
-* @example
-* index.browse('cool songs', {
-*   tagFilters: 'public,comments',
-*   hitsPerPage: 500
-* }, callback);
-* @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
-*/
-IndexCore.prototype.browse = function(query, queryParameters, callback) {
-  var merge = __webpack_require__(70);
-
-  var indexObj = this;
-
-  var page;
-  var hitsPerPage;
-
-  // we check variadic calls that are not the one defined
-  // .browse()/.browse(fn)
-  // => page = 0
-  if (arguments.length === 0 || arguments.length === 1 && typeof arguments[0] === 'function') {
-    page = 0;
-    callback = arguments[0];
-    query = undefined;
-  } else if (typeof arguments[0] === 'number') {
-    // .browse(2)/.browse(2, 10)/.browse(2, fn)/.browse(2, 10, fn)
-    page = arguments[0];
-    if (typeof arguments[1] === 'number') {
-      hitsPerPage = arguments[1];
-    } else if (typeof arguments[1] === 'function') {
-      callback = arguments[1];
-      hitsPerPage = undefined;
-    }
-    query = undefined;
-    queryParameters = undefined;
-  } else if (typeof arguments[0] === 'object') {
-    // .browse(queryParameters)/.browse(queryParameters, cb)
-    if (typeof arguments[1] === 'function') {
-      callback = arguments[1];
-    }
-    queryParameters = arguments[0];
-    query = undefined;
-  } else if (typeof arguments[0] === 'string' && typeof arguments[1] === 'function') {
-    // .browse(query, cb)
-    callback = arguments[1];
-    queryParameters = undefined;
-  }
-
-  // otherwise it's a .browse(query)/.browse(query, queryParameters)/.browse(query, queryParameters, cb)
-
-  // get search query parameters combining various possible calls
-  // to .browse();
-  queryParameters = merge({}, queryParameters || {}, {
-    page: page,
-    hitsPerPage: hitsPerPage,
-    query: query
-  });
-
-  var params = this.as._getSearchParams(queryParameters, '');
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/browse',
-    body: {params: params},
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
-* Continue browsing from a previous position (cursor), obtained via a call to `.browse()`.
-*
-* @param {string} query - The full text query
-* @param {Object} [queryParameters] - Any search query parameter
-* @param {Function} [callback] - The result callback called with two arguments
-*   error: null or Error('message')
-*   content: the server answer with the browse result
-* @return {Promise|undefined} Returns a promise if no callback given
-* @example
-* index.browseFrom('14lkfsakl32', callback);
-* @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
-*/
-IndexCore.prototype.browseFrom = function(cursor, callback) {
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/browse',
-    body: {cursor: cursor},
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
-* Search for facet values
-* https://www.algolia.com/doc/rest-api/search#search-for-facet-values
-*
-* @param {string} params.facetName Facet name, name of the attribute to search for values in.
-* Must be declared as a facet
-* @param {string} params.facetQuery Query for the facet search
-* @param {string} [params.*] Any search parameter of Algolia,
-* see https://www.algolia.com/doc/api-client/javascript/search#search-parameters
-* Pagination is not supported. The page and hitsPerPage parameters will be ignored.
-* @param callback (optional)
-*/
-IndexCore.prototype.searchForFacetValues = function(params, callback) {
-  var clone = __webpack_require__(59);
-  var omit = __webpack_require__(71);
-  var usage = 'Usage: index.searchForFacetValues({facetName, facetQuery, ...params}[, callback])';
-
-  if (params.facetName === undefined || params.facetQuery === undefined) {
-    throw new Error(usage);
-  }
-
-  var facetName = params.facetName;
-  var filteredParams = omit(clone(params), function(keyName) {
-    return keyName === 'facetName';
-  });
-  var searchParameters = this.as._getSearchParams(filteredParams, '');
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' +
-      encodeURIComponent(this.indexName) + '/facets/' + encodeURIComponent(facetName) + '/query',
-    hostType: 'read',
-    body: {params: searchParameters},
-    callback: callback
-  });
-};
-
-IndexCore.prototype.searchFacet = deprecate(function(params, callback) {
-  return this.searchForFacetValues(params, callback);
-}, deprecatedMessage(
-  'index.searchFacet(params[, callback])',
-  'index.searchForFacetValues(params[, callback])'
-));
-
-IndexCore.prototype._search = function(params, url, callback, additionalUA) {
-  return this.as._jsonRequest({
-    cache: this.cache,
-    method: 'POST',
-    url: url || '/1/indexes/' + encodeURIComponent(this.indexName) + '/query',
-    body: {params: params},
-    hostType: 'read',
-    fallback: {
-      method: 'GET',
-      url: '/1/indexes/' + encodeURIComponent(this.indexName),
-      body: {params: params}
-    },
-    callback: callback,
-    additionalUA: additionalUA
-  });
-};
-
-/*
-* Get an object from this index
-*
-* @param objectID the unique identifier of the object to retrieve
-* @param attrs (optional) if set, contains the array of attribute names to retrieve
-* @param callback (optional) the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the object to retrieve or the error message if a failure occured
-*/
-IndexCore.prototype.getObject = function(objectID, attrs, callback) {
-  var indexObj = this;
-
-  if (arguments.length === 1 || typeof attrs === 'function') {
-    callback = attrs;
-    attrs = undefined;
-  }
-
-  var params = '';
-  if (attrs !== undefined) {
-    params = '?attributes=';
-    for (var i = 0; i < attrs.length; ++i) {
-      if (i !== 0) {
-        params += ',';
-      }
-      params += attrs[i];
-    }
-  }
-
-  return this.as._jsonRequest({
-    method: 'GET',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(objectID) + params,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
-* Get several objects from this index
-*
-* @param objectIDs the array of unique identifier of objects to retrieve
-*/
-IndexCore.prototype.getObjects = function(objectIDs, attributesToRetrieve, callback) {
-  var isArray = __webpack_require__(58);
-  var map = __webpack_require__(62);
-
-  var usage = 'Usage: index.getObjects(arrayOfObjectIDs[, callback])';
-
-  if (!isArray(objectIDs)) {
-    throw new Error(usage);
-  }
-
-  var indexObj = this;
-
-  if (arguments.length === 1 || typeof attributesToRetrieve === 'function') {
-    callback = attributesToRetrieve;
-    attributesToRetrieve = undefined;
-  }
-
-  var body = {
-    requests: map(objectIDs, function prepareRequest(objectID) {
-      var request = {
-        indexName: indexObj.indexName,
-        objectID: objectID
-      };
-
-      if (attributesToRetrieve) {
-        request.attributesToRetrieve = attributesToRetrieve.join(',');
-      }
-
-      return request;
-    })
-  };
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/*/objects',
-    hostType: 'read',
-    body: body,
-    callback: callback
-  });
-};
-
-IndexCore.prototype.as = null;
-IndexCore.prototype.indexName = null;
-IndexCore.prototype.typeAheadArgs = null;
-IndexCore.prototype.typeAheadValueOption = null;
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = buildSearchMethod;
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
 
-var errors = __webpack_require__(60);
+var hasDocument = typeof document !== 'undefined'
 
-/**
- * Creates a search method to be used in clients
- * @param {string} queryParam the name of the attribute used for the query
- * @param {string} url the url
- * @return {function} the search method
- */
-function buildSearchMethod(queryParam, url) {
-  /**
-   * The search method. Prepares the data and send the query to Algolia.
-   * @param {string} query the string used for query search
-   * @param {object} args additional parameters to send with the search
-   * @param {function} [callback] the callback to be called with the client gets the answer
-   * @return {undefined|Promise} If the callback is not provided then this methods returns a Promise
-   */
-  return function search(query, args, callback) {
-    // warn V2 users on how to search
-    if (typeof query === 'function' && typeof args === 'object' ||
-      typeof callback === 'object') {
-      // .search(query, params, cb)
-      // .search(cb, params)
-      throw new errors.AlgoliaSearchError('index.search usage is index.search(query, params, cb)');
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(70)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
     }
-
-    // Normalizing the function signature
-    if (arguments.length === 0 || typeof query === 'function') {
-      // Usage : .search(), .search(cb)
-      callback = query;
-      query = '';
-    } else if (arguments.length === 1 || typeof args === 'function') {
-      // Usage : .search(query/args), .search(query, cb)
-      callback = args;
-      args = undefined;
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
     }
-    // At this point we have 3 arguments with values
-
-    // Usage : .search(args) // careful: typeof null === 'object'
-    if (typeof query === 'object' && query !== null) {
-      args = query;
-      query = undefined;
-    } else if (query === undefined || query === null) { // .search(undefined/null)
-      query = '';
-    }
-
-    var params = '';
-
-    if (query !== undefined) {
-      params += queryParam + '=' + encodeURIComponent(query);
-    }
-
-    var additionalUA;
-    if (args !== undefined) {
-      if (args.additionalUA) {
-        additionalUA = args.additionalUA;
-        delete args.additionalUA;
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
       }
-      // `_getSearchParams` will augment params, do not be fooled by the = versus += from previous if
-      params = this.as._getSearchParams(args, params);
     }
+  }
+}
 
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
 
-    return this._search(params, url, callback, additionalUA);
-  };
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
 }
 
 
 /***/ }),
 /* 70 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var foreach = __webpack_require__(61);
-
-module.exports = function merge(destination/* , sources */) {
-  var sources = Array.prototype.slice.call(arguments);
-
-  foreach(sources, function(source) {
-    for (var keyName in source) {
-      if (source.hasOwnProperty(keyName)) {
-        if (typeof destination[keyName] === 'object' && typeof source[keyName] === 'object') {
-          destination[keyName] = merge({}, destination[keyName], source[keyName]);
-        } else if (source[keyName] !== undefined) {
-          destination[keyName] = source[keyName];
-        }
-      }
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
     }
-  });
-
-  return destination;
-};
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
 
 
 /***/ }),
 /* 71 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(75);
-  var foreach = __webpack_require__(61);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-  var filtered = {};
 
-  foreach(keys(obj), function doFilter(keyName) {
-    if (test(keyName) !== true) {
-      filtered[keyName] = obj[keyName];
-    }
-  });
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
 
-  return filtered;
-};
+		return {
 
+			authDetails: []
+
+		};
+	},
+
+
+	props: ['body', 'id'],
+
+	mounted: function mounted() {
+
+		this.getAuthDetails();
+	},
+
+
+	methods: {
+		getAuthDetails: function getAuthDetails() {
+			var _this = this;
+
+			axios.get('/auth/details').then(function (response) {
+
+				_this.authDetails.push(response.data);
+			});
+		}
+	}
+
+});
 
 /***/ }),
 /* 72 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// Parse cloud does not supports setTimeout
-// We do not store a setTimeout reference in the client everytime
-// We only fallback to a fake setTimeout when not available
-// setTimeout cannot be override globally sadly
-module.exports = function exitPromise(fn, _setTimeout) {
-  _setTimeout(fn, 0);
-};
-
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    this.authDetails.length > 0
+      ? _c("div", [
+          this.authDetails[0].id != this.id
+            ? _c("div", { staticClass: "theirChat" }, [
+                _c("p", { attrs: { id: "auth" } }, [_vm._v(_vm._s(this.body))])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          this.authDetails[0].id == this.id
+            ? _c("div", { staticClass: "myChat" }, [
+                _c("p", { attrs: { id: "auth" } }, [_vm._v(_vm._s(this.body))])
+              ])
+            : _vm._e()
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d91e42de", module.exports)
+  }
+}
 
 /***/ }),
 /* 73 */
@@ -44905,11 +45735,11 @@ module.exports = function exitPromise(fn, _setTimeout) {
 module.exports = AlgoliaSearch;
 
 var Index = __webpack_require__(74);
-var deprecate = __webpack_require__(65);
-var deprecatedMessage = __webpack_require__(66);
+var deprecate = __webpack_require__(12);
+var deprecatedMessage = __webpack_require__(13);
 var AlgoliaSearchCore = __webpack_require__(79);
-var inherits = __webpack_require__(63);
-var errors = __webpack_require__(60);
+var inherits = __webpack_require__(8);
+var errors = __webpack_require__(4);
 
 function AlgoliaSearch() {
   AlgoliaSearchCore.apply(this, arguments);
@@ -45001,7 +45831,7 @@ AlgoliaSearch.prototype.copyIndex = function(srcIndexName, dstIndexName, scopeOr
  *  content: the server answer that contains the task ID
  */
 AlgoliaSearch.prototype.getLogs = function(offset, length, callback) {
-  var clone = __webpack_require__(59);
+  var clone = __webpack_require__(2);
   var params = {};
   if (typeof offset === 'object') {
     // getLogs(params)
@@ -45194,7 +46024,7 @@ AlgoliaSearch.prototype.addUserKey = deprecate(function(acls, params, callback) 
  * @see {@link https://www.algolia.com/doc/rest_api#AddKey|Algolia REST API Documentation}
  */
 AlgoliaSearch.prototype.addApiKey = function(acls, params, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: client.addApiKey(arrayOfAcls[, params, callback])';
 
   if (!isArray(acls)) {
@@ -45285,7 +46115,7 @@ AlgoliaSearch.prototype.updateUserKey = deprecate(function(key, acls, params, ca
  * @see {@link https://www.algolia.com/doc/rest_api#UpdateIndexKey|Algolia REST API Documentation}
  */
 AlgoliaSearch.prototype.updateApiKey = function(key, acls, params, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: client.updateApiKey(key, arrayOfAcls[, params, callback])';
 
   if (!isArray(acls)) {
@@ -45386,7 +46216,7 @@ AlgoliaSearch.prototype.sendQueriesBatch = deprecate(function sendQueriesBatchDe
  * }], cb)
  */
 AlgoliaSearch.prototype.batch = function(operations, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: client.batch(operations[, callback])';
 
   if (!isArray(operations)) {
@@ -45577,12 +46407,12 @@ function notImplemented() {
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(63);
-var IndexCore = __webpack_require__(68);
-var deprecate = __webpack_require__(65);
-var deprecatedMessage = __webpack_require__(66);
-var exitPromise = __webpack_require__(72);
-var errors = __webpack_require__(60);
+var inherits = __webpack_require__(8);
+var IndexCore = __webpack_require__(20);
+var deprecate = __webpack_require__(12);
+var deprecatedMessage = __webpack_require__(13);
+var exitPromise = __webpack_require__(24);
+var errors = __webpack_require__(4);
 
 var deprecateForwardToSlaves = deprecate(
   function() {},
@@ -45636,7 +46466,7 @@ Index.prototype.addObject = function(content, objectID, callback) {
 *  content: the server answer that updateAt and taskID
 */
 Index.prototype.addObjects = function(objects, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: index.addObjects(arrayOfObjects[, callback])';
 
   if (!isArray(objects)) {
@@ -45708,7 +46538,7 @@ Index.prototype.partialUpdateObjects = function(objects, createIfNotExists, call
     createIfNotExists = true;
   }
 
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: index.partialUpdateObjects(arrayOfObjects[, callback])';
 
   if (!isArray(objects)) {
@@ -45764,7 +46594,7 @@ Index.prototype.saveObject = function(object, callback) {
 *  content: the server answer that updateAt and taskID
 */
 Index.prototype.saveObjects = function(objects, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: index.saveObjects(arrayOfObjects[, callback])';
 
   if (!isArray(objects)) {
@@ -45829,8 +46659,8 @@ Index.prototype.deleteObject = function(objectID, callback) {
 *  content: the server answer that contains 3 elements: createAt, taskId and objectID
 */
 Index.prototype.deleteObjects = function(objectIDs, callback) {
-  var isArray = __webpack_require__(58);
-  var map = __webpack_require__(62);
+  var isArray = __webpack_require__(0);
+  var map = __webpack_require__(6);
 
   var usage = 'Usage: index.deleteObjects(arrayOfObjectIDs[, callback])';
 
@@ -45870,8 +46700,8 @@ Index.prototype.deleteObjects = function(objectIDs, callback) {
 * @deprecated see index.deleteBy
 */
 Index.prototype.deleteByQuery = deprecate(function(query, params, callback) {
-  var clone = __webpack_require__(59);
-  var map = __webpack_require__(62);
+  var clone = __webpack_require__(2);
+  var map = __webpack_require__(6);
 
   var indexObj = this;
   var client = indexObj.as;
@@ -46005,7 +46835,7 @@ Index.prototype.browseAll = function(query, queryParameters) {
     query = undefined;
   }
 
-  var merge = __webpack_require__(70);
+  var merge = __webpack_require__(22);
 
   var IndexBrowser = __webpack_require__(77);
 
@@ -46694,7 +47524,7 @@ Index.prototype.addUserKey = deprecate(function(acls, params, callback) {
 * @deprecated see client.addApiKey()
 */
 Index.prototype.addApiKey = deprecate(function(acls, params, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: index.addApiKey(arrayOfAcls[, params, callback])';
 
   if (!isArray(acls)) {
@@ -46785,7 +47615,7 @@ Index.prototype.updateUserKey = deprecate(function(key, acls, params, callback) 
 * @deprecated see client.updateApiKey()
 */
 Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
-  var isArray = __webpack_require__(58);
+  var isArray = __webpack_require__(0);
   var usage = 'Usage: index.updateApiKey(key, arrayOfAcls[, params, callback])';
 
   if (!isArray(acls)) {
@@ -47006,7 +47836,7 @@ module.exports = function isArguments(value) {
 
 module.exports = IndexBrowser;
 
-var inherits = __webpack_require__(63);
+var inherits = __webpack_require__(8);
 var EventEmitter = __webpack_require__(78).EventEmitter;
 
 function IndexBrowser() {
@@ -47355,9 +48185,9 @@ function isUndefined(arg) {
 
 module.exports = AlgoliaSearchCore;
 
-var errors = __webpack_require__(60);
-var exitPromise = __webpack_require__(72);
-var IndexCore = __webpack_require__(68);
+var errors = __webpack_require__(4);
+var exitPromise = __webpack_require__(24);
+var IndexCore = __webpack_require__(20);
 var store = __webpack_require__(80);
 
 // We will always put the API KEY in the JSON body in case of too long API KEY,
@@ -47393,11 +48223,11 @@ var RESET_APP_DATA_TIMER =
  *           If you provide them, you will less benefit from our HA implementation
  */
 function AlgoliaSearchCore(applicationID, apiKey, opts) {
-  var debug = __webpack_require__(64)('algoliasearch');
+  var debug = __webpack_require__(10)('algoliasearch');
 
-  var clone = __webpack_require__(59);
-  var isArray = __webpack_require__(58);
-  var map = __webpack_require__(62);
+  var clone = __webpack_require__(2);
+  var isArray = __webpack_require__(0);
+  var map = __webpack_require__(6);
 
   var usage = 'Usage: algoliasearch(applicationID, apiKey, opts)';
 
@@ -47537,7 +48367,7 @@ AlgoliaSearchCore.prototype.addAlgoliaAgent = function(algoliaAgent) {
 AlgoliaSearchCore.prototype._jsonRequest = function(initialOpts) {
   this._checkAppIdData();
 
-  var requestDebug = __webpack_require__(64)('algoliasearch:' + initialOpts.url);
+  var requestDebug = __webpack_require__(10)('algoliasearch:' + initialOpts.url);
 
 
   var body;
@@ -47920,7 +48750,7 @@ AlgoliaSearchCore.prototype._getSearchParams = function(args, params) {
  * @param [Object] options.headers Extra headers to send
  */
 AlgoliaSearchCore.prototype._computeRequestHeaders = function(options) {
-  var forEach = __webpack_require__(61);
+  var forEach = __webpack_require__(5);
 
   var ua = options.additionalUA ?
     this._ua + ';' + options.additionalUA :
@@ -47970,8 +48800,8 @@ AlgoliaSearchCore.prototype._computeRequestHeaders = function(options) {
  * @return {Promise|undefined} Returns a promise if no callback given
  */
 AlgoliaSearchCore.prototype.search = function(queries, opts, callback) {
-  var isArray = __webpack_require__(58);
-  var map = __webpack_require__(62);
+  var isArray = __webpack_require__(0);
+  var map = __webpack_require__(6);
 
   var usage = 'Usage: client.search(arrayOfQueries[, callback])';
 
@@ -48053,8 +48883,8 @@ AlgoliaSearchCore.prototype.search = function(queries, opts, callback) {
 * Pagination is not supported. The page and hitsPerPage parameters will be ignored.
 */
 AlgoliaSearchCore.prototype.searchForFacetValues = function(queries) {
-  var isArray = __webpack_require__(58);
-  var map = __webpack_require__(62);
+  var isArray = __webpack_require__(0);
+  var map = __webpack_require__(6);
 
   var usage = 'Usage: client.searchForFacetValues([{indexName, params: {facetName, facetQuery, ...params}}, ...queries])'; // eslint-disable-line max-len
 
@@ -48074,8 +48904,8 @@ AlgoliaSearchCore.prototype.searchForFacetValues = function(queries) {
       throw new Error(usage);
     }
 
-    var clone = __webpack_require__(59);
-    var omit = __webpack_require__(71);
+    var clone = __webpack_require__(2);
+    var omit = __webpack_require__(23);
 
     var indexName = query.indexName;
     var params = query.params;
@@ -48205,7 +49035,7 @@ AlgoliaSearchCore.prototype._cacheAppIdData = function(data) {
 };
 
 AlgoliaSearchCore.prototype._partialAppIdDataUpdate = function(newData) {
-  var foreach = __webpack_require__(61);
+  var foreach = __webpack_require__(5);
   var currentData = this._getAppIdData();
   foreach(newData, function(value, key) {
     currentData[key] = value;
@@ -48227,7 +49057,7 @@ AlgoliaSearchCore.prototype._getHostIndexByType = function(hostType) {
 };
 
 AlgoliaSearchCore.prototype._setHostIndexByType = function(hostIndex, hostType) {
-  var clone = __webpack_require__(59);
+  var clone = __webpack_require__(2);
   var newHostIndexes = clone(this._hostIndexes);
   newHostIndexes[hostType] = hostIndex;
   this._partialAppIdDataUpdate({hostIndexes: newHostIndexes});
@@ -48325,7 +49155,7 @@ function removeCredentials(headers) {
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(64)('algoliasearch:src/hostIndexState.js');
+/* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(10)('algoliasearch:src/hostIndexState.js');
 var localStorageNamespace = 'algoliasearch-client-js';
 
 var store;
@@ -48412,7 +49242,7 @@ function cleanup() {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 81 */
@@ -48786,7 +49616,7 @@ function plural(ms, n, name) {
 
 module.exports = createAnalyticsClient;
 
-var algoliasearch = __webpack_require__(67);
+var algoliasearch = __webpack_require__(19);
 
 function createAnalyticsClient(appId, apiKey, opts) {
   var analytics = {};
@@ -48885,8 +49715,8 @@ var Promise = global.Promise || __webpack_require__(86).Promise;
 // Browser implementation of the Algolia Search JavaScript client,
 // using XMLHttpRequest, XDomainRequest and JSONP as fallback
 module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
-  var inherits = __webpack_require__(63);
-  var errors = __webpack_require__(60);
+  var inherits = __webpack_require__(8);
+  var errors = __webpack_require__(4);
   var inlineHeaders = __webpack_require__(87);
   var jsonpRequest = __webpack_require__(89);
   var places = __webpack_require__(90);
@@ -48897,7 +49727,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   }
 
   function algoliasearch(applicationID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(59);
+    var cloneDeep = __webpack_require__(2);
 
     opts = cloneDeep(opts || {});
 
@@ -48913,7 +49743,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   // we expose into window no matter how we are used, this will allow
   // us to easily debug any website running algolia
   global.__algolia = {
-    debug: __webpack_require__(64),
+    debug: __webpack_require__(10),
     algoliasearch: algoliasearch
   };
 
@@ -49129,7 +49959,7 @@ if (typeof window !== "undefined") {
 
 module.exports = win;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 86 */
@@ -50315,7 +51145,7 @@ return Promise$1;
 
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(3)))
 
 /***/ }),
 /* 87 */
@@ -50440,7 +51270,7 @@ var objectKeys = Object.keys || function (obj) {
 
 module.exports = jsonpRequest;
 
-var errors = __webpack_require__(60);
+var errors = __webpack_require__(4);
 
 var JSONPCounter = 0;
 
@@ -50570,11 +51400,11 @@ function jsonpRequest(url, opts, cb) {
 
 module.exports = createPlacesClient;
 
-var buildSearchMethod = __webpack_require__(69);
+var buildSearchMethod = __webpack_require__(21);
 
 function createPlacesClient(algoliasearch) {
   return function places(appID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(59);
+    var cloneDeep = __webpack_require__(2);
 
     opts = opts && cloneDeep(opts) || {};
     opts.hosts = opts.hosts || [
@@ -50616,6 +51446,12 @@ function createPlacesClient(algoliasearch) {
 
 module.exports = '3.29.0';
 
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

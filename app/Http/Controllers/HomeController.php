@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Category;
 use App\Product;
+use App\Transaction;
+use App\Chat;
 use App\Referral;
 use App\Store;
 use Auth;
@@ -30,7 +32,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
+	if(!Auth::check()){
+		
+		return view('welcome');
+		
+	}
         return view('home');
     }
 	
@@ -175,6 +182,15 @@ class HomeController extends Controller
 	  
 	}
 	
+	
+	public function authDetails()
+    {
+	$auth = User::where('id', Auth::id())->first();
+	
+	return $auth;
+	
+	}
+	
 	public function removeProduct($pid)
     {
 	$product = Store::where('seller', Auth::id())
@@ -240,6 +256,111 @@ class HomeController extends Controller
 		return $user;
 		
     }
+	
+	public function createTransaction($sid, $pid, $cid) {
+		
+	 $transaction = Transaction::create([
+			
+			'buyer_id' => auth::id(),
+			'product_id' => $pid,
+			'seller_id' => $sid,
+			'status' => 0,
+			'type' => $cid,
+		]);	
+		
+		return $transaction;
+		
+	}
+	
+	public function declineTransaction($tid) {
+		
+	$transaction = Transaction::where('id', $tid)->first()
+	  ->update([
+			
+			'status' => 1,
+			
+		]);	
+		
+		
+		
+	}
+	
+	public function openTransactions() {
+		$all = array();
+		$transactions = Transaction::where('status', 0)->Where('seller_id', auth::id())
+		->orWhere('buyer_id', auth::id())->where('status', 0)->get();
+		
+		foreach ($transactions as $transaction):
+	   
+	   array_push($all, $transaction);
+	   
+	   endforeach;
+	   
+	   return $all;
+		
+	}
+	
+	
+	public function closedTransactions() {
+		
+		$all = array();
+		$transactions = Transaction::where('status', 1)->Where('seller_id', auth::id())
+		->orWhere('buyer_id', auth::id())->where('status', 1)->get();
+		
+		foreach ($transactions as $transaction):
+	   
+	   array_push($all, $transaction);
+	   
+	   endforeach;
+	   
+	   return $all;
+		
+		
+		
+	}
+	
+	
+	public function getChat($tid) {
+	 $all = array();
+	 $chats = Chat::where('transaction_id',$tid)->get();
+		
+		foreach ($chats as $chat):
+		
+	   array_push($all, $chat);
+	   
+	   endforeach;
+	   
+	   return $all;
+		
+	}
+	
+	public function sendChat(Request $request) {
+	
+	$transaction = Transaction::where('id', $request->transaction)->first();
+	
+	if (($transaction->seller_id == auth::id()) || ($transaction->buyer_id == auth::id())) {
+		
+		 $chat = Chat::create([
+			
+			'sender_id' => auth::id(),
+			'receiver_id' => $request->receiver,
+			'transaction_id' => $request->transaction,
+			'body' => $request->body,
+		]);
+		
+		
+		
+	} else {
+		
+		return 0;
+		
+		
+		
+	}
+		
+		
+		
+	}
 	
 	
 	public function image(Request $request)
