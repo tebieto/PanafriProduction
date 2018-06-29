@@ -14,6 +14,53 @@ top:2px;
 	
 }
 
+.image-picker {
+border-radius: 10px;
+background: #fff;
+color: #000;
+padding: 5px;
+border: 2px solid #ddd;
+cursor:pointer;
+	
+}
+
+.addProductButton:disabled {
+
+color: rgba(255,0,0,0.3);
+background:#000;	
+	
+}
+
+.uploaded_file_container #uploadInfo {
+font-size:25px;
+cursor:pointer;
+}
+
+.uploaded_file_container:hover #uploadInfo {
+
+
+}
+
+.uploaded_file_container {
+
+margin-top: 20px;	
+	
+}
+
+
+a {
+	
+cursor:pointer;
+	
+}
+
+.learn-more {
+font-size: small;
+text-decoration: underline;	
+	
+}
+
+
 
 
 
@@ -1554,5 +1601,73 @@ max-height: 100px;
 
 }
 
+
+
+.spinner_wrapper{
+width:100px;
+height:100px;
+background: #ccc;
+margin:5px;
+float:left;
+
+
+}
+.spinner {
+width:70px;
+height:70px;
+border: 2px solid #f3f3f3;
+border-top: 3px solid rgb(0,51,0);
+border-radius: 50%;
+margin: auto;
+margin-top: 15px;
+
+
+animation: spin 1s infinite linear
+
+}
+
+@keyframes spin {
+	from {
+	transform: rotate(0deg);
+	} to {
+	
+	transform:rotate(360deg);
+	}
+	
+	}
+	
+.post_spinner_wrapper{
+background: red;
+width:15px;
+height:15px;
+margin:5px;
+float:right;
+margin-top:10px;
+}
+.post_spinner {
+width:15px;
+height:15px;
+border: 2px solid #f3f3f3;
+border-top: 1px solid  rgb(0,51,0);
+border-radius: 50%;
+margin: auto;
+
+
+
+animation: spin 0.2s infinite linear
+
+}
+
+@keyframes spin {
+	from {
+	transform: rotate(0deg);
+	} to {
+	
+	transform:rotate(360deg);
+	}
+	
+}
+
+	
 
 
