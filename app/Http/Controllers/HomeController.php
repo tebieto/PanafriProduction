@@ -247,13 +247,13 @@ class HomeController extends Controller
 			'avatar' => $request->image,
 		]);
 		
-	 $referral= Referral::create([
+	 $referral= referral::create([
 			
 			'email' => $request->admin,
 			
 		]);
 		
-		return $user;
+		return 1;
 		
     }
 	

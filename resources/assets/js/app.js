@@ -610,7 +610,7 @@ let data = JSON.stringify({
 					})
 				.then( (response) => { 
 					
-					console.log(response.data)
+					
 					this.sellerImage = []
 					this.sellerEmail = ''
 					this.adminEmail = ''

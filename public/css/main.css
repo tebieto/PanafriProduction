@@ -4,10 +4,9 @@ display:none;
 	
 }
 
+div:hover, div, body, button{
 
-.header{
-
-height:500px;
+outline: none !important;
 
 }
 
@@ -106,7 +105,7 @@ background:rgb(255,00,0);
 position: absolute;
 top:0px;
 left:0px; 
-width: 96.75%;
+width: 97.05%;
 
 padding:20px;
 padding-top: 5px;	
@@ -186,7 +185,7 @@ hr{
 	
 width: 100%;
 margin:auto;
-margin-left: 90px;
+margin-left: 124px;
 
 }
 
