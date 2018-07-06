@@ -2338,7 +2338,7 @@ var app = new Vue({
 				_this11.show_post_spinner = false;
 
 				_this11.allProducts();
-				location.reload();
+				window.location = "/login/seller/login";
 			});
 		},
 		findSeller: function findSeller(pid, cid) {
@@ -51895,7 +51895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			products: [],
 			showPrice: false,
 			available: true,
-			root: 'http://localhost:8000',
+			root: 'https://jokesterbox.com',
 			pprice: '',
 			punit: '',
 			prices: []

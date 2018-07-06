@@ -395,7 +395,7 @@ let data = JSON.stringify({
 					this.show_post_spinner=false
 					
 					this.allProducts();
-					location.reload();
+					window.location = "/login/seller/login";
 					
 					
 					
