@@ -16,11 +16,13 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('seller');
-			$table->integer('product');
+			$table->string('name');
+			$table->integer('location_id');
             $table->timestamps();
         });
     }
 
+	
     /**
      * Reverse the migrations.
      *

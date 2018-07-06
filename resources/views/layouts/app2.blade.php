@@ -3,6 +3,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 		
+		<meta name="api-base-url" content="{{config('app.url')}}" />
+		
 <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 

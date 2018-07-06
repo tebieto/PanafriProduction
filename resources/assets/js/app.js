@@ -18,8 +18,10 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('welcome', require('./components/Welcome.vue'));
+Vue.component('office', require('./components/Office.vue'));
+Vue.component('product', require('./components/Product.vue'));
 Vue.component('sell-button', require('./components/SellButton.vue'));
-Vue.component('product', require('./components/ActiveProduct.vue'));
+Vue.component('products', require('./components/ActiveProduct.vue'));
 Vue.component('chat-body', require('./components/ChatBody.vue'));
 
 var algoliasearch = require('algoliasearch');
@@ -45,7 +47,7 @@ const app = new Vue({
 				sendingPost: false,
 				show_post_spinner:false,
 				productName: '',
-				ocategory: '1',
+				ocategory: '',
 				ncategory: '',
 				pdisabled: true,
 				categories: [],
@@ -70,7 +72,15 @@ const app = new Vue({
 				showTransaction:false,
 				authDetails: [],
 				typedChat:'',
-				showOpenTransactions: ''
+				showOpenTransactions: '',
+				openNewShop: false,
+				addNewCategory: false,
+				shopName:'',
+				shopLocation:'',
+				authShops: [],
+				activeShop: '',
+				pdescription:''
+				
 		
 				
 				
@@ -82,18 +92,77 @@ const app = new Vue({
 	},
 	
 mounted() {
-	
-	
 
 this.getOpenTransactions()
 this.getClosedTransactions()	
-this.authStore()	
+	
 this.allCategories()
 this.allProducts()
-this.getAuthDetails()	
+this.getAuthDetails()
+this.getAuthShops()	
 },
 	
 methods: {
+	
+addCategory() {
+	
+this.addNewCategory= true
+	
+},
+
+hideAddCategory() {
+	
+this.addNewCategory= false
+this.sendCategory()
+	
+},
+
+openShop() {
+	
+this.openNewShop = true	
+	
+},
+
+hideOpen() {
+	
+this.openNewShop = false
+
+let data = JSON.stringify({
+        name: this.shopName,
+		location: this.shopLocation,
+	
+    })
+				
+				
+				axios.post('/save/shop', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				this.getAuthShops()
+				
+				this.shopLocation=''
+				this.shopName=''
+				})
+	
+	
+},
+
+getAuthShops() {
+	
+	axios.get('/auth/shops').then(response=>{
+		this.authShops= []
+		response.data.forEach((shop) => {
+		this.authShops.push(shop)
+		
+		})
+	})
+	
+	
+},
 
 sendTypedMessage(tid) {
 	var sid
@@ -288,7 +357,7 @@ axios.get('/save/category/' + this.ncategory).then(response=>{
 
 submitProduct() {
 	
-	if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0) && (this.productName.length>0)) {
+	if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
 		this.pdisabled= false
 			
@@ -303,7 +372,9 @@ submitProduct() {
 let data = JSON.stringify({
         name: this.productName,
         image: this.productImage[0].URL,
-		category: this.ocategory
+		description: this.pdescription,
+		category: this.ocategory,
+		shop: this.activeShop,
     })
 				
 				this.show_post_spinner=true
@@ -320,9 +391,12 @@ let data = JSON.stringify({
 					
 					this.productImage = []
 					this.productName = ''
+					this.pdescription = ''
 					this.show_post_spinner=false
 					
 					this.allProducts();
+					location.reload();
+					
 					
 					
 				 
@@ -703,6 +777,43 @@ loginFirst.classList.add('hidden')
 
 },
 
+
+
+onProduct() {
+	
+var onproduct = document.getElementById('onproduct')
+var offproduct = document.getElementById('offproduct')	
+
+onproduct.classList.add('hidden')		
+offproduct.classList.remove('hidden')	
+},
+
+offProduct() {
+	
+var onproduct = document.getElementById('onproduct')
+var offproduct = document.getElementById('offproduct')	
+offproduct.classList.add('hidden')
+onproduct.classList.remove('hidden')		
+	
+},
+
+showProductPrice() {
+	
+var product = document.getElementById('product-price')
+
+product.classList.remove('hidden')	
+},
+
+hideProductPrice() {
+	
+var product = document.getElementById('product-price')
+
+product.classList.add('hidden')
+		
+	
+},
+
+
 showChatBox() {
 	
 var showChat = document.getElementById('chat-box')	
@@ -821,6 +932,7 @@ adminSeller.classList.remove('hidden')
 },
 
 
+
 hideAdminSeller() {
 	
 var adminSeller = document.getElementById('admin-seller')	
@@ -828,6 +940,7 @@ adminSeller.classList.add('hidden')
 	
 	
 },
+
 
 
 //Handle Product Sales
@@ -872,6 +985,8 @@ removeUploaded() {
 		
 imageChange(e) {
 	
+	
+	
 	console.log ('hi')
 		
 		let selected=e.target.files[0];
@@ -907,6 +1022,8 @@ imageChange(e) {
 					this.productImage = [];
 					this.uploadDelay= [];
 					this.productImage.push(response.data);
+					var container = document.getElementById('uploadedContainer')
+	container.classList.remove('hidden')
 				
 				
 		
@@ -920,6 +1037,8 @@ imageChange(e) {
 
 
 sellerImageChange(e) {
+	
+	
 		
 		let selected=e.target.files[0];
 		
@@ -1025,7 +1144,7 @@ if ((this.sellerImage.length>0) && (this.sellerEmail.length>0 ) && (this.adminEm
 	
 productImage() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0) && (this.productName.length>0)) {
+if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
 		this.pdisabled= false
 			
@@ -1042,7 +1161,7 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 
 ncategory() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0) && (this.productName.length>0)) {
+if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
 		this.pdisabled= false
 			
@@ -1059,7 +1178,23 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 
 ocategory() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0) && (this.productName.length>0)) {
+if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+			
+		this.pdisabled= false
+			
+		} else {
+	
+	this.pdisabled= true
+	return this.pdisabled
+	
+	
+}
+},
+
+
+activeShop() {
+
+if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
 		this.pdisabled= false
 			
@@ -1074,7 +1209,7 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 
 productName() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0) && (this.productName.length>0)) {
+if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
 		this.pdisabled= false
 			

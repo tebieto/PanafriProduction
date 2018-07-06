@@ -4,6 +4,41 @@ display:none;
 	
 }
 
+
+
+
+.grey-button {
+	
+border-radius: 25px;
+background: #fff;
+color: #000;
+width: 100px;	
+	
+/* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.grey-button:hover {
+	
+cursor:pointer;	
+	
+}
+
+.products p {
+font-weight: bold;
+margin-left: 5px;
+padding:5px;
+padding-left:5px;	
+	
+}
+
+.products span {
+
+padding-left:5px;	
+	
+}
+
 div:hover, div, body, button{
 
 outline: none !important;
@@ -26,8 +61,9 @@ border-radius: 10px;
 background: #fff;
 color: #000;
 padding: 5px;
-border: 2px solid #ddd;
+border: 1px solid #ddd;
 cursor:pointer;
+
 	
 }
 
@@ -72,6 +108,8 @@ text-decoration: underline;
 
 
 
+
+
 @media only screen and (min-width: 641px) {
 
 #hide {
@@ -88,6 +126,14 @@ height:200px;
 }	
 	
 }
+
+
+.form-container .logo img {
+
+margin-left:50px;
+margin-top: 20px;		
+}
+
 
 @media only screen and (min-width: 0px) {
 
@@ -173,6 +219,51 @@ width:90%;
 	
 }
 
+.product-price table tr td, #login-page table tr td{
+	
+padding:5px;
+padding-left: 0px;	
+	
+}
+
+.product-price {
+	
+position: fixed;	
+top: 180px;
+left: 5%;
+width: 300px;
+height: 350px;
+overflow-y: auto;
+background:rgba(255,0,0,0.9);
+color: #000;
+
+}
+
+.price-menu {
+	
+width: 80%;
+background:#fff;
+min-height: 250px;
+border-radius:10px;
+margin: auto;
+margin-top: 20px;	
+margin-bottom: 20px;	
+padding: 15px;	
+}
+
+.hide-price {
+font-weight: bold;
+float:right;
+color:rgba(0,0,0,.7);
+}
+
+.hide-price:hover{
+	cursor: pointer;
+	color:#000;
+}
+
+
+
 hr{
 	border:none;
 	
@@ -194,7 +285,7 @@ background:#fff;
 color:#000;	
 display: inline-block; 
 vertical-align: top;
-width:300px;
+width:200px;
 margin:20px;
 border-radius: 10px 10px 0 0;
 
@@ -205,10 +296,6 @@ border-radius: 10px 10px 0 0;
 	
 }
 
-.categories button {
-	
-cursor: pointer;	
-}
 
 .products div:hover {
 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);	
@@ -223,26 +310,27 @@ border-radius: 10px 10px 0 0;
 }
 
 .products div .product-details{
-	
-padding: 2px 5px;
+
 width: 70%;
 border-radius: 0px;
 border:none;
 box-shadow: 0 0 0 0;	
 }
 
-.products div .product-details button{
-	
-background: green;
+.product-details button{
+
 color:#fff;
-width: 250px;
+width: 40px;
 font-weight:bold;
 border:none;
-border-radius:10px;
+border-radius:25px;
 padding: 10px ;
 outline: none !important;
+font-size:small;	
+cursor: pointer;
 	
 }
+
 
 
 .others{
@@ -353,36 +441,40 @@ background:#eee;
 
 .welcome-search-page, .start-selling {
 	
-position: fixed;
-top: 0px;
-left:0px;
-width:100%;
+position: absolute;
+top: -300px;
+left:-10px;
+width:111.6%;
 background: rgba(0,0,0,0.9);
 color:#fff;
 height:5000px;
 }
 
+.welcome-search-page {
+	
+width:111.6%;	
+	
+}
+
 .start-selling {
 	
-position: fixed;
+position: absolute;
 height:5000px;	
 	
 }
 
 .form-container {
 	
-position: fixed;
-top: 5px;
-left:15%;
-background: rgb(255, 0, 0);
-color: #fff;
+position: absolute;
+top: 50px;
+left:30%;
+background: #fff;
+color: red;
 min-height: 200px;
-padding:20px;
-font-weight:bold;
-width: 70%;
-height:800px;
-overflow-y: auto;
-	
+padding:1px;
+border-radius:25px;
+width: 40%;
+
 }
 
 .start-selling .close:hover {
@@ -401,20 +493,24 @@ border-radius:25px;
 
 .form-container form, .form-container .form{
 	
-position: absolute;
-left: 20%;	
-top:100px;
+
+margin-left: 15%;
+margin-top: 50px;	
+
 	
 }
 
 
-.form-container form input, .form-container .form input, .image-picker{
+.form-container form input, .form-container .form textarea,  .form-container .form input{
 	
-width: 200%;
+width: 100%;
 max-width: 500px;
 height:	20px;	
 padding-left:5px;
 margin: 5px;
+border: 1px solid red;
+border-radius: 5px;
+outline: none !important;
 }
 
 .form-container .form select {
@@ -422,8 +518,9 @@ margin: 5px;
 margin:10px;
 height: 30px;
 border-radius:5px;	
-margin-left: 5px;	
-	
+margin-left: 5px;
+outline: none !important;	
+border: 1px solid red;	
 }
 
 .form-container .form button {
@@ -446,9 +543,15 @@ color: rgb(255,0,0);
 border: none;
 font-weight:bold;
 padding: 10px;
-border: 2px solid #eee;
+border: 2px solid red;
 border-radius:5px;	
 
+	
+}
+
+.form-container button:hover {
+	
+background: #eee;	
 	
 }
 
@@ -469,17 +572,18 @@ cursor: pointer;
 
 .search-message {
 font-weight: bold;
-font-size: 30px;
-position: fixed;
-top: 10px;
+font-size: 25px;
+position: relative;
+top: 60px;
 left: 25%;
+width:50%;
 
 }
 
 .search-box {
 
-position:fixed;
-top:70px;
+position:relative;
+top:100px;
 left:18%;
 background:#fff;
 width:60%;
@@ -504,8 +608,8 @@ border: 1px dotted red;
 
 .main-search-icon, .panafri-icon{
 
-position:fixed;
-top:90px;
+position:relative;
+top:30px;
 left:75%;
 z-index:5;
 
@@ -514,16 +618,15 @@ z-index:5;
 
 #search-page .categories {
 position: relative;	
-top:170px;
-height: 380px;
-overflow-y: auto;
-margin: auto;	
+top:100px;
+margin-left: -30px;
+width:90%	
 }
 
 
 
 .panafri-icon{
-left:20%;	
+left:16%;	
 	
 }
 
@@ -554,9 +657,8 @@ left:20%;
 /* Handle Forms */
 
 .form-container {
-	top:20px;
-	overflow-y: auto;
-	height:500px;
+	top:100px;
+	min-height:400px;
 	
 }
 
@@ -566,11 +668,32 @@ cursor:pointer;
 	
 }
 
+#login-page {
+
+width: 100.5%;	
+	
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:30%;	
 	
 }
 
 
+.add-product .form-container {
+	
+top: 350px;	
+}
+	
+}
 
+
+.add-product{
+	
+width: 1250px;	
+}
 
 @media only screen and (max-width: 384px) {
 	
@@ -623,7 +746,56 @@ font-size:15px;
 }
 
 
+@media only screen and (max-width: 1024px) {
+
+#login-page .form-container form input {
+	
+width: 300px;	
+}
+	
+.add-product{
+	
+width: 1048px;	
+}
+
+	
+	
+}
+
 @media only screen and (max-width: 800px) {
+
+
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 600px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
+
 
 .chat-box {
 	
@@ -633,7 +805,7 @@ font-size:15px;
 	background:#fff;
 	font-size: small;
 	padding: 10px;
-	width:700px;
+	width:900px;
 	height:700px;
 	
 	border:1px solid #eee;
@@ -701,6 +873,52 @@ top: 250px;
 width: 250px;
 
 }
+
+
+.product-container {
+
+width: 500px;
+margin-left:7%;
+
+}
+
+.form-container form{
+
+margin-left:-70px;
+top: 150px;
+
+}
+
+.form-container form input{
+
+width: 500px;
+
+}
+
+.add-product{
+	
+width: 810px;	
+}
+
+.product-container .form input{
+
+width:300px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 300px;
+height: 60px;	
+	
+}
+
+.product-container table tr td{
+	
+	min-width: 200px;
+	
+}
 	
 .header {
 background:rgb(255,00,0);
@@ -750,9 +968,68 @@ background:#ddd;
 }
 
 }
+@media only screen and (max-width: 768px) {
 
+.add-product{
+	
+width: 778px;	
+}
+
+.product-container .form input{
+
+width:300px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 300px;
+height: 60px;	
+	
+}
+
+.product-container table tr td{
+	
+	min-width: 200px;
+	
+}	
+	
+}
 
 @media only screen and (max-width: 640px) {
+	
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 550px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
+
 
 
 .chat-box {
@@ -808,6 +1085,13 @@ top:100px;
 min-height: 700px;
 }
 
+.product-container {
+
+width: 500px;
+margin-left:7%;
+
+}
+
 .form-container form{
 
 margin-left:-70px;
@@ -817,8 +1101,33 @@ top: 150px;
 
 .form-container form input{
 
-width: 330px;
+width: 500px;
 
+}
+
+.add-product{
+	
+width: 650px;	
+}
+
+.product-container .form input{
+
+width:300px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 300px;
+height: 60px;	
+	
+}
+
+.product-container table tr td{
+	
+	min-width: 200px;
+	
 }
 
 .search-message {
@@ -857,6 +1166,7 @@ border: 1px dotted red;
 }
 
 .main-search-icon, .panafri-icon{
+
 display:none;
 position:fixed;
 top:90px;
@@ -867,6 +1177,7 @@ z-index:5;
 }
 
 #search-page .categories {
+
 position: relative;	
 top:170px;
 height: 500px;
@@ -956,7 +1267,55 @@ background:#ddd;
 	
 }
 
+@media only screen and (max-width: 600px) {
+	
+	.add-product{
+	
+width: 610px;	
+}
+	
+	
+}
+
 @media only screen and (max-width: 480px) {
+
+
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 450px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+#login-page .form-container form input {
+	
+width: 350px;	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
+
 
 .chat-box {
 	
@@ -1055,11 +1414,79 @@ font-size:15px;
 
 
 
+.add-product{
 	
+width: 490px;	
+}
+
+
+
+
+.product-container .form input{
+
+width:200px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 200px;
+height: 60px;	
 	
 }
 
-@media only screen and (max-width: 412px) {
+.product-container table tr td{
+	
+	min-width: 200px;
+	
+}
+
+.product-container {
+	
+	width:400px;
+}
+	
+}
+
+@media only screen and (max-width: 414px) {
+
+#login-page .form-container form input {
+	
+width: 300px;	
+}
+
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 340px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
+
 
 
 .chat-box {
@@ -1135,11 +1562,133 @@ padding:20px;
 padding-top: 5px;	
 	
 }	
+
+.product-container {
+	
+	width:360px;
+}
+
+.add-product{
+	
+width: 421px;	
+}
+
+.product-container .form input{
+
+width:200px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 200px;
+height: 60px;	
+	
+}
+
+.product-container table tr td{
+	
+	min-width: 200px;
+	
+}	
+
+
+
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
 	
 }
 
 
 @media only screen and (max-width: 384px) {
+	
+	
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 350px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
+
+
+	
+.add-product{
+	
+width: 394px;	
+}
+
+.product-container .form input{
+
+width:200px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 200px;
+height: 60px;	
+	
+}
+
+.product-container table tr td{
+	
+	min-width: 200px;
+	
+}
 
 .chat-box {
 	
@@ -1243,8 +1792,45 @@ background:#ddd;
 	
 	
 }
+
+
 	
 @media only screen and (max-width: 360px) {
+
+
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 340px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 300px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 300px;
+}
+
+
+
 
 .chat-box {
 	
@@ -1420,10 +2006,81 @@ width:111%;
 background:#ddd;
 
 }
+
+.add-product{
+	
+width: 370px;	
+}
+
+
 	
 }
 @media only screen and (max-width: 320px) {
 
+#login-page .form-container form input {
+	
+width: 220px;	
+}
+	
+#login-page {
+
+width: 101.5%;	
+
+}
+
+#login-page .form-container {
+position: relative;	
+top:400px;
+left:5%;	
+width: 300px;	
+}
+
+#login-page .form-container form{
+position: relative;	
+top:0px;
+left: 80px;	
+}
+
+#login-page .form-container table tr td{
+	
+min-width: 250px;
+	
+}
+
+
+#login-page .form-container table, #login-page .form-container form{
+	
+max-width: 250px;
+}
+
+
+.add-product{
+	
+width: 330px;	
+}
+
+
+
+
+.product-container .form input{
+
+width:200px;
+height: 30px;
+
+}
+
+.product-container .form textarea{
+	
+width: 200px;
+height: 60px;	
+	
+}
+
+.product-container table tr td{
+	
+	min-width: 200px;
+	
+}
 
 .chat-box {
 	
@@ -1503,6 +2160,12 @@ top: 250px;
 width: 200px;
 
 }
+
+.product-container {
+width: 285px;	
+
+}
+	
 
 	
 .fake-search-input{
@@ -1609,7 +2272,6 @@ max-height: 100px;
 }
 
 
-
 .spinner_wrapper{
 width:100px;
 height:100px;
@@ -1644,7 +2306,7 @@ animation: spin 1s infinite linear
 	}
 	
 .post_spinner_wrapper{
-background: red;
+background: transparent;
 width:15px;
 height:15px;
 margin:5px;
@@ -1677,4 +2339,25 @@ animation: spin 0.2s infinite linear
 
 	
 
+.product-container table tr td{
+	
+	min-width: 200px;
+	padding-top: 10px;
+	
+}
+
+.form-close{
+	
+float: right;
+margin-top: 7%;
+margin-right: 5%;
+font-weight:bold;
+cursor:pointer;
+color: #ddd;	
+	
+}
+
+.form-close:hover{ 
+color: #000;
+}
 

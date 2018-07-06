@@ -26,7 +26,24 @@
 				<img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo">
 			</div>
 			
-		 <!--End logo class DIV-->	
+		 <!--End logo class DIV-->
+
+		 <!--Begin User Avatar DIV-->
+		 
+		 			<div class="avatar" width="100px" height="auto" style="border-radius:50%; position:absolute; right:100px; top:5px;">
+			
+				<img class="user-avatar"  width="50px" height="auto" style="border-radius:50%;"src="{{Storage::url('public/icons/rita.jpg')}}" alt="Panafri logo">
+				
+				<div class="user-name">
+				<span style="color:#fff; margin-left:-10px;">Rita Ebieto</span>
+				</div>
+
+				</div>
+
+		 
+		 
+		 
+		<!--End User Avatar DIV-->
 		 
 		  <!--Creating Menu Icon from scatch with Css-->
 		  
@@ -56,13 +73,13 @@
 			 <!--Begin navigation class DIV-->
 			<div  class="navigation-links">
 				
-				@if(auth::user()->role > 0)
+			
 				<li @click="displayAdminCategory()">
-				<a id="admin-link" >Admin Products</a>
+				<a id="admin-link" >Add Products</a>
 				</li>
 				
 				
-				
+					@if(auth::user()->role > 0)
 				<li @click="displayAdminSeller()">
 				<a id="admin-link" >Admin Sellers</a>
 				</li>
@@ -431,26 +448,48 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	 Hello Admin, Add Products and Categories
-	 </div>
+	
 	 
 	 <div class="form">
 	 <table>
 	 
-	 <tr><td></td><th><h3>Enter New Products And Categories</h3></th></tr>
+	 <h3>Add Products</h3>
 	 
+	<tr>
+	 <td>Select Store</td>
+	 <td><select name="ostore" v-model="ostore" >
+	 <option value=''>Choose</option>
+	 <option v-for="store in stores" :value="stores.id">@{{store.name}}</option>
+	 </select><small><a class="learn-more">Open new store</a></small>
+	 </td>
+	 </tr> 
 	 
+	 <tr>
+	 <td>Open New Store</td>
+	 <td><input type="text" name="nstore" placeholder="Enter store name" v-model="nstore" @keyup.enter="sendStore">
+	 </td>
+	 </tr>
 	 
 	 <tr>
 	 <td>Product Name</td>
 	 <td><input type="text" name="product" placeholder="Enter product name" v-model="productName" >
 	 </td>
 	 </tr>
+	 
+	 <tr>
+	 <td>Price</td>
+	 <td><input type="number" name="price" placeholder="Enter price per unit" v-model="productName" >
+	 </td>
+	 </tr>
+	 
+	 <tr>
+	 <td>Select Unit</td>
+	 <td><select name="ostore" v-model="ostore" >
+	 <option value=''>Select</option>
+	 <option v-for="unit in units" :value="unit.id">@{{unit.name}}</option>
+	 </select><small><a class="learn-more">Add new unit</a></small>
+	 </td>
+	 </tr> 
 	 
 	
 	 
@@ -464,7 +503,7 @@
 	 </tr>
 	 
 	  <tr>
-	 <td>Create New Category</td>
+	 <td>Add New Category</td>
 	 <td><input type="text" name="ncategory" placeholder="Enter new category" v-model="ncategory" @keyup.enter="sendCategory">
 	 </td>
 	 </tr>
@@ -543,13 +582,7 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	 Hello Admin, Add a new seller
-	 </div>
+	 
 	 
 	 <div class="form">
 	 <table>

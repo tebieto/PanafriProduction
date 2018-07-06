@@ -297,21 +297,34 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	 Sell to people nearby in realtime, we have freelance delivery personnel around to help you deliver to your customers.
-	 </div>
+	<div  id="uploadedContainer" v-if="productImage.length>0 || uploadDelay.length>0">
+				 
+				 <div class="showUploaded" v-for="file in productImage">
+				 <div class="uploaded_file_container">
+				 <img  v-if="file.type=='image'" class="uploadedFile" :src="file.URL" width="100" height="100"  alt="" />
+				
+				 <video v-if="file.type=='video'" class="uploadedFile" width="100" height="100" controls >
+				 <source :src="file.URL" :type="file.mime">
+				</video>
+				 <div id="uploadInfo" ><span class="uploadDelete" @click="removeUploaded"><b>x</b></span></div>
+			     </div>
+				 <!-- Add Image Spinner -->
+				 
+				 <div class="spinner_wrapper" v-for=" file in uploadDelay">
+				 <div class="spinner"></div>
+				 </div>
+	  </div>
+	  </div>
+	  
+	
 	  <form class="start-selling-form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 	 
 	 <table>
-	 <tr><td></td><th><h3>Personal Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
+	 
 	 <tr>
 	 <td>First Name</td>
-	 <td><input type="text" name="fname"  value="{{ old('fname') }}" required autofocus /></td>
+	 <td><input type="text" name="fname" placeholder="First Name" value="{{ old('fname') }}" required autofocus /></td>
 	 </tr>
 	 @if ($errors->has('fname'))
      <tr>
@@ -321,7 +334,7 @@
 	 
 	 <tr>
 	 <td>Middle Name</td>
-	 <td><input type="text" name="mname"  value="{{ old('mname') }}"  /></td>
+	 <td><input type="text" name="mname"  placeholder="Middle Name" value="{{ old('mname') }}"  /></td>
 	 </tr>
 	 @if ($errors->has('mname'))
      <tr>
@@ -331,7 +344,7 @@
 	 
 	 <tr>
 	 <td>Last Name</td>
-	 <td><input type="text" name="lname"  value="{{ old('lname') }}" required /></td>
+	 <td><input type="text" name="lname" placeholder="Last Name" value="{{ old('lname') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('lname'))
      <tr>
@@ -339,12 +352,17 @@
      </tr>
      @endif
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	<tr>
+	 <td>Avatar</td>
+	 <td>
+	 <input type="file" ref="productimage"  style="display:none;" accept="image/*" v-on:change="imageChange">
+				<span @click="showProductImagePicker" class="image-picker" title="Choose file"  ><img  id="" src="/storage/icons/photo_icon.png" width="15px" height="15px"  alt="" /><span class="photo_icon_text"><b> Select</b></span></span>
+	 </td>
+	 </tr>
 	 
 	 <tr>
 	 <td>Email</td>
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" name="email"  placeholder="xyz@example.com"value="{{ old('email') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -354,7 +372,7 @@
 	 
 	 <tr>
 	 <td>Phone Number</td>
-	 <td><input type="number" max="9999999999" name="phone"  value="{{ old('phone') }}" required /></td>
+	 <td><input type="number" max="9999999999" name="phone" placeholder="Phone number"  value="{{ old('phone') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('phone'))
      <tr>
@@ -362,8 +380,7 @@
      </tr>
      @endif
 	 
-	 <tr><td></td><th><h3>Sensitive Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	
 	 
 	
 	 <tr>
@@ -386,13 +403,11 @@
      </tr>
      @endif
 	 
-	 <tr>
-        <td></td><td><strong>By clicking "Register and Sell" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+	  <strong><span><small>By clicking  "Register" you agree to our </small><a class="learn-more">Terms of Service</a> </strong></span>
 	 
 	 <tr>
 	 <td></td>
-	 <td><button type="submit">Register and Sell</button></td>
+	 <td><button type="submit">Register</button></td>
 	 </tr>
 	 
 	 
@@ -424,21 +439,32 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	When you register, we give you a dashboard to manage your transactions in realtime. You can also earn money by working as a freelance distributor. 
-	 </div>
+	<div  id="uploadedContainer" v-if="productImage.length>0 || uploadDelay.length>0">
+				 
+				 <div class="showUploaded" v-for="file in productImage">
+				 <div class="uploaded_file_container">
+				 <img  v-if="file.type=='image'" class="uploadedFile" :src="file.URL" width="100" height="100"  alt="" />
+				
+				 <video v-if="file.type=='video'" class="uploadedFile" width="100" height="100" controls >
+				 <source :src="file.URL" :type="file.mime">
+				</video>
+				 <div id="uploadInfo" ><span class="uploadDelete" @click="removeUploaded"><b>x</b></span></div>
+			     </div>
+				 <!-- Add Image Spinner -->
+				 
+				 <div class="spinner_wrapper" v-for=" file in uploadDelay">
+				 <div class="spinner"></div>
+				 </div>
+	  </div>
+	  </div>
+	  
 	  <form class="start-selling-form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 	 
 	 <table>
-	 <tr><td></td><th><h3>Personal Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	 
 	 <td>First Name</td>
-	 <td><input type="text" name="fname"  value="{{ old('fname') }}" required autofocus /></td>
+	 <td><input type="text" name="fname"  placeholder="First Name" value="{{ old('fname') }}" required autofocus /></td>
 	 </tr>
 	 @if ($errors->has('fname'))
      <tr>
@@ -448,7 +474,7 @@
 	 
 	 <tr>
 	 <td>Middle Name</td>
-	 <td><input type="text" name="mname"  value="{{ old('mname') }}"  /></td>
+	 <td><input type="text" name="mname"  value="{{ old('mname') }}" placeholder="Middle Name" /></td>
 	 </tr>
 	 @if ($errors->has('mname'))
      <tr>
@@ -458,7 +484,7 @@
 	 
 	 <tr>
 	 <td>Last Name</td>
-	 <td><input type="text" name="lname"  value="{{ old('lname') }}" required /></td>
+	 <td><input type="text" placeholder="Last Name" name="lname"  value="{{ old('lname') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('lname'))
      <tr>
@@ -466,12 +492,22 @@
      </tr>
      @endif
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
+	
 	 <tr>
+	 <td>Avatar</td>
+	 <td>
+	 <input type="file" ref="productimage"  style="display:none;" accept="image/*" v-on:change="imageChange">
+				<span @click="showProductImagePicker" class="image-picker" title="Choose file"  ><img  id="" src="/storage/icons/photo_icon.png" width="15px" height="15px"  alt="" /><span class="photo_icon_text"><b> Select</b></span></span>
+	 </td>
+	 </tr>
+	 
+	 <div class="showUploaded" v-for="file in productImage">
+	 <input type="text" name="avatar"  placeholder="" :value="file.URL"/>
+	 </div>
 	 
 	 <tr>
 	 <td>Email</td>
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" placeholder="xyz@example.com" name="email"  value="{{ old('email') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -481,7 +517,7 @@
 	 
 	 <tr>
 	 <td>Phone Number</td>
-	 <td><input type="number" max="9999999999" name="phone"  value="{{ old('phone') }}" required /></td>
+	 <td><input type="number" placeholder="Phone Number" max="9999999999" name="phone"  value="{{ old('phone') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('phone'))
      <tr>
@@ -489,8 +525,7 @@
      </tr>
      @endif
 	 
-	 <tr><td></td><th><h3>Sensitive Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	
 	 
 	
 	 <tr>
@@ -513,9 +548,7 @@
      </tr>
      @endif
 	 
-	 <tr>
-        <td></td><td><strong>By clicking "Register" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+	 <strong><span><small>By clicking  "Register" you agree to our </small><a class="learn-more">Terms of Service</a> </strong></span>
 	 
 	 <tr>
 	 <td></td>
@@ -556,21 +589,34 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	You can make money by helping other sellers deliver their goods or services, Register to gain access to your personalised dashboard.
-	 </div>
+	<div  id="uploadedContainer" v-if="productImage.length>0 || uploadDelay.length>0">
+				 
+				 <div class="showUploaded" v-for="file in productImage">
+				 <div class="uploaded_file_container">
+				 <img  v-if="file.type=='image'" class="uploadedFile" :src="file.URL" width="100" height="100"  alt="" />
+				
+				 <video v-if="file.type=='video'" class="uploadedFile" width="100" height="100" controls >
+				 <source :src="file.URL" :type="file.mime">
+				</video>
+				 <div id="uploadInfo" ><span class="uploadDelete" @click="removeUploaded"><b>x</b></span></div>
+			     </div>
+				 <!-- Add Image Spinner -->
+				 
+				 <div class="spinner_wrapper" v-for=" file in uploadDelay">
+				 <div class="spinner"></div>
+				 </div>
+	  </div>
+	  </div>
+	
+	 
 	  <form class="start-selling-form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 	 
 	 <table>
-	 <tr><td></td><th><h3>Personal Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
+	
 	 <tr>
 	 <td>First Name</td>
-	 <td><input type="text" name="fname"  value="{{ old('fname') }}" required autofocus /></td>
+	 <td><input type="text" placeholder="First Name" name="fname"  value="{{ old('fname') }}" required autofocus /></td>
 	 </tr>
 	 @if ($errors->has('fname'))
      <tr>
@@ -580,7 +626,7 @@
 	 
 	 <tr>
 	 <td>Middle Name</td>
-	 <td><input type="text" name="mname"  value="{{ old('mname') }}"  /></td>
+	 <td><input placeholder="Middle Name" type="text" name="mname"  value="{{ old('mname') }}"  /></td>
 	 </tr>
 	 @if ($errors->has('mname'))
      <tr>
@@ -590,7 +636,7 @@
 	 
 	 <tr>
 	 <td>Last Name</td>
-	 <td><input type="text" name="lname"  value="{{ old('lname') }}" required /></td>
+	 <td><input placeholder="Last Name" type="text" name="lname"  value="{{ old('lname') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('lname'))
      <tr>
@@ -598,12 +644,17 @@
      </tr>
      @endif
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	<tr>
+	 <td>Avatar</td>
+	 <td>
+	 <input type="file" ref="productimage"  style="display:none;" accept="image/*" v-on:change="imageChange">
+				<span @click="showProductImagePicker" class="image-picker" title="Choose file"  ><img  id="" src="/storage/icons/photo_icon.png" width="15px" height="15px"  alt="" /><span class="photo_icon_text"><b> Select</b></span></span>
+	 </td>
+	 </tr>
 	 
 	 <tr>
 	 <td>Email</td>
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" placeholder="xyz@example.com" name="email"  value="{{ old('email') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -613,7 +664,7 @@
 	 
 	 <tr>
 	 <td>Phone Number</td>
-	 <td><input type="number" max="9999999999" name="phone"  value="{{ old('phone') }}" required /></td>
+	 <td><input type="number" placeholder="Phone Number" max="9999999999" name="phone"  value="{{ old('phone') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('phone'))
      <tr>
@@ -621,9 +672,7 @@
      </tr>
      @endif
 	 
-	 <tr><td></td><th><h3>Sensitive Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
-	 
+	
 	
 	 <tr>
 	 <td>Password</td>
@@ -645,9 +694,7 @@
      </tr>
      @endif
 	 
-	 <tr>
-        <td></td><td><strong>By clicking "Register" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+	  <strong><span><small>By clicking  "Register" you agree to our </small><a class="learn-more">Terms of Service</a> </strong></span>
 	 
 	 <tr>
 	 <td></td>
@@ -684,24 +731,17 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	 When you login, you can buy and sell goods and services with people nearby in realtime right from your dashboard.
-	 </div>
+	 
 	  <form class="welcome-login-form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 	 
 	 <table>
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	
 	 
 	 <tr>
 	 <td>Email</td>
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" placeholder="xyz@example.com"name="email"  value="{{ old('email') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -709,8 +749,7 @@
      </tr>
      @endif
 
-	 <tr><td></td><th><h3>Sensitive Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	 
 	 
 	
 	 <tr>
@@ -724,9 +763,7 @@
      @endif
 	 
 	 
-	 <tr>
-        <td></td><td><strong>By clicking "Login" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+	  <strong><span><small>By clicking  "Login" you agree to our </small><a class="learn-more">Terms of Service</a> </strong></span>
 	 
 	 <tr>
 	 <td></td>
@@ -761,25 +798,17 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	Recover your account, password reset link will be sent to your email account 
-	 <a class="learn-more">Learn more</a>
-	 </div>
+	 
 	  <form class="welcome-recover-form" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}
 	 
 	 <table>
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
+	
 	 
 	 <tr>
 	 <td>Email</td>
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" name="email" placeholder="xyz@example.com" value="{{ old('email') }}" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -788,11 +817,8 @@
      @endif
 
 	 
-	 
-	 
-	 <tr>
-        <td></td><td><strong>By clicking "Reset Password" you agree that you are over 13 years of age and you are the rightful owner of this account, see our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+       <strong><span><small>By clicking  "Reset Password" you agree to our </small><a class="learn-more">Terms of Service</a> </strong></span>
+     
 	 
 	 <tr>
 	 <td></td>
@@ -829,25 +855,18 @@
 	 
 	 <div class="form-container" @click.stop >
 	
-	 <div class="logo">
-			
-		<a href="http://panafri.com">  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
-	 </div>
-	 <div class="form-message">
-	 You manage your transactions better when you Login, you can buy from or hire people nearby in realtime right from your dashboard.
-	 <a class="learn-more">Learn more</a>
-	 </div>
+	 
 	  <form class="welcome-login-form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 	 
 	 <table>
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
+	
 	 <tr>
 	 
 	 <tr>
 	 <td>Email</td>
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" name="email"  value="{{ old('email') }}" placeholder="e.g john@example.com" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -855,7 +874,7 @@
      </tr>
      @endif
 
-	 <tr><td></td><th><h3>Sensitive Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
+	 
 	 <tr>
 	 
 	
@@ -870,9 +889,7 @@
      @endif
 	 
 	 
-	 <tr>
-        <td></td><td><strong>By clicking "Login" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+	
 	 
 	 <tr>
 	 <td></td>
@@ -881,6 +898,8 @@
 	 
 	 
 	 </table>
+	 
+	 
 	 
 	  <input type="hidden" name="first" value="login-first">
 	 </form>

@@ -8,8 +8,6 @@ class Store extends Model
 {
 	
   
-   protected $fillable = [
-        'seller', 'product'
-    ];
+  protected $fillable = [ 'seller', 'location_id', 'name' ];
 	
 }

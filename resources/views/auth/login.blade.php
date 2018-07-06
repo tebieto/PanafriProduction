@@ -10,10 +10,105 @@
     </head>
 <body>
 
+
+
 <!--Begin Container class DIV-->
       
 <div id="app" class="container">
 
+<!--Begin header class DIV-->
+	
+	 <div  class="header">
+	 
+	 <!--Begin logo class DIV-->
+			
+			<div class="logo">
+			
+				  <img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo">
+			</div>
+			
+		 <!--End logo class DIV-->	
+		 
+		  <!--Creating Menu Icon from scatch with Css-->
+		  
+			<div id="showmenu" class="menu-bar" @click="showMenu()">
+			
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+			
+			<div id="hidemenu" class="menu-bar hidden" @click="hideMenu()">
+			
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+			
+	 <!--End of Creating Menu Icon from scatch with Css-->
+			
+			
+			 <!--Begin hidden class DIV-->
+			
+			<div id="hide" class="hidden">
+			
+			 <!--Begin navigation class DIV-->
+			<div  class="navigation-links">
+				
+				
+				<li>
+				<a id="about-link" >About Us</a>
+				</li>
+				
+				<!--
+				<li @click="startSellingModal()">
+				<a id="sell-link" >Start Selling</a>
+				</li>
+				
+				<li @click="freeLanceModal()">
+				<a id="delivery-link" >Start Freelance Delivery</a>
+				</li>
+				-->
+				<li @click="welcomeLoginModal()">
+				<a id="login-link" >Login</a>
+				</li>
+				<li @click="welcomeRegisterModal()">
+				<a id="register-link" >Register</a>
+				</li>
+			</div>
+			
+			
+			<!--End of navigation class DIV-->
+			
+			
+			<!--Begin welcome-search class DIV-->
+			<center>
+			<div  class="welcome-search" @click="showSearchModal()">
+			
+			
+			<div class="fake-search-input">
+			
+			<span>Search Anything...Request Everything!</span>
+			
+			</div>
+			
+			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
+			
+			</center>
+			
+			<!--End of welcome-search class DIV-->
+			
+			
+			</div>
+			
+			<!--End of hidden class div-->
+			
+			
+		</div>
+		
+		<!--End of header class div-->
 
 <!--Begin login class div-->
 
@@ -38,8 +133,6 @@
 	 
 	 <table>
 	 
-	 <tr><td></td><th><h3>Private Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
 	 
 	 <tr>
 	 <td>Email</td>
@@ -50,9 +143,6 @@
         <td></td><td><strong>{{ $errors->first('email') }}</strong></td>
      </tr>
      @endif
-
-	 <tr><td></td><th><h3>Sensitive Information (<a class="learn-more">Read Data Policy</a>)</h3></th></tr>
-	 <tr>
 	 
 	
 	 <tr>
@@ -66,9 +156,7 @@
      @endif
 	 
 	 
-	 <tr>
-        <td></td><td><strong>By clicking "Login" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong></td>
-     </tr>
+	<strong>By clicking "Login" you agree that you are over 13 years of age and you accept our <a class="learn-more">Terms of Service</a> </strong>
 	 
 	 <tr>
 	 <td></td>

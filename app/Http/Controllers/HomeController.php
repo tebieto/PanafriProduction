@@ -11,6 +11,8 @@ use App\Transaction;
 use App\Chat;
 use App\referral;
 use App\Store;
+use App\Location;
+use App\Price;
 use Auth;
 use DB;
 
@@ -121,6 +123,43 @@ class HomeController extends Controller
 		
 	}
 	
+	public function onProduct($pid)
+    {
+		
+		$product = Product::where('id', $pid)->first();
+		
+		if($product->status==1) {
+		return 0;
+		}
+		
+		$product = Product::where('id', $pid)->first()
+	  ->update([
+			
+			'status' => 1,
+		
+		]);
+		
+	}
+	
+	public function offProduct($pid)
+    {
+		
+		$product = Product::where('id', $pid)->first();
+		
+		if($product->status==0) {
+		return 0;
+		}
+		
+		$product = Product::where('id', $pid)->first()
+	  ->update([
+			
+			'status' => 0,
+		
+		]);
+		
+	}
+	
+	
 	
 	 public function sellProduct($cid, $pid)
     {
@@ -205,17 +244,71 @@ class HomeController extends Controller
 		
 	}
 	
-	public function authStore()
+	
+	public function removePrices($pid)
+    {
+	$price = Price::where('id', $pid)
+		->first();
+		
+	if(!empty($price)) {
+		
+		$price->delete();
+		
+		return 1;
+		
+		}
+		
+		return 0;
+		
+	}
+	
+	
+	public function getPrices($pid)
+    {
+	$prices = Price::where('product_id', $pid)
+		->get();
+		
+	$all= array();
+	
+	 foreach ($prices as $price):
+		 
+		 
+		 array_push($all, $price);
+		
+	  endforeach;
+	
+	return $all;
+	}
+	
+	
+	public function getStoreProducts($sid)
+    {
+	$products = Product::where('store_id', $sid)
+		->get();
+		
+	$all= array();
+	
+	 foreach ($products as $product):
+		 
+		 
+		 array_push($all, $product);
+		
+	  endforeach;
+	
+	return $all;
+	}
+	
+	
+	public function authShops()
     {
 	  
-	  $stores = Store::where('seller', auth::id())->get();
+	  $shops = Store::where('seller', auth::id())->get();
 	  
 	  $all = array();
 	  
-	   foreach ($stores as $store):
+	   foreach ($shops as $shop):
 	   
-	   $product = Product::where('id', $store->product)->first();
-	   array_push($all, $product);
+	   array_push($all, $shop);
 	   
 	   endforeach;
 	   
@@ -231,9 +324,47 @@ class HomeController extends Controller
 			'name' => $request->name,
 			'category_id' => $request->category,
 			'image' => $request->image,
+			'status' => 1,
+			'description' => $request->description,
+			'store_id' => $request->shop,
 		]);
 		
-		return $request->image;
+		return 1;
+		
+    }
+	
+	public function sendPrice(Request $request)
+    {
+
+	  $add = Price::create([
+			
+			'price' => $request->price,
+			'product_id' => $request->product_id,
+			'unit' => $request->unit,
+		]);
+		
+		return 1;
+		
+    }
+	
+	
+	public function saveShop(Request $request)
+    {
+		
+	  $location = Location::create([
+			
+			'location' => $request->location,
+			'user_id' => auth::id(),
+		]);
+
+	  $add = Store::create([
+			
+			'name' => $request->name,
+			'location_id' => $location->id,
+			'seller' =>auth::id(),
+		]);
+		
+		return 1;
 		
     }
 	

@@ -68,6 +68,11 @@ Route::get('/auth/details/', [
 	'as' => 'authDetails'
 	]);
 	
+Route::get('/auth/shops/', [
+	'uses' => 'HomeController@authShops',
+	'as' => 'authShops'
+	]);
+	
 	
 Route::get('/closed/transactions', [
 	'uses' => 'HomeController@closedTransactions',
@@ -95,6 +100,31 @@ Route::get('/get/chat/{tid}', [
 	'as' => 'getChat'
 	]);
 	
+Route::get('/on/product/{pid}', [
+	'uses' => 'HomeController@onProduct',
+	'as' => 'onProduct'
+	]);
+	
+Route::get('/off/product/{pid}', [
+	'uses' => 'HomeController@offProduct',
+	'as' => 'offProduct'
+	]);
+	
+Route::get('/get/prices/{pid}', [
+	'uses' => 'HomeController@getPrices',
+	'as' => 'getPrices'
+	]);
+	
+Route::get('/remove/prices/{pid}', [
+	'uses' => 'HomeController@removePrices',
+	'as' => 'removePrices'
+	]);
+	
+Route::get('/products/store/{sid}', [
+	'uses' => 'HomeController@getStoreProducts',
+	'as' => 'getStoreProducts'
+	]);
+	
 Route::get('/create/transaction/{sid}/{pid}/{cid}', [
 	'uses' => 'HomeController@createTransaction',
 	'as' => 'createTransaction'
@@ -116,9 +146,48 @@ Route::post('/submit/product', [
 	'as' => 'product'
 	]);
 	
+Route::post('/send/price', [
+	'uses' => 'HomeController@sendPrice',
+	'as' => 'sendPrice'
+	]);
+	
+Route::post('/login/seller/login', [
+	'uses' => 'LoginController@authSeller',
+	'as' => 'authSeller'
+	]);
+	
+Route::post('/register/seller/register', [
+	'uses' => 'RegisterController@register',
+	'as' => 'registerSeller'
+	]);
+	
+Route::get('/login/seller/login', function () {
+	if(auth::check()) {
+		
+	return view('seller');	
+		
+	}
+    return view('sellerLogin');
+});
+
+Route::get('/register/seller/register', function () {
+	if(auth::check()) {
+		
+	return view('seller');	
+		
+	}
+    return view('sellerRegistration');
+});
+
+	
 Route::post('/submit/seller', [
 	'uses' => 'HomeController@submitSeller',
 	'as' => 'submitseller'
+	]);
+	
+Route::post('/save/shop', [
+	'uses' => 'HomeController@saveShop',
+	'as' => 'saveShop'
 	]);
 	
 Route::post('/map', function (Request $request) {
