@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+Use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +20,11 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return view('seller');
-        }
+            return redirect()->intended('/login/seller/login');
+        } else {
+			Session::flash('error', 'Account not found.');
+			return redirect()->intended('login/seller/login');
+			
+		}
     }
 }

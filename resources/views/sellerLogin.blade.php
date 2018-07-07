@@ -45,7 +45,7 @@
                         {{ csrf_field() }}
 	 
 	 <table>
-	 
+	
 	 <tr>
 	  <td>Email</td>
 	 </tr>
@@ -57,6 +57,12 @@
 	 @if ($errors->has('email'))
      <tr>
        <td><strong>{{ $errors->first('email') }}</strong></td>
+     </tr>
+     @endif
+	 
+	 @if (session('error'))
+     <tr>
+       <td><strong>{{ session('error') }}</strong></td>
      </tr>
      @endif
 	 

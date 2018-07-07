@@ -39,7 +39,7 @@ class RegisterController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return view('seller');
+           return redirect()->intended('login/seller/login');
         }
     }
 
