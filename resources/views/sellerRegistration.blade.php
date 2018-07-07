@@ -113,7 +113,7 @@
 	 <tr>
 	 
 	 <td>
-	 <input type="file" ref="productimage"  style="display:none;" accept="image/*" v-on:change="imageChange">
+	 <input type="file" id="productimage"  style="display:none;" accept="image/*" v-on:change="imageChange">
 				<span @click="showProductImagePicker" class="image-picker" title="Choose file"  ><img  id="" src="/storage/icons/photo_icon.png" width="15px" height="15px"  alt="" /><span class="photo_icon_text"><b> Select</b></span></span>
 	 </td>
 	 </tr>

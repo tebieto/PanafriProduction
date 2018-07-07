@@ -2754,8 +2754,8 @@ var app = new Vue({
 			this.$refs.image.click();
 		},
 		showProductImagePicker: function showProductImagePicker() {
-
-			this.$refs.productimage.click();
+			var select = document.getElementById('productimage');
+			select.click();
 		},
 		removeUploaded: function removeUploaded() {
 			this.productImage = [];

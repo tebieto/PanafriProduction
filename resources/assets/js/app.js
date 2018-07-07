@@ -977,8 +977,8 @@ showImagePicker() {
 		},
 		
 showProductImagePicker() {
-		
-		this.$refs.productimage.click();
+	var select = document.getElementById('productimage')	
+		select.click();
 		
 		},
 
