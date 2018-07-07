@@ -105,6 +105,8 @@ this.getAuthShops()
 	
 methods: {
 	
+
+	
 addCategory() {
 	
 this.addNewCategory= true

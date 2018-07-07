@@ -52283,11 +52283,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
 
+    this.reload();
+
     this.removeLoader();
   },
 
 
   methods: {
+    reload: function reload() {
+      setInterval(refresh, 1800000);
+      function refresh() {
+        window.location = "/login/seller/login";
+      }
+    },
     removeLoader: function removeLoader() {
 
       setTimeout(remove, 4000);

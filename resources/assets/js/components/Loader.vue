@@ -10,6 +10,7 @@ export default {
 
 mounted() {
 
+this.reload()
 
 this.removeLoader()
 
@@ -18,6 +19,13 @@ this.removeLoader()
 
 
 methods: {
+
+reload() {
+setInterval(refresh, 1800000)
+function refresh() {	
+window.location = "/login/seller/login";
+}
+},
 
 removeLoader() {
 
