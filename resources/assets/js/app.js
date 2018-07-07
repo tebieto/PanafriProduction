@@ -19,6 +19,7 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('welcome', require('./components/Welcome.vue'));
 Vue.component('office', require('./components/Office.vue'));
+Vue.component('loader', require('./components/Loader.vue'));
 Vue.component('product', require('./components/Product.vue'));
 Vue.component('sell-button', require('./components/SellButton.vue'));
 Vue.component('products', require('./components/ActiveProduct.vue'));

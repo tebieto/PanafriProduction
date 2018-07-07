@@ -14,6 +14,15 @@
 <!--Begin Container class DIV-->
       
 <div id="app" class="container">
+
+<div id="loader" class="loader">
+
+			
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner App</span>
+	 
+	 <loader></loader>
+	
+</div>
 	
 	  <!--Begin register class div-->
 

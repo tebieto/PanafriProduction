@@ -14,7 +14,14 @@
       
 <div id="app" class="container">
 
+<div id="loader" class="loader">
+
+			
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner App</span>
+	 
+	 <loader></loader>
 	
+</div>	
 	<!--Begin header class DIV-->
 	
 	 <div  class="header">
@@ -47,11 +54,9 @@
 		 
 		  <!--Creating Menu Icon from scatch with Css-->
 		  
-			<div id="showmenu" class="menu-bar" @click="showMenu()">
+			<div id="showmenu" class="plus-bar" @click="showMenu()">
 			
-			<div class="bar1"></div>
-			<div class="bar2"></div>
-			<div class="bar3"></div>
+			<div class="menu-add">+</div>
 			
 			</div>
 			
@@ -75,7 +80,7 @@
 				
 			
 				<li @click="displayAdminCategory()">
-				<a id="admin-link" >Add Products</a>
+				<a id="admin-link" >Add Products </a><span class="product-icon">+</span>
 				</li>
 				
 				<!--
@@ -131,10 +136,14 @@
 		<!--Begin categories class div-->
 		
 		<div class="categories">
+		
+		<div class="big-add" @click="displayAdminCategory()"><center>+</center></div>
+		
 		<div v-for="office in authShops">
 		
 		<office :root="'{{ config('app.url') }}'" :id="office.id" :name="office.name"></office>
 		</div>	
+		
 		
 			
 		</div>
