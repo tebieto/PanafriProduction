@@ -269,7 +269,10 @@
 			</center>
 		</div>
 		-->
+		
 		<div class="others">
+		
+		<!--
 		<div class="categories">
 			<center>
 				<h1>How Panafri Works</h1>
@@ -311,9 +314,11 @@
 				<h1>The Big Picture</h1>
 			</center>
 		</div>
-			
+		-->	
 		<!--End of categories class div-->
 		</div>
+		
+		
 		</div>
 		<!--End of content-body class div-->
 		

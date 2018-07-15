@@ -106,7 +106,7 @@ authDetails: [],
 products: [],
 showPrice:false,
 available: true,
-root:'https://jokesterbox.com',
+root:'http://localhost:8000',
 pprice:'',
 punit:'',
 prices: []
@@ -122,6 +122,17 @@ prices: []
 methods: {
 
 removePrice(pid) {
+
+var price = this.prices.find ( p => {
+				return p.id === pid
+				
+			})
+
+			
+	var index = this.prices.indexOf(price)
+			
+	this.prices.splice(index, 1)
+
 
 axios.get(this.root + '/remove/prices/' + pid).then(response=>{
 	

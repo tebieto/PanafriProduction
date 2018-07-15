@@ -15,11 +15,9 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('product_id');
-			$table->integer('seller_id');
-			$table->integer('buyer_id');
-			$table->integer('status');
-			$table->integer('type');
+			$table->integer('price_id');
+			$table->integer('tracker_id');
+			$table->integer('quantity');
             $table->timestamps();
         });
     }

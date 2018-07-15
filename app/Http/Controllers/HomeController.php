@@ -37,10 +37,10 @@ class HomeController extends Controller
     { 
 	if(!Auth::check()){
 		
-		return view('welcome');
+		return view('public');
 		
 	}
-        return view('home');
+        return view('dashboard');
     }
 	
 	
@@ -154,6 +154,79 @@ class HomeController extends Controller
 	  ->update([
 			
 			'status' => 0,
+		
+		]);
+		
+	}
+	
+	public function onStore($sid)
+    {
+		
+		$store = Store::where('id', $sid)->first();
+		
+		if($store->online==1) {
+		return 0;
+		}
+		
+		$store = Store::where('id', $sid)->first()
+	  ->update([
+			
+			'online' => 1,
+		
+		]);
+		
+	}
+	
+	public function offStore($sid)
+    {
+		
+		$store = Store::where('id', $sid)->first();
+		
+		if($store->online==0) {
+		return 0;
+		}
+		
+		$store = Store::where('id', $sid)->first()
+	  ->update([
+			
+			'online' => 0,
+		
+		]);
+		
+	}
+	
+	
+	public function onApp()
+    {
+		
+		$app = User::where('id', auth::id())->first();
+		
+		if($app->online==1) {
+		return 0;
+		}
+		
+		$app = User::where('id', auth::id())->first()
+	  ->update([
+			
+			'online' => 1,
+		
+		]);
+		
+	}
+	
+	public function offApp()
+    {
+		
+		$app = User::where('id', auth::id())->first();
+		
+		if($app->online==0) {
+		return 0;
+		}
+		
+		$app = User::where('id', auth::id())->first()
+	  ->update([
+			
+			'online' => 0,
 		
 		]);
 		
@@ -280,6 +353,24 @@ class HomeController extends Controller
 	return $all;
 	}
 	
+	public function allShops($start)
+    {
+	return 1;	
+	$shops = Store::orderBy('created_at', 'DESC')->skip($start)->take(8)->get();
+	$all = array();
+	
+	 foreach ($shops as $shop):
+		 
+		 
+		 array_push($all, $shop);
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+	}
+	
 	
 	public function getStoreProducts($sid)
     {
@@ -296,6 +387,15 @@ class HomeController extends Controller
 	  endforeach;
 	
 	return $all;
+	}
+
+	
+	public function userDetails($id)
+    {
+	$user = User::where('id', $id)
+		->first();
+	
+	return $user;
 	}
 	
 	
@@ -362,6 +462,7 @@ class HomeController extends Controller
 			'name' => $request->name,
 			'location_id' => $location->id,
 			'seller' =>auth::id(),
+			'online' => 1,
 		]);
 		
 		return 1;

@@ -15,12 +15,50 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+	if (auth::check()) {
+
+	return view('dashboard');	
+		
+	}
+    return view('public');
+});
+
+
+Route::get('/buyers/transactions', function () {
+	if (auth::check()) {
+
+    return view('transactions');
+	}
+    return view('public');
+});
+
+Route::get('/transactions/sellers/transactions', function () {
+    if (auth::check()) {
+	return view('sellertransactions');
+	}
+    return view('public');
 });
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/buyers/pending/transactions', function () {
+    if (auth::check()) {
+	return view('buyerpending');
+	}
+    return view('public');
+});
+
+Route::get('/check/auth', function () {
+	if (auth::check()) {
+		
+    return 1;
+	
+	} else {
+	return 0;	
+	}
+});
+
+Route::get('/home', 'HomeController@index')->name('dashboard');
 
 Route::get('/save/category/{name}', [
 	'uses' => 'HomeController@saveCategory',
@@ -37,6 +75,104 @@ Route::get('/all/products', [
 	'as' => 'products'
 	]);
 	
+	
+Route::get('/get/all/shops/{start}', [
+	'uses' => 'ShopController@allShops',
+	'as' => 'allShops'
+	]);
+	
+Route::get('/get/shop/items/{id}', [
+	'uses' => 'ShopController@shopItems',
+	'as' => 'shopItems'
+	]);
+	
+Route::get('/get/shop/location/{id}', [
+	'uses' => 'ShopController@shopLocation',
+	'as' => 'shopLocation'
+	]);
+	
+Route::get('/get/shop/owner/{id}', [
+	'uses' => 'ShopController@shopOwner',
+	'as' => 'shopOwner'
+	]);
+	
+Route::get('/get/item/owner/{store}', [
+	'uses' => 'ShopController@itemOwner',
+	'as' => 'itemOwner'
+	]);
+	
+Route::get('/get/product/owner/{product}', [
+	'uses' => 'ShopController@productOwner',
+	'as' => 'productOwner'
+	]);
+	
+Route::get('/get/item/Prices/{id}', [
+	'uses' => 'ShopController@itemPrices',
+	'as' => 'itemPrices'
+	]);
+	
+Route::get('/create/transaction/tracker/{store}/{owner}', [
+	'uses' => 'ShopController@createTracker',
+	'as' => 'createTracker'
+	]);
+	
+Route::get('/add/to/cart/{product}/{price}/{quantity}', [
+	'uses' => 'ShopController@addToCart',
+	'as' => 'addToCart'
+	]);
+	
+Route::get('/get/pending/transactions', [
+	'uses' => 'ShopController@pendingTransactions',
+	'as' => 'pendingTransactions'
+	]);
+	
+Route::get('/get/pending/trackers', [
+	'uses' => 'ShopController@pendingTrackers',
+	'as' => 'pendingTrackers'
+	]);
+	
+	
+Route::get('/get/request/trackers', [
+	'uses' => 'ShopController@requestTrackers',
+	'as' => 'requestTrackers'
+	]);
+	
+Route::get('/get/user/details/{id}', [
+	'uses' => 'HomeController@userDetails',
+	'as' => 'userDetails'
+	]);
+	
+
+	
+Route::get('/get/shop/details/{shop}', [
+	'uses' => 'ShopController@shopDetails',
+	'as' => 'shopDetails'
+	]);
+	
+Route::get('/get/tracked/transactions/{tracker}', [
+	'uses' => 'ShopController@trackedTransactions',
+	'as' => 'trackedTransactions'
+	]);
+	
+Route::get('/cancel/transaction/{tracker}', [
+	'uses' => 'ShopController@cancelTransaction',
+	'as' => 'cancelTransaction'
+	]);
+	
+Route::get('/request/transaction/{tracker}', [
+	'uses' => 'ShopController@requestTransaction',
+	'as' => 'requestTransaction'
+	]);
+	
+Route::get('/accept/transaction/{tracker}/{delivery}', [
+	'uses' => 'ShopController@acceptTransaction',
+	'as' => 'acceptTransaction'
+	]);
+	
+Route::get('/delete/transaction/{id}', [
+	'uses' => 'ShopController@deleteTransaction',
+	'as' => 'deleteTransaction'
+	]);
 	
 Route::get('/sell/products/{cid}/{pid}', [
 	'uses' => 'HomeController@sellProduct',
@@ -109,6 +245,34 @@ Route::get('/off/product/{pid}', [
 	'uses' => 'HomeController@offProduct',
 	'as' => 'offProduct'
 	]);
+	
+	
+Route::get('/on/store/{sid}', [
+	'uses' => 'HomeController@onStore',
+	'as' => 'onStore'
+	]);
+	
+Route::get('/off/store/{sid}', [
+	'uses' => 'HomeController@offStore',
+	'as' => 'offStore'
+	]);
+	
+	
+	
+	
+	
+	
+Route::get('/on/app', [
+	'uses' => 'HomeController@onApp',
+	'as' => 'onApp'
+	]);
+	
+Route::get('/off/app', [
+	'uses' => 'HomeController@offApp',
+	'as' => 'offApp'
+	]);
+	
+	
 	
 Route::get('/get/prices/{pid}', [
 	'uses' => 'HomeController@getPrices',

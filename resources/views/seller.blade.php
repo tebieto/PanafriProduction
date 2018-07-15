@@ -31,6 +31,8 @@
 			<div class="logo">
 			
 				<img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo">
+				
+				
 			</div>
 			
 		 <!--End logo class DIV-->
@@ -82,6 +84,19 @@
 				<li @click="displayAdminCategory()">
 				<a id="admin-link" >Add Products </a><span class="product-icon">+</span>
 				</li>
+				
+				<span id="onApp" v-if="!appOn">
+			 <span style="color:#ddd; margin:7px;">Offline</span><button style="background:green;" @click="onApp()">On App</button>
+			 </span>
+			 
+			 <span id="offApp" class="" v-if="appOn">
+			 <button style="background:#fff; color:red" @click="offApp()">Off App</button><span style="color:#ddd; margin:7px;">online</span>
+			</span>
+			
+			
+		
+				
+				
 				
 				<!--
 				
@@ -139,9 +154,11 @@
 		
 		<div class="big-add" @click="displayAdminCategory()"><center>+</center></div>
 		
+		
+		
 		<div v-for="office in authShops">
 		
-		<office :root="'{{ config('app.url') }}'" :id="office.id" :name="office.name"></office>
+		<office :root="'{{ config('app.url') }}'" :id="office.id" :name="office.name" :online="office.online"></office>
 		</div>	
 		
 		

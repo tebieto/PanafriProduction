@@ -2,9 +2,19 @@
 <div>
 			<div class="office">
 			<center>
-			
-				<h4>Office  {{'#' + this.id}}, {{this.name}}</h4>
+			<div style="height:80px; width:250px; overflow-y:auto;">
+				<h4>Office, {{'#' + this.id}}, {{this.name}}</h4>
+			</div>	
+				<span id="onStore" v-if="!storeOn">
+			 <span style="color:#ddd; margin:7px;">Offline</span><button style="background:green;" @click="onStore()">Go Online</button>
+			 </span>
+			 
+			 <span id="offStore" class="" v-if="storeOn">
+			 <button style="background:red; color:#fff" @click="offStore()">Go Offline</button><span style="color:#ddd; margin:7px;">online</span>
+			 </span>
+				
 			</center>
+			
 			</div>
 			<div v-for="product in this.products">
 			
@@ -21,10 +31,14 @@
 
 export default {
 
-props:['id', 'name', 'root'],
+props:['id', 'name', 'root', 'online'],
 
 mounted() {
+if (this.online==0) {
 
+this.storeOn= false
+
+}
 this.getAuthDetails()
 this.getStoreProducts()
 
@@ -37,6 +51,7 @@ return {
 
 authDetails: [],
 products: [],
+storeOn: true,
 
 
 
@@ -48,6 +63,29 @@ products: [],
 
 
 methods: {
+
+onStore() {
+
+this.storeOn = true
+
+
+axios.get(this.root + '/on/store/' + this.id ).then(response=>{
+		
+		
+	})
+	
+},
+
+offStore() {
+
+this.storeOn = false
+
+axios.get(this.root + '/off/store/' + this.id ).then(response=>{
+		
+		
+	})		
+	
+},
 
 
 getAuthDetails(){

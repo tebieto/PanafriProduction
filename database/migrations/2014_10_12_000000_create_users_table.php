@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
 			$table->string('lname');
 			$table->integer('status');
 			$table->integer('role');
+			$table->integer('online');
 			$table->string('avatar')->nullable();
             $table->string('email')->unique();
 			$table->string('phone')->unique();

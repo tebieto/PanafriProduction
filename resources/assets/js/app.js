@@ -18,22 +18,29 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('welcome', require('./components/Welcome.vue'));
+Vue.component('store', require('./components/FrontOffice.vue'));
 Vue.component('office', require('./components/Office.vue'));
+Vue.component('transactions', require('./components/Transactions.vue'));
+Vue.component('seller-request', require('./components/SellerRequest.vue'));
+Vue.component('items', require('./components/Items.vue'));
 Vue.component('loader', require('./components/Loader.vue'));
 Vue.component('product', require('./components/Product.vue'));
+Vue.component('buy-item', require('./components/BuyItem.vue'));
 Vue.component('sell-button', require('./components/SellButton.vue'));
 Vue.component('products', require('./components/ActiveProduct.vue'));
 Vue.component('chat-body', require('./components/ChatBody.vue'));
+Vue.component('buyer-pending', require('./components/BuyerPending.vue'));
 
 var algoliasearch = require('algoliasearch');
 var client = algoliasearch('VEOFPEJRLG', '6e163e296a3af0e603000750a01a4743');
 var index = client.initIndex('products');
 
+import { store } from './store'
+
 const app = new Vue({
     el: '#app',
-	
-	
-	
+	store,
+
 	data() {
 		
 		return {
@@ -80,10 +87,13 @@ const app = new Vue({
 				shopLocation:'',
 				authShops: [],
 				activeShop: '',
-				pdescription:''
-				
-		
-				
+				pdescription:'',
+				appOn: true,
+				start: 0,
+				trigger: 0,
+				allShops: [],
+				pendingTrackers: [],
+				sellerRequestTrackers: [],
 				
 			
 		}
@@ -93,19 +103,154 @@ const app = new Vue({
 	},
 	
 mounted() {
-
-this.getOpenTransactions()
-this.getClosedTransactions()	
-	
+this.getSellerRequests()
+this.getBuyerPendingTransactions()
+this.getPendingTrackers()	
+this.scroller()	
 this.allCategories()
 this.allProducts()
 this.getAuthDetails()
-this.getAuthShops()	
+this.getAuthShops()
+this.getAllShops()	
 },
 	
 methods: {
 	
+getSellerRequests() {
 
+
+	
+	
+},
+	
+stopScroll() {
+
+var bodyScroll= document.getElementsByTagName("body")[0].style.overflow="hidden"	
+	
+},
+
+startScroll() {
+
+var bodyScroll= document.getElementsByTagName("body")[0].style.overflow="auto"	
+	
+},
+	
+scroller() {
+		
+		 window.onscroll = event => {
+			
+			
+			var d = document.documentElement;
+			var offset = d.scrollTop + window.innerHeight;
+			var height = d.scrollHeight - this.trigger;
+			
+		
+			if (offset >= height) {
+			
+				  
+                  this.start = this.start + 1
+				  
+				  this.getAllShops();
+				  
+				 
+				  
+				  
+			   
+		}
+	}
+	
+},
+
+
+getSellerRequests() {
+
+axios.get('/get/request/trackers').then(response=>{
+		
+		response.data.forEach((tracker) => {
+		this.sellerRequestTrackers.push(tracker)
+		
+		})
+		 
+	})	
+	
+	
+},
+
+getPendingTrackers(){
+	
+	axios.get('/get/pending/trackers').then(response=>{
+		
+		response.data.forEach((tracker) => {
+		this.pendingTrackers.push(tracker)
+		
+		})
+		 
+	})
+	
+},
+
+
+getBuyerPendingTransactions(){
+	
+	axios.get('/get/pending/transactions').then(response=>{
+		
+		response.data.forEach((transactions) => {
+		this.$store.commit('add_pending_transactions', transactions)
+		
+		})
+		 
+	})
+	
+},
+
+pendingUrl() {
+
+window.location = "/buyers/pending/transactions";
+
+},
+
+	
+transactionsUrl() {
+
+window.location = "/buyers/transactions";
+
+},	
+	
+homeUrl() {
+
+window.location = "/";
+
+},
+
+	
+transactionsUrl() {
+
+window.location = "/buyers/transactions";
+
+},	
+	
+onApp() {
+
+this.appOn = true
+
+
+axios.get('/on/app').then(response=>{
+		
+		
+	})
+	
+},
+
+offApp() {
+
+this.appOn = false
+
+axios.get('/off/app').then(response=>{
+		
+		
+	})		
+	
+},
 	
 addCategory() {
 	
@@ -207,7 +352,42 @@ getAuthDetails(){
 	
 	axios.get('/auth/details').then(response=>{
 		
+		if(response.data.online==0) {
+
+        this.appOn = false
+
+       }
+		
 		this.authDetails.push(response.data)
+	})
+	
+},
+
+
+getAllShops(){
+	
+	axios.get('/get/all/shops/' + this.start).then(response=>{
+		
+		
+		 response.data.forEach((shop) =>{
+
+		if (this.allShops.length==0) {
+		
+        this.allShops.push(shop)		
+		return 1	
+			
+		}
+		
+		var verify = this.allShops.find ( s => {
+				return s.id === shop.id
+				
+			})
+
+		if(!verify) {	
+		this.allShops.push(shop)
+		
+		}
+		 })
 	})
 	
 },
@@ -702,6 +882,9 @@ let data = JSON.stringify({
 //  Handling modal hiding and display methods			
 		
 showMenu() {
+
+this.stopScroll()
+
 var bodyTop = document.getElementById('content-body')
 var hiddenDiv = document.getElementById('hide')
 var showmenu = document.getElementById('showmenu')
@@ -717,6 +900,8 @@ hidemenu.classList.remove('hidden')
 
 hideMenu() {
 
+this.startScroll()
+
 var bodyTop = document.getElementById('content-body')
 var hiddenDiv = document.getElementById('hide')
 var hidemenu = document.getElementById('hidemenu')
@@ -731,13 +916,14 @@ hidemenu.classList.add('hidden')
 
 
 verifyPassword() {
-	
+this.stopScroll()	
 var searchModal = document.getElementById('search-page')	
 searchModal.classList.remove('hidden')	
 	
 },
 
 showSearchModal() {
+this.stopScroll()
 	
 var searchModal = document.getElementById('search-page')	
 searchModal.classList.remove('hidden')	
@@ -745,6 +931,7 @@ searchModal.classList.remove('hidden')
 },
 
 hideSearchModal() {
+this.startScroll()
 	
 var searchModal = document.getElementById('search-page')	
 searchModal.classList.add('hidden')	
@@ -752,14 +939,15 @@ searchModal.classList.add('hidden')
 },
 
 showActivePage() {
-	
+
+this.stopScroll()	
 var activeModal = document.getElementById('active-page')	
 activeModal.classList.remove('hidden')	
 	
 },
 
 hideActivePage() {
-	
+this.startScroll()
 var activeModal = document.getElementById('active-page')	
 activeModal.classList.add('hidden')	
 	
@@ -767,14 +955,15 @@ activeModal.classList.add('hidden')
 
 
 loginFirst() {
-	
+
+this.stopScroll()
 var loginFirst = document.getElementById('login-first')	
 loginFirst.classList.remove('hidden')
 
 },
 
 hideLoginFirst() {
-	
+this.startScroll()
 var loginFirst = document.getElementById('login-first')	
 loginFirst.classList.add('hidden')
 
@@ -801,6 +990,8 @@ onproduct.classList.remove('hidden')
 },
 
 showProductPrice() {
+
+this.stopScroll()
 	
 var product = document.getElementById('product-price')
 
@@ -808,7 +999,7 @@ product.classList.remove('hidden')
 },
 
 hideProductPrice() {
-	
+this.startScroll()
 var product = document.getElementById('product-price')
 
 product.classList.add('hidden')
@@ -818,34 +1009,35 @@ product.classList.add('hidden')
 
 
 showChatBox() {
-	
+this.stopScroll()
 var showChat = document.getElementById('chat-box')	
 showChat.classList.remove('hidden')
 
 },
 
 hideChatBox() {
-	
+this.startScroll()
 var showChat = document.getElementById('chat-box')	
 showChat.classList.add('hidden')
 
 },
 
 startSellingModal() {
-	
+this.stopScroll()	
 var startSelling = document.getElementById('start-selling')	
 startSelling.classList.remove('hidden')
 
 },
 
 hideStartSellingModal() {
-	
+this.startScroll()	
 startSelling = document.getElementById('start-selling')	
 startSelling.classList.add('hidden')
 
 },
 
 showRecoverForm() {
+this.stopScroll()	
 this.hideWelcomeLoginModal()
 this.hideLoginFirst()	
 var recoverForm = document.getElementById('recover-form')	
@@ -854,7 +1046,7 @@ recoverForm.classList.remove('hidden')
 },
 
 hideRecoverForm() {
-	
+this.startScroll()	
 var recoverForm = document.getElementById('recover-form')	
 recoverForm.classList.add('hidden')
 
@@ -862,7 +1054,7 @@ recoverForm.classList.add('hidden')
 
 
 welcomeLoginModal() {
-	
+this.stopScroll()	
 var welcomeLogin = document.getElementById('welcome-login')	
 welcomeLogin.classList.remove('hidden')	
 	
@@ -871,7 +1063,7 @@ welcomeLogin.classList.remove('hidden')
 
 
 hideWelcomeLoginModal() {
-	
+this.startScroll()	
 var welcomeLogin = document.getElementById('welcome-login')	
 welcomeLogin.classList.add('hidden')	
 	
@@ -879,7 +1071,7 @@ welcomeLogin.classList.add('hidden')
 },
 
 welcomeRegisterModal() {
-	
+this.stopScroll()	
 var welcomeLogin = document.getElementById('welcome-register')	
 welcomeLogin.classList.remove('hidden')	
 	
@@ -888,7 +1080,7 @@ welcomeLogin.classList.remove('hidden')
 
 
 hideWelcomeRegisterModal() {
-	
+this.startScroll()	
 var welcomeLogin = document.getElementById('welcome-register')	
 welcomeLogin.classList.add('hidden')	
 	
@@ -896,20 +1088,20 @@ welcomeLogin.classList.add('hidden')
 },
 
 freeLanceModal() {
-	
+this.stopScroll()	
 var freeLance = document.getElementById('freelance-delivery')	
 freeLance.classList.remove('hidden')	
 
 },
 
 hideFreeLanceModal(){
-	
+this.startScroll()	
 var freeLance = document.getElementById('freelance-delivery')	
 freeLance.classList.add('hidden')	
 },
 
 displayAdminCategory() {
-	
+this.stopScroll()	
 var adminCategory = document.getElementById('admin-category')	
 adminCategory.classList.remove('hidden')	
 	
@@ -918,7 +1110,7 @@ adminCategory.classList.remove('hidden')
 
 
 hideAdminCategory() {
-	
+this.startScroll()	
 var adminCategory = document.getElementById('admin-category')	
 adminCategory.classList.add('hidden')	
 	
@@ -927,7 +1119,7 @@ adminCategory.classList.add('hidden')
 
 
 displayAdminSeller() {
-	
+this.stopScroll()	
 var adminSeller = document.getElementById('admin-seller')	
 adminSeller.classList.remove('hidden')	
 	
@@ -937,7 +1129,7 @@ adminSeller.classList.remove('hidden')
 
 
 hideAdminSeller() {
-	
+this.startScroll()	
 var adminSeller = document.getElementById('admin-seller')	
 adminSeller.classList.add('hidden')	
 	
@@ -1087,13 +1279,20 @@ sellerImageChange(e) {
 },
 
 
-
+},
 	
+	
+computed: {
 		
-		
-		
-		
-	},
+				
+	pendingTrans() {
+				
+	var pending = this.$store.getters.all_pending_transactions
+
+	return pending;
+	}
+			
+},
 	
 watch: {
 	

@@ -17,6 +17,7 @@ class CreateStoresTable extends Migration
             $table->increments('id');
 			$table->integer('seller');
 			$table->string('name');
+			$table->integer('online');
 			$table->integer('location_id');
             $table->timestamps();
         });

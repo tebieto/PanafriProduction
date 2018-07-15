@@ -1,3 +1,145 @@
+body {
+width:100%;
+}
+
+.pending-transaction-avatar{
+	
+margin-left: 8px;
+margin-top:10px;	
+}
+
+.transactions, .inactive-transactions {
+display:inline-block;
+margin: 10.3px;	
+width: 300px;
+height: 550px;	
+background: #fff;
+border-radius: 10px 0px 0px 10px;
+
+}
+
+.inactive-transactions {
+
+	
+height: 500px;	
+	
+}
+.user-name {
+
+font-weight: bold;
+color:blue;	
+	
+}
+
+.unread{
+
+background:red;
+color:#fff;
+border-radius: 10px;
+position: relative;
+top: 27px;
+left: -80px;
+padding: 4px;	
+	
+}
+.start-chat-button {
+border-radius: 10px;
+color:#fff;
+background:green;
+width:40px;
+font-weight: bold;
+padding: 5px;
+margin-top: 5px;
+	
+	
+}
+
+.transaction-button, .pending-transaction-button{
+
+position: fixed;
+top: 400px;
+right: 20px;
+background: #fff;
+color: #fff;
+width: 50px;
+height: 50px;
+border-radius: 50%;		
+box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
+cursor:pointer;	
+}
+
+.pending-transaction-button{
+top: 330px;
+color: #000;
+font-weight: bold;
+z-index: 20;	
+}
+
+.pending-transaction-button span{
+position: relative;
+top: 7px;
+left: 15px;
+}
+
+.transaction-count {
+	
+color: #000;
+position: relative;
+top: 15px;
+left: 13px;
+font-weight: bold;	
+}
+
+.transaction-button div {
+	
+margin: 10px 0px 0px 10px;
+font-weight: bold;
+width: 30px;
+	
+}
+
+#pending-home {
+	
+top: 470px;	
+}
+
+.suggestions{
+
+background: red;
+min-height: 200px;
+width: 106.5%;
+
+padding:20px;	
+	
+		
+}
+
+.hr {
+width: 100%;
+margin:auto;
+border: 1px	solid red;
+	
+}
+
+.shops{
+display:inline-block;
+background: #fff;
+height: 430px;
+width: 250px;
+margin:35px;
+border-radius: 10px 10px 0px 0px;	
+	
+		
+}
+
+button, .button, .start-chat-button, .unread, .user-name{
+
+cursor:pointer;
+font-weight: bold;	
+	
+	
+}
+
 .hidden {
 	
 display:none;	
@@ -52,7 +194,7 @@ cursor:pointer;
 width: 100px;
 height: 100px;
 margin: auto;
-
+cursor:pointer;
 margin-bottom: 100px;
 color: #fff;
 background: red;
@@ -66,9 +208,19 @@ font-size: 100px;
 
 .big-add center{ 
 position: relative;
-top: -20px;
+top: -7px;
 
 
+}
+
+#onApp button, #offApp button, #onStore button, #offStore button {
+
+border-radius: 25px;
+border: none;
+box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.2);	
+color: #fff;	
+cursor: pointer;
+	
 }
 
 .menu-add {
@@ -84,9 +236,9 @@ border-radius: 25px;
 background: #fff;
 color: #000;
 width: 300px;
-height:50px;
-margin: auto;
-padding-top:0px;	
+height:110px;
+padding-top: 1px;
+margin: auto;	
 	
 /* Add shadows to create the "card" effect */
     box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
@@ -232,7 +384,7 @@ margin-top: 20px;
 body {
 	background: #fff;
 	width: 100%;
-	font-family: candara;
+	font-family:  Roboto;
 
 }
 
@@ -713,7 +865,6 @@ top:100px;
 margin-left: -30px;
 width:90%	
 }
-
 
 
 .panafri-icon{

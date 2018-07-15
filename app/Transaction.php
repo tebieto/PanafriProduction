@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-	
-   public $with = ['chats'];
-   protected $fillable = ['product_id', 'seller_id', 'buyer_id', 'status', 'type'];
+	public $with = ['price', 'tracker'];
+  
+   protected $fillable = ['price_id', 'quantity', 'tracker_id'];
    
-   public function chats()
+  public function price()
 	{
-			return $this->hasMany('App\Chat', 'transaction_id');
+			return $this->belongsTo('App\Price', 'price_id');
+		
+	}
+	
+  public function tracker()
+	{
+			return $this->belongsTo('App\Tracker', 'tracker_id');
 		
 	}
 	
