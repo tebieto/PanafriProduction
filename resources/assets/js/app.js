@@ -20,21 +20,26 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('welcome', require('./components/Welcome.vue'));
 Vue.component('store', require('./components/FrontOffice.vue'));
 Vue.component('office', require('./components/Office.vue'));
-Vue.component('transactions', require('./components/Transactions.vue'));
+Vue.component('buyer-active', require('./components/BuyerActive.vue'));
 Vue.component('seller-request', require('./components/SellerRequest.vue'));
 Vue.component('items', require('./components/Items.vue'));
 Vue.component('loader', require('./components/Loader.vue'));
 Vue.component('product', require('./components/Product.vue'));
 Vue.component('buy-item', require('./components/BuyItem.vue'));
+Vue.component('seller-chat', require('./components/seller-chat.vue'));
+Vue.component('buyer-chat', require('./components/buyer-chat.vue'));
 Vue.component('sell-button', require('./components/SellButton.vue'));
 Vue.component('products', require('./components/ActiveProduct.vue'));
 Vue.component('chat-body', require('./components/ChatBody.vue'));
+Vue.component('seller-not', require('./components/SellerNotifications.vue'));
+Vue.component('buyer-not', require('./components/buyerNotifications.vue'));
 Vue.component('buyer-pending', require('./components/BuyerPending.vue'));
+Vue.component('buyer-loader', require('./components/BuyerLoader.vue'));
 
 var algoliasearch = require('algoliasearch');
-var client = algoliasearch('VEOFPEJRLG', '6e163e296a3af0e603000750a01a4743');
-var index = client.initIndex('products');
-
+var client = algoliasearch('Z47FXBRF0T', '3efcf7ba7656c62c257f0a201211686d');
+var productIndex = client.initIndex('products');
+var storeIndex = client.initIndex('stores');
 import { store } from './store'
 
 const app = new Vue({
@@ -93,8 +98,19 @@ const app = new Vue({
 				trigger: 0,
 				allShops: [],
 				pendingTrackers: [],
+				buyerActiveTrackers: [],
 				sellerRequestTrackers: [],
-				
+				sellerChatTrackers: [],
+				buyerChatTrackers: [],
+				productAndStoreQuery: "",
+				locationQuery: "",
+				storesFound: [],
+				productsFound: [],
+				sampleStores:[],
+				noResult: false,
+				place: "Everywhere",
+				onlineShops: [],
+				again: 0,
 			
 		}
 		
@@ -102,24 +118,241 @@ const app = new Vue({
 		
 	},
 	
-mounted() {
+mounted() {	
+	
+this.getBuyerChat()
+this.getSellerChat()
 this.getSellerRequests()
 this.getBuyerPendingTransactions()
-this.getPendingTrackers()	
+this.getBuyerActiveTransactions()
+this.getSellerActiveTransactions()
+this.getBuyerChats()
+this.getSellerChats()
+this.getPendingTrackers()
+this.getBuyerActive()	
 this.scroller()	
 this.allCategories()
 this.allProducts()
 this.getAuthDetails()
 this.getAuthShops()
-this.getAllShops()	
+this.getAllShops()
+this.queryLocation()	
 },
 	
 methods: {
+	
+queryLocation() {
+
+this.onlineShops=[]
+
+if(this.place.length==0) {
+
+this.place= "Everywhere"
+
+}
+	
+var location
+if(this.place== "Everywhere") {
+	var location= ' ' 	
+} else {
+	location= this.place;	
+}
+
+storeIndex.search(location, (err, store) => {
+	this.onlineShops=[]
+	store.hits.forEach((store) => {
+	
+	var verify = this.onlineShops.find ( s => {
+				return s.id === store.id
+				
+			})
+
+		if(!verify) {
+		if(store.online==1) {
+		this.onlineShops.push (store)
+		}
+		
+		}
+	
+	})
+	
+});	
+
+
+
+
+var everywhere = document.getElementById('everyWhere')
+var input = document.getElementById('enterLocation')
+
+if(everywhere && input) {
+everywhere.classList.remove("hidden")
+input.classList.add("hidden")	
+}	
+},
+	
+changeLocation(){
+
+var everywhere = document.getElementById('everyWhere')
+var input = document.getElementById('enterLocation')
+
+everywhere.classList.add("hidden")
+input.classList.remove("hidden")
+},
+
+clearSearch() {
+this.storesFound=[]
+this.again= 0
+this.noResult= false
+},	
+	
+getSearchQuery() {
+
+
+var noresult = document.getElementById('noResult')
+var result = document.getElementById('searchResult')
+noresult.classList.remove("hidden")
+result.classList.remove("hidden")
+
+if(this.productAndStoreQuery.length==0){return}
+
+var searchLocation
+if (this.locationQuery.length>0) {
+	searchLocation= this.locationQuery
+} else {
+	searchLocation=" "
+	
+}
+
+productIndex.search(this.productAndStoreQuery, (err, product) => {
+	
+	this.productsFound=[]
+	product.hits.forEach((product) => {
+	
+	var verify = this.productsFound.find ( p => {
+				return p.id === product.id
+				
+			})
+
+		if(!verify) {	
+		this.productsFound.push (product)
+		
+		}
+	
+	})
+	
+});
+
+
+storeIndex.search(this.productAndStoreQuery, (err, store) => {
+	this.sampleStores=[]
+	store.hits.forEach((store) => {
+	
+	var verify = this.sampleStores.find ( s => {
+				return s.id === store.id
+				
+			})
+
+		if(!verify) {	
+		this.sampleStores.push (store)
+		
+		}
+	
+	})
+	
+});	
+
+storeIndex.search(searchLocation, (err, store) => {
+	
+	this.storesFound=[]
+	store.hits.forEach((store)=> {
+		
+		/* I am about to match products and stores I pushed
+		to sampleStore and productsFound array to stores in user specified 
+		location*/
+		
+		/* For every stores in the specified location I am checking to see 
+		 if they have products I pushed to productsFound array if there is a match
+		 I will push them to storesFound array which will display to users */
+		
+		this.productsFound.forEach((product)=> {
+			
+		if (product.store_id==store.id) {
+
+		var verify = this.storesFound.find ( s => {
+				return s.id === store.id
+				
+			})
+
+		if(!verify) {	
+		this.storesFound.push(store)
+		
+		}
+
+
+		}		
+			
+		})
+		
+		
+		/* For every stores in the specified location I am checking to see 
+		 if they maatch any store I pushed to sampleStore array, if there is a match
+		 I will push them to storesFound array which will display to users */
+		
+		this.sampleStores.forEach((sample)=> {
+			
+		if (sample.id==store.id) {
+
+		var verify = this.storesFound.find ( s => {
+				return s.id === store.id
+				
+			})
+
+		if(!verify) {	
+		this.storesFound.push(store)
+		
+		}
+
+
+		}		
+			
+		})
+	 	
+		
+	})
+	
+	
+});	
+	
+
+if (this.storesFound.length==0) {
+		
+		if(this.again==0) {
+		 this.again= 1
+         this.getSearchQuery()	
+		}
+		this.noResult=true;
+		
+	} else {
+		
+		this.noResult=false;
+		
+	}
+	
+},
 	
 getSellerRequests() {
 
 
 	
+	
+},
+
+showMainSearch() {
+
+var fake= document.getElementById("fake-search")
+var original= document.getElementById("main-search")
+fake.classList.add('hidden')
+original.classList.remove('hidden')	
 	
 },
 	
@@ -148,7 +381,7 @@ scroller() {
 			if (offset >= height) {
 			
 				  
-                  this.start = this.start + 1
+                  this.start = this.start + 5
 				  
 				  this.getAllShops();
 				  
@@ -168,6 +401,48 @@ axios.get('/get/request/trackers').then(response=>{
 		
 		response.data.forEach((tracker) => {
 		this.sellerRequestTrackers.push(tracker)
+		
+		})
+		 
+	})	
+	
+	
+},
+
+getBuyerActive() {
+
+axios.get('/get/buyer/active/trackers').then(response=>{
+		
+		response.data.forEach((tracker) => {
+		this.buyerActiveTrackers.push(tracker)
+		
+		})
+		 
+	})	
+	
+	
+},
+
+getBuyerChat() {
+
+axios.get('/get/buyer/chat/trackers').then(response=>{
+		
+		response.data.forEach((tracker) => {
+		this.buyerChatTrackers.push(tracker)
+		
+		})
+		 
+	})	
+	
+	
+},
+
+getSellerChat() {
+
+axios.get('/get/seller/chat/trackers').then(response=>{
+		
+		response.data.forEach((tracker) => {
+		this.sellerChatTrackers.push(tracker)
 		
 		})
 		 
@@ -203,16 +478,101 @@ getBuyerPendingTransactions(){
 	
 },
 
+getBuyerActiveTransactions(){
+	
+	axios.get('/get/buyer/active/transactions').then(response=>{
+		
+		response.data.forEach((transactions) => {
+		this.$store.commit('add_buyer_active_transactions', transactions)
+		
+		})
+		 
+	})
+	
+},
+
+getSellerActiveTransactions(){
+	
+	axios.get('/get/seller/active/transactions').then(response=>{
+		
+		response.data.forEach((transactions) => {
+		this.$store.commit('add_seller_active_transactions', transactions)
+		
+		})
+		 
+	})
+	
+},
+
+
+getBuyerChats(){
+	
+	axios.get('/get/buyer/chats').then(response=>{
+		
+		response.data.forEach((chat) => {
+		this.$store.commit('add_buyer_chats', chat)
+		
+		})
+		 
+	})
+	
+},
+
+getSellerChats(){
+	
+	axios.get('/get/seller/chats').then(response=>{
+		
+		response.data.forEach((chat) => {
+		this.$store.commit('add_seller_chats', chat)
+		
+		})
+		 
+	})
+	
+},
+
 pendingUrl() {
 
 window.location = "/buyers/pending/transactions";
 
 },
 
+publicLoginUrl() {
+
+window.location = "/login";
+
+},
+
+publicRegisterUrl() {
+
+window.location = "/register";
+
+},
+
+
 	
 transactionsUrl() {
 
 window.location = "/buyers/transactions";
+
+},	
+
+sellerTransactionsChatUrl(){
+	
+window.location = "/chat/sellers/chat";	
+	
+},
+
+transactionsChatUrl(){
+	
+window.location = "/chat/transactions/";	
+	
+},
+
+	
+sellerTransactionsUrl() {
+
+window.location = "/transactions/sellers/transactions";
 
 },	
 	
@@ -222,12 +582,13 @@ window.location = "/";
 
 },
 
-	
-transactionsUrl() {
+sellerHomeUrl() {
 
-window.location = "/buyers/transactions";
+window.location = "/login/seller/login";
 
-},	
+},
+
+		
 	
 onApp() {
 
@@ -883,8 +1244,6 @@ let data = JSON.stringify({
 		
 showMenu() {
 
-this.stopScroll()
-
 var bodyTop = document.getElementById('content-body')
 var hiddenDiv = document.getElementById('hide')
 var showmenu = document.getElementById('showmenu')
@@ -1101,7 +1460,7 @@ freeLance.classList.add('hidden')
 },
 
 displayAdminCategory() {
-this.stopScroll()	
+	
 var adminCategory = document.getElementById('admin-category')	
 adminCategory.classList.remove('hidden')	
 	
@@ -1288,6 +1647,34 @@ computed: {
 	pendingTrans() {
 				
 	var pending = this.$store.getters.all_pending_transactions
+
+	return pending;
+	},
+	
+	sellerActiveTrans() {
+				
+	var pending = this.$store.getters.all_seller_active_transactions
+
+	return pending;
+	},
+	
+	buyerActiveTrans() {
+				
+	var pending = this.$store.getters.all_buyer_active_transactions
+
+	return pending;
+	},
+	
+	sellerChats() {
+				
+	var pending = this.$store.getters.all_seller_chats
+
+	return pending;
+	},
+	
+	buyerChats() {
+				
+	var pending = this.$store.getters.all_buyer_chats
 
 	return pending;
 	}

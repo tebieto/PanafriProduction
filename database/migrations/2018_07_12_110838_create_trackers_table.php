@@ -20,6 +20,7 @@ class CreateTrackersTable extends Migration
 			$table->integer('shop_id');
 			$table->integer('status')->nullable();
 			$table->integer('delivery')->nullable();
+			$table->text('location')->nullable();
 			$table->integer('seller_status')->nullable();
 			$table->integer('buyer_status')->nullable();
             $table->timestamps();

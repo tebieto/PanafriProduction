@@ -10,6 +10,8 @@
     </head>
 <body>
 
+
+
 <!--Begin Container class DIV-->
       
 <div id="app" class="container">
@@ -17,11 +19,14 @@
 <div id="loader" class="loader">
 
 			
-	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner App</span>
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
 	 
 	 <loader></loader>
+	 
 	
 </div>	
+
+<seller-not :id="{{auth::id()}}"></seller-not>
 	<!--Begin header class DIV-->
 	
 	 <div  class="header">
@@ -167,7 +172,28 @@
 		<!-- End of Categories class-->
 		
 		
+		<!--Begin transaction class button div-->
+		@if (auth::check())
 		
+		<div class="transaction-button" @click="sellerTransactionsUrl()">
+		<div>
+		
+		<img class="transaction-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/transactions.png')}}"/>
+		
+		</div>
+		<span class="transaction-count" style="color:#000;">@{{sellerActiveTrans.length}}</span>
+		</div>
+		
+		<div class="transaction-chat-button" @click="sellerTransactionsChatUrl()">
+		<div>
+		
+		<img class="transaction-chat-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/chat.png')}}"/>
+		
+		</div>
+		<span class="transaction-chat-count" style="color:#000;">@{{sellerChats.length}}</span>
+		</div>
+		
+		@endif
 		
 		
 		

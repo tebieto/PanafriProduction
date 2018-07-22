@@ -1,5 +1,7 @@
 <template>
-
+<div>
+<audio id="noty_audio"  src="/storage/audios/definite.mp3"></audio>
+</div>
 
 </template>
 

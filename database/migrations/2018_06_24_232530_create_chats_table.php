@@ -18,6 +18,7 @@ class CreateChatsTable extends Migration
 			$table->integer('tracker_id');
 			$table->integer('sender_id');
 			$table->integer('receiver_id');
+			$table->integer('status');
 			$table->text('body');
             $table->timestamps();
         });

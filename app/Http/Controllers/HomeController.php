@@ -374,7 +374,7 @@ class HomeController extends Controller
 	
 	public function getStoreProducts($sid)
     {
-	$products = Product::where('store_id', $sid)
+	$products = Product::where('store_id', $sid)->orderBy('created_at', 'DESC')
 		->get();
 		
 	$all= array();
@@ -402,7 +402,7 @@ class HomeController extends Controller
 	public function authShops()
     {
 	  
-	  $shops = Store::where('seller', auth::id())->get();
+	  $shops = Store::where('seller', auth::id())->orderBy('created_at', 'DESC')->get();
 	  
 	  $all = array();
 	  

@@ -5,7 +5,7 @@
 			
 		<div class="products">
 
-		<div>
+		<div class="seller-products">
 		
 		<img v-if="this.image" :src="this.image" height="150px" width="200px"  alt="" />
 		

@@ -1,13 +1,13 @@
 <template>
 <div>
-<div v-if="this.authDetails.length>0">
-<div class="theirChat" v-if="this.authDetails[0].id!=this.id">
-<p id="auth" >{{this.body}}</p>
-</div>
-<div class="myChat" v-if="this.authDetails[0].id==this.id">
-<p id="auth" >{{this.body}}</p>
-</div>
-</div>
+<span v-if="this.authDetails.length>0">
+<span v-if="this.authDetails[0].id=this.id && this.status==1">
+<p class="authChat">{{this.body}}</p>
+</span>
+<span v-else>
+<p class="userChat">{{this.body}}</p>
+</span>
+</span>
 </div>
 
 
@@ -30,7 +30,7 @@ authDetails:[],
 
 },
 
-props: ['body', 'id'],
+props: ['body', 'id', 'status'],
 
 mounted() {
 

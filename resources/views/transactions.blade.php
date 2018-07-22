@@ -12,8 +12,19 @@
 
 <!--Begin Container class DIV-->
       
-<div id="app" class="container">
+<div id="app" class="container" v-cloak>
 
+<div id="loader" class="loader">
+
+			
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Connect</span>
+	 
+	 <buyer-loader></buyer-loader>
+	 
+	
+</div>
+
+	  <buyer-not :id="{{auth::id()}}"></buyer-not>
 	
 	<!--Begin header class DIV-->
 	
@@ -107,18 +118,7 @@
 			
 			
 			<!--Begin welcome-search class DIV-->
-			<center>
-			<div  class="welcome-search" @click="">
 			
-			
-			<div class="fake-search-input">
-			
-			<span>Search Anything...Request Everything!</span>
-			
-			</div>
-			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
-			
-			</center>
 			
 			<!--End of welcome-search class DIV-->
 			
@@ -142,17 +142,13 @@
 		<div class="main-categories">
 		
 		<div class="category-title">
-		<h3> Transactions . Active <a class="learn-more" style="color:blue;">Pending</a> <a class="learn-more" style="color:blue;">Completed</a> </h3>		
+		<h3> Transactions . Active <a class="learn-more" style="color:blue;" @click="pendingUrl" >Pending</a> <a class="learn-more" style="color:blue;">Completed</a> </h3>		
 		</div>
 		
 		<div class="suggestions">
-		
-		<transactions :image="'{{Storage::url('public/icons/rita.jpg')}}'"></transactions>
-		<transactions :image="'{{Storage::url('public/icons/rita.jpg')}}'"></transactions>
-		<transactions :image="'{{Storage::url('public/icons/rita.jpg')}}'"></transactions>
-		<transactions :image="'{{Storage::url('public/icons/rita.jpg')}}'"></transactions>
-		<transactions :image="'{{Storage::url('public/icons/rita.jpg')}}'"></transactions>
-		<transactions :image="'{{Storage::url('public/icons/rita.jpg')}}'"></transactions>
+		<span v-for="tracker in buyerActiveTrackers">
+		<buyer-active :id="tracker.id" :delivery="tracker.delivery" :seller="tracker.seller_id" :shop="tracker.shop_id"></buyer-active>
+		</span>
 		
 		
 		</div>
@@ -176,6 +172,15 @@
 		
 		<span class="pending-transactions">@{{pendingTrans.length}}</span>
 		
+		</div>
+		
+		<div class="transaction-chat-button" @click="transactionsChatUrl()">
+		<div>
+		
+		<img class="transaction-chat-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/chat.png')}}"/>
+		
+		</div>
+		<span class="transaction-chat-count">@{{buyerChats.length}}</span>
 		</div>
 		
 		

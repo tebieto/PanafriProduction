@@ -8,12 +8,29 @@ export const store = new  Vuex.Store ({
 	state: {
 		new_nots: [],
 		pendingTransactions: [],
+		buyerActiveTransactions: [],
+		sellerActiveTransactions: [],
+		buyerChats: [],
+		sellerChats: [],
 		
 	},
 	
 	getters: {
 		all_pending_transactions(state) {
 			return state.pendingTransactions
+		},
+		all_buyer_active_transactions(state) {
+			return state.buyerActiveTransactions
+		},
+		all_seller_active_transactions(state) {
+			return state.sellerActiveTransactions
+		},
+		
+		all_buyer_chats(state) {
+			return state.buyerChats
+		},
+		all_seller_chats(state) {
+			return state.sellerChats
 		},
 		all_nots(state) {
 			return state.all_nots
@@ -52,6 +69,52 @@ export const store = new  Vuex.Store ({
 			state.pendingTransactions.push(transactions)
 			}
 		},
+		
+		add_buyer_active_transactions(state, transactions) {
+			
+			var verify = state. buyerActiveTransactions.find ( p => {
+				return p.id === transactions.id
+				
+			})
+			if (!verify) {
+			state.buyerActiveTransactions.push(transactions)
+			}
+		},
+		
+		add_seller_active_transactions(state, transactions) {
+			
+			var verify = state. sellerActiveTransactions.find ( p => {
+				return p.id === transactions.id
+				
+			})
+			if (!verify) {
+			state.sellerActiveTransactions.push(transactions)
+			}
+		},
+		
+		
+		add_buyer_chats(state, chat) {
+			
+			var verify = state. buyerChats.find ( c => {
+				return c.id === chat.id
+				
+			})
+			if (!verify) {
+			state.buyerChats.push(chat)
+			}
+		},
+		
+		add_seller_chats(state, chat) {
+			
+			var verify = state. sellerChats.find ( c => {
+				return c.id === chat.id
+				
+			})
+			if (!verify) {
+			state.sellerChats.push(chat)
+			}
+		},
+		
 		
 		add_all_not(state, not) {
 			

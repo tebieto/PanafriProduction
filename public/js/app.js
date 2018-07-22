@@ -497,42 +497,6 @@ module.exports = {
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = function clone(obj) {
-  return JSON.parse(JSON.stringify(obj));
-};
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -612,7 +576,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -837,6 +801,42 @@ function applyToTag (styleElement, obj) {
     styleElement.appendChild(document.createTextNode(css))
   }
 }
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -1196,7 +1196,7 @@ process.umask = function() { return 0; };
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(118);
+exports = module.exports = __webpack_require__(128);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -12595,7 +12595,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(54).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(54).setImmediate))
 
 /***/ }),
 /* 22 */
@@ -12604,8 +12604,8 @@ module.exports = Vue$3;
 "use strict";
 
 
-var AlgoliaSearch = __webpack_require__(110);
-var createAlgoliasearch = __webpack_require__(121);
+var AlgoliaSearch = __webpack_require__(120);
+var createAlgoliasearch = __webpack_require__(131);
 
 module.exports = createAlgoliasearch(AlgoliaSearch);
 
@@ -12863,7 +12863,7 @@ IndexCore.prototype.browseFrom = function(cursor, callback) {
 * @param callback (optional)
 */
 IndexCore.prototype.searchForFacetValues = function(params, callback) {
-  var clone = __webpack_require__(3);
+  var clone = __webpack_require__(5);
   var omit = __webpack_require__(26);
   var usage = 'Usage: index.searchForFacetValues({facetName, facetQuery, ...params}[, callback])';
 
@@ -13102,7 +13102,7 @@ module.exports = function merge(destination/* , sources */) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(112);
+  var keys = __webpack_require__(122);
   var foreach = __webpack_require__(8);
 
   var filtered = {};
@@ -13135,7 +13135,7 @@ module.exports = function exitPromise(fn, _setTimeout) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(29);
-module.exports = __webpack_require__(131);
+module.exports = __webpack_require__(141);
 
 
 /***/ }),
@@ -13144,7 +13144,7 @@ module.exports = __webpack_require__(131);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(139);
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -13169,21 +13169,26 @@ Vue.component('example', __webpack_require__(56));
 Vue.component('welcome', __webpack_require__(59));
 Vue.component('store', __webpack_require__(61));
 Vue.component('office', __webpack_require__(67));
-Vue.component('transactions', __webpack_require__(70));
-Vue.component('seller-request', __webpack_require__(141));
+Vue.component('buyer-active', __webpack_require__(70));
+Vue.component('seller-request', __webpack_require__(75));
 Vue.component('items', __webpack_require__(80));
 Vue.component('loader', __webpack_require__(85));
 Vue.component('product', __webpack_require__(88));
 Vue.component('buy-item', __webpack_require__(91));
-Vue.component('sell-button', __webpack_require__(94));
-Vue.component('products', __webpack_require__(97));
-Vue.component('chat-body', __webpack_require__(100));
-Vue.component('buyer-pending', __webpack_require__(105));
+Vue.component('seller-chat', __webpack_require__(94));
+Vue.component('buyer-chat', __webpack_require__(99));
+Vue.component('sell-button', __webpack_require__(104));
+Vue.component('products', __webpack_require__(107));
+Vue.component('chat-body', __webpack_require__(110));
+Vue.component('seller-not', __webpack_require__(153));
+Vue.component('buyer-not', __webpack_require__(159));
+Vue.component('buyer-pending', __webpack_require__(115));
+Vue.component('buyer-loader', __webpack_require__(156));
 
 var algoliasearch = __webpack_require__(22);
-var client = algoliasearch('VEOFPEJRLG', '6e163e296a3af0e603000750a01a4743');
-var index = client.initIndex('products');
-
+var client = algoliasearch('Z47FXBRF0T', '3efcf7ba7656c62c257f0a201211686d');
+var productIndex = client.initIndex('products');
+var storeIndex = client.initIndex('stores');
 
 
 var app = new Vue({
@@ -13242,25 +13247,214 @@ var app = new Vue({
 			trigger: 0,
 			allShops: [],
 			pendingTrackers: [],
-			sellerRequestTrackers: []
+			buyerActiveTrackers: [],
+			sellerRequestTrackers: [],
+			sellerChatTrackers: [],
+			buyerChatTrackers: [],
+			productAndStoreQuery: "",
+			locationQuery: "",
+			storesFound: [],
+			productsFound: [],
+			sampleStores: [],
+			noResult: false,
+			place: "Everywhere",
+			onlineShops: [],
+			again: 0
 
 		};
 	},
 	mounted: function mounted() {
+
+		this.getBuyerChat();
+		this.getSellerChat();
 		this.getSellerRequests();
 		this.getBuyerPendingTransactions();
+		this.getBuyerActiveTransactions();
+		this.getSellerActiveTransactions();
+		this.getBuyerChats();
+		this.getSellerChats();
 		this.getPendingTrackers();
+		this.getBuyerActive();
 		this.scroller();
 		this.allCategories();
 		this.allProducts();
 		this.getAuthDetails();
 		this.getAuthShops();
 		this.getAllShops();
+		this.queryLocation();
 	},
 
 
 	methods: (_methods = {
+		queryLocation: function queryLocation() {
+			var _this = this;
+
+			this.onlineShops = [];
+
+			if (this.place.length == 0) {
+
+				this.place = "Everywhere";
+			}
+
+			var location;
+			if (this.place == "Everywhere") {
+				var location = ' ';
+			} else {
+				location = this.place;
+			}
+
+			storeIndex.search(location, function (err, store) {
+				_this.onlineShops = [];
+				store.hits.forEach(function (store) {
+
+					var verify = _this.onlineShops.find(function (s) {
+						return s.id === store.id;
+					});
+
+					if (!verify) {
+						if (store.online == 1) {
+							_this.onlineShops.push(store);
+						}
+					}
+				});
+			});
+
+			var everywhere = document.getElementById('everyWhere');
+			var input = document.getElementById('enterLocation');
+
+			if (everywhere && input) {
+				everywhere.classList.remove("hidden");
+				input.classList.add("hidden");
+			}
+		},
+		changeLocation: function changeLocation() {
+
+			var everywhere = document.getElementById('everyWhere');
+			var input = document.getElementById('enterLocation');
+
+			everywhere.classList.add("hidden");
+			input.classList.remove("hidden");
+		},
+		clearSearch: function clearSearch() {
+			this.storesFound = [];
+			this.again = 0;
+			this.noResult = false;
+		},
+		getSearchQuery: function getSearchQuery() {
+			var _this2 = this;
+
+			var noresult = document.getElementById('noResult');
+			var result = document.getElementById('searchResult');
+			noresult.classList.remove("hidden");
+			result.classList.remove("hidden");
+
+			if (this.productAndStoreQuery.length == 0) {
+				return;
+			}
+
+			var searchLocation;
+			if (this.locationQuery.length > 0) {
+				searchLocation = this.locationQuery;
+			} else {
+				searchLocation = " ";
+			}
+
+			productIndex.search(this.productAndStoreQuery, function (err, product) {
+
+				_this2.productsFound = [];
+				product.hits.forEach(function (product) {
+
+					var verify = _this2.productsFound.find(function (p) {
+						return p.id === product.id;
+					});
+
+					if (!verify) {
+						_this2.productsFound.push(product);
+					}
+				});
+			});
+
+			storeIndex.search(this.productAndStoreQuery, function (err, store) {
+				_this2.sampleStores = [];
+				store.hits.forEach(function (store) {
+
+					var verify = _this2.sampleStores.find(function (s) {
+						return s.id === store.id;
+					});
+
+					if (!verify) {
+						_this2.sampleStores.push(store);
+					}
+				});
+			});
+
+			storeIndex.search(searchLocation, function (err, store) {
+
+				_this2.storesFound = [];
+				store.hits.forEach(function (store) {
+
+					/* I am about to match products and stores I pushed
+     to sampleStore and productsFound array to stores in user specified 
+     location*/
+
+					/* For every stores in the specified location I am checking to see 
+      if they have products I pushed to productsFound array if there is a match
+      I will push them to storesFound array which will display to users */
+
+					_this2.productsFound.forEach(function (product) {
+
+						if (product.store_id == store.id) {
+
+							var verify = _this2.storesFound.find(function (s) {
+								return s.id === store.id;
+							});
+
+							if (!verify) {
+								_this2.storesFound.push(store);
+							}
+						}
+					});
+
+					/* For every stores in the specified location I am checking to see 
+      if they maatch any store I pushed to sampleStore array, if there is a match
+      I will push them to storesFound array which will display to users */
+
+					_this2.sampleStores.forEach(function (sample) {
+
+						if (sample.id == store.id) {
+
+							var verify = _this2.storesFound.find(function (s) {
+								return s.id === store.id;
+							});
+
+							if (!verify) {
+								_this2.storesFound.push(store);
+							}
+						}
+					});
+				});
+			});
+
+			if (this.storesFound.length == 0) {
+
+				if (this.again == 0) {
+					this.again = 1;
+					this.getSearchQuery();
+				}
+				this.noResult = true;
+			} else {
+
+				this.noResult = false;
+			}
+		},
 		getSellerRequests: function getSellerRequests() {},
+		showMainSearch: function showMainSearch() {
+
+			var fake = document.getElementById("fake-search");
+			var original = document.getElementById("main-search");
+			fake.classList.add('hidden');
+			original.classList.remove('hidden');
+		},
 		stopScroll: function stopScroll() {
 
 			var bodyScroll = document.getElementsByTagName("body")[0].style.overflow = "hidden";
@@ -13270,61 +13464,139 @@ var app = new Vue({
 			var bodyScroll = document.getElementsByTagName("body")[0].style.overflow = "auto";
 		},
 		scroller: function scroller() {
-			var _this = this;
+			var _this3 = this;
 
 			window.onscroll = function (event) {
 
 				var d = document.documentElement;
 				var offset = d.scrollTop + window.innerHeight;
-				var height = d.scrollHeight - _this.trigger;
+				var height = d.scrollHeight - _this3.trigger;
 
 				if (offset >= height) {
 
-					_this.start = _this.start + 1;
+					_this3.start = _this3.start + 5;
 
-					_this.getAllShops();
+					_this3.getAllShops();
 				}
 			};
 		}
 	}, _defineProperty(_methods, 'getSellerRequests', function getSellerRequests() {
-		var _this2 = this;
+		var _this4 = this;
 
 		axios.get('/get/request/trackers').then(function (response) {
 
 			response.data.forEach(function (tracker) {
-				_this2.sellerRequestTrackers.push(tracker);
+				_this4.sellerRequestTrackers.push(tracker);
+			});
+		});
+	}), _defineProperty(_methods, 'getBuyerActive', function getBuyerActive() {
+		var _this5 = this;
+
+		axios.get('/get/buyer/active/trackers').then(function (response) {
+
+			response.data.forEach(function (tracker) {
+				_this5.buyerActiveTrackers.push(tracker);
+			});
+		});
+	}), _defineProperty(_methods, 'getBuyerChat', function getBuyerChat() {
+		var _this6 = this;
+
+		axios.get('/get/buyer/chat/trackers').then(function (response) {
+
+			response.data.forEach(function (tracker) {
+				_this6.buyerChatTrackers.push(tracker);
+			});
+		});
+	}), _defineProperty(_methods, 'getSellerChat', function getSellerChat() {
+		var _this7 = this;
+
+		axios.get('/get/seller/chat/trackers').then(function (response) {
+
+			response.data.forEach(function (tracker) {
+				_this7.sellerChatTrackers.push(tracker);
 			});
 		});
 	}), _defineProperty(_methods, 'getPendingTrackers', function getPendingTrackers() {
-		var _this3 = this;
+		var _this8 = this;
 
 		axios.get('/get/pending/trackers').then(function (response) {
 
 			response.data.forEach(function (tracker) {
-				_this3.pendingTrackers.push(tracker);
+				_this8.pendingTrackers.push(tracker);
 			});
 		});
 	}), _defineProperty(_methods, 'getBuyerPendingTransactions', function getBuyerPendingTransactions() {
-		var _this4 = this;
+		var _this9 = this;
 
 		axios.get('/get/pending/transactions').then(function (response) {
 
 			response.data.forEach(function (transactions) {
-				_this4.$store.commit('add_pending_transactions', transactions);
+				_this9.$store.commit('add_pending_transactions', transactions);
+			});
+		});
+	}), _defineProperty(_methods, 'getBuyerActiveTransactions', function getBuyerActiveTransactions() {
+		var _this10 = this;
+
+		axios.get('/get/buyer/active/transactions').then(function (response) {
+
+			response.data.forEach(function (transactions) {
+				_this10.$store.commit('add_buyer_active_transactions', transactions);
+			});
+		});
+	}), _defineProperty(_methods, 'getSellerActiveTransactions', function getSellerActiveTransactions() {
+		var _this11 = this;
+
+		axios.get('/get/seller/active/transactions').then(function (response) {
+
+			response.data.forEach(function (transactions) {
+				_this11.$store.commit('add_seller_active_transactions', transactions);
+			});
+		});
+	}), _defineProperty(_methods, 'getBuyerChats', function getBuyerChats() {
+		var _this12 = this;
+
+		axios.get('/get/buyer/chats').then(function (response) {
+
+			response.data.forEach(function (chat) {
+				_this12.$store.commit('add_buyer_chats', chat);
+			});
+		});
+	}), _defineProperty(_methods, 'getSellerChats', function getSellerChats() {
+		var _this13 = this;
+
+		axios.get('/get/seller/chats').then(function (response) {
+
+			response.data.forEach(function (chat) {
+				_this13.$store.commit('add_seller_chats', chat);
 			});
 		});
 	}), _defineProperty(_methods, 'pendingUrl', function pendingUrl() {
 
 		window.location = "/buyers/pending/transactions";
+	}), _defineProperty(_methods, 'publicLoginUrl', function publicLoginUrl() {
+
+		window.location = "/login";
+	}), _defineProperty(_methods, 'publicRegisterUrl', function publicRegisterUrl() {
+
+		window.location = "/register";
 	}), _defineProperty(_methods, 'transactionsUrl', function transactionsUrl() {
 
 		window.location = "/buyers/transactions";
+	}), _defineProperty(_methods, 'sellerTransactionsChatUrl', function sellerTransactionsChatUrl() {
+
+		window.location = "/chat/sellers/chat";
+	}), _defineProperty(_methods, 'transactionsChatUrl', function transactionsChatUrl() {
+
+		window.location = "/chat/transactions/";
+	}), _defineProperty(_methods, 'sellerTransactionsUrl', function sellerTransactionsUrl() {
+
+		window.location = "/transactions/sellers/transactions";
 	}), _defineProperty(_methods, 'homeUrl', function homeUrl() {
 
 		window.location = "/";
-	}), _defineProperty(_methods, 'transactionsUrl', function transactionsUrl() {
+	}), _defineProperty(_methods, 'sellerHomeUrl', function sellerHomeUrl() {
 
-		window.location = "/buyers/transactions";
+		window.location = "/login/seller/login";
 	}), _defineProperty(_methods, 'onApp', function onApp() {
 
 		this.appOn = true;
@@ -13346,7 +13618,7 @@ var app = new Vue({
 
 		this.openNewShop = true;
 	}), _defineProperty(_methods, 'hideOpen', function hideOpen() {
-		var _this5 = this;
+		var _this14 = this;
 
 		this.openNewShop = false;
 
@@ -13363,22 +13635,22 @@ var app = new Vue({
 			}
 
 		}).then(function (response) {
-			_this5.getAuthShops();
+			_this14.getAuthShops();
 
-			_this5.shopLocation = '';
-			_this5.shopName = '';
+			_this14.shopLocation = '';
+			_this14.shopName = '';
 		});
 	}), _defineProperty(_methods, 'getAuthShops', function getAuthShops() {
-		var _this6 = this;
+		var _this15 = this;
 
 		axios.get('/auth/shops').then(function (response) {
-			_this6.authShops = [];
+			_this15.authShops = [];
 			response.data.forEach(function (shop) {
-				_this6.authShops.push(shop);
+				_this15.authShops.push(shop);
 			});
 		});
 	}), _defineProperty(_methods, 'sendTypedMessage', function sendTypedMessage(tid) {
-		var _this7 = this;
+		var _this16 = this;
 
 		var sid;
 		if (this.activeChat[0].sender_id == this.authDetails.id) {
@@ -13403,40 +13675,40 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this7.getChat(tid);
-			_this7.typedChat = '';
+			_this16.getChat(tid);
+			_this16.typedChat = '';
 		});
 	}), _defineProperty(_methods, 'getAuthDetails', function getAuthDetails() {
-		var _this8 = this;
+		var _this17 = this;
 
 		axios.get('/auth/details').then(function (response) {
 
 			if (response.data.online == 0) {
 
-				_this8.appOn = false;
+				_this17.appOn = false;
 			}
 
-			_this8.authDetails.push(response.data);
+			_this17.authDetails.push(response.data);
 		});
 	}), _defineProperty(_methods, 'getAllShops', function getAllShops() {
-		var _this9 = this;
+		var _this18 = this;
 
 		axios.get('/get/all/shops/' + this.start).then(function (response) {
 
 			response.data.forEach(function (shop) {
 
-				if (_this9.allShops.length == 0) {
+				if (_this18.allShops.length == 0) {
 
-					_this9.allShops.push(shop);
+					_this18.allShops.push(shop);
 					return 1;
 				}
 
-				var verify = _this9.allShops.find(function (s) {
+				var verify = _this18.allShops.find(function (s) {
 					return s.id === shop.id;
 				});
 
 				if (!verify) {
-					_this9.allShops.push(shop);
+					_this18.allShops.push(shop);
 				}
 			});
 		});
@@ -13472,57 +13744,57 @@ var app = new Vue({
 			x.innerHTML = "Geolocation is not supported by this browser.";
 		}
 	}), _defineProperty(_methods, 'searchProducts', function searchProducts() {
-		var _this10 = this;
+		var _this19 = this;
 
 		if (!this.query.length) {
 			return;
 		}
 		index.search(this.query, function (err, content) {
 
-			_this10.results = content.hits;
+			_this19.results = content.hits;
 		});
 	}), _defineProperty(_methods, 'removeProduct', function removeProduct(pid) {
-		var _this11 = this;
+		var _this20 = this;
 
 		axios.get('/remove/product/' + pid).then(function (response) {
 
-			_this11.authStore();
+			_this20.authStore();
 		});
 	}), _defineProperty(_methods, 'allProducts', function allProducts() {
-		var _this12 = this;
+		var _this21 = this;
 
 		axios.get('/all/products').then(function (response) {
 
-			_this12.products = [];
+			_this21.products = [];
 			response.data.forEach(function (product) {
 
-				_this12.products.push(product);
+				_this21.products.push(product);
 			});
 		});
 	}), _defineProperty(_methods, 'guestProducts', function guestProducts() {
-		var _this13 = this;
+		var _this22 = this;
 
 		axios.get('guest/all/products').then(function (response) {
 
-			_this13.products = [];
+			_this22.products = [];
 			response.data.forEach(function (product) {
 
-				_this13.products.push(product);
+				_this22.products.push(product);
 			});
 		});
 	}), _defineProperty(_methods, 'allCategories', function allCategories() {
-		var _this14 = this;
+		var _this23 = this;
 
 		axios.get('/all/categories').then(function (response) {
 			console.log(response.data);
-			_this14.categories = [];
+			_this23.categories = [];
 			response.data.forEach(function (category) {
 
-				_this14.categories.push(category);
+				_this23.categories.push(category);
 			});
 		});
 	}), _defineProperty(_methods, 'sendCategory', function sendCategory() {
-		var _this15 = this;
+		var _this24 = this;
 
 		if (this.ncategory.length == 0) {
 			return;
@@ -13530,16 +13802,16 @@ var app = new Vue({
 
 		axios.get('/save/category/' + this.ncategory).then(function (response) {
 
-			_this15.categories = [];
+			_this24.categories = [];
 			response.data.forEach(function (category) {
 
-				_this15.categories.push(category);
+				_this24.categories.push(category);
 			});
 
-			_this15.ncategory = '';
+			_this24.ncategory = '';
 		});
 	}), _defineProperty(_methods, 'submitProduct', function submitProduct() {
-		var _this16 = this;
+		var _this25 = this;
 
 		if (this.productImage.length > 0 && this.ocategory > 0 && this.ncategory.length == 0 && this.shopName.length == 0 && this.shopLocation.length == 0 && this.productName.length > 0 && this.pdescription.length > 0 && this.activeShop > 0) {
 
@@ -13568,57 +13840,57 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this16.productImage = [];
-			_this16.productName = '';
-			_this16.pdescription = '';
-			_this16.show_post_spinner = false;
+			_this25.productImage = [];
+			_this25.productName = '';
+			_this25.pdescription = '';
+			_this25.show_post_spinner = false;
 
-			_this16.allProducts();
+			_this25.allProducts();
 			window.location = "/login/seller/login";
 		});
 	}), _defineProperty(_methods, 'findSeller', function findSeller(pid, cid) {
-		var _this17 = this;
+		var _this26 = this;
 
 		this.getActiveProduct(pid);
 		this.activeProductId = pid;
 		this.activeCategoryId = cid;
 
 		axios.get('/find/sellers/' + pid + '/' + cid).then(function (response) {
-			_this17.activeSellers = [];
+			_this26.activeSellers = [];
 			response.data.forEach(function (seller) {
 
-				_this17.activeSellers.push(seller);
+				_this26.activeSellers.push(seller);
 			});
 		});
 
 		this.showActivePage();
 	}), _defineProperty(_methods, 'getOpenTransactions', function getOpenTransactions() {
-		var _this18 = this;
+		var _this27 = this;
 
 		this.showOpentansaction = false;
 		this.openTransactions = [];
 		axios.get('/open/transactions/').then(function (response) {
 
-			_this18.openTransactions = [];
+			_this27.openTransactions = [];
 			response.data.reverse().forEach(function (transaction) {
 
-				_this18.openTransactions.push(transaction);
+				_this27.openTransactions.push(transaction);
 			});
-			_this18.showOpenTransactions = true;
+			_this27.showOpenTransactions = true;
 		});
 	}), _defineProperty(_methods, 'getClosedTransactions', function getClosedTransactions() {
-		var _this19 = this;
+		var _this28 = this;
 
 		axios.get('/closed/transactions/').then(function (response) {
-			_this19.closedTransactions = [];
+			_this28.closedTransactions = [];
 
 			response.data.forEach(function (transaction) {
 
-				_this19.closedTransactions.push(transaction);
+				_this28.closedTransactions.push(transaction);
 			});
 		});
 	}), _defineProperty(_methods, 'hireSeller', function hireSeller(sid) {
-		var _this20 = this;
+		var _this29 = this;
 
 		var cid;
 		if (this.activeCategoryId == 3) {
@@ -13630,17 +13902,17 @@ var app = new Vue({
 
 		axios.get('/create/transaction/' + sid + '/' + this.activeProductId + '/' + cid).then(function (response) {
 
-			_this20.activeTransaction = [];
-			_this20.activeTransaction.push(response.data);
-			_this20.sendChat1(response.data.id, sid);
-			_this20.getOpenTransactions();
+			_this29.activeTransaction = [];
+			_this29.activeTransaction.push(response.data);
+			_this29.sendChat1(response.data.id, sid);
+			_this29.getOpenTransactions();
 		});
 
 		this.hideActivePage();
 		this.showChatBox();
 		this.activeSellerId = sid;
 	}), _defineProperty(_methods, 'sendChat1', function sendChat1(tid, sid) {
-		var _this21 = this;
+		var _this30 = this;
 
 		var body = 'Hello there, trust you are doing great';
 		var data = JSON.stringify({
@@ -13658,12 +13930,12 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this21.getChat(tid);
+			_this30.getChat(tid);
 
-			_this21.sendChat2(tid, sid);
+			_this30.sendChat2(tid, sid);
 		});
 	}), _defineProperty(_methods, 'sendChat2', function sendChat2(tid, sid) {
-		var _this22 = this;
+		var _this31 = this;
 
 		if (this.activeCategoryId == 3) {
 
@@ -13688,11 +13960,11 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this22.getChat(tid);
-			_this22.sendChat3(tid, sid);
+			_this31.getChat(tid);
+			_this31.sendChat3(tid, sid);
 		});
 	}), _defineProperty(_methods, 'sendChat3', function sendChat3(tid, sid) {
-		var _this23 = this;
+		var _this32 = this;
 
 		if (this.activeCategoryId == 3) {
 
@@ -13717,40 +13989,40 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this23.getChat(tid);
+			_this32.getChat(tid);
 		});
 	}), _defineProperty(_methods, 'declineTransaction', function declineTransaction(tid) {
-		var _this24 = this;
+		var _this33 = this;
 
 		axios.get('/decline/transaction/' + tid).then(function (response) {
 
-			_this24.getOpenTransactions();
+			_this33.getOpenTransactions();
 		});
 	}), _defineProperty(_methods, 'getChat', function getChat(tid) {
-		var _this25 = this;
+		var _this34 = this;
 
 		var container = document.getElementById('chatBody');
 		container.scrollTop = container.scrollHeight;
 		this.showChatBox();
 		axios.get('/get/chat/' + tid).then(function (response) {
-			_this25.activeChat = [];
+			_this34.activeChat = [];
 
 			response.data.forEach(function (message) {
-				_this25.activeChat.push(message);
+				_this34.activeChat.push(message);
 
 				container.scrollTop = container.scrollHeight;
 			});
 		});
 	}), _defineProperty(_methods, 'getActiveProduct', function getActiveProduct(pid) {
-		var _this26 = this;
+		var _this35 = this;
 
 		axios.get('/active/product/' + pid).then(function (response) {
 
-			_this26.activeProduct = [];
-			_this26.activeProduct.push(response.data);
+			_this35.activeProduct = [];
+			_this35.activeProduct.push(response.data);
 		});
 	}), _defineProperty(_methods, 'submitSeller', function submitSeller() {
-		var _this27 = this;
+		var _this36 = this;
 
 		if (this.sellerEmail.length > 0 && this.sellerImage.length > 0 && this.adminEmail.length > 0) {
 
@@ -13777,14 +14049,12 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this27.sellerImage = [];
-			_this27.sellerEmail = '';
-			_this27.adminEmail = '';
-			_this27.show_post_spinner = false;
+			_this36.sellerImage = [];
+			_this36.sellerEmail = '';
+			_this36.adminEmail = '';
+			_this36.show_post_spinner = false;
 		});
 	}), _defineProperty(_methods, 'showMenu', function showMenu() {
-
-		this.stopScroll();
 
 		var bodyTop = document.getElementById('content-body');
 		var hiddenDiv = document.getElementById('hide');
@@ -13916,7 +14186,7 @@ var app = new Vue({
 		var freeLance = document.getElementById('freelance-delivery');
 		freeLance.classList.add('hidden');
 	}), _defineProperty(_methods, 'displayAdminCategory', function displayAdminCategory() {
-		this.stopScroll();
+
 		var adminCategory = document.getElementById('admin-category');
 		adminCategory.classList.remove('hidden');
 	}), _defineProperty(_methods, 'hideAdminCategory', function hideAdminCategory() {
@@ -13932,14 +14202,14 @@ var app = new Vue({
 		var adminSeller = document.getElementById('admin-seller');
 		adminSeller.classList.add('hidden');
 	}), _defineProperty(_methods, 'authStore', function authStore() {
-		var _this28 = this;
+		var _this37 = this;
 
 		axios.get('/auth/store').then(function (response) {
-			_this28.store = [];
+			_this37.store = [];
 
 			response.data.forEach(function (item) {
 
-				_this28.store.push(item);
+				_this37.store.push(item);
 			});
 		});
 	}), _defineProperty(_methods, 'showImagePicker', function showImagePicker() {
@@ -13951,7 +14221,7 @@ var app = new Vue({
 	}), _defineProperty(_methods, 'removeUploaded', function removeUploaded() {
 		this.productImage = [];
 	}), _defineProperty(_methods, 'imageChange', function imageChange(e) {
-		var _this29 = this;
+		var _this38 = this;
 
 		console.log('hi');
 
@@ -13974,21 +14244,21 @@ var app = new Vue({
 
 
 			if (response.data.length == 0) {
-				_this29.uploadDelay = [];
+				_this38.uploadDelay = [];
 
 				return;
 			}
 
-			_this29.productImage = [];
-			_this29.uploadDelay = [];
-			_this29.productImage.push(response.data);
+			_this38.productImage = [];
+			_this38.uploadDelay = [];
+			_this38.productImage.push(response.data);
 			var container = document.getElementById('uploadedContainer');
 			container.classList.remove('hidden');
 		}).catch(function (response) {
 			//errors
 		});
 	}), _defineProperty(_methods, 'sellerImageChange', function sellerImageChange(e) {
-		var _this30 = this;
+		var _this39 = this;
 
 		var selected = e.target.files[0];
 
@@ -14009,14 +14279,14 @@ var app = new Vue({
 
 
 			if (response.data.length == 0) {
-				_this30.uploadDelay = [];
+				_this39.uploadDelay = [];
 
 				return;
 			}
 
-			_this30.sellerImage = [];
-			_this30.uploadDelay = [];
-			_this30.sellerImage.push(response.data);
+			_this39.sellerImage = [];
+			_this39.uploadDelay = [];
+			_this39.sellerImage.push(response.data);
 		}).catch(function (response) {
 			//errors
 		});
@@ -14026,6 +14296,30 @@ var app = new Vue({
 		pendingTrans: function pendingTrans() {
 
 			var pending = this.$store.getters.all_pending_transactions;
+
+			return pending;
+		},
+		sellerActiveTrans: function sellerActiveTrans() {
+
+			var pending = this.$store.getters.all_seller_active_transactions;
+
+			return pending;
+		},
+		buyerActiveTrans: function buyerActiveTrans() {
+
+			var pending = this.$store.getters.all_buyer_active_transactions;
+
+			return pending;
+		},
+		sellerChats: function sellerChats() {
+
+			var pending = this.$store.getters.all_seller_chats;
+
+			return pending;
+		},
+		buyerChats: function buyerChats() {
+
+			var pending = this.$store.getters.all_buyer_chats;
 
 			return pending;
 		}
@@ -14125,8 +14419,12 @@ var app = new Vue({
 
 /***/ }),
 /* 30 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
 
 window._ = __webpack_require__(31);
 
@@ -14172,14 +14470,21 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+window.Pusher = __webpack_require__(152);
+
+window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
+  broadcaster: 'pusher',
+  key: '43ca42e815eab5b9296d',
+  cluster: 'mt1',
+  authEndpoint: '/broadcasting/auth'
+});
+
+Pusher.log = function (message) {
+
+  window.console.log(message);
+};
 
 /***/ }),
 /* 31 */
@@ -31284,7 +31589,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(32)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(32)(module)))
 
 /***/ }),
 /* 32 */
@@ -45007,7 +45312,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 55 */
@@ -45200,7 +45505,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(11)))
 
 /***/ }),
 /* 56 */
@@ -45450,7 +45755,7 @@ var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("355d265f", content, false, {});
+var update = __webpack_require__(4)("355d265f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -45469,7 +45774,7 @@ if(false) {
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -45602,7 +45907,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.get('/check/auth').then(function (response) {
 
 				if (response.data == 0) {
-					window.location = '/login/seller/login';
+					window.location = '/login';
 					return;
 				} else {
 					_this.createTracker();
@@ -46138,7 +46443,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\Transactions.vue"
+Component.options.__file = "resources\\assets\\js\\components\\BuyerActive.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -46147,9 +46452,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-705ff5cc", Component.options)
+    hotAPI.createRecord("data-v-7d1fe472", Component.options)
   } else {
-    hotAPI.reload("data-v-705ff5cc", Component.options)
+    hotAPI.reload("data-v-7d1fe472", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -46170,13 +46475,13 @@ var content = __webpack_require__(72);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("c324e120", content, false, {});
+var update = __webpack_require__(4)("5d396683", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-705ff5cc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Transactions.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-705ff5cc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Transactions.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7d1fe472\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerActive.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7d1fe472\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerActive.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -46189,7 +46494,7 @@ if(false) {
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -46267,11 +46572,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ['image']
+	props: ['id', 'seller', 'shop', 'delivery'],
+
+	mounted: function mounted() {
+
+		this.getShopDetails();
+		this.getTrackedTransactions();
+	},
+	data: function data() {
+
+		return {
+
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			cancelled: false,
+			accepted: false
+
+		};
+	},
+
+
+	methods: {
+		cancelTransaction: function cancelTransaction() {
+			this.cancelled = true;
+
+			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
+		},
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/buyer/accept/transaction/' + this.id + '/' + this.seller).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this.trackedTransactions.push(tracked);
+						_this.total = _this.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this.total == 0) {
+
+					_this.cancelTransaction();
+				}
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this2 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this2.cancelTransaction();
+				}
+				_this2.shopDetails.push(response.data);
+			});
+		}
+	}
 
 });
 
@@ -46283,130 +46655,234 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "transactions" }, [
-    _c("div", { staticClass: "seller-details" }, [
-      _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-        _c("img", {
-          staticClass: "owner-avatar",
-          staticStyle: { "border-radius": "50%", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _vm._m(0)
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "hr" }),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("div", { staticClass: "hr" }),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c("div", { staticStyle: { height: "150px", "overflow-y": "auto" } }, [
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "pending-product-name" }, [
-          _vm._v("Beans(N100)")
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "pending-product-name" }, [
-          _vm._v("Beans(N100)")
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "pending-product-name" }, [
-          _vm._v("Beans(N100)")
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "pending-product-name" }, [
-          _vm._v("Beans(N100)")
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "pending-product-name" }, [
-          _vm._v("Beans(N100)")
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "50px", height: "50px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "pending-product-name" }, [
-          _vm._v("Beans(N100)")
-        ]),
-        _c("br")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "hr" }),
-      _vm._v(" "),
-      _vm._m(3)
-    ])
-  ])
+  return _vm.shopDetails.length > 0
+    ? _c("div", { staticClass: "inactive-transactions" }, [
+        _c("div", { staticClass: "seller-details" }, [
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("img", {
+              staticClass: "owner-avatar",
+              staticStyle: { "border-radius": "50%", margin: "10px" },
+              attrs: {
+                width: "50px",
+                height: "50px",
+                src: _vm.shopDetails[0].seller.avatar
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
+              [
+                _c("span", { staticClass: "user-name" }, [
+                  _vm._v(
+                    _vm._s(
+                      _vm.shopDetails[0].seller.fname +
+                        " " +
+                        _vm.shopDetails[0].seller.lname
+                    )
+                  )
+                ]),
+                _vm._v(" as Seller")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v(
+                _vm._s(
+                  _vm.shopDetails[0].name +
+                    ", " +
+                    _vm.shopDetails[0].location.location +
+                    ", " +
+                    _vm.shopDetails[0].seller.phone
+                )
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
+            _vm._l(_vm.trackedTransactions, function(transaction) {
+              return _c("span", [
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: transaction.price.product.image
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      width: "180px",
+                      position: "relative",
+                      top: "-25px",
+                      left: "70px"
+                    }
+                  },
+                  [
+                    transaction.quantity == 1
+                      ? _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit
+                                ) +
+                                ") "
+                            )
+                          ]),
+                          _c("br")
+                        ])
+                      : _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit +
+                                    "s"
+                                ) +
+                                ") "
+                            )
+                          ]),
+                          _c("br")
+                        ])
+                  ]
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "100px", "overflow-y": "auto" } },
+            [
+              _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                _vm._v(
+                  "Total= N " +
+                    _vm._s(_vm.total) +
+                    " Delivery= N " +
+                    _vm._s(this.delivery) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(
+                  "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
+                )
+              ]),
+              _vm._v(" "),
+              _vm.cancelled == false && _vm.accepted == false
+                ? _c("span", [
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "green",
+                          "font-weight": "bold"
+                        },
+                        on: { click: _vm.acceptRequest }
+                      },
+                      [_vm._v("Accept")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#000",
+                          background: "yellow",
+                          "font-weight": "bold"
+                        }
+                      },
+                      [_vm._v("Finish")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "red",
+                          "font-weight": "bold"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.cancelTransaction()
+                          }
+                        }
+                      },
+                      [_vm._v("Decline")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "black",
+                          "font-weight": "bold"
+                        }
+                      },
+                      [_vm._v("Report")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.cancelled
+                ? _c(
+                    "span",
+                    { staticStyle: { color: "red", "margin-left": "10px" } },
+                    [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.accepted
+                ? _c(
+                    "span",
+                    { staticStyle: { color: "green", "margin-left": "10px" } },
+                    [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
-      [
-        _c("span", { staticClass: "user-name" }, [_vm._v("Rita Ebieto")]),
-        _vm._v(" as Seller "),
-        _c("span", { staticClass: "unread" }, [_vm._v("100")]),
-        _c("div", { staticClass: "start-chat-button" }, [_vm._v("Chat")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Shop #1, NeroTex Salon, yaba, Lagos, Nigeria")
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -46420,76 +46896,557 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7d1fe472", module.exports)
+  }
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(76)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(78)
+/* template */
+var __vue_template__ = __webpack_require__(79)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SellerRequest.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6c6ee829", Component.options)
+  } else {
+    hotAPI.reload("data-v-6c6ee829", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(77);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("3187e48d", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'buyer', 'shop'],
+
+	data: function data() {
+
+		return {
+
+			buyerDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			cancelled: false,
+			accepted: false,
+			delivery: 0,
+			totalAndDelivery: 0
+
+		};
+	},
+	mounted: function mounted() {
+
+		this.getbuyerDetails();
+		this.getTrackedTransactions();
+	},
+
+
+	watch: {
+		delivery: function delivery() {
+
+			this.totalAndDelivery = +this.total + +this.delivery;
+		}
+	},
+
+	methods: {
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/accept/transaction/' + this.id + '/' + this.delivery + '/' + this.buyer).then(function (response) {});
+		},
+		getbuyerDetails: function getbuyerDetails() {
+			var _this = this;
+
+			axios.get('/get/user/details/' + this.buyer).then(function (response) {
+
+				_this.buyerDetails.push(response.data);
+			});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this2 = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this2.trackedTransactions.push(tracked);
+						_this2.total = _this2.total + tracked.price.price * tracked.quantity;
+					}
+				});
+				_this2.totalAndDelivery = _this2.total;
+				if (_this2.total == 0) {
+
+					_this2.cancelTransaction();
+				}
+			});
+		},
+		cancelTransaction: function cancelTransaction() {
+			this.cancelled = true;
+			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
+		},
+		delTransaction: function delTransaction(id, amount) {
+
+			var transaction = this.trackedTransactions.find(function (t) {
+				return t.id === id;
+			});
+
+			var index = this.trackedTransactions.indexOf(transaction);
+
+			this.trackedTransactions.splice(index, 1);
+
+			if (this.total > 0) {
+				this.total = this.total - amount;
+			}
+
+			if (this.total == 0) {
+
+				this.cancelTransaction();
+			}
+
+			axios.get('/delete/transaction/' + id).then(function (response) {});
+		}
+	}
+});
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.buyerDetails.length > 0 && _vm.trackedTransactions.length > 0
+    ? _c("div", { staticClass: "transactions" }, [
+        _c("div", { staticClass: "seller-details" }, [
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("img", {
+              staticClass: "owner-avatar",
+              staticStyle: { "border-radius": "50%", margin: "10px" },
+              attrs: {
+                width: "50px",
+                height: "50px",
+                src: _vm.buyerDetails[0].avatar
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
+              [
+                _c("span", { staticClass: "user-name" }, [
+                  _vm._v(
+                    _vm._s(_vm.buyerDetails[0].fname) +
+                      " " +
+                      _vm._s(_vm.buyerDetails[0].lname)
+                  )
+                ]),
+                _vm._v(" as Buyer ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v(
+                " Location: " +
+                  _vm._s(_vm.trackedTransactions[0].tracker.location)
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
+            _vm._l(_vm.trackedTransactions, function(transaction) {
+              return _c("span", [
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: transaction.price.product.image
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      width: "180px",
+                      position: "relative",
+                      top: "-25px",
+                      left: "70px"
+                    }
+                  },
+                  [
+                    transaction.quantity == 1
+                      ? _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.accepted == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                      : _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit +
+                                    "s"
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.accepted == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                  ]
+                )
+              ])
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "hr" }),
+        _vm._v(" "),
+        _c("div", { staticStyle: { height: "150px", "overflow-y": "auto" } }, [
+          _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+            _vm._v("Total = N " + _vm._s(_vm.total) + " "),
+            _c("br"),
+            _vm._v(" Delivery Fee(N): "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.delivery,
+                  expression: "delivery"
+                }
+              ],
+              staticStyle: { width: "80px" },
+              attrs: { type: "number", value: "0" },
+              domProps: { value: _vm.delivery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.delivery = $event.target.value
+                }
+              }
+            }),
+            _c("br"),
+            _vm._v("Total + Delivery = N " + _vm._s(_vm.totalAndDelivery))
+          ]),
+          _vm._v(" "),
+          _vm.cancelled == false && _vm.accepted == false
+            ? _c("span", [
+                _c(
+                  "button",
+                  {
+                    staticStyle: {
+                      "margin-left": "10px",
+                      border: "none",
+                      color: "#fff",
+                      background: "green",
+                      "font-weight": "bold"
+                    },
+                    on: { click: _vm.acceptRequest }
+                  },
+                  [_vm._v("Accept")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticStyle: {
+                      "margin-left": "10px",
+                      border: "none",
+                      color: "#fff",
+                      background: "red",
+                      "font-weight": "bold"
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.cancelTransaction()
+                      }
+                    }
+                  },
+                  [_vm._v("Decline")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticStyle: {
+                      "margin-left": "10px",
+                      border: "none",
+                      color: "#fff",
+                      background: "black",
+                      "font-weight": "bold"
+                    }
+                  },
+                  [_vm._v("Report")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.cancelled
+            ? _c(
+                "span",
+                { staticStyle: { color: "red", "margin-left": "10px" } },
+                [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.accepted
+            ? _c(
+                "span",
+                { staticStyle: { color: "green", "margin-left": "10px" } },
+                [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+              )
+            : _vm._e()
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticStyle: { height: "100px", "overflow-y": "auto" } },
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
       [
         _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Total= N1000 Delivery= N1000  "),
-          _c("br"),
-          _vm._v("Total + Delivery = N 2000")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticStyle: {
-              "margin-left": "10px",
-              border: "none",
-              color: "#fff",
-              background: "green",
-              "font-weight": "bold"
-            }
-          },
-          [_vm._v("Accept")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticStyle: {
-              "margin-left": "10px",
-              border: "none",
-              color: "#000",
-              background: "yellow",
-              "font-weight": "bold"
-            }
-          },
-          [_vm._v("Finish")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticStyle: {
-              "margin-left": "10px",
-              border: "none",
-              color: "#fff",
-              background: "red",
-              "font-weight": "bold"
-            }
-          },
-          [_vm._v("Decline")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticStyle: {
-              "margin-left": "10px",
-              border: "none",
-              color: "#fff",
-              background: "black",
-              "font-weight": "bold"
-            }
-          },
-          [_vm._v("Report")]
-        )
+          _vm._v("Modify Request")
+        ])
       ]
     )
   }
@@ -46499,16 +47456,11 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-705ff5cc", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-6c6ee829", module.exports)
   }
 }
 
 /***/ }),
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46570,7 +47522,7 @@ var content = __webpack_require__(82);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("2cf0d474", content, false, {});
+var update = __webpack_require__(4)("2cf0d474", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -46589,7 +47541,7 @@ if(false) {
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -46605,6 +47557,12 @@ exports.push([module.i, "\n.items-container {\r\ndisplay: inline-block;\r\nbackg
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -46712,14 +47670,15 @@ var render = function() {
           ? _c("span", { staticStyle: { margin: "20px", color: "red" } }, [
               _vm._v("This item is offline")
             ])
-          : _c(
-              "table",
-              [
-                _vm._m(0),
-                _vm._v(" "),
+          : _c("span", [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticStyle: { position: "relative", top: "-50px" } },
                 _vm._l(_vm.itemPrices, function(price) {
                   return _c(
-                    "tr",
+                    "span",
                     [
                       _c("buy-item", {
                         attrs: {
@@ -46733,9 +47692,8 @@ var render = function() {
                     1
                   )
                 })
-              ],
-              2
-            )
+              )
+            ])
       ])
     ])
   ])
@@ -46745,14 +47703,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("span", [
+    return _c("table", [
+      _c("tr", [
         _c("td", [_c("b", [_vm._v("Price(N)")])]),
         _vm._v(" "),
         _c("td", [_c("b", [_vm._v("Unit")])]),
         _vm._v(" "),
         _c("td", [_c("b", [_vm._v("Quantity")])]),
         _c("td", [_c("b", [_vm._v("Request")])])
+      ]),
+      _vm._v(" "),
+      _c("tr", { staticClass: "invisible" }, [
+        _c("td"),
+        _vm._v(" "),
+        _c("td"),
+        _vm._v(" "),
+        _c("td", [
+          _c("input", {
+            staticStyle: { width: "50px" },
+            attrs: { type: "number" }
+          })
+        ]),
+        _c("td", [_c("button", [_vm._v("Add")])])
       ])
     ])
   }
@@ -46825,6 +47797,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46864,9 +47838,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("audio", {
+        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -47137,7 +48122,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "products" }, [
-      _c("div", [
+      _c("div", { staticClass: "seller-products" }, [
         this.image
           ? _c("img", {
               attrs: {
@@ -47412,6 +48397,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47478,49 +48469,67 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("span", [
-    _c("td", [_vm._v(_vm._s(this.price))]),
+    _vm._m(0),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s("per " + this.unit))]),
-    _vm._v(" "),
-    _c("td", [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.quantity,
-            expression: "quantity"
-          }
-        ],
-        staticStyle: { width: "50px" },
-        attrs: { type: "number" },
-        domProps: { value: _vm.quantity },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c("tr", [
+      _c("td", [_vm._v(_vm._s(this.price))]),
+      _vm._v(" "),
+      _c("td", [_vm._v(_vm._s(this.unit))]),
+      _vm._v(" "),
+      _c("td", [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.quantity,
+              expression: "quantity"
             }
-            _vm.quantity = $event.target.value
-          }
-        }
-      })
-    ]),
-    _c("td", [
-      _c(
-        "button",
-        {
+          ],
+          staticStyle: { width: "50px" },
+          attrs: { type: "number" },
+          domProps: { value: _vm.quantity },
           on: {
-            click: function($event) {
-              _vm.addToCart()
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.quantity = $event.target.value
             }
           }
-        },
-        [_vm._v("Add")]
-      )
+        })
+      ]),
+      _c("td", [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.addToCart()
+              }
+            }
+          },
+          [_vm._v("Add")]
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "invisible" }, [
+      _c("td", [_c("b", [_vm._v("Price(N)")])]),
+      _vm._v(" "),
+      _c("td", [_c("b", [_vm._v("Unit")])]),
+      _vm._v(" "),
+      _c("td", [_c("b", [_vm._v("Quantity")])]),
+      _c("td", [_c("b", [_vm._v("Request")])])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -47535,11 +48544,1479 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(95)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(95)
+var __vue_script__ = __webpack_require__(97)
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(98)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\seller-chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-599c605f", Component.options)
+  } else {
+    hotAPI.reload("data-v-599c605f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(96);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("b6f28920", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-599c605f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./seller-chat.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-599c605f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./seller-chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'seller', 'auth', 'buyer', 'shop', 'delivery'],
+
+	mounted: function mounted() {
+		this.getbuyerDetails();
+		this.getShopDetails();
+		this.getTrackedTransactions();
+		this.listen();
+	},
+	data: function data() {
+
+		return {
+			buyerDetails: [],
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			finished: false,
+			accepted: false,
+			showChat: false,
+			chat: "",
+			message: "",
+			trackedChat: []
+
+		};
+	},
+
+
+	methods: {
+		tr: function tr() {
+
+			this.getTrackedTransactions();
+			this.chatScroller();
+		},
+		listen: function listen() {
+			var _this = this;
+
+			Echo.private('App.User.' + this.auth).notification(function (notification) {
+
+				if (notification.ntype == 4 && notification.status == 1) {
+
+					_this.getTrackedTransactions();
+					_this.chatScroller();
+				}
+
+				document.getElementById('noty_audio').play();
+				_this.chatScroller();
+			});
+		},
+		sendMessage: function sendMessage() {
+			var _this2 = this;
+
+			if (this.message.length == 0) {
+
+				return;
+			}
+
+			this.chat = this.message;
+			this.message = "";
+
+			this.showFakeMessage();
+			this.chatScroller();
+
+			var data = JSON.stringify({
+				body: this.chat,
+				sender: this.seller,
+				receiver: this.buyer,
+				tracker: this.id
+			});
+
+			axios.post('/send/seller/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this2.getRecentChat();
+			});
+		},
+		getRecentChat: function getRecentChat() {
+			var _this3 = this;
+
+			axios.get('/get/recent/seller/chat/' + this.buyer + '/' + this.id).then(function (response) {
+
+				_this3.trackedChat.push(response.data);
+				_this3.hideFakeMessage();
+			});
+		},
+		showFakeMessage: function showFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.remove("hidden");
+		},
+		hideFakeMessage: function hideFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.add("hidden");
+		},
+		displayChat: function displayChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.remove("hidden");
+			if (this.showChat = true) this.chatScroller();
+		},
+		getbuyerDetails: function getbuyerDetails() {
+			var _this4 = this;
+
+			axios.get('/get/user/details/' + this.buyer).then(function (response) {
+
+				_this4.buyerDetails.push(response.data);
+			});
+		},
+		chatScroller: function chatScroller() {
+
+			var chat = document.getElementById('chat-message' + this.id);
+			chat.scrollTop = 5000;
+		},
+		hideChat: function hideChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.add("hidden");
+			this.showChat = false;
+		},
+		finishTransaction: function finishTransaction() {
+			this.finished = true;
+
+			axios.get('/finish/transaction/' + this.id).then(function (response) {});
+		},
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/buyer/accept/transaction/' + this.id).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this5 = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+
+					_this5.trackedTransactions = [];
+					_this5.total = 0;
+
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this5.trackedTransactions.push(tracked);
+						_this5.total = _this5.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this5.total == 0) {
+
+					_this5.cancelTransaction();
+				}
+
+				_this5.trackedChat = _this5.trackedTransactions[0].tracker.chats;
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this6 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this6.cancelTransaction();
+				}
+				_this6.shopDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.buyerDetails.length > 0 && _vm.trackedTransactions.length > 0
+    ? _c(
+        "div",
+        {
+          staticClass: "inactive-transactions",
+          staticStyle: { height: "520px", overflow: "hidden" }
+        },
+        [
+          _c("div", { staticClass: "seller-details" }, [
+            _c(
+              "div",
+              { staticStyle: { height: "80px", "overflow-y": "auto" } },
+              [
+                _c("img", {
+                  staticClass: "owner-avatar",
+                  staticStyle: { "border-radius": "50%", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: _vm.buyerDetails[0].avatar
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      "margin-top": "-50px",
+                      "margin-left": "80px"
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "user-name" }, [
+                      _vm._v(
+                        _vm._s(_vm.buyerDetails[0].fname) +
+                          " " +
+                          _vm._s(_vm.buyerDetails[0].lname)
+                      )
+                    ]),
+                    _vm._v(" as Buyer "),
+                    !_vm.showChat
+                      ? _c("span", { on: { click: _vm.displayChat } }, [
+                          _c("span", { staticClass: "unread-chat hidden" }, [
+                            _vm._v("10")
+                          ]),
+                          _vm.finished == false && _vm.accepted == false
+                            ? _c("div", { staticClass: "chat-button" }, [
+                                _vm._v("Chat")
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm.showChat
+                      ? _c("span", { on: { click: _vm.hideChat } }, [
+                          _c("div", { staticClass: "details-button" }, [
+                            _vm._v("Show items")
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr" }),
+            _vm._v(" "),
+            !_vm.showChat
+              ? _c("span", [
+                  _c(
+                    "div",
+                    { staticStyle: { height: "80px", "overflow-y": "auto" } },
+                    [
+                      _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                        _vm._v(
+                          " Location: " +
+                            _vm._s(_vm.trackedTransactions[0].tracker.location)
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "hr" }),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticStyle: { height: "150px", "overflow-y": "auto" } },
+                    _vm._l(_vm.trackedTransactions, function(transaction) {
+                      return _c("span", [
+                        _c("img", {
+                          staticClass: "product-avatar",
+                          staticStyle: {
+                            "border-radius": "5px",
+                            margin: "10px"
+                          },
+                          attrs: {
+                            width: "50px",
+                            height: "50px",
+                            src: transaction.price.product.image
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticStyle: {
+                              width: "180px",
+                              position: "relative",
+                              top: "-25px",
+                              left: "70px"
+                            }
+                          },
+                          [
+                            transaction.quantity == 1
+                              ? _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit
+                                          ) +
+                                          ")"
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                              : _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit +
+                                              "s"
+                                          ) +
+                                          ") "
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                          ]
+                        )
+                      ])
+                    })
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.finished == false && _vm.accepted == false
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "hidden",
+                    attrs: { id: "chat-container" + this.id }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "chat-content ",
+                        attrs: { id: "chat-message" + this.id }
+                      },
+                      [
+                        _vm._l(_vm.trackedChat, function(chat) {
+                          return _c("span", [
+                            chat.status == 1
+                              ? _c("p", { staticClass: "authChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                              : _c("p", { staticClass: "userChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "authChat hidden",
+                            attrs: { id: "fake-message" + this.id }
+                          },
+                          [_vm._v(_vm._s(_vm.chat))]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" }),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "chat-input" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.message,
+                            expression: "message"
+                          }
+                        ],
+                        attrs: {
+                          type: "text",
+                          placeholder: "Type your message"
+                        },
+                        domProps: { value: _vm.message },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !("button" in $event) &&
+                              _vm._k($event.keyCode, "enter", 13, $event.key)
+                            ) {
+                              return null
+                            }
+                            _vm.sendMessage($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.message = $event.target.value
+                          }
+                        }
+                      }),
+                      _c("span", { staticClass: "send-chat-icon" }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/storage/icons/right-arrow.png",
+                            width: "20px",
+                            height: "auto"
+                          },
+                          on: { click: _vm.sendMessage }
+                        })
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr", staticStyle: { border: "none" } }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { height: "100px", "overflow-y": "auto" } },
+              [
+                _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                  _vm._v(
+                    "Total= N " +
+                      _vm._s(_vm.total) +
+                      " Delivery= N " +
+                      _vm._s(this.delivery) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.finished == false && _vm.accepted == false
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            cursor: "default",
+                            border: "none",
+                            color: "green",
+                            background: "#fff",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Accepted")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "1px solid #ddd",
+                            color: "#000",
+                            background: "yellow",
+                            "font-weight": "bold"
+                          },
+                          on: { click: _vm.finishTransaction }
+                        },
+                        [_vm._v("Delivered")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "none",
+                            color: "#fff",
+                            background: "black",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Report")]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.finished
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tTransaction Completed\r\n\t\t")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.accepted
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Available at the moment")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-599c605f", module.exports)
+  }
+}
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(100)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(102)
+/* template */
+var __vue_template__ = __webpack_require__(103)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\buyer-chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f907e6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f907e6e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(101);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("e124900c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f907e6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buyer-chat.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f907e6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buyer-chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'seller', 'buyer', 'auth', 'shop', 'delivery'],
+
+	mounted: function mounted() {
+		this.getShopDetails();
+		this.getTrackedTransactions();
+		this.listen();
+	},
+	data: function data() {
+
+		return {
+
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			finished: false,
+			accepted: false,
+			showChat: false,
+			message: "",
+			chat: "",
+			trackedChat: []
+
+		};
+	},
+
+
+	methods: {
+		listen: function listen() {
+			var _this = this;
+
+			Echo.private('App.User.' + this.auth).notification(function (notification) {
+
+				if (notification.ntype == 4 && notification.status == 0) {
+
+					_this.getTrackedTransactions();
+				}
+				document.getElementById('noty_audio').play();
+				_this.chatScroller();
+			});
+		},
+		sendMessage: function sendMessage() {
+			var _this2 = this;
+
+			if (this.message.length == 0) {
+
+				return;
+			}
+
+			this.chat = this.message;
+			this.message = "";
+
+			this.showFakeMessage();
+			this.chatScroller();
+
+			var data = JSON.stringify({
+				body: this.chat,
+				sender: this.buyer,
+				receiver: this.buyer,
+				tracker: this.id
+			});
+
+			axios.post('/send/buyer/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this2.getRecentChat();
+			});
+		},
+		getRecentChat: function getRecentChat() {
+			var _this3 = this;
+
+			axios.get('/get/recent/buyer/chat/' + this.buyer + '/' + this.id).then(function (response) {
+
+				_this3.trackedChat.push(response.data);
+				_this3.hideFakeMessage();
+			});
+		},
+		showFakeMessage: function showFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.remove("hidden");
+		},
+		hideFakeMessage: function hideFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.add("hidden");
+		},
+		displayChat: function displayChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.remove("hidden");
+			if (this.showChat = true) this.chatScroller();
+		},
+		chatScroller: function chatScroller() {
+
+			var chat = document.getElementById('chat-message' + this.id);
+			chat.scrollTop = 5000;
+		},
+		hideChat: function hideChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.add("hidden");
+			this.showChat = false;
+		},
+		finishTransaction: function finishTransaction() {
+			this.finished = true;
+
+			axios.get('/finish/transaction/' + this.id).then(function (response) {});
+		},
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/buyer/accept/transaction/' + this.id).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this4 = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+
+					_this4.trackedTransactions = [];
+					_this4.total = 0;
+
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this4.trackedTransactions.push(tracked);
+						_this4.total = _this4.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this4.total == 0) {
+
+					_this4.cancelTransaction();
+				}
+
+				_this4.trackedChat = _this4.trackedTransactions[0].tracker.chats;
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this5 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this5.cancelTransaction();
+				}
+				_this5.shopDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shopDetails.length > 0
+    ? _c(
+        "div",
+        {
+          staticClass: "inactive-transactions",
+          staticStyle: { height: "520px", overflow: "hidden" }
+        },
+        [
+          _c("div", { staticClass: "seller-details" }, [
+            _c(
+              "div",
+              { staticStyle: { height: "80px", "overflow-y": "auto" } },
+              [
+                _c("img", {
+                  staticClass: "owner-avatar",
+                  staticStyle: { "border-radius": "50%", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: _vm.shopDetails[0].seller.avatar
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      "margin-top": "-50px",
+                      "margin-left": "80px"
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "user-name" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.shopDetails[0].seller.fname +
+                            " " +
+                            _vm.shopDetails[0].seller.lname
+                        )
+                      )
+                    ]),
+                    _vm._v(" as Seller "),
+                    !_vm.showChat
+                      ? _c("span", { on: { click: _vm.displayChat } }, [
+                          _c("span", { staticClass: "unread-chat hidden" }, [
+                            _vm._v("10")
+                          ]),
+                          _vm.finished == false && _vm.accepted == false
+                            ? _c("div", { staticClass: "chat-button" }, [
+                                _vm._v("Chat")
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm.showChat
+                      ? _c("span", { on: { click: _vm.hideChat } }, [
+                          _c("div", { staticClass: "details-button" }, [
+                            _vm._v("Show items")
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr" }),
+            _vm._v(" "),
+            !_vm.showChat
+              ? _c("span", [
+                  _c(
+                    "div",
+                    { staticStyle: { height: "80px", "overflow-y": "auto" } },
+                    [
+                      _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.shopDetails[0].name +
+                              ", " +
+                              _vm.shopDetails[0].location.location +
+                              ", " +
+                              _vm.shopDetails[0].seller.phone
+                          )
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "hr" }),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticStyle: { height: "150px", "overflow-y": "auto" } },
+                    _vm._l(_vm.trackedTransactions, function(transaction) {
+                      return _c("span", [
+                        _c("img", {
+                          staticClass: "product-avatar",
+                          staticStyle: {
+                            "border-radius": "5px",
+                            margin: "10px"
+                          },
+                          attrs: {
+                            width: "50px",
+                            height: "50px",
+                            src: transaction.price.product.image
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticStyle: {
+                              width: "180px",
+                              position: "relative",
+                              top: "-25px",
+                              left: "70px"
+                            }
+                          },
+                          [
+                            transaction.quantity == 1
+                              ? _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit
+                                          ) +
+                                          ")"
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                              : _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit +
+                                              "s"
+                                          ) +
+                                          ") "
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                          ]
+                        )
+                      ])
+                    })
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.finished == false && _vm.accepted == false
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "hidden",
+                    attrs: { id: "chat-container" + this.id }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "chat-content ",
+                        attrs: { id: "chat-message" + this.id }
+                      },
+                      [
+                        _vm._l(_vm.trackedChat, function(chat) {
+                          return _c("span", [
+                            chat.status == 0
+                              ? _c("p", { staticClass: "authChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                              : _c("p", { staticClass: "userChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "authChat hidden",
+                            attrs: { id: "fake-message" + this.id }
+                          },
+                          [_vm._v(_vm._s(_vm.chat))]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" }),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "chat-input" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.message,
+                            expression: "message"
+                          }
+                        ],
+                        attrs: {
+                          type: "text",
+                          placeholder: "Type your message"
+                        },
+                        domProps: { value: _vm.message },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !("button" in $event) &&
+                              _vm._k($event.keyCode, "enter", 13, $event.key)
+                            ) {
+                              return null
+                            }
+                            _vm.sendMessage($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.message = $event.target.value
+                          }
+                        }
+                      }),
+                      _c("span", { staticClass: "send-chat-icon" }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/storage/icons/right-arrow.png",
+                            width: "20px",
+                            height: "auto"
+                          },
+                          on: { click: _vm.sendMessage }
+                        })
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr", staticStyle: { border: "none" } }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { height: "100px", "overflow-y": "auto" } },
+              [
+                _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                  _vm._v(
+                    "Total= N " +
+                      _vm._s(_vm.total) +
+                      " Delivery= N " +
+                      _vm._s(this.delivery) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.finished == false && _vm.accepted == false
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            cursor: "default",
+                            border: "none",
+                            color: "green",
+                            background: "#fff",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Accepted")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "1px solid #ddd",
+                            color: "#000",
+                            background: "yellow",
+                            "font-weight": "bold"
+                          },
+                          on: { click: _vm.finishTransaction }
+                        },
+                        [_vm._v("Delivered")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "none",
+                            color: "#fff",
+                            background: "black",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Report")]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.finished
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tTransaction Completed\r\n\t\t")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.accepted
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Available at the moment")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f907e6e", module.exports)
+  }
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(105)
+/* template */
+var __vue_template__ = __webpack_require__(106)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47578,7 +50055,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 95 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47666,7 +50143,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 96 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47732,15 +50209,15 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(98)
+var __vue_script__ = __webpack_require__(108)
 /* template */
-var __vue_template__ = __webpack_require__(99)
+var __vue_template__ = __webpack_require__(109)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47779,7 +50256,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 98 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47806,7 +50283,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 99 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47826,19 +50303,19 @@ if (false) {
 }
 
 /***/ }),
-/* 100 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(101)
+  __webpack_require__(111)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(103)
+var __vue_script__ = __webpack_require__(113)
 /* template */
-var __vue_template__ = __webpack_require__(104)
+var __vue_template__ = __webpack_require__(114)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47877,17 +50354,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 101 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(102);
+var content = __webpack_require__(112);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("4062d149", content, false, {});
+var update = __webpack_require__(4)("4062d149", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -47903,10 +50380,10 @@ if(false) {
 }
 
 /***/ }),
-/* 102 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -47917,7 +50394,7 @@ exports.push([module.i, "\n.hidden {\r\ndisplay:none;\n}\r\n\r\n\r\n", ""]);
 
 
 /***/ }),
-/* 103 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47951,7 +50428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 
-	props: ['body', 'id'],
+	props: ['body', 'id', 'status'],
 
 	mounted: function mounted() {
 
@@ -47973,7 +50450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 104 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47982,18 +50459,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     this.authDetails.length > 0
-      ? _c("div", [
-          this.authDetails[0].id != this.id
-            ? _c("div", { staticClass: "theirChat" }, [
-                _c("p", { attrs: { id: "auth" } }, [_vm._v(_vm._s(this.body))])
+      ? _c("span", [
+          (this.authDetails[0].id = this.id && this.status == 1)
+            ? _c("span", [
+                _c("p", { staticClass: "authChat" }, [
+                  _vm._v(_vm._s(this.body))
+                ])
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          this.authDetails[0].id == this.id
-            ? _c("div", { staticClass: "myChat" }, [
-                _c("p", { attrs: { id: "auth" } }, [_vm._v(_vm._s(this.body))])
+            : _c("span", [
+                _c("p", { staticClass: "userChat" }, [
+                  _vm._v(_vm._s(this.body))
+                ])
               ])
-            : _vm._e()
         ])
       : _vm._e()
   ])
@@ -48009,19 +50486,19 @@ if (false) {
 }
 
 /***/ }),
-/* 105 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(106)
+  __webpack_require__(116)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(108)
+var __vue_script__ = __webpack_require__(118)
 /* template */
-var __vue_template__ = __webpack_require__(109)
+var __vue_template__ = __webpack_require__(119)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48060,17 +50537,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 106 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(107);
+var content = __webpack_require__(117);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("8b60091e", content, false, {});
+var update = __webpack_require__(4)("8b60091e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -48086,10 +50563,10 @@ if(false) {
 }
 
 /***/ }),
-/* 107 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -48100,11 +50577,12 @@ exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop
 
 
 /***/ }),
-/* 108 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -48193,7 +50671,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			trackedTransactions: [],
 			total: 0,
 			cancelled: false,
-			requested: false
+			requested: false,
+			location: ''
 
 		};
 	},
@@ -48203,7 +50682,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		sendRequest: function sendRequest() {
 			this.requested = true;
 
-			axios.get('/request/transaction/' + this.id).then(function (response) {});
+			if (this.location.length == 0) {
+				this.location = 'n.a';
+			}
+
+			axios.get('/request/transaction/' + this.id + '/' + this.location + '/' + this.seller).then(function (response) {});
 		},
 		delTransaction: function delTransaction(id, amount) {
 
@@ -48265,7 +50748,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 109 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48354,84 +50837,97 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                transaction.quantity == 1
-                  ? _c("span", [
-                      _c("span", { staticClass: "pending-product-name" }, [
-                        _vm._v(
-                          _vm._s(transaction.price.product.name) +
-                            "(" +
-                            _vm._s(
-                              "N" +
-                                transaction.price.price +
-                                "x" +
-                                transaction.quantity +
-                                transaction.price.unit
-                            ) +
-                            ") "
-                        ),
-                        _vm.cancelled == false && _vm.requested == false
-                          ? _c(
-                              "span",
-                              {
-                                staticStyle: {
-                                  color: "red",
-                                  cursor: "pointer"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.delTransaction(
-                                      transaction.id,
-                                      transaction.price.price *
-                                        transaction.quantity
-                                    )
-                                  }
-                                }
-                              },
-                              [_vm._v("remove")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _c("br")
-                    ])
-                  : _c("span", [
-                      _c("span", { staticClass: "pending-product-name" }, [
-                        _vm._v(
-                          _vm._s(transaction.price.product.name) +
-                            "(" +
-                            _vm._s(
-                              "N" +
-                                transaction.price.price +
-                                "x" +
-                                transaction.quantity +
-                                transaction.price.unit +
-                                "s"
-                            ) +
-                            ") "
-                        ),
-                        _vm.cancelled == false && _vm.requested == false
-                          ? _c(
-                              "span",
-                              {
-                                staticStyle: {
-                                  color: "red",
-                                  cursor: "pointer"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.delTransaction(
-                                      transaction.id,
-                                      transaction.price.price *
-                                        transaction.quantity
-                                    )
-                                  }
-                                }
-                              },
-                              [_vm._v("remove")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _c("br")
-                    ])
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      width: "180px",
+                      position: "relative",
+                      top: "-25px",
+                      left: "70px"
+                    }
+                  },
+                  [
+                    transaction.quantity == 1
+                      ? _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.requested == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                      : _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit +
+                                    "s"
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.requested == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                  ]
+                )
               ])
             })
           ),
@@ -48440,10 +50936,33 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticStyle: { height: "100px", "overflow-y": "auto" } },
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
             [
               _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                _vm._v("Total= N" + _vm._s(_vm.total) + " Delivery Fee: TBD")
+                _vm._v("Total= N" + _vm._s(_vm.total) + " Delivery Fee: TBD "),
+                _c("br"),
+                _vm._v(" Your Location: "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.location,
+                      expression: "location"
+                    }
+                  ],
+                  staticStyle: { width: "150px" },
+                  attrs: { type: "text", value: "0" },
+                  domProps: { value: _vm.location },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.location = $event.target.value
+                    }
+                  }
+                })
               ]),
               _vm._v(" "),
               _vm.cancelled == false && _vm.requested == false
@@ -48535,15 +51054,15 @@ if (false) {
 }
 
 /***/ }),
-/* 110 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = AlgoliaSearch;
 
-var Index = __webpack_require__(111);
+var Index = __webpack_require__(121);
 var deprecate = __webpack_require__(14);
 var deprecatedMessage = __webpack_require__(15);
-var AlgoliaSearchCore = __webpack_require__(116);
+var AlgoliaSearchCore = __webpack_require__(126);
 var inherits = __webpack_require__(10);
 var errors = __webpack_require__(7);
 
@@ -48637,7 +51156,7 @@ AlgoliaSearch.prototype.copyIndex = function(srcIndexName, dstIndexName, scopeOr
  *  content: the server answer that contains the task ID
  */
 AlgoliaSearch.prototype.getLogs = function(offset, length, callback) {
-  var clone = __webpack_require__(3);
+  var clone = __webpack_require__(5);
   var params = {};
   if (typeof offset === 'object') {
     // getLogs(params)
@@ -48711,7 +51230,7 @@ AlgoliaSearch.prototype.initAnalytics = function(opts) {
   // - move initAnalytics to a property on the main module (algoliasearch.initAnalytics),
   // same as places.
   // The current API was made mostly to mimic the one made in PHP
-  var createAnalyticsClient = __webpack_require__(120);
+  var createAnalyticsClient = __webpack_require__(130);
   return createAnalyticsClient(this.applicationID, this.apiKey, opts);
 };
 
@@ -49210,7 +51729,7 @@ function notImplemented() {
 
 
 /***/ }),
-/* 111 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var inherits = __webpack_require__(10);
@@ -49506,7 +52025,7 @@ Index.prototype.deleteObjects = function(objectIDs, callback) {
 * @deprecated see index.deleteBy
 */
 Index.prototype.deleteByQuery = deprecate(function(query, params, callback) {
-  var clone = __webpack_require__(3);
+  var clone = __webpack_require__(5);
   var map = __webpack_require__(9);
 
   var indexObj = this;
@@ -49643,7 +52162,7 @@ Index.prototype.browseAll = function(query, queryParameters) {
 
   var merge = __webpack_require__(25);
 
-  var IndexBrowser = __webpack_require__(114);
+  var IndexBrowser = __webpack_require__(124);
 
   var browser = new IndexBrowser();
   var client = this.as;
@@ -50461,7 +52980,7 @@ Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
 
 
 /***/ }),
-/* 112 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50471,7 +52990,7 @@ Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(113);
+var isArgs = __webpack_require__(123);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -50608,7 +53127,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 113 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50632,7 +53151,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 114 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50643,7 +53162,7 @@ module.exports = function isArguments(value) {
 module.exports = IndexBrowser;
 
 var inherits = __webpack_require__(10);
-var EventEmitter = __webpack_require__(115).EventEmitter;
+var EventEmitter = __webpack_require__(125).EventEmitter;
 
 function IndexBrowser() {
 }
@@ -50678,7 +53197,7 @@ IndexBrowser.prototype._clean = function() {
 
 
 /***/ }),
-/* 115 */
+/* 125 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -50986,7 +53505,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 116 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = AlgoliaSearchCore;
@@ -50994,7 +53513,7 @@ module.exports = AlgoliaSearchCore;
 var errors = __webpack_require__(7);
 var exitPromise = __webpack_require__(27);
 var IndexCore = __webpack_require__(23);
-var store = __webpack_require__(117);
+var store = __webpack_require__(127);
 
 // We will always put the API KEY in the JSON body in case of too long API KEY,
 // to avoid query string being too long and failing in various conditions (our server limit, browser limit,
@@ -51031,7 +53550,7 @@ var RESET_APP_DATA_TIMER =
 function AlgoliaSearchCore(applicationID, apiKey, opts) {
   var debug = __webpack_require__(12)('algoliasearch');
 
-  var clone = __webpack_require__(3);
+  var clone = __webpack_require__(5);
   var isArray = __webpack_require__(1);
   var map = __webpack_require__(9);
 
@@ -51710,7 +54229,7 @@ AlgoliaSearchCore.prototype.searchForFacetValues = function(queries) {
       throw new Error(usage);
     }
 
-    var clone = __webpack_require__(3);
+    var clone = __webpack_require__(5);
     var omit = __webpack_require__(26);
 
     var indexName = query.indexName;
@@ -51863,7 +54382,7 @@ AlgoliaSearchCore.prototype._getHostIndexByType = function(hostType) {
 };
 
 AlgoliaSearchCore.prototype._setHostIndexByType = function(hostIndex, hostType) {
-  var clone = __webpack_require__(3);
+  var clone = __webpack_require__(5);
   var newHostIndexes = clone(this._hostIndexes);
   newHostIndexes[hostType] = hostIndex;
   this._partialAppIdDataUpdate({hostIndexes: newHostIndexes});
@@ -51958,7 +54477,7 @@ function removeCredentials(headers) {
 
 
 /***/ }),
-/* 117 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(12)('algoliasearch:src/hostIndexState.js');
@@ -52048,10 +54567,10 @@ function cleanup() {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 118 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -52067,7 +54586,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(119);
+exports.humanize = __webpack_require__(129);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -52259,7 +54778,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 119 */
+/* 129 */
 /***/ (function(module, exports) {
 
 /**
@@ -52417,7 +54936,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 120 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = createAnalyticsClient;
@@ -52508,14 +55027,14 @@ function createAnalyticsClient(appId, apiKey, opts) {
 
 
 /***/ }),
-/* 121 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var global = __webpack_require__(122);
-var Promise = global.Promise || __webpack_require__(123).Promise;
+var global = __webpack_require__(132);
+var Promise = global.Promise || __webpack_require__(133).Promise;
 
 // This is the standalone browser build entry point
 // Browser implementation of the Algolia Search JavaScript client,
@@ -52523,9 +55042,9 @@ var Promise = global.Promise || __webpack_require__(123).Promise;
 module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   var inherits = __webpack_require__(10);
   var errors = __webpack_require__(7);
-  var inlineHeaders = __webpack_require__(124);
-  var jsonpRequest = __webpack_require__(126);
-  var places = __webpack_require__(127);
+  var inlineHeaders = __webpack_require__(134);
+  var jsonpRequest = __webpack_require__(136);
+  var places = __webpack_require__(137);
   uaSuffix = uaSuffix || '';
 
   if (false) {
@@ -52533,7 +55052,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   }
 
   function algoliasearch(applicationID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(3);
+    var cloneDeep = __webpack_require__(5);
 
     opts = cloneDeep(opts || {});
 
@@ -52542,7 +55061,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
     return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
   }
 
-  algoliasearch.version = __webpack_require__(128);
+  algoliasearch.version = __webpack_require__(138);
   algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
   algoliasearch.initPlaces = places(algoliasearch);
 
@@ -52748,7 +55267,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
 
 
 /***/ }),
-/* 122 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -52765,10 +55284,10 @@ if (typeof window !== "undefined") {
 
 module.exports = win;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 123 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -53951,10 +56470,10 @@ return Promise$1;
 
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(6)))
 
 /***/ }),
-/* 124 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53962,7 +56481,7 @@ return Promise$1;
 
 module.exports = inlineHeaders;
 
-var encode = __webpack_require__(125);
+var encode = __webpack_require__(135);
 
 function inlineHeaders(url, headers) {
   if (/\?/.test(url)) {
@@ -53976,7 +56495,7 @@ function inlineHeaders(url, headers) {
 
 
 /***/ }),
-/* 125 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54068,7 +56587,7 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 126 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54201,7 +56720,7 @@ function jsonpRequest(url, opts, cb) {
 
 
 /***/ }),
-/* 127 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = createPlacesClient;
@@ -54210,7 +56729,7 @@ var buildSearchMethod = __webpack_require__(24);
 
 function createPlacesClient(algoliasearch) {
   return function places(appID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(3);
+    var cloneDeep = __webpack_require__(5);
 
     opts = opts && cloneDeep(opts) || {};
     opts.hosts = opts.hosts || [
@@ -54244,7 +56763,7 @@ function createPlacesClient(algoliasearch) {
 
 
 /***/ }),
-/* 128 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54254,12 +56773,12 @@ module.exports = '3.29.0';
 
 
 /***/ }),
-/* 129 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 
@@ -54270,13 +56789,29 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 	state: {
 		new_nots: [],
-		pendingTransactions: []
+		pendingTransactions: [],
+		buyerActiveTransactions: [],
+		sellerActiveTransactions: [],
+		buyerChats: [],
+		sellerChats: []
 
 	},
 
 	getters: {
 		all_pending_transactions: function all_pending_transactions(state) {
 			return state.pendingTransactions;
+		},
+		all_buyer_active_transactions: function all_buyer_active_transactions(state) {
+			return state.buyerActiveTransactions;
+		},
+		all_seller_active_transactions: function all_seller_active_transactions(state) {
+			return state.sellerActiveTransactions;
+		},
+		all_buyer_chats: function all_buyer_chats(state) {
+			return state.buyerChats;
+		},
+		all_seller_chats: function all_seller_chats(state) {
+			return state.sellerChats;
 		},
 		all_nots: function all_nots(state) {
 			return state.all_nots;
@@ -54306,6 +56841,42 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 			});
 			if (!verify) {
 				state.pendingTransactions.push(transactions);
+			}
+		},
+		add_buyer_active_transactions: function add_buyer_active_transactions(state, transactions) {
+
+			var verify = state.buyerActiveTransactions.find(function (p) {
+				return p.id === transactions.id;
+			});
+			if (!verify) {
+				state.buyerActiveTransactions.push(transactions);
+			}
+		},
+		add_seller_active_transactions: function add_seller_active_transactions(state, transactions) {
+
+			var verify = state.sellerActiveTransactions.find(function (p) {
+				return p.id === transactions.id;
+			});
+			if (!verify) {
+				state.sellerActiveTransactions.push(transactions);
+			}
+		},
+		add_buyer_chats: function add_buyer_chats(state, chat) {
+
+			var verify = state.buyerChats.find(function (c) {
+				return c.id === chat.id;
+			});
+			if (!verify) {
+				state.buyerChats.push(chat);
+			}
+		},
+		add_seller_chats: function add_seller_chats(state, chat) {
+
+			var verify = state.sellerChats.find(function (c) {
+				return c.id === chat.id;
+			});
+			if (!verify) {
+				state.sellerChats.push(chat);
 			}
 		},
 		add_all_not: function add_all_not(state, not) {
@@ -54422,7 +56993,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 });
 
 /***/ }),
-/* 130 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55367,38 +57938,5160 @@ var index_esm = {
 
 
 /***/ }),
-/* 131 */
+/* 141 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */
+/***/ (function(module, exports) {
+
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+var Connector = function () {
+    function Connector(options) {
+        classCallCheck(this, Connector);
+
+        this._defaultOptions = {
+            auth: {
+                headers: {}
+            },
+            authEndpoint: '/broadcasting/auth',
+            broadcaster: 'pusher',
+            csrfToken: null,
+            host: null,
+            key: null,
+            namespace: 'App.Events'
+        };
+        this.setOptions(options);
+        this.connect();
+    }
+
+    createClass(Connector, [{
+        key: 'setOptions',
+        value: function setOptions(options) {
+            this.options = _extends(this._defaultOptions, options);
+            if (this.csrfToken()) {
+                this.options.auth.headers['X-CSRF-TOKEN'] = this.csrfToken();
+            }
+            return options;
+        }
+    }, {
+        key: 'csrfToken',
+        value: function csrfToken() {
+            var selector = void 0;
+            if (typeof window !== 'undefined' && window['Laravel'] && window['Laravel'].csrfToken) {
+                return window['Laravel'].csrfToken;
+            } else if (this.options.csrfToken) {
+                return this.options.csrfToken;
+            } else if (typeof document !== 'undefined' && (selector = document.querySelector('meta[name="csrf-token"]'))) {
+                return selector.getAttribute('content');
+            }
+            return null;
+        }
+    }]);
+    return Connector;
+}();
+
+var Channel = function () {
+    function Channel() {
+        classCallCheck(this, Channel);
+    }
+
+    createClass(Channel, [{
+        key: 'notification',
+        value: function notification(callback) {
+            return this.listen('.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', callback);
+        }
+    }, {
+        key: 'listenForWhisper',
+        value: function listenForWhisper(event, callback) {
+            return this.listen('.client-' + event, callback);
+        }
+    }]);
+    return Channel;
+}();
+
+var EventFormatter = function () {
+    function EventFormatter(namespace) {
+        classCallCheck(this, EventFormatter);
+
+        this.setNamespace(namespace);
+    }
+
+    createClass(EventFormatter, [{
+        key: 'format',
+        value: function format(event) {
+            if (event.charAt(0) === '.' || event.charAt(0) === '\\') {
+                return event.substr(1);
+            } else if (this.namespace) {
+                event = this.namespace + '.' + event;
+            }
+            return event.replace(/\./g, '\\');
+        }
+    }, {
+        key: 'setNamespace',
+        value: function setNamespace(value) {
+            this.namespace = value;
+        }
+    }]);
+    return EventFormatter;
+}();
+
+var PusherChannel = function (_Channel) {
+    inherits(PusherChannel, _Channel);
+
+    function PusherChannel(pusher, name, options) {
+        classCallCheck(this, PusherChannel);
+
+        var _this = possibleConstructorReturn(this, (PusherChannel.__proto__ || Object.getPrototypeOf(PusherChannel)).call(this));
+
+        _this.name = name;
+        _this.pusher = pusher;
+        _this.options = options;
+        _this.eventFormatter = new EventFormatter(_this.options.namespace);
+        _this.subscribe();
+        return _this;
+    }
+
+    createClass(PusherChannel, [{
+        key: 'subscribe',
+        value: function subscribe() {
+            this.subscription = this.pusher.subscribe(this.name);
+        }
+    }, {
+        key: 'unsubscribe',
+        value: function unsubscribe() {
+            this.pusher.unsubscribe(this.name);
+        }
+    }, {
+        key: 'listen',
+        value: function listen(event, callback) {
+            this.on(this.eventFormatter.format(event), callback);
+            return this;
+        }
+    }, {
+        key: 'stopListening',
+        value: function stopListening(event) {
+            this.subscription.unbind(this.eventFormatter.format(event));
+            return this;
+        }
+    }, {
+        key: 'on',
+        value: function on(event, callback) {
+            this.subscription.bind(event, callback);
+            return this;
+        }
+    }]);
+    return PusherChannel;
+}(Channel);
+
+var PusherPrivateChannel = function (_PusherChannel) {
+    inherits(PusherPrivateChannel, _PusherChannel);
+
+    function PusherPrivateChannel() {
+        classCallCheck(this, PusherPrivateChannel);
+        return possibleConstructorReturn(this, (PusherPrivateChannel.__proto__ || Object.getPrototypeOf(PusherPrivateChannel)).apply(this, arguments));
+    }
+
+    createClass(PusherPrivateChannel, [{
+        key: 'whisper',
+        value: function whisper(eventName, data) {
+            this.pusher.channels.channels[this.name].trigger('client-' + eventName, data);
+            return this;
+        }
+    }]);
+    return PusherPrivateChannel;
+}(PusherChannel);
+
+var PusherPresenceChannel = function (_PusherChannel) {
+    inherits(PusherPresenceChannel, _PusherChannel);
+
+    function PusherPresenceChannel() {
+        classCallCheck(this, PusherPresenceChannel);
+        return possibleConstructorReturn(this, (PusherPresenceChannel.__proto__ || Object.getPrototypeOf(PusherPresenceChannel)).apply(this, arguments));
+    }
+
+    createClass(PusherPresenceChannel, [{
+        key: 'here',
+        value: function here(callback) {
+            this.on('pusher:subscription_succeeded', function (data) {
+                callback(Object.keys(data.members).map(function (k) {
+                    return data.members[k];
+                }));
+            });
+            return this;
+        }
+    }, {
+        key: 'joining',
+        value: function joining(callback) {
+            this.on('pusher:member_added', function (member) {
+                callback(member.info);
+            });
+            return this;
+        }
+    }, {
+        key: 'leaving',
+        value: function leaving(callback) {
+            this.on('pusher:member_removed', function (member) {
+                callback(member.info);
+            });
+            return this;
+        }
+    }, {
+        key: 'whisper',
+        value: function whisper(eventName, data) {
+            this.pusher.channels.channels[this.name].trigger('client-' + eventName, data);
+            return this;
+        }
+    }]);
+    return PusherPresenceChannel;
+}(PusherChannel);
+
+var SocketIoChannel = function (_Channel) {
+    inherits(SocketIoChannel, _Channel);
+
+    function SocketIoChannel(socket, name, options) {
+        classCallCheck(this, SocketIoChannel);
+
+        var _this = possibleConstructorReturn(this, (SocketIoChannel.__proto__ || Object.getPrototypeOf(SocketIoChannel)).call(this));
+
+        _this.events = {};
+        _this.name = name;
+        _this.socket = socket;
+        _this.options = options;
+        _this.eventFormatter = new EventFormatter(_this.options.namespace);
+        _this.subscribe();
+        _this.configureReconnector();
+        return _this;
+    }
+
+    createClass(SocketIoChannel, [{
+        key: 'subscribe',
+        value: function subscribe() {
+            this.socket.emit('subscribe', {
+                channel: this.name,
+                auth: this.options.auth || {}
+            });
+        }
+    }, {
+        key: 'unsubscribe',
+        value: function unsubscribe() {
+            this.unbind();
+            this.socket.emit('unsubscribe', {
+                channel: this.name,
+                auth: this.options.auth || {}
+            });
+        }
+    }, {
+        key: 'listen',
+        value: function listen(event, callback) {
+            this.on(this.eventFormatter.format(event), callback);
+            return this;
+        }
+    }, {
+        key: 'on',
+        value: function on(event, callback) {
+            var _this2 = this;
+
+            var listener = function listener(channel, data) {
+                if (_this2.name == channel) {
+                    callback(data);
+                }
+            };
+            this.socket.on(event, listener);
+            this.bind(event, listener);
+        }
+    }, {
+        key: 'configureReconnector',
+        value: function configureReconnector() {
+            var _this3 = this;
+
+            var listener = function listener() {
+                _this3.subscribe();
+            };
+            this.socket.on('reconnect', listener);
+            this.bind('reconnect', listener);
+        }
+    }, {
+        key: 'bind',
+        value: function bind(event, callback) {
+            this.events[event] = this.events[event] || [];
+            this.events[event].push(callback);
+        }
+    }, {
+        key: 'unbind',
+        value: function unbind() {
+            var _this4 = this;
+
+            Object.keys(this.events).forEach(function (event) {
+                _this4.events[event].forEach(function (callback) {
+                    _this4.socket.removeListener(event, callback);
+                });
+                delete _this4.events[event];
+            });
+        }
+    }]);
+    return SocketIoChannel;
+}(Channel);
+
+var SocketIoPrivateChannel = function (_SocketIoChannel) {
+    inherits(SocketIoPrivateChannel, _SocketIoChannel);
+
+    function SocketIoPrivateChannel() {
+        classCallCheck(this, SocketIoPrivateChannel);
+        return possibleConstructorReturn(this, (SocketIoPrivateChannel.__proto__ || Object.getPrototypeOf(SocketIoPrivateChannel)).apply(this, arguments));
+    }
+
+    createClass(SocketIoPrivateChannel, [{
+        key: 'whisper',
+        value: function whisper(eventName, data) {
+            this.socket.emit('client event', {
+                channel: this.name,
+                event: 'client-' + eventName,
+                data: data
+            });
+            return this;
+        }
+    }]);
+    return SocketIoPrivateChannel;
+}(SocketIoChannel);
+
+var SocketIoPresenceChannel = function (_SocketIoPrivateChann) {
+    inherits(SocketIoPresenceChannel, _SocketIoPrivateChann);
+
+    function SocketIoPresenceChannel() {
+        classCallCheck(this, SocketIoPresenceChannel);
+        return possibleConstructorReturn(this, (SocketIoPresenceChannel.__proto__ || Object.getPrototypeOf(SocketIoPresenceChannel)).apply(this, arguments));
+    }
+
+    createClass(SocketIoPresenceChannel, [{
+        key: 'here',
+        value: function here(callback) {
+            this.on('presence:subscribed', function (members) {
+                callback(members.map(function (m) {
+                    return m.user_info;
+                }));
+            });
+            return this;
+        }
+    }, {
+        key: 'joining',
+        value: function joining(callback) {
+            this.on('presence:joining', function (member) {
+                return callback(member.user_info);
+            });
+            return this;
+        }
+    }, {
+        key: 'leaving',
+        value: function leaving(callback) {
+            this.on('presence:leaving', function (member) {
+                return callback(member.user_info);
+            });
+            return this;
+        }
+    }]);
+    return SocketIoPresenceChannel;
+}(SocketIoPrivateChannel);
+
+var NullChannel = function (_Channel) {
+    inherits(NullChannel, _Channel);
+
+    function NullChannel() {
+        classCallCheck(this, NullChannel);
+        return possibleConstructorReturn(this, (NullChannel.__proto__ || Object.getPrototypeOf(NullChannel)).apply(this, arguments));
+    }
+
+    createClass(NullChannel, [{
+        key: 'subscribe',
+        value: function subscribe() {}
+    }, {
+        key: 'unsubscribe',
+        value: function unsubscribe() {}
+    }, {
+        key: 'listen',
+        value: function listen(event, callback) {
+            return this;
+        }
+    }, {
+        key: 'stopListening',
+        value: function stopListening(event) {
+            return this;
+        }
+    }, {
+        key: 'on',
+        value: function on(event, callback) {
+            return this;
+        }
+    }]);
+    return NullChannel;
+}(Channel);
+
+var NullPrivateChannel = function (_NullChannel) {
+    inherits(NullPrivateChannel, _NullChannel);
+
+    function NullPrivateChannel() {
+        classCallCheck(this, NullPrivateChannel);
+        return possibleConstructorReturn(this, (NullPrivateChannel.__proto__ || Object.getPrototypeOf(NullPrivateChannel)).apply(this, arguments));
+    }
+
+    createClass(NullPrivateChannel, [{
+        key: 'whisper',
+        value: function whisper(eventName, data) {
+            return this;
+        }
+    }]);
+    return NullPrivateChannel;
+}(NullChannel);
+
+var NullPresenceChannel = function (_NullChannel) {
+    inherits(NullPresenceChannel, _NullChannel);
+
+    function NullPresenceChannel() {
+        classCallCheck(this, NullPresenceChannel);
+        return possibleConstructorReturn(this, (NullPresenceChannel.__proto__ || Object.getPrototypeOf(NullPresenceChannel)).apply(this, arguments));
+    }
+
+    createClass(NullPresenceChannel, [{
+        key: 'here',
+        value: function here(callback) {
+            return this;
+        }
+    }, {
+        key: 'joining',
+        value: function joining(callback) {
+            return this;
+        }
+    }, {
+        key: 'leaving',
+        value: function leaving(callback) {
+            return this;
+        }
+    }, {
+        key: 'whisper',
+        value: function whisper(eventName, data) {
+            return this;
+        }
+    }]);
+    return NullPresenceChannel;
+}(NullChannel);
+
+var PusherConnector = function (_Connector) {
+    inherits(PusherConnector, _Connector);
+
+    function PusherConnector() {
+        var _ref;
+
+        classCallCheck(this, PusherConnector);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        var _this = possibleConstructorReturn(this, (_ref = PusherConnector.__proto__ || Object.getPrototypeOf(PusherConnector)).call.apply(_ref, [this].concat(args)));
+
+        _this.channels = {};
+        return _this;
+    }
+
+    createClass(PusherConnector, [{
+        key: 'connect',
+        value: function connect() {
+            this.pusher = new Pusher(this.options.key, this.options);
+        }
+    }, {
+        key: 'listen',
+        value: function listen(name, event, callback) {
+            return this.channel(name).listen(event, callback);
+        }
+    }, {
+        key: 'channel',
+        value: function channel(name) {
+            if (!this.channels[name]) {
+                this.channels[name] = new PusherChannel(this.pusher, name, this.options);
+            }
+            return this.channels[name];
+        }
+    }, {
+        key: 'privateChannel',
+        value: function privateChannel(name) {
+            if (!this.channels['private-' + name]) {
+                this.channels['private-' + name] = new PusherPrivateChannel(this.pusher, 'private-' + name, this.options);
+            }
+            return this.channels['private-' + name];
+        }
+    }, {
+        key: 'presenceChannel',
+        value: function presenceChannel(name) {
+            if (!this.channels['presence-' + name]) {
+                this.channels['presence-' + name] = new PusherPresenceChannel(this.pusher, 'presence-' + name, this.options);
+            }
+            return this.channels['presence-' + name];
+        }
+    }, {
+        key: 'leave',
+        value: function leave(name) {
+            var _this2 = this;
+
+            var channels = [name, 'private-' + name, 'presence-' + name];
+            channels.forEach(function (name, index) {
+                if (_this2.channels[name]) {
+                    _this2.channels[name].unsubscribe();
+                    delete _this2.channels[name];
+                }
+            });
+        }
+    }, {
+        key: 'socketId',
+        value: function socketId() {
+            return this.pusher.connection.socket_id;
+        }
+    }, {
+        key: 'disconnect',
+        value: function disconnect() {
+            this.pusher.disconnect();
+        }
+    }]);
+    return PusherConnector;
+}(Connector);
+
+var SocketIoConnector = function (_Connector) {
+    inherits(SocketIoConnector, _Connector);
+
+    function SocketIoConnector() {
+        var _ref;
+
+        classCallCheck(this, SocketIoConnector);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        var _this = possibleConstructorReturn(this, (_ref = SocketIoConnector.__proto__ || Object.getPrototypeOf(SocketIoConnector)).call.apply(_ref, [this].concat(args)));
+
+        _this.channels = {};
+        return _this;
+    }
+
+    createClass(SocketIoConnector, [{
+        key: 'connect',
+        value: function connect() {
+            var io = this.getSocketIO();
+            this.socket = io(this.options.host, this.options);
+            return this.socket;
+        }
+    }, {
+        key: 'getSocketIO',
+        value: function getSocketIO() {
+            if (typeof io !== 'undefined') {
+                return io;
+            }
+            if (this.options.client !== 'undefined') {
+                return this.options.client;
+            }
+            throw new Error('Socket.io client not found. Should be globally available or passed via options.client');
+        }
+    }, {
+        key: 'listen',
+        value: function listen(name, event, callback) {
+            return this.channel(name).listen(event, callback);
+        }
+    }, {
+        key: 'channel',
+        value: function channel(name) {
+            if (!this.channels[name]) {
+                this.channels[name] = new SocketIoChannel(this.socket, name, this.options);
+            }
+            return this.channels[name];
+        }
+    }, {
+        key: 'privateChannel',
+        value: function privateChannel(name) {
+            if (!this.channels['private-' + name]) {
+                this.channels['private-' + name] = new SocketIoPrivateChannel(this.socket, 'private-' + name, this.options);
+            }
+            return this.channels['private-' + name];
+        }
+    }, {
+        key: 'presenceChannel',
+        value: function presenceChannel(name) {
+            if (!this.channels['presence-' + name]) {
+                this.channels['presence-' + name] = new SocketIoPresenceChannel(this.socket, 'presence-' + name, this.options);
+            }
+            return this.channels['presence-' + name];
+        }
+    }, {
+        key: 'leave',
+        value: function leave(name) {
+            var _this2 = this;
+
+            var channels = [name, 'private-' + name, 'presence-' + name];
+            channels.forEach(function (name) {
+                if (_this2.channels[name]) {
+                    _this2.channels[name].unsubscribe();
+                    delete _this2.channels[name];
+                }
+            });
+        }
+    }, {
+        key: 'socketId',
+        value: function socketId() {
+            return this.socket.id;
+        }
+    }, {
+        key: 'disconnect',
+        value: function disconnect() {
+            this.socket.disconnect();
+        }
+    }]);
+    return SocketIoConnector;
+}(Connector);
+
+var NullConnector = function (_Connector) {
+    inherits(NullConnector, _Connector);
+
+    function NullConnector() {
+        var _ref;
+
+        classCallCheck(this, NullConnector);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        var _this = possibleConstructorReturn(this, (_ref = NullConnector.__proto__ || Object.getPrototypeOf(NullConnector)).call.apply(_ref, [this].concat(args)));
+
+        _this.channels = {};
+        return _this;
+    }
+
+    createClass(NullConnector, [{
+        key: 'connect',
+        value: function connect() {}
+    }, {
+        key: 'listen',
+        value: function listen(name, event, callback) {
+            return new NullChannel();
+        }
+    }, {
+        key: 'channel',
+        value: function channel(name) {
+            return new NullChannel();
+        }
+    }, {
+        key: 'privateChannel',
+        value: function privateChannel(name) {
+            return new NullPrivateChannel();
+        }
+    }, {
+        key: 'presenceChannel',
+        value: function presenceChannel(name) {
+            return new NullPresenceChannel();
+        }
+    }, {
+        key: 'leave',
+        value: function leave(name) {}
+    }, {
+        key: 'socketId',
+        value: function socketId() {
+            return 'fake-socket-id';
+        }
+    }, {
+        key: 'disconnect',
+        value: function disconnect() {}
+    }]);
+    return NullConnector;
+}(Connector);
+
+var Echo = function () {
+    function Echo(options) {
+        classCallCheck(this, Echo);
+
+        this.options = options;
+        if (typeof Vue === 'function' && Vue.http) {
+            this.registerVueRequestInterceptor();
+        }
+        if (typeof axios === 'function') {
+            this.registerAxiosRequestInterceptor();
+        }
+        if (typeof jQuery === 'function') {
+            this.registerjQueryAjaxSetup();
+        }
+        if (this.options.broadcaster == 'pusher') {
+            this.connector = new PusherConnector(this.options);
+        } else if (this.options.broadcaster == 'socket.io') {
+            this.connector = new SocketIoConnector(this.options);
+        } else if (this.options.broadcaster == 'null') {
+            this.connector = new NullConnector(this.options);
+        }
+    }
+
+    createClass(Echo, [{
+        key: 'registerVueRequestInterceptor',
+        value: function registerVueRequestInterceptor() {
+            var _this = this;
+
+            Vue.http.interceptors.push(function (request, next) {
+                if (_this.socketId()) {
+                    request.headers.set('X-Socket-ID', _this.socketId());
+                }
+                next();
+            });
+        }
+    }, {
+        key: 'registerAxiosRequestInterceptor',
+        value: function registerAxiosRequestInterceptor() {
+            var _this2 = this;
+
+            axios.interceptors.request.use(function (config) {
+                if (_this2.socketId()) {
+                    config.headers['X-Socket-Id'] = _this2.socketId();
+                }
+                return config;
+            });
+        }
+    }, {
+        key: 'registerjQueryAjaxSetup',
+        value: function registerjQueryAjaxSetup() {
+            var _this3 = this;
+
+            if (typeof jQuery.ajax != 'undefined') {
+                jQuery.ajaxSetup({
+                    beforeSend: function beforeSend(xhr) {
+                        if (_this3.socketId()) {
+                            xhr.setRequestHeader('X-Socket-Id', _this3.socketId());
+                        }
+                    }
+                });
+            }
+        }
+    }, {
+        key: 'listen',
+        value: function listen(channel, event, callback) {
+            return this.connector.listen(channel, event, callback);
+        }
+    }, {
+        key: 'channel',
+        value: function channel(_channel) {
+            return this.connector.channel(_channel);
+        }
+    }, {
+        key: 'private',
+        value: function _private(channel) {
+            return this.connector.privateChannel(channel);
+        }
+    }, {
+        key: 'join',
+        value: function join(channel) {
+            return this.connector.presenceChannel(channel);
+        }
+    }, {
+        key: 'leave',
+        value: function leave(channel) {
+            this.connector.leave(channel);
+        }
+    }, {
+        key: 'socketId',
+        value: function socketId() {
+            return this.connector.socketId();
+        }
+    }, {
+        key: 'disconnect',
+        value: function disconnect() {
+            this.connector.disconnect();
+        }
+    }]);
+    return Echo;
+}();
+
+module.exports = Echo;
+
+/***/ }),
+/* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Pusher JavaScript Library v4.2.2
+ * https://pusher.com/
+ *
+ * Copyright 2017, Pusher
+ * Released under the MIT licence.
+ */
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Pusher"] = factory();
+	else
+		root["Pusher"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var pusher_1 = __webpack_require__(1);
+	module.exports = pusher_1["default"];
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var runtime_1 = __webpack_require__(2);
+	var Collections = __webpack_require__(9);
+	var dispatcher_1 = __webpack_require__(24);
+	var timeline_1 = __webpack_require__(39);
+	var level_1 = __webpack_require__(40);
+	var StrategyBuilder = __webpack_require__(41);
+	var timers_1 = __webpack_require__(12);
+	var defaults_1 = __webpack_require__(5);
+	var DefaultConfig = __webpack_require__(63);
+	var logger_1 = __webpack_require__(8);
+	var factory_1 = __webpack_require__(43);
+	var url_store_1 = __webpack_require__(14);
+	var Pusher = (function () {
+	    function Pusher(app_key, options) {
+	        var _this = this;
+	        checkAppKey(app_key);
+	        options = options || {};
+	        if (!options.cluster && !(options.wsHost || options.httpHost)) {
+	            var suffix = url_store_1["default"].buildLogSuffix("javascriptQuickStart");
+	            logger_1["default"].warn("You should always specify a cluster when connecting. " + suffix);
+	        }
+	        this.key = app_key;
+	        this.config = Collections.extend(DefaultConfig.getGlobalConfig(), options.cluster ? DefaultConfig.getClusterConfig(options.cluster) : {}, options);
+	        this.channels = factory_1["default"].createChannels();
+	        this.global_emitter = new dispatcher_1["default"]();
+	        this.sessionID = Math.floor(Math.random() * 1000000000);
+	        this.timeline = new timeline_1["default"](this.key, this.sessionID, {
+	            cluster: this.config.cluster,
+	            features: Pusher.getClientFeatures(),
+	            params: this.config.timelineParams || {},
+	            limit: 50,
+	            level: level_1["default"].INFO,
+	            version: defaults_1["default"].VERSION
+	        });
+	        if (!this.config.disableStats) {
+	            this.timelineSender = factory_1["default"].createTimelineSender(this.timeline, {
+	                host: this.config.statsHost,
+	                path: "/timeline/v2/" + runtime_1["default"].TimelineTransport.name
+	            });
+	        }
+	        var getStrategy = function (options) {
+	            var config = Collections.extend({}, _this.config, options);
+	            return StrategyBuilder.build(runtime_1["default"].getDefaultStrategy(config), config);
+	        };
+	        this.connection = factory_1["default"].createConnectionManager(this.key, Collections.extend({ getStrategy: getStrategy,
+	            timeline: this.timeline,
+	            activityTimeout: this.config.activity_timeout,
+	            pongTimeout: this.config.pong_timeout,
+	            unavailableTimeout: this.config.unavailable_timeout
+	        }, this.config, { encrypted: this.isEncrypted() }));
+	        this.connection.bind('connected', function () {
+	            _this.subscribeAll();
+	            if (_this.timelineSender) {
+	                _this.timelineSender.send(_this.connection.isEncrypted());
+	            }
+	        });
+	        this.connection.bind('message', function (params) {
+	            var internal = (params.event.indexOf('pusher_internal:') === 0);
+	            if (params.channel) {
+	                var channel = _this.channel(params.channel);
+	                if (channel) {
+	                    channel.handleEvent(params.event, params.data);
+	                }
+	            }
+	            if (!internal) {
+	                _this.global_emitter.emit(params.event, params.data);
+	            }
+	        });
+	        this.connection.bind('connecting', function () {
+	            _this.channels.disconnect();
+	        });
+	        this.connection.bind('disconnected', function () {
+	            _this.channels.disconnect();
+	        });
+	        this.connection.bind('error', function (err) {
+	            logger_1["default"].warn('Error', err);
+	        });
+	        Pusher.instances.push(this);
+	        this.timeline.info({ instances: Pusher.instances.length });
+	        if (Pusher.isReady) {
+	            this.connect();
+	        }
+	    }
+	    Pusher.ready = function () {
+	        Pusher.isReady = true;
+	        for (var i = 0, l = Pusher.instances.length; i < l; i++) {
+	            Pusher.instances[i].connect();
+	        }
+	    };
+	    Pusher.log = function (message) {
+	        if (Pusher.logToConsole && (window).console && (window).console.log) {
+	            (window).console.log(message);
+	        }
+	    };
+	    Pusher.getClientFeatures = function () {
+	        return Collections.keys(Collections.filterObject({ "ws": runtime_1["default"].Transports.ws }, function (t) { return t.isSupported({}); }));
+	    };
+	    Pusher.prototype.channel = function (name) {
+	        return this.channels.find(name);
+	    };
+	    Pusher.prototype.allChannels = function () {
+	        return this.channels.all();
+	    };
+	    Pusher.prototype.connect = function () {
+	        this.connection.connect();
+	        if (this.timelineSender) {
+	            if (!this.timelineSenderTimer) {
+	                var encrypted = this.connection.isEncrypted();
+	                var timelineSender = this.timelineSender;
+	                this.timelineSenderTimer = new timers_1.PeriodicTimer(60000, function () {
+	                    timelineSender.send(encrypted);
+	                });
+	            }
+	        }
+	    };
+	    Pusher.prototype.disconnect = function () {
+	        this.connection.disconnect();
+	        if (this.timelineSenderTimer) {
+	            this.timelineSenderTimer.ensureAborted();
+	            this.timelineSenderTimer = null;
+	        }
+	    };
+	    Pusher.prototype.bind = function (event_name, callback, context) {
+	        this.global_emitter.bind(event_name, callback, context);
+	        return this;
+	    };
+	    Pusher.prototype.unbind = function (event_name, callback, context) {
+	        this.global_emitter.unbind(event_name, callback, context);
+	        return this;
+	    };
+	    Pusher.prototype.bind_global = function (callback) {
+	        this.global_emitter.bind_global(callback);
+	        return this;
+	    };
+	    Pusher.prototype.unbind_global = function (callback) {
+	        this.global_emitter.unbind_global(callback);
+	        return this;
+	    };
+	    Pusher.prototype.unbind_all = function (callback) {
+	        this.global_emitter.unbind_all();
+	        return this;
+	    };
+	    Pusher.prototype.subscribeAll = function () {
+	        var channelName;
+	        for (channelName in this.channels.channels) {
+	            if (this.channels.channels.hasOwnProperty(channelName)) {
+	                this.subscribe(channelName);
+	            }
+	        }
+	    };
+	    Pusher.prototype.subscribe = function (channel_name) {
+	        var channel = this.channels.add(channel_name, this);
+	        if (channel.subscriptionPending && channel.subscriptionCancelled) {
+	            channel.reinstateSubscription();
+	        }
+	        else if (!channel.subscriptionPending && this.connection.state === "connected") {
+	            channel.subscribe();
+	        }
+	        return channel;
+	    };
+	    Pusher.prototype.unsubscribe = function (channel_name) {
+	        var channel = this.channels.find(channel_name);
+	        if (channel && channel.subscriptionPending) {
+	            channel.cancelSubscription();
+	        }
+	        else {
+	            channel = this.channels.remove(channel_name);
+	            if (channel && this.connection.state === "connected") {
+	                channel.unsubscribe();
+	            }
+	        }
+	    };
+	    Pusher.prototype.send_event = function (event_name, data, channel) {
+	        return this.connection.send_event(event_name, data, channel);
+	    };
+	    Pusher.prototype.isEncrypted = function () {
+	        if (runtime_1["default"].getProtocol() === "https:") {
+	            return true;
+	        }
+	        else {
+	            return Boolean(this.config.encrypted);
+	        }
+	    };
+	    Pusher.instances = [];
+	    Pusher.isReady = false;
+	    Pusher.logToConsole = false;
+	    Pusher.Runtime = runtime_1["default"];
+	    Pusher.ScriptReceivers = runtime_1["default"].ScriptReceivers;
+	    Pusher.DependenciesReceivers = runtime_1["default"].DependenciesReceivers;
+	    Pusher.auth_callbacks = runtime_1["default"].auth_callbacks;
+	    return Pusher;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Pusher;
+	function checkAppKey(key) {
+	    if (key === null || key === undefined) {
+	        throw "You must pass your app key when you instantiate Pusher.";
+	    }
+	}
+	runtime_1["default"].setup(Pusher);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dependencies_1 = __webpack_require__(3);
+	var xhr_auth_1 = __webpack_require__(7);
+	var jsonp_auth_1 = __webpack_require__(15);
+	var script_request_1 = __webpack_require__(16);
+	var jsonp_request_1 = __webpack_require__(17);
+	var script_receiver_factory_1 = __webpack_require__(4);
+	var jsonp_timeline_1 = __webpack_require__(18);
+	var transports_1 = __webpack_require__(19);
+	var net_info_1 = __webpack_require__(26);
+	var default_strategy_1 = __webpack_require__(27);
+	var transport_connection_initializer_1 = __webpack_require__(28);
+	var http_1 = __webpack_require__(29);
+	var Runtime = {
+	    nextAuthCallbackID: 1,
+	    auth_callbacks: {},
+	    ScriptReceivers: script_receiver_factory_1.ScriptReceivers,
+	    DependenciesReceivers: dependencies_1.DependenciesReceivers,
+	    getDefaultStrategy: default_strategy_1["default"],
+	    Transports: transports_1["default"],
+	    transportConnectionInitializer: transport_connection_initializer_1["default"],
+	    HTTPFactory: http_1["default"],
+	    TimelineTransport: jsonp_timeline_1["default"],
+	    getXHRAPI: function () {
+	        return window.XMLHttpRequest;
+	    },
+	    getWebSocketAPI: function () {
+	        return window.WebSocket || window.MozWebSocket;
+	    },
+	    setup: function (PusherClass) {
+	        var _this = this;
+	        window.Pusher = PusherClass;
+	        var initializeOnDocumentBody = function () {
+	            _this.onDocumentBody(PusherClass.ready);
+	        };
+	        if (!window.JSON) {
+	            dependencies_1.Dependencies.load("json2", {}, initializeOnDocumentBody);
+	        }
+	        else {
+	            initializeOnDocumentBody();
+	        }
+	    },
+	    getDocument: function () {
+	        return document;
+	    },
+	    getProtocol: function () {
+	        return this.getDocument().location.protocol;
+	    },
+	    getAuthorizers: function () {
+	        return { ajax: xhr_auth_1["default"], jsonp: jsonp_auth_1["default"] };
+	    },
+	    onDocumentBody: function (callback) {
+	        var _this = this;
+	        if (document.body) {
+	            callback();
+	        }
+	        else {
+	            setTimeout(function () {
+	                _this.onDocumentBody(callback);
+	            }, 0);
+	        }
+	    },
+	    createJSONPRequest: function (url, data) {
+	        return new jsonp_request_1["default"](url, data);
+	    },
+	    createScriptRequest: function (src) {
+	        return new script_request_1["default"](src);
+	    },
+	    getLocalStorage: function () {
+	        try {
+	            return window.localStorage;
+	        }
+	        catch (e) {
+	            return undefined;
+	        }
+	    },
+	    createXHR: function () {
+	        if (this.getXHRAPI()) {
+	            return this.createXMLHttpRequest();
+	        }
+	        else {
+	            return this.createMicrosoftXHR();
+	        }
+	    },
+	    createXMLHttpRequest: function () {
+	        var Constructor = this.getXHRAPI();
+	        return new Constructor();
+	    },
+	    createMicrosoftXHR: function () {
+	        return new ActiveXObject("Microsoft.XMLHTTP");
+	    },
+	    getNetwork: function () {
+	        return net_info_1.Network;
+	    },
+	    createWebSocket: function (url) {
+	        var Constructor = this.getWebSocketAPI();
+	        return new Constructor(url);
+	    },
+	    createSocketRequest: function (method, url) {
+	        if (this.isXHRSupported()) {
+	            return this.HTTPFactory.createXHR(method, url);
+	        }
+	        else if (this.isXDRSupported(url.indexOf("https:") === 0)) {
+	            return this.HTTPFactory.createXDR(method, url);
+	        }
+	        else {
+	            throw "Cross-origin HTTP requests are not supported";
+	        }
+	    },
+	    isXHRSupported: function () {
+	        var Constructor = this.getXHRAPI();
+	        return Boolean(Constructor) && (new Constructor()).withCredentials !== undefined;
+	    },
+	    isXDRSupported: function (encrypted) {
+	        var protocol = encrypted ? "https:" : "http:";
+	        var documentProtocol = this.getProtocol();
+	        return Boolean((window['XDomainRequest'])) && documentProtocol === protocol;
+	    },
+	    addUnloadListener: function (listener) {
+	        if (window.addEventListener !== undefined) {
+	            window.addEventListener("unload", listener, false);
+	        }
+	        else if (window.attachEvent !== undefined) {
+	            window.attachEvent("onunload", listener);
+	        }
+	    },
+	    removeUnloadListener: function (listener) {
+	        if (window.addEventListener !== undefined) {
+	            window.removeEventListener("unload", listener, false);
+	        }
+	        else if (window.detachEvent !== undefined) {
+	            window.detachEvent("onunload", listener);
+	        }
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = Runtime;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var script_receiver_factory_1 = __webpack_require__(4);
+	var defaults_1 = __webpack_require__(5);
+	var dependency_loader_1 = __webpack_require__(6);
+	exports.DependenciesReceivers = new script_receiver_factory_1.ScriptReceiverFactory("_pusher_dependencies", "Pusher.DependenciesReceivers");
+	exports.Dependencies = new dependency_loader_1["default"]({
+	    cdn_http: defaults_1["default"].cdn_http,
+	    cdn_https: defaults_1["default"].cdn_https,
+	    version: defaults_1["default"].VERSION,
+	    suffix: defaults_1["default"].dependency_suffix,
+	    receivers: exports.DependenciesReceivers
+	});
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var ScriptReceiverFactory = (function () {
+	    function ScriptReceiverFactory(prefix, name) {
+	        this.lastId = 0;
+	        this.prefix = prefix;
+	        this.name = name;
+	    }
+	    ScriptReceiverFactory.prototype.create = function (callback) {
+	        this.lastId++;
+	        var number = this.lastId;
+	        var id = this.prefix + number;
+	        var name = this.name + "[" + number + "]";
+	        var called = false;
+	        var callbackWrapper = function () {
+	            if (!called) {
+	                callback.apply(null, arguments);
+	                called = true;
+	            }
+	        };
+	        this[number] = callbackWrapper;
+	        return { number: number, id: id, name: name, callback: callbackWrapper };
+	    };
+	    ScriptReceiverFactory.prototype.remove = function (receiver) {
+	        delete this[receiver.number];
+	    };
+	    return ScriptReceiverFactory;
+	}());
+	exports.ScriptReceiverFactory = ScriptReceiverFactory;
+	exports.ScriptReceivers = new ScriptReceiverFactory("_pusher_script_", "Pusher.ScriptReceivers");
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var Defaults = {
+	    VERSION: "4.2.2",
+	    PROTOCOL: 7,
+	    host: 'ws.pusherapp.com',
+	    ws_port: 80,
+	    wss_port: 443,
+	    ws_path: '',
+	    sockjs_host: 'sockjs.pusher.com',
+	    sockjs_http_port: 80,
+	    sockjs_https_port: 443,
+	    sockjs_path: "/pusher",
+	    stats_host: 'stats.pusher.com',
+	    channel_auth_endpoint: '/pusher/auth',
+	    channel_auth_transport: 'ajax',
+	    activity_timeout: 120000,
+	    pong_timeout: 30000,
+	    unavailable_timeout: 10000,
+	    cdn_http: 'http://js.pusher.com',
+	    cdn_https: 'https://js.pusher.com',
+	    dependency_suffix: ''
+	};
+	exports.__esModule = true;
+	exports["default"] = Defaults;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var script_receiver_factory_1 = __webpack_require__(4);
+	var runtime_1 = __webpack_require__(2);
+	var DependencyLoader = (function () {
+	    function DependencyLoader(options) {
+	        this.options = options;
+	        this.receivers = options.receivers || script_receiver_factory_1.ScriptReceivers;
+	        this.loading = {};
+	    }
+	    DependencyLoader.prototype.load = function (name, options, callback) {
+	        var self = this;
+	        if (self.loading[name] && self.loading[name].length > 0) {
+	            self.loading[name].push(callback);
+	        }
+	        else {
+	            self.loading[name] = [callback];
+	            var request = runtime_1["default"].createScriptRequest(self.getPath(name, options));
+	            var receiver = self.receivers.create(function (error) {
+	                self.receivers.remove(receiver);
+	                if (self.loading[name]) {
+	                    var callbacks = self.loading[name];
+	                    delete self.loading[name];
+	                    var successCallback = function (wasSuccessful) {
+	                        if (!wasSuccessful) {
+	                            request.cleanup();
+	                        }
+	                    };
+	                    for (var i = 0; i < callbacks.length; i++) {
+	                        callbacks[i](error, successCallback);
+	                    }
+	                }
+	            });
+	            request.send(receiver);
+	        }
+	    };
+	    DependencyLoader.prototype.getRoot = function (options) {
+	        var cdn;
+	        var protocol = runtime_1["default"].getDocument().location.protocol;
+	        if ((options && options.encrypted) || protocol === "https:") {
+	            cdn = this.options.cdn_https;
+	        }
+	        else {
+	            cdn = this.options.cdn_http;
+	        }
+	        return cdn.replace(/\/*$/, "") + "/" + this.options.version;
+	    };
+	    DependencyLoader.prototype.getPath = function (name, options) {
+	        return this.getRoot(options) + '/' + name + this.options.suffix + '.js';
+	    };
+	    ;
+	    return DependencyLoader;
+	}());
+	exports.__esModule = true;
+	exports["default"] = DependencyLoader;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var logger_1 = __webpack_require__(8);
+	var runtime_1 = __webpack_require__(2);
+	var url_store_1 = __webpack_require__(14);
+	var ajax = function (context, socketId, callback) {
+	    var self = this, xhr;
+	    xhr = runtime_1["default"].createXHR();
+	    xhr.open("POST", self.options.authEndpoint, true);
+	    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	    for (var headerName in this.authOptions.headers) {
+	        xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
+	    }
+	    xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	            if (xhr.status === 200) {
+	                var data, parsed = false;
+	                try {
+	                    data = JSON.parse(xhr.responseText);
+	                    parsed = true;
+	                }
+	                catch (e) {
+	                    callback(true, 'JSON returned from webapp was invalid, yet status code was 200. Data was: ' + xhr.responseText);
+	                }
+	                if (parsed) {
+	                    callback(false, data);
+	                }
+	            }
+	            else {
+	                var suffix = url_store_1["default"].buildLogSuffix("authenticationEndpoint");
+	                logger_1["default"].warn(("Couldn't retrieve authentication info. " + xhr.status) +
+	                    ("Clients must be authenticated to join private or presence channels. " + suffix));
+	                callback(true, xhr.status);
+	            }
+	        }
+	    };
+	    xhr.send(this.composeQuery(socketId));
+	    return xhr;
+	};
+	exports.__esModule = true;
+	exports["default"] = ajax;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var collections_1 = __webpack_require__(9);
+	var pusher_1 = __webpack_require__(1);
+	var Logger = {
+	    debug: function () {
+	        var args = [];
+	        for (var _i = 0; _i < arguments.length; _i++) {
+	            args[_i - 0] = arguments[_i];
+	        }
+	        if (!pusher_1["default"].log) {
+	            return;
+	        }
+	        pusher_1["default"].log(collections_1.stringify.apply(this, arguments));
+	    },
+	    warn: function () {
+	        var args = [];
+	        for (var _i = 0; _i < arguments.length; _i++) {
+	            args[_i - 0] = arguments[_i];
+	        }
+	        var message = collections_1.stringify.apply(this, arguments);
+	        if (pusher_1["default"].log) {
+	            pusher_1["default"].log(message);
+	        }
+	        else if ((window).console) {
+	            if ((window).console.warn) {
+	                (window).console.warn(message);
+	            }
+	            else if ((window).console.log) {
+	                (window).console.log(message);
+	            }
+	        }
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = Logger;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var base64_1 = __webpack_require__(10);
+	var util_1 = __webpack_require__(11);
+	function extend(target) {
+	    var sources = [];
+	    for (var _i = 1; _i < arguments.length; _i++) {
+	        sources[_i - 1] = arguments[_i];
+	    }
+	    for (var i = 0; i < sources.length; i++) {
+	        var extensions = sources[i];
+	        for (var property in extensions) {
+	            if (extensions[property] && extensions[property].constructor &&
+	                extensions[property].constructor === Object) {
+	                target[property] = extend(target[property] || {}, extensions[property]);
+	            }
+	            else {
+	                target[property] = extensions[property];
+	            }
+	        }
+	    }
+	    return target;
+	}
+	exports.extend = extend;
+	function stringify() {
+	    var m = ["Pusher"];
+	    for (var i = 0; i < arguments.length; i++) {
+	        if (typeof arguments[i] === "string") {
+	            m.push(arguments[i]);
+	        }
+	        else {
+	            m.push(safeJSONStringify(arguments[i]));
+	        }
+	    }
+	    return m.join(" : ");
+	}
+	exports.stringify = stringify;
+	function arrayIndexOf(array, item) {
+	    var nativeIndexOf = Array.prototype.indexOf;
+	    if (array === null) {
+	        return -1;
+	    }
+	    if (nativeIndexOf && array.indexOf === nativeIndexOf) {
+	        return array.indexOf(item);
+	    }
+	    for (var i = 0, l = array.length; i < l; i++) {
+	        if (array[i] === item) {
+	            return i;
+	        }
+	    }
+	    return -1;
+	}
+	exports.arrayIndexOf = arrayIndexOf;
+	function objectApply(object, f) {
+	    for (var key in object) {
+	        if (Object.prototype.hasOwnProperty.call(object, key)) {
+	            f(object[key], key, object);
+	        }
+	    }
+	}
+	exports.objectApply = objectApply;
+	function keys(object) {
+	    var keys = [];
+	    objectApply(object, function (_, key) {
+	        keys.push(key);
+	    });
+	    return keys;
+	}
+	exports.keys = keys;
+	function values(object) {
+	    var values = [];
+	    objectApply(object, function (value) {
+	        values.push(value);
+	    });
+	    return values;
+	}
+	exports.values = values;
+	function apply(array, f, context) {
+	    for (var i = 0; i < array.length; i++) {
+	        f.call(context || (window), array[i], i, array);
+	    }
+	}
+	exports.apply = apply;
+	function map(array, f) {
+	    var result = [];
+	    for (var i = 0; i < array.length; i++) {
+	        result.push(f(array[i], i, array, result));
+	    }
+	    return result;
+	}
+	exports.map = map;
+	function mapObject(object, f) {
+	    var result = {};
+	    objectApply(object, function (value, key) {
+	        result[key] = f(value);
+	    });
+	    return result;
+	}
+	exports.mapObject = mapObject;
+	function filter(array, test) {
+	    test = test || function (value) { return !!value; };
+	    var result = [];
+	    for (var i = 0; i < array.length; i++) {
+	        if (test(array[i], i, array, result)) {
+	            result.push(array[i]);
+	        }
+	    }
+	    return result;
+	}
+	exports.filter = filter;
+	function filterObject(object, test) {
+	    var result = {};
+	    objectApply(object, function (value, key) {
+	        if ((test && test(value, key, object, result)) || Boolean(value)) {
+	            result[key] = value;
+	        }
+	    });
+	    return result;
+	}
+	exports.filterObject = filterObject;
+	function flatten(object) {
+	    var result = [];
+	    objectApply(object, function (value, key) {
+	        result.push([key, value]);
+	    });
+	    return result;
+	}
+	exports.flatten = flatten;
+	function any(array, test) {
+	    for (var i = 0; i < array.length; i++) {
+	        if (test(array[i], i, array)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	exports.any = any;
+	function all(array, test) {
+	    for (var i = 0; i < array.length; i++) {
+	        if (!test(array[i], i, array)) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	exports.all = all;
+	function encodeParamsObject(data) {
+	    return mapObject(data, function (value) {
+	        if (typeof value === "object") {
+	            value = safeJSONStringify(value);
+	        }
+	        return encodeURIComponent(base64_1["default"](value.toString()));
+	    });
+	}
+	exports.encodeParamsObject = encodeParamsObject;
+	function buildQueryString(data) {
+	    var params = filterObject(data, function (value) {
+	        return value !== undefined;
+	    });
+	    var query = map(flatten(encodeParamsObject(params)), util_1["default"].method("join", "=")).join("&");
+	    return query;
+	}
+	exports.buildQueryString = buildQueryString;
+	function decycleObject(object) {
+	    var objects = [], paths = [];
+	    return (function derez(value, path) {
+	        var i, name, nu;
+	        switch (typeof value) {
+	            case 'object':
+	                if (!value) {
+	                    return null;
+	                }
+	                for (i = 0; i < objects.length; i += 1) {
+	                    if (objects[i] === value) {
+	                        return { $ref: paths[i] };
+	                    }
+	                }
+	                objects.push(value);
+	                paths.push(path);
+	                if (Object.prototype.toString.apply(value) === '[object Array]') {
+	                    nu = [];
+	                    for (i = 0; i < value.length; i += 1) {
+	                        nu[i] = derez(value[i], path + '[' + i + ']');
+	                    }
+	                }
+	                else {
+	                    nu = {};
+	                    for (name in value) {
+	                        if (Object.prototype.hasOwnProperty.call(value, name)) {
+	                            nu[name] = derez(value[name], path + '[' + JSON.stringify(name) + ']');
+	                        }
+	                    }
+	                }
+	                return nu;
+	            case 'number':
+	            case 'string':
+	            case 'boolean':
+	                return value;
+	        }
+	    }(object, '$'));
+	}
+	exports.decycleObject = decycleObject;
+	function safeJSONStringify(source) {
+	    try {
+	        return JSON.stringify(source);
+	    }
+	    catch (e) {
+	        return JSON.stringify(decycleObject(source));
+	    }
+	}
+	exports.safeJSONStringify = safeJSONStringify;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	function encode(s) {
+	    return btoa(utob(s));
+	}
+	exports.__esModule = true;
+	exports["default"] = encode;
+	var fromCharCode = String.fromCharCode;
+	var b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+	var b64tab = {};
+	for (var i = 0, l = b64chars.length; i < l; i++) {
+	    b64tab[b64chars.charAt(i)] = i;
+	}
+	var cb_utob = function (c) {
+	    var cc = c.charCodeAt(0);
+	    return cc < 0x80 ? c
+	        : cc < 0x800 ? fromCharCode(0xc0 | (cc >>> 6)) +
+	            fromCharCode(0x80 | (cc & 0x3f))
+	            : fromCharCode(0xe0 | ((cc >>> 12) & 0x0f)) +
+	                fromCharCode(0x80 | ((cc >>> 6) & 0x3f)) +
+	                fromCharCode(0x80 | (cc & 0x3f));
+	};
+	var utob = function (u) {
+	    return u.replace(/[^\x00-\x7F]/g, cb_utob);
+	};
+	var cb_encode = function (ccc) {
+	    var padlen = [0, 2, 1][ccc.length % 3];
+	    var ord = ccc.charCodeAt(0) << 16
+	        | ((ccc.length > 1 ? ccc.charCodeAt(1) : 0) << 8)
+	        | ((ccc.length > 2 ? ccc.charCodeAt(2) : 0));
+	    var chars = [
+	        b64chars.charAt(ord >>> 18),
+	        b64chars.charAt((ord >>> 12) & 63),
+	        padlen >= 2 ? '=' : b64chars.charAt((ord >>> 6) & 63),
+	        padlen >= 1 ? '=' : b64chars.charAt(ord & 63)
+	    ];
+	    return chars.join('');
+	};
+	var btoa = (window).btoa || function (b) {
+	    return b.replace(/[\s\S]{1,3}/g, cb_encode);
+	};
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var timers_1 = __webpack_require__(12);
+	var Util = {
+	    now: function () {
+	        if (Date.now) {
+	            return Date.now();
+	        }
+	        else {
+	            return new Date().valueOf();
+	        }
+	    },
+	    defer: function (callback) {
+	        return new timers_1.OneOffTimer(0, callback);
+	    },
+	    method: function (name) {
+	        var args = [];
+	        for (var _i = 1; _i < arguments.length; _i++) {
+	            args[_i - 1] = arguments[_i];
+	        }
+	        var boundArguments = Array.prototype.slice.call(arguments, 1);
+	        return function (object) {
+	            return object[name].apply(object, boundArguments.concat(arguments));
+	        };
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = Util;
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var abstract_timer_1 = __webpack_require__(13);
+	function clearTimeout(timer) {
+	    (window).clearTimeout(timer);
+	}
+	function clearInterval(timer) {
+	    (window).clearInterval(timer);
+	}
+	var OneOffTimer = (function (_super) {
+	    __extends(OneOffTimer, _super);
+	    function OneOffTimer(delay, callback) {
+	        _super.call(this, setTimeout, clearTimeout, delay, function (timer) {
+	            callback();
+	            return null;
+	        });
+	    }
+	    return OneOffTimer;
+	}(abstract_timer_1["default"]));
+	exports.OneOffTimer = OneOffTimer;
+	var PeriodicTimer = (function (_super) {
+	    __extends(PeriodicTimer, _super);
+	    function PeriodicTimer(delay, callback) {
+	        _super.call(this, setInterval, clearInterval, delay, function (timer) {
+	            callback();
+	            return timer;
+	        });
+	    }
+	    return PeriodicTimer;
+	}(abstract_timer_1["default"]));
+	exports.PeriodicTimer = PeriodicTimer;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var Timer = (function () {
+	    function Timer(set, clear, delay, callback) {
+	        var _this = this;
+	        this.clear = clear;
+	        this.timer = set(function () {
+	            if (_this.timer) {
+	                _this.timer = callback(_this.timer);
+	            }
+	        }, delay);
+	    }
+	    Timer.prototype.isRunning = function () {
+	        return this.timer !== null;
+	    };
+	    Timer.prototype.ensureAborted = function () {
+	        if (this.timer) {
+	            this.clear(this.timer);
+	            this.timer = null;
+	        }
+	    };
+	    return Timer;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Timer;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var urlStore = {
+	    baseUrl: "https://pusher.com",
+	    urls: {
+	        authenticationEndpoint: {
+	            path: "/docs/authenticating_users"
+	        },
+	        javascriptQuickStart: {
+	            path: "/docs/javascript_quick_start"
+	        }
+	    }
+	};
+	var buildLogSuffix = function (key) {
+	    var urlPrefix = "See:";
+	    var urlObj = urlStore.urls[key];
+	    if (!urlObj)
+	        return "";
+	    var url;
+	    if (urlObj.fullUrl) {
+	        url = urlObj.fullUrl;
+	    }
+	    else if (urlObj.path) {
+	        url = urlStore.baseUrl + urlObj.path;
+	    }
+	    if (!url)
+	        return "";
+	    return urlPrefix + " " + url;
+	};
+	exports.__esModule = true;
+	exports["default"] = { buildLogSuffix: buildLogSuffix };
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var logger_1 = __webpack_require__(8);
+	var jsonp = function (context, socketId, callback) {
+	    if (this.authOptions.headers !== undefined) {
+	        logger_1["default"].warn("Warn", "To send headers with the auth request, you must use AJAX, rather than JSONP.");
+	    }
+	    var callbackName = context.nextAuthCallbackID.toString();
+	    context.nextAuthCallbackID++;
+	    var document = context.getDocument();
+	    var script = document.createElement("script");
+	    context.auth_callbacks[callbackName] = function (data) {
+	        callback(false, data);
+	    };
+	    var callback_name = "Pusher.auth_callbacks['" + callbackName + "']";
+	    script.src = this.options.authEndpoint +
+	        '?callback=' +
+	        encodeURIComponent(callback_name) +
+	        '&' +
+	        this.composeQuery(socketId);
+	    var head = document.getElementsByTagName("head")[0] || document.documentElement;
+	    head.insertBefore(script, head.firstChild);
+	};
+	exports.__esModule = true;
+	exports["default"] = jsonp;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var ScriptRequest = (function () {
+	    function ScriptRequest(src) {
+	        this.src = src;
+	    }
+	    ScriptRequest.prototype.send = function (receiver) {
+	        var self = this;
+	        var errorString = "Error loading " + self.src;
+	        self.script = document.createElement("script");
+	        self.script.id = receiver.id;
+	        self.script.src = self.src;
+	        self.script.type = "text/javascript";
+	        self.script.charset = "UTF-8";
+	        if (self.script.addEventListener) {
+	            self.script.onerror = function () {
+	                receiver.callback(errorString);
+	            };
+	            self.script.onload = function () {
+	                receiver.callback(null);
+	            };
+	        }
+	        else {
+	            self.script.onreadystatechange = function () {
+	                if (self.script.readyState === 'loaded' ||
+	                    self.script.readyState === 'complete') {
+	                    receiver.callback(null);
+	                }
+	            };
+	        }
+	        if (self.script.async === undefined && document.attachEvent &&
+	            /opera/i.test(navigator.userAgent)) {
+	            self.errorScript = document.createElement("script");
+	            self.errorScript.id = receiver.id + "_error";
+	            self.errorScript.text = receiver.name + "('" + errorString + "');";
+	            self.script.async = self.errorScript.async = false;
+	        }
+	        else {
+	            self.script.async = true;
+	        }
+	        var head = document.getElementsByTagName('head')[0];
+	        head.insertBefore(self.script, head.firstChild);
+	        if (self.errorScript) {
+	            head.insertBefore(self.errorScript, self.script.nextSibling);
+	        }
+	    };
+	    ScriptRequest.prototype.cleanup = function () {
+	        if (this.script) {
+	            this.script.onload = this.script.onerror = null;
+	            this.script.onreadystatechange = null;
+	        }
+	        if (this.script && this.script.parentNode) {
+	            this.script.parentNode.removeChild(this.script);
+	        }
+	        if (this.errorScript && this.errorScript.parentNode) {
+	            this.errorScript.parentNode.removeChild(this.errorScript);
+	        }
+	        this.script = null;
+	        this.errorScript = null;
+	    };
+	    return ScriptRequest;
+	}());
+	exports.__esModule = true;
+	exports["default"] = ScriptRequest;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var runtime_1 = __webpack_require__(2);
+	var JSONPRequest = (function () {
+	    function JSONPRequest(url, data) {
+	        this.url = url;
+	        this.data = data;
+	    }
+	    JSONPRequest.prototype.send = function (receiver) {
+	        if (this.request) {
+	            return;
+	        }
+	        var query = Collections.buildQueryString(this.data);
+	        var url = this.url + "/" + receiver.number + "?" + query;
+	        this.request = runtime_1["default"].createScriptRequest(url);
+	        this.request.send(receiver);
+	    };
+	    JSONPRequest.prototype.cleanup = function () {
+	        if (this.request) {
+	            this.request.cleanup();
+	        }
+	    };
+	    return JSONPRequest;
+	}());
+	exports.__esModule = true;
+	exports["default"] = JSONPRequest;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var runtime_1 = __webpack_require__(2);
+	var script_receiver_factory_1 = __webpack_require__(4);
+	var getAgent = function (sender, encrypted) {
+	    return function (data, callback) {
+	        var scheme = "http" + (encrypted ? "s" : "") + "://";
+	        var url = scheme + (sender.host || sender.options.host) + sender.options.path;
+	        var request = runtime_1["default"].createJSONPRequest(url, data);
+	        var receiver = runtime_1["default"].ScriptReceivers.create(function (error, result) {
+	            script_receiver_factory_1.ScriptReceivers.remove(receiver);
+	            request.cleanup();
+	            if (result && result.host) {
+	                sender.host = result.host;
+	            }
+	            if (callback) {
+	                callback(error, result);
+	            }
+	        });
+	        request.send(receiver);
+	    };
+	};
+	var jsonp = {
+	    name: 'jsonp',
+	    getAgent: getAgent
+	};
+	exports.__esModule = true;
+	exports["default"] = jsonp;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var transports_1 = __webpack_require__(20);
+	var transport_1 = __webpack_require__(22);
+	var URLSchemes = __webpack_require__(21);
+	var runtime_1 = __webpack_require__(2);
+	var dependencies_1 = __webpack_require__(3);
+	var Collections = __webpack_require__(9);
+	var SockJSTransport = new transport_1["default"]({
+	    file: "sockjs",
+	    urls: URLSchemes.sockjs,
+	    handlesActivityChecks: true,
+	    supportsPing: false,
+	    isSupported: function () {
+	        return true;
+	    },
+	    isInitialized: function () {
+	        return window.SockJS !== undefined;
+	    },
+	    getSocket: function (url, options) {
+	        return new window.SockJS(url, null, {
+	            js_path: dependencies_1.Dependencies.getPath("sockjs", {
+	                encrypted: options.encrypted
+	            }),
+	            ignore_null_origin: options.ignoreNullOrigin
+	        });
+	    },
+	    beforeOpen: function (socket, path) {
+	        socket.send(JSON.stringify({
+	            path: path
+	        }));
+	    }
+	});
+	var xdrConfiguration = {
+	    isSupported: function (environment) {
+	        var yes = runtime_1["default"].isXDRSupported(environment.encrypted);
+	        return yes;
+	    }
+	};
+	var XDRStreamingTransport = new transport_1["default"](Collections.extend({}, transports_1.streamingConfiguration, xdrConfiguration));
+	var XDRPollingTransport = new transport_1["default"](Collections.extend({}, transports_1.pollingConfiguration, xdrConfiguration));
+	transports_1["default"].xdr_streaming = XDRStreamingTransport;
+	transports_1["default"].xdr_polling = XDRPollingTransport;
+	transports_1["default"].sockjs = SockJSTransport;
+	exports.__esModule = true;
+	exports["default"] = transports_1["default"];
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var URLSchemes = __webpack_require__(21);
+	var transport_1 = __webpack_require__(22);
+	var Collections = __webpack_require__(9);
+	var runtime_1 = __webpack_require__(2);
+	var WSTransport = new transport_1["default"]({
+	    urls: URLSchemes.ws,
+	    handlesActivityChecks: false,
+	    supportsPing: false,
+	    isInitialized: function () {
+	        return Boolean(runtime_1["default"].getWebSocketAPI());
+	    },
+	    isSupported: function () {
+	        return Boolean(runtime_1["default"].getWebSocketAPI());
+	    },
+	    getSocket: function (url) {
+	        return runtime_1["default"].createWebSocket(url);
+	    }
+	});
+	var httpConfiguration = {
+	    urls: URLSchemes.http,
+	    handlesActivityChecks: false,
+	    supportsPing: true,
+	    isInitialized: function () {
+	        return true;
+	    }
+	};
+	exports.streamingConfiguration = Collections.extend({ getSocket: function (url) {
+	        return runtime_1["default"].HTTPFactory.createStreamingSocket(url);
+	    }
+	}, httpConfiguration);
+	exports.pollingConfiguration = Collections.extend({ getSocket: function (url) {
+	        return runtime_1["default"].HTTPFactory.createPollingSocket(url);
+	    }
+	}, httpConfiguration);
+	var xhrConfiguration = {
+	    isSupported: function () {
+	        return runtime_1["default"].isXHRSupported();
+	    }
+	};
+	var XHRStreamingTransport = new transport_1["default"](Collections.extend({}, exports.streamingConfiguration, xhrConfiguration));
+	var XHRPollingTransport = new transport_1["default"](Collections.extend({}, exports.pollingConfiguration, xhrConfiguration));
+	var Transports = {
+	    ws: WSTransport,
+	    xhr_streaming: XHRStreamingTransport,
+	    xhr_polling: XHRPollingTransport
+	};
+	exports.__esModule = true;
+	exports["default"] = Transports;
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var defaults_1 = __webpack_require__(5);
+	function getGenericURL(baseScheme, params, path) {
+	    var scheme = baseScheme + (params.encrypted ? "s" : "");
+	    var host = params.encrypted ? params.hostEncrypted : params.hostUnencrypted;
+	    return scheme + "://" + host + path;
+	}
+	function getGenericPath(key, queryString) {
+	    var path = "/app/" + key;
+	    var query = "?protocol=" + defaults_1["default"].PROTOCOL +
+	        "&client=js" +
+	        "&version=" + defaults_1["default"].VERSION +
+	        (queryString ? ("&" + queryString) : "");
+	    return path + query;
+	}
+	exports.ws = {
+	    getInitial: function (key, params) {
+	        var path = (params.httpPath || "") + getGenericPath(key, "flash=false");
+	        return getGenericURL("ws", params, path);
+	    }
+	};
+	exports.http = {
+	    getInitial: function (key, params) {
+	        var path = (params.httpPath || "/pusher") + getGenericPath(key);
+	        return getGenericURL("http", params, path);
+	    }
+	};
+	exports.sockjs = {
+	    getInitial: function (key, params) {
+	        return getGenericURL("http", params, params.httpPath || "/pusher");
+	    },
+	    getPath: function (key, params) {
+	        return getGenericPath(key);
+	    }
+	};
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var transport_connection_1 = __webpack_require__(23);
+	var Transport = (function () {
+	    function Transport(hooks) {
+	        this.hooks = hooks;
+	    }
+	    Transport.prototype.isSupported = function (environment) {
+	        return this.hooks.isSupported(environment);
+	    };
+	    Transport.prototype.createConnection = function (name, priority, key, options) {
+	        return new transport_connection_1["default"](this.hooks, name, priority, key, options);
+	    };
+	    return Transport;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Transport;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var util_1 = __webpack_require__(11);
+	var Collections = __webpack_require__(9);
+	var dispatcher_1 = __webpack_require__(24);
+	var logger_1 = __webpack_require__(8);
+	var runtime_1 = __webpack_require__(2);
+	var TransportConnection = (function (_super) {
+	    __extends(TransportConnection, _super);
+	    function TransportConnection(hooks, name, priority, key, options) {
+	        _super.call(this);
+	        this.initialize = runtime_1["default"].transportConnectionInitializer;
+	        this.hooks = hooks;
+	        this.name = name;
+	        this.priority = priority;
+	        this.key = key;
+	        this.options = options;
+	        this.state = "new";
+	        this.timeline = options.timeline;
+	        this.activityTimeout = options.activityTimeout;
+	        this.id = this.timeline.generateUniqueID();
+	    }
+	    TransportConnection.prototype.handlesActivityChecks = function () {
+	        return Boolean(this.hooks.handlesActivityChecks);
+	    };
+	    TransportConnection.prototype.supportsPing = function () {
+	        return Boolean(this.hooks.supportsPing);
+	    };
+	    TransportConnection.prototype.connect = function () {
+	        var _this = this;
+	        if (this.socket || this.state !== "initialized") {
+	            return false;
+	        }
+	        var url = this.hooks.urls.getInitial(this.key, this.options);
+	        try {
+	            this.socket = this.hooks.getSocket(url, this.options);
+	        }
+	        catch (e) {
+	            util_1["default"].defer(function () {
+	                _this.onError(e);
+	                _this.changeState("closed");
+	            });
+	            return false;
+	        }
+	        this.bindListeners();
+	        logger_1["default"].debug("Connecting", { transport: this.name, url: url });
+	        this.changeState("connecting");
+	        return true;
+	    };
+	    TransportConnection.prototype.close = function () {
+	        if (this.socket) {
+	            this.socket.close();
+	            return true;
+	        }
+	        else {
+	            return false;
+	        }
+	    };
+	    TransportConnection.prototype.send = function (data) {
+	        var _this = this;
+	        if (this.state === "open") {
+	            util_1["default"].defer(function () {
+	                if (_this.socket) {
+	                    _this.socket.send(data);
+	                }
+	            });
+	            return true;
+	        }
+	        else {
+	            return false;
+	        }
+	    };
+	    TransportConnection.prototype.ping = function () {
+	        if (this.state === "open" && this.supportsPing()) {
+	            this.socket.ping();
+	        }
+	    };
+	    TransportConnection.prototype.onOpen = function () {
+	        if (this.hooks.beforeOpen) {
+	            this.hooks.beforeOpen(this.socket, this.hooks.urls.getPath(this.key, this.options));
+	        }
+	        this.changeState("open");
+	        this.socket.onopen = undefined;
+	    };
+	    TransportConnection.prototype.onError = function (error) {
+	        this.emit("error", { type: 'WebSocketError', error: error });
+	        this.timeline.error(this.buildTimelineMessage({ error: error.toString() }));
+	    };
+	    TransportConnection.prototype.onClose = function (closeEvent) {
+	        if (closeEvent) {
+	            this.changeState("closed", {
+	                code: closeEvent.code,
+	                reason: closeEvent.reason,
+	                wasClean: closeEvent.wasClean
+	            });
+	        }
+	        else {
+	            this.changeState("closed");
+	        }
+	        this.unbindListeners();
+	        this.socket = undefined;
+	    };
+	    TransportConnection.prototype.onMessage = function (message) {
+	        this.emit("message", message);
+	    };
+	    TransportConnection.prototype.onActivity = function () {
+	        this.emit("activity");
+	    };
+	    TransportConnection.prototype.bindListeners = function () {
+	        var _this = this;
+	        this.socket.onopen = function () {
+	            _this.onOpen();
+	        };
+	        this.socket.onerror = function (error) {
+	            _this.onError(error);
+	        };
+	        this.socket.onclose = function (closeEvent) {
+	            _this.onClose(closeEvent);
+	        };
+	        this.socket.onmessage = function (message) {
+	            _this.onMessage(message);
+	        };
+	        if (this.supportsPing()) {
+	            this.socket.onactivity = function () { _this.onActivity(); };
+	        }
+	    };
+	    TransportConnection.prototype.unbindListeners = function () {
+	        if (this.socket) {
+	            this.socket.onopen = undefined;
+	            this.socket.onerror = undefined;
+	            this.socket.onclose = undefined;
+	            this.socket.onmessage = undefined;
+	            if (this.supportsPing()) {
+	                this.socket.onactivity = undefined;
+	            }
+	        }
+	    };
+	    TransportConnection.prototype.changeState = function (state, params) {
+	        this.state = state;
+	        this.timeline.info(this.buildTimelineMessage({
+	            state: state,
+	            params: params
+	        }));
+	        this.emit(state, params);
+	    };
+	    TransportConnection.prototype.buildTimelineMessage = function (message) {
+	        return Collections.extend({ cid: this.id }, message);
+	    };
+	    return TransportConnection;
+	}(dispatcher_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = TransportConnection;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var callback_registry_1 = __webpack_require__(25);
+	var Dispatcher = (function () {
+	    function Dispatcher(failThrough) {
+	        this.callbacks = new callback_registry_1["default"]();
+	        this.global_callbacks = [];
+	        this.failThrough = failThrough;
+	    }
+	    Dispatcher.prototype.bind = function (eventName, callback, context) {
+	        this.callbacks.add(eventName, callback, context);
+	        return this;
+	    };
+	    Dispatcher.prototype.bind_global = function (callback) {
+	        this.global_callbacks.push(callback);
+	        return this;
+	    };
+	    Dispatcher.prototype.unbind = function (eventName, callback, context) {
+	        this.callbacks.remove(eventName, callback, context);
+	        return this;
+	    };
+	    Dispatcher.prototype.unbind_global = function (callback) {
+	        if (!callback) {
+	            this.global_callbacks = [];
+	            return this;
+	        }
+	        this.global_callbacks = Collections.filter(this.global_callbacks || [], function (c) { return c !== callback; });
+	        return this;
+	    };
+	    Dispatcher.prototype.unbind_all = function () {
+	        this.unbind();
+	        this.unbind_global();
+	        return this;
+	    };
+	    Dispatcher.prototype.emit = function (eventName, data) {
+	        var i;
+	        for (i = 0; i < this.global_callbacks.length; i++) {
+	            this.global_callbacks[i](eventName, data);
+	        }
+	        var callbacks = this.callbacks.get(eventName);
+	        if (callbacks && callbacks.length > 0) {
+	            for (i = 0; i < callbacks.length; i++) {
+	                callbacks[i].fn.call(callbacks[i].context || (window), data);
+	            }
+	        }
+	        else if (this.failThrough) {
+	            this.failThrough(eventName, data);
+	        }
+	        return this;
+	    };
+	    return Dispatcher;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Dispatcher;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var CallbackRegistry = (function () {
+	    function CallbackRegistry() {
+	        this._callbacks = {};
+	    }
+	    CallbackRegistry.prototype.get = function (name) {
+	        return this._callbacks[prefix(name)];
+	    };
+	    CallbackRegistry.prototype.add = function (name, callback, context) {
+	        var prefixedEventName = prefix(name);
+	        this._callbacks[prefixedEventName] = this._callbacks[prefixedEventName] || [];
+	        this._callbacks[prefixedEventName].push({
+	            fn: callback,
+	            context: context
+	        });
+	    };
+	    CallbackRegistry.prototype.remove = function (name, callback, context) {
+	        if (!name && !callback && !context) {
+	            this._callbacks = {};
+	            return;
+	        }
+	        var names = name ? [prefix(name)] : Collections.keys(this._callbacks);
+	        if (callback || context) {
+	            this.removeCallback(names, callback, context);
+	        }
+	        else {
+	            this.removeAllCallbacks(names);
+	        }
+	    };
+	    CallbackRegistry.prototype.removeCallback = function (names, callback, context) {
+	        Collections.apply(names, function (name) {
+	            this._callbacks[name] = Collections.filter(this._callbacks[name] || [], function (binding) {
+	                return (callback && callback !== binding.fn) ||
+	                    (context && context !== binding.context);
+	            });
+	            if (this._callbacks[name].length === 0) {
+	                delete this._callbacks[name];
+	            }
+	        }, this);
+	    };
+	    CallbackRegistry.prototype.removeAllCallbacks = function (names) {
+	        Collections.apply(names, function (name) {
+	            delete this._callbacks[name];
+	        }, this);
+	    };
+	    return CallbackRegistry;
+	}());
+	exports.__esModule = true;
+	exports["default"] = CallbackRegistry;
+	function prefix(name) {
+	    return "_" + name;
+	}
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var dispatcher_1 = __webpack_require__(24);
+	var NetInfo = (function (_super) {
+	    __extends(NetInfo, _super);
+	    function NetInfo() {
+	        _super.call(this);
+	        var self = this;
+	        if (window.addEventListener !== undefined) {
+	            window.addEventListener("online", function () {
+	                self.emit('online');
+	            }, false);
+	            window.addEventListener("offline", function () {
+	                self.emit('offline');
+	            }, false);
+	        }
+	    }
+	    NetInfo.prototype.isOnline = function () {
+	        if (window.navigator.onLine === undefined) {
+	            return true;
+	        }
+	        else {
+	            return window.navigator.onLine;
+	        }
+	    };
+	    return NetInfo;
+	}(dispatcher_1["default"]));
+	exports.NetInfo = NetInfo;
+	exports.Network = new NetInfo();
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var getDefaultStrategy = function (config) {
+	    var wsStrategy;
+	    if (config.encrypted) {
+	        wsStrategy = [
+	            ":best_connected_ever",
+	            ":ws_loop",
+	            [":delayed", 2000, [":http_fallback_loop"]]
+	        ];
+	    }
+	    else {
+	        wsStrategy = [
+	            ":best_connected_ever",
+	            ":ws_loop",
+	            [":delayed", 2000, [":wss_loop"]],
+	            [":delayed", 5000, [":http_fallback_loop"]]
+	        ];
+	    }
+	    return [
+	        [":def", "ws_options", {
+	                hostUnencrypted: config.wsHost + ":" + config.wsPort,
+	                hostEncrypted: config.wsHost + ":" + config.wssPort,
+	                httpPath: config.wsPath
+	            }],
+	        [":def", "wss_options", [":extend", ":ws_options", {
+	                    encrypted: true
+	                }]],
+	        [":def", "sockjs_options", {
+	                hostUnencrypted: config.httpHost + ":" + config.httpPort,
+	                hostEncrypted: config.httpHost + ":" + config.httpsPort,
+	                httpPath: config.httpPath
+	            }],
+	        [":def", "timeouts", {
+	                loop: true,
+	                timeout: 15000,
+	                timeoutLimit: 60000
+	            }],
+	        [":def", "ws_manager", [":transport_manager", {
+	                    lives: 2,
+	                    minPingDelay: 10000,
+	                    maxPingDelay: config.activity_timeout
+	                }]],
+	        [":def", "streaming_manager", [":transport_manager", {
+	                    lives: 2,
+	                    minPingDelay: 10000,
+	                    maxPingDelay: config.activity_timeout
+	                }]],
+	        [":def_transport", "ws", "ws", 3, ":ws_options", ":ws_manager"],
+	        [":def_transport", "wss", "ws", 3, ":wss_options", ":ws_manager"],
+	        [":def_transport", "sockjs", "sockjs", 1, ":sockjs_options"],
+	        [":def_transport", "xhr_streaming", "xhr_streaming", 1, ":sockjs_options", ":streaming_manager"],
+	        [":def_transport", "xdr_streaming", "xdr_streaming", 1, ":sockjs_options", ":streaming_manager"],
+	        [":def_transport", "xhr_polling", "xhr_polling", 1, ":sockjs_options"],
+	        [":def_transport", "xdr_polling", "xdr_polling", 1, ":sockjs_options"],
+	        [":def", "ws_loop", [":sequential", ":timeouts", ":ws"]],
+	        [":def", "wss_loop", [":sequential", ":timeouts", ":wss"]],
+	        [":def", "sockjs_loop", [":sequential", ":timeouts", ":sockjs"]],
+	        [":def", "streaming_loop", [":sequential", ":timeouts",
+	                [":if", [":is_supported", ":xhr_streaming"],
+	                    ":xhr_streaming",
+	                    ":xdr_streaming"
+	                ]
+	            ]],
+	        [":def", "polling_loop", [":sequential", ":timeouts",
+	                [":if", [":is_supported", ":xhr_polling"],
+	                    ":xhr_polling",
+	                    ":xdr_polling"
+	                ]
+	            ]],
+	        [":def", "http_loop", [":if", [":is_supported", ":streaming_loop"], [
+	                    ":best_connected_ever",
+	                    ":streaming_loop",
+	                    [":delayed", 4000, [":polling_loop"]]
+	                ], [
+	                    ":polling_loop"
+	                ]]],
+	        [":def", "http_fallback_loop",
+	            [":if", [":is_supported", ":http_loop"], [
+	                    ":http_loop"
+	                ], [
+	                    ":sockjs_loop"
+	                ]]
+	        ],
+	        [":def", "strategy",
+	            [":cached", 1800000,
+	                [":first_connected",
+	                    [":if", [":is_supported", ":ws"],
+	                        wsStrategy,
+	                        ":http_fallback_loop"
+	                    ]
+	                ]
+	            ]
+	        ]
+	    ];
+	};
+	exports.__esModule = true;
+	exports["default"] = getDefaultStrategy;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dependencies_1 = __webpack_require__(3);
+	function default_1() {
+	    var self = this;
+	    self.timeline.info(self.buildTimelineMessage({
+	        transport: self.name + (self.options.encrypted ? "s" : "")
+	    }));
+	    if (self.hooks.isInitialized()) {
+	        self.changeState("initialized");
+	    }
+	    else if (self.hooks.file) {
+	        self.changeState("initializing");
+	        dependencies_1.Dependencies.load(self.hooks.file, { encrypted: self.options.encrypted }, function (error, callback) {
+	            if (self.hooks.isInitialized()) {
+	                self.changeState("initialized");
+	                callback(true);
+	            }
+	            else {
+	                if (error) {
+	                    self.onError(error);
+	                }
+	                self.onClose();
+	                callback(false);
+	            }
+	        });
+	    }
+	    else {
+	        self.onClose();
+	    }
+	}
+	exports.__esModule = true;
+	exports["default"] = default_1;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var http_xdomain_request_1 = __webpack_require__(30);
+	var http_1 = __webpack_require__(32);
+	http_1["default"].createXDR = function (method, url) {
+	    return this.createRequest(http_xdomain_request_1["default"], method, url);
+	};
+	exports.__esModule = true;
+	exports["default"] = http_1["default"];
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Errors = __webpack_require__(31);
+	var hooks = {
+	    getRequest: function (socket) {
+	        var xdr = new window.XDomainRequest();
+	        xdr.ontimeout = function () {
+	            socket.emit("error", new Errors.RequestTimedOut());
+	            socket.close();
+	        };
+	        xdr.onerror = function (e) {
+	            socket.emit("error", e);
+	            socket.close();
+	        };
+	        xdr.onprogress = function () {
+	            if (xdr.responseText && xdr.responseText.length > 0) {
+	                socket.onChunk(200, xdr.responseText);
+	            }
+	        };
+	        xdr.onload = function () {
+	            if (xdr.responseText && xdr.responseText.length > 0) {
+	                socket.onChunk(200, xdr.responseText);
+	            }
+	            socket.emit("finished", 200);
+	            socket.close();
+	        };
+	        return xdr;
+	    },
+	    abortRequest: function (xdr) {
+	        xdr.ontimeout = xdr.onerror = xdr.onprogress = xdr.onload = null;
+	        xdr.abort();
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = hooks;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var BadEventName = (function (_super) {
+	    __extends(BadEventName, _super);
+	    function BadEventName() {
+	        _super.apply(this, arguments);
+	    }
+	    return BadEventName;
+	}(Error));
+	exports.BadEventName = BadEventName;
+	var RequestTimedOut = (function (_super) {
+	    __extends(RequestTimedOut, _super);
+	    function RequestTimedOut() {
+	        _super.apply(this, arguments);
+	    }
+	    return RequestTimedOut;
+	}(Error));
+	exports.RequestTimedOut = RequestTimedOut;
+	var TransportPriorityTooLow = (function (_super) {
+	    __extends(TransportPriorityTooLow, _super);
+	    function TransportPriorityTooLow() {
+	        _super.apply(this, arguments);
+	    }
+	    return TransportPriorityTooLow;
+	}(Error));
+	exports.TransportPriorityTooLow = TransportPriorityTooLow;
+	var TransportClosed = (function (_super) {
+	    __extends(TransportClosed, _super);
+	    function TransportClosed() {
+	        _super.apply(this, arguments);
+	    }
+	    return TransportClosed;
+	}(Error));
+	exports.TransportClosed = TransportClosed;
+	var UnsupportedTransport = (function (_super) {
+	    __extends(UnsupportedTransport, _super);
+	    function UnsupportedTransport() {
+	        _super.apply(this, arguments);
+	    }
+	    return UnsupportedTransport;
+	}(Error));
+	exports.UnsupportedTransport = UnsupportedTransport;
+	var UnsupportedStrategy = (function (_super) {
+	    __extends(UnsupportedStrategy, _super);
+	    function UnsupportedStrategy() {
+	        _super.apply(this, arguments);
+	    }
+	    return UnsupportedStrategy;
+	}(Error));
+	exports.UnsupportedStrategy = UnsupportedStrategy;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var http_request_1 = __webpack_require__(33);
+	var http_socket_1 = __webpack_require__(34);
+	var http_streaming_socket_1 = __webpack_require__(36);
+	var http_polling_socket_1 = __webpack_require__(37);
+	var http_xhr_request_1 = __webpack_require__(38);
+	var HTTP = {
+	    createStreamingSocket: function (url) {
+	        return this.createSocket(http_streaming_socket_1["default"], url);
+	    },
+	    createPollingSocket: function (url) {
+	        return this.createSocket(http_polling_socket_1["default"], url);
+	    },
+	    createSocket: function (hooks, url) {
+	        return new http_socket_1["default"](hooks, url);
+	    },
+	    createXHR: function (method, url) {
+	        return this.createRequest(http_xhr_request_1["default"], method, url);
+	    },
+	    createRequest: function (hooks, method, url) {
+	        return new http_request_1["default"](hooks, method, url);
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = HTTP;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var runtime_1 = __webpack_require__(2);
+	var dispatcher_1 = __webpack_require__(24);
+	var MAX_BUFFER_LENGTH = 256 * 1024;
+	var HTTPRequest = (function (_super) {
+	    __extends(HTTPRequest, _super);
+	    function HTTPRequest(hooks, method, url) {
+	        _super.call(this);
+	        this.hooks = hooks;
+	        this.method = method;
+	        this.url = url;
+	    }
+	    HTTPRequest.prototype.start = function (payload) {
+	        var _this = this;
+	        this.position = 0;
+	        this.xhr = this.hooks.getRequest(this);
+	        this.unloader = function () {
+	            _this.close();
+	        };
+	        runtime_1["default"].addUnloadListener(this.unloader);
+	        this.xhr.open(this.method, this.url, true);
+	        if (this.xhr.setRequestHeader) {
+	            this.xhr.setRequestHeader("Content-Type", "application/json");
+	        }
+	        this.xhr.send(payload);
+	    };
+	    HTTPRequest.prototype.close = function () {
+	        if (this.unloader) {
+	            runtime_1["default"].removeUnloadListener(this.unloader);
+	            this.unloader = null;
+	        }
+	        if (this.xhr) {
+	            this.hooks.abortRequest(this.xhr);
+	            this.xhr = null;
+	        }
+	    };
+	    HTTPRequest.prototype.onChunk = function (status, data) {
+	        while (true) {
+	            var chunk = this.advanceBuffer(data);
+	            if (chunk) {
+	                this.emit("chunk", { status: status, data: chunk });
+	            }
+	            else {
+	                break;
+	            }
+	        }
+	        if (this.isBufferTooLong(data)) {
+	            this.emit("buffer_too_long");
+	        }
+	    };
+	    HTTPRequest.prototype.advanceBuffer = function (buffer) {
+	        var unreadData = buffer.slice(this.position);
+	        var endOfLinePosition = unreadData.indexOf("\n");
+	        if (endOfLinePosition !== -1) {
+	            this.position += endOfLinePosition + 1;
+	            return unreadData.slice(0, endOfLinePosition);
+	        }
+	        else {
+	            return null;
+	        }
+	    };
+	    HTTPRequest.prototype.isBufferTooLong = function (buffer) {
+	        return this.position === buffer.length && buffer.length > MAX_BUFFER_LENGTH;
+	    };
+	    return HTTPRequest;
+	}(dispatcher_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = HTTPRequest;
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var state_1 = __webpack_require__(35);
+	var util_1 = __webpack_require__(11);
+	var runtime_1 = __webpack_require__(2);
+	var autoIncrement = 1;
+	var HTTPSocket = (function () {
+	    function HTTPSocket(hooks, url) {
+	        this.hooks = hooks;
+	        this.session = randomNumber(1000) + "/" + randomString(8);
+	        this.location = getLocation(url);
+	        this.readyState = state_1["default"].CONNECTING;
+	        this.openStream();
+	    }
+	    HTTPSocket.prototype.send = function (payload) {
+	        return this.sendRaw(JSON.stringify([payload]));
+	    };
+	    HTTPSocket.prototype.ping = function () {
+	        this.hooks.sendHeartbeat(this);
+	    };
+	    HTTPSocket.prototype.close = function (code, reason) {
+	        this.onClose(code, reason, true);
+	    };
+	    HTTPSocket.prototype.sendRaw = function (payload) {
+	        if (this.readyState === state_1["default"].OPEN) {
+	            try {
+	                runtime_1["default"].createSocketRequest("POST", getUniqueURL(getSendURL(this.location, this.session))).start(payload);
+	                return true;
+	            }
+	            catch (e) {
+	                return false;
+	            }
+	        }
+	        else {
+	            return false;
+	        }
+	    };
+	    HTTPSocket.prototype.reconnect = function () {
+	        this.closeStream();
+	        this.openStream();
+	    };
+	    ;
+	    HTTPSocket.prototype.onClose = function (code, reason, wasClean) {
+	        this.closeStream();
+	        this.readyState = state_1["default"].CLOSED;
+	        if (this.onclose) {
+	            this.onclose({
+	                code: code,
+	                reason: reason,
+	                wasClean: wasClean
+	            });
+	        }
+	    };
+	    HTTPSocket.prototype.onChunk = function (chunk) {
+	        if (chunk.status !== 200) {
+	            return;
+	        }
+	        if (this.readyState === state_1["default"].OPEN) {
+	            this.onActivity();
+	        }
+	        var payload;
+	        var type = chunk.data.slice(0, 1);
+	        switch (type) {
+	            case 'o':
+	                payload = JSON.parse(chunk.data.slice(1) || '{}');
+	                this.onOpen(payload);
+	                break;
+	            case 'a':
+	                payload = JSON.parse(chunk.data.slice(1) || '[]');
+	                for (var i = 0; i < payload.length; i++) {
+	                    this.onEvent(payload[i]);
+	                }
+	                break;
+	            case 'm':
+	                payload = JSON.parse(chunk.data.slice(1) || 'null');
+	                this.onEvent(payload);
+	                break;
+	            case 'h':
+	                this.hooks.onHeartbeat(this);
+	                break;
+	            case 'c':
+	                payload = JSON.parse(chunk.data.slice(1) || '[]');
+	                this.onClose(payload[0], payload[1], true);
+	                break;
+	        }
+	    };
+	    HTTPSocket.prototype.onOpen = function (options) {
+	        if (this.readyState === state_1["default"].CONNECTING) {
+	            if (options && options.hostname) {
+	                this.location.base = replaceHost(this.location.base, options.hostname);
+	            }
+	            this.readyState = state_1["default"].OPEN;
+	            if (this.onopen) {
+	                this.onopen();
+	            }
+	        }
+	        else {
+	            this.onClose(1006, "Server lost session", true);
+	        }
+	    };
+	    HTTPSocket.prototype.onEvent = function (event) {
+	        if (this.readyState === state_1["default"].OPEN && this.onmessage) {
+	            this.onmessage({ data: event });
+	        }
+	    };
+	    HTTPSocket.prototype.onActivity = function () {
+	        if (this.onactivity) {
+	            this.onactivity();
+	        }
+	    };
+	    HTTPSocket.prototype.onError = function (error) {
+	        if (this.onerror) {
+	            this.onerror(error);
+	        }
+	    };
+	    HTTPSocket.prototype.openStream = function () {
+	        var _this = this;
+	        this.stream = runtime_1["default"].createSocketRequest("POST", getUniqueURL(this.hooks.getReceiveURL(this.location, this.session)));
+	        this.stream.bind("chunk", function (chunk) {
+	            _this.onChunk(chunk);
+	        });
+	        this.stream.bind("finished", function (status) {
+	            _this.hooks.onFinished(_this, status);
+	        });
+	        this.stream.bind("buffer_too_long", function () {
+	            _this.reconnect();
+	        });
+	        try {
+	            this.stream.start();
+	        }
+	        catch (error) {
+	            util_1["default"].defer(function () {
+	                _this.onError(error);
+	                _this.onClose(1006, "Could not start streaming", false);
+	            });
+	        }
+	    };
+	    HTTPSocket.prototype.closeStream = function () {
+	        if (this.stream) {
+	            this.stream.unbind_all();
+	            this.stream.close();
+	            this.stream = null;
+	        }
+	    };
+	    return HTTPSocket;
+	}());
+	function getLocation(url) {
+	    var parts = /([^\?]*)\/*(\??.*)/.exec(url);
+	    return {
+	        base: parts[1],
+	        queryString: parts[2]
+	    };
+	}
+	function getSendURL(url, session) {
+	    return url.base + "/" + session + "/xhr_send";
+	}
+	function getUniqueURL(url) {
+	    var separator = (url.indexOf('?') === -1) ? "?" : "&";
+	    return url + separator + "t=" + (+new Date()) + "&n=" + autoIncrement++;
+	}
+	function replaceHost(url, hostname) {
+	    var urlParts = /(https?:\/\/)([^\/:]+)((\/|:)?.*)/.exec(url);
+	    return urlParts[1] + hostname + urlParts[3];
+	}
+	function randomNumber(max) {
+	    return Math.floor(Math.random() * max);
+	}
+	function randomString(length) {
+	    var result = [];
+	    for (var i = 0; i < length; i++) {
+	        result.push(randomNumber(32).toString(32));
+	    }
+	    return result.join('');
+	}
+	exports.__esModule = true;
+	exports["default"] = HTTPSocket;
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var State;
+	(function (State) {
+	    State[State["CONNECTING"] = 0] = "CONNECTING";
+	    State[State["OPEN"] = 1] = "OPEN";
+	    State[State["CLOSED"] = 3] = "CLOSED";
+	})(State || (State = {}));
+	exports.__esModule = true;
+	exports["default"] = State;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var hooks = {
+	    getReceiveURL: function (url, session) {
+	        return url.base + "/" + session + "/xhr_streaming" + url.queryString;
+	    },
+	    onHeartbeat: function (socket) {
+	        socket.sendRaw("[]");
+	    },
+	    sendHeartbeat: function (socket) {
+	        socket.sendRaw("[]");
+	    },
+	    onFinished: function (socket, status) {
+	        socket.onClose(1006, "Connection interrupted (" + status + ")", false);
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = hooks;
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var hooks = {
+	    getReceiveURL: function (url, session) {
+	        return url.base + "/" + session + "/xhr" + url.queryString;
+	    },
+	    onHeartbeat: function () {
+	    },
+	    sendHeartbeat: function (socket) {
+	        socket.sendRaw("[]");
+	    },
+	    onFinished: function (socket, status) {
+	        if (status === 200) {
+	            socket.reconnect();
+	        }
+	        else {
+	            socket.onClose(1006, "Connection interrupted (" + status + ")", false);
+	        }
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = hooks;
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var runtime_1 = __webpack_require__(2);
+	var hooks = {
+	    getRequest: function (socket) {
+	        var Constructor = runtime_1["default"].getXHRAPI();
+	        var xhr = new Constructor();
+	        xhr.onreadystatechange = xhr.onprogress = function () {
+	            switch (xhr.readyState) {
+	                case 3:
+	                    if (xhr.responseText && xhr.responseText.length > 0) {
+	                        socket.onChunk(xhr.status, xhr.responseText);
+	                    }
+	                    break;
+	                case 4:
+	                    if (xhr.responseText && xhr.responseText.length > 0) {
+	                        socket.onChunk(xhr.status, xhr.responseText);
+	                    }
+	                    socket.emit("finished", xhr.status);
+	                    socket.close();
+	                    break;
+	            }
+	        };
+	        return xhr;
+	    },
+	    abortRequest: function (xhr) {
+	        xhr.onreadystatechange = null;
+	        xhr.abort();
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = hooks;
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var util_1 = __webpack_require__(11);
+	var level_1 = __webpack_require__(40);
+	var Timeline = (function () {
+	    function Timeline(key, session, options) {
+	        this.key = key;
+	        this.session = session;
+	        this.events = [];
+	        this.options = options || {};
+	        this.sent = 0;
+	        this.uniqueID = 0;
+	    }
+	    Timeline.prototype.log = function (level, event) {
+	        if (level <= this.options.level) {
+	            this.events.push(Collections.extend({}, event, { timestamp: util_1["default"].now() }));
+	            if (this.options.limit && this.events.length > this.options.limit) {
+	                this.events.shift();
+	            }
+	        }
+	    };
+	    Timeline.prototype.error = function (event) {
+	        this.log(level_1["default"].ERROR, event);
+	    };
+	    Timeline.prototype.info = function (event) {
+	        this.log(level_1["default"].INFO, event);
+	    };
+	    Timeline.prototype.debug = function (event) {
+	        this.log(level_1["default"].DEBUG, event);
+	    };
+	    Timeline.prototype.isEmpty = function () {
+	        return this.events.length === 0;
+	    };
+	    Timeline.prototype.send = function (sendfn, callback) {
+	        var _this = this;
+	        var data = Collections.extend({
+	            session: this.session,
+	            bundle: this.sent + 1,
+	            key: this.key,
+	            lib: "js",
+	            version: this.options.version,
+	            cluster: this.options.cluster,
+	            features: this.options.features,
+	            timeline: this.events
+	        }, this.options.params);
+	        this.events = [];
+	        sendfn(data, function (error, result) {
+	            if (!error) {
+	                _this.sent++;
+	            }
+	            if (callback) {
+	                callback(error, result);
+	            }
+	        });
+	        return true;
+	    };
+	    Timeline.prototype.generateUniqueID = function () {
+	        this.uniqueID++;
+	        return this.uniqueID;
+	    };
+	    return Timeline;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Timeline;
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var TimelineLevel;
+	(function (TimelineLevel) {
+	    TimelineLevel[TimelineLevel["ERROR"] = 3] = "ERROR";
+	    TimelineLevel[TimelineLevel["INFO"] = 6] = "INFO";
+	    TimelineLevel[TimelineLevel["DEBUG"] = 7] = "DEBUG";
+	})(TimelineLevel || (TimelineLevel = {}));
+	exports.__esModule = true;
+	exports["default"] = TimelineLevel;
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var util_1 = __webpack_require__(11);
+	var transport_manager_1 = __webpack_require__(42);
+	var Errors = __webpack_require__(31);
+	var transport_strategy_1 = __webpack_require__(56);
+	var sequential_strategy_1 = __webpack_require__(57);
+	var best_connected_ever_strategy_1 = __webpack_require__(58);
+	var cached_strategy_1 = __webpack_require__(59);
+	var delayed_strategy_1 = __webpack_require__(60);
+	var if_strategy_1 = __webpack_require__(61);
+	var first_connected_strategy_1 = __webpack_require__(62);
+	var runtime_1 = __webpack_require__(2);
+	var Transports = runtime_1["default"].Transports;
+	exports.build = function (scheme, options) {
+	    var context = Collections.extend({}, globalContext, options);
+	    return evaluate(scheme, context)[1].strategy;
+	};
+	var UnsupportedStrategy = {
+	    isSupported: function () {
+	        return false;
+	    },
+	    connect: function (_, callback) {
+	        var deferred = util_1["default"].defer(function () {
+	            callback(new Errors.UnsupportedStrategy());
+	        });
+	        return {
+	            abort: function () {
+	                deferred.ensureAborted();
+	            },
+	            forceMinPriority: function () { }
+	        };
+	    }
+	};
+	function returnWithOriginalContext(f) {
+	    return function (context) {
+	        return [f.apply(this, arguments), context];
+	    };
+	}
+	var globalContext = {
+	    extend: function (context, first, second) {
+	        return [Collections.extend({}, first, second), context];
+	    },
+	    def: function (context, name, value) {
+	        if (context[name] !== undefined) {
+	            throw "Redefining symbol " + name;
+	        }
+	        context[name] = value;
+	        return [undefined, context];
+	    },
+	    def_transport: function (context, name, type, priority, options, manager) {
+	        var transportClass = Transports[type];
+	        if (!transportClass) {
+	            throw new Errors.UnsupportedTransport(type);
+	        }
+	        var enabled = (!context.enabledTransports ||
+	            Collections.arrayIndexOf(context.enabledTransports, name) !== -1) &&
+	            (!context.disabledTransports ||
+	                Collections.arrayIndexOf(context.disabledTransports, name) === -1);
+	        var transport;
+	        if (enabled) {
+	            transport = new transport_strategy_1["default"](name, priority, manager ? manager.getAssistant(transportClass) : transportClass, Collections.extend({
+	                key: context.key,
+	                encrypted: context.encrypted,
+	                timeline: context.timeline,
+	                ignoreNullOrigin: context.ignoreNullOrigin
+	            }, options));
+	        }
+	        else {
+	            transport = UnsupportedStrategy;
+	        }
+	        var newContext = context.def(context, name, transport)[1];
+	        newContext.Transports = context.Transports || {};
+	        newContext.Transports[name] = transport;
+	        return [undefined, newContext];
+	    },
+	    transport_manager: returnWithOriginalContext(function (_, options) {
+	        return new transport_manager_1["default"](options);
+	    }),
+	    sequential: returnWithOriginalContext(function (_, options) {
+	        var strategies = Array.prototype.slice.call(arguments, 2);
+	        return new sequential_strategy_1["default"](strategies, options);
+	    }),
+	    cached: returnWithOriginalContext(function (context, ttl, strategy) {
+	        return new cached_strategy_1["default"](strategy, context.Transports, {
+	            ttl: ttl,
+	            timeline: context.timeline,
+	            encrypted: context.encrypted
+	        });
+	    }),
+	    first_connected: returnWithOriginalContext(function (_, strategy) {
+	        return new first_connected_strategy_1["default"](strategy);
+	    }),
+	    best_connected_ever: returnWithOriginalContext(function () {
+	        var strategies = Array.prototype.slice.call(arguments, 1);
+	        return new best_connected_ever_strategy_1["default"](strategies);
+	    }),
+	    delayed: returnWithOriginalContext(function (_, delay, strategy) {
+	        return new delayed_strategy_1["default"](strategy, { delay: delay });
+	    }),
+	    "if": returnWithOriginalContext(function (_, test, trueBranch, falseBranch) {
+	        return new if_strategy_1["default"](test, trueBranch, falseBranch);
+	    }),
+	    is_supported: returnWithOriginalContext(function (_, strategy) {
+	        return function () {
+	            return strategy.isSupported();
+	        };
+	    })
+	};
+	function isSymbol(expression) {
+	    return (typeof expression === "string") && expression.charAt(0) === ":";
+	}
+	function getSymbolValue(expression, context) {
+	    return context[expression.slice(1)];
+	}
+	function evaluateListOfExpressions(expressions, context) {
+	    if (expressions.length === 0) {
+	        return [[], context];
+	    }
+	    var head = evaluate(expressions[0], context);
+	    var tail = evaluateListOfExpressions(expressions.slice(1), head[1]);
+	    return [[head[0]].concat(tail[0]), tail[1]];
+	}
+	function evaluateString(expression, context) {
+	    if (!isSymbol(expression)) {
+	        return [expression, context];
+	    }
+	    var value = getSymbolValue(expression, context);
+	    if (value === undefined) {
+	        throw "Undefined symbol " + expression;
+	    }
+	    return [value, context];
+	}
+	function evaluateArray(expression, context) {
+	    if (isSymbol(expression[0])) {
+	        var f = getSymbolValue(expression[0], context);
+	        if (expression.length > 1) {
+	            if (typeof f !== "function") {
+	                throw "Calling non-function " + expression[0];
+	            }
+	            var args = [Collections.extend({}, context)].concat(Collections.map(expression.slice(1), function (arg) {
+	                return evaluate(arg, Collections.extend({}, context))[0];
+	            }));
+	            return f.apply(this, args);
+	        }
+	        else {
+	            return [f, context];
+	        }
+	    }
+	    else {
+	        return evaluateListOfExpressions(expression, context);
+	    }
+	}
+	function evaluate(expression, context) {
+	    if (typeof expression === "string") {
+	        return evaluateString(expression, context);
+	    }
+	    else if (typeof expression === "object") {
+	        if (expression instanceof Array && expression.length > 0) {
+	            return evaluateArray(expression, context);
+	        }
+	    }
+	    return [expression, context];
+	}
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var factory_1 = __webpack_require__(43);
+	var TransportManager = (function () {
+	    function TransportManager(options) {
+	        this.options = options || {};
+	        this.livesLeft = this.options.lives || Infinity;
+	    }
+	    TransportManager.prototype.getAssistant = function (transport) {
+	        return factory_1["default"].createAssistantToTheTransportManager(this, transport, {
+	            minPingDelay: this.options.minPingDelay,
+	            maxPingDelay: this.options.maxPingDelay
+	        });
+	    };
+	    TransportManager.prototype.isAlive = function () {
+	        return this.livesLeft > 0;
+	    };
+	    TransportManager.prototype.reportDeath = function () {
+	        this.livesLeft -= 1;
+	    };
+	    return TransportManager;
+	}());
+	exports.__esModule = true;
+	exports["default"] = TransportManager;
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var assistant_to_the_transport_manager_1 = __webpack_require__(44);
+	var handshake_1 = __webpack_require__(45);
+	var pusher_authorizer_1 = __webpack_require__(48);
+	var timeline_sender_1 = __webpack_require__(49);
+	var presence_channel_1 = __webpack_require__(50);
+	var private_channel_1 = __webpack_require__(51);
+	var channel_1 = __webpack_require__(52);
+	var connection_manager_1 = __webpack_require__(54);
+	var channels_1 = __webpack_require__(55);
+	var Factory = {
+	    createChannels: function () {
+	        return new channels_1["default"]();
+	    },
+	    createConnectionManager: function (key, options) {
+	        return new connection_manager_1["default"](key, options);
+	    },
+	    createChannel: function (name, pusher) {
+	        return new channel_1["default"](name, pusher);
+	    },
+	    createPrivateChannel: function (name, pusher) {
+	        return new private_channel_1["default"](name, pusher);
+	    },
+	    createPresenceChannel: function (name, pusher) {
+	        return new presence_channel_1["default"](name, pusher);
+	    },
+	    createTimelineSender: function (timeline, options) {
+	        return new timeline_sender_1["default"](timeline, options);
+	    },
+	    createAuthorizer: function (channel, options) {
+	        if (options.authorizer) {
+	            return options.authorizer(channel, options);
+	        }
+	        return new pusher_authorizer_1["default"](channel, options);
+	    },
+	    createHandshake: function (transport, callback) {
+	        return new handshake_1["default"](transport, callback);
+	    },
+	    createAssistantToTheTransportManager: function (manager, transport, options) {
+	        return new assistant_to_the_transport_manager_1["default"](manager, transport, options);
+	    }
+	};
+	exports.__esModule = true;
+	exports["default"] = Factory;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var util_1 = __webpack_require__(11);
+	var Collections = __webpack_require__(9);
+	var AssistantToTheTransportManager = (function () {
+	    function AssistantToTheTransportManager(manager, transport, options) {
+	        this.manager = manager;
+	        this.transport = transport;
+	        this.minPingDelay = options.minPingDelay;
+	        this.maxPingDelay = options.maxPingDelay;
+	        this.pingDelay = undefined;
+	    }
+	    AssistantToTheTransportManager.prototype.createConnection = function (name, priority, key, options) {
+	        var _this = this;
+	        options = Collections.extend({}, options, {
+	            activityTimeout: this.pingDelay
+	        });
+	        var connection = this.transport.createConnection(name, priority, key, options);
+	        var openTimestamp = null;
+	        var onOpen = function () {
+	            connection.unbind("open", onOpen);
+	            connection.bind("closed", onClosed);
+	            openTimestamp = util_1["default"].now();
+	        };
+	        var onClosed = function (closeEvent) {
+	            connection.unbind("closed", onClosed);
+	            if (closeEvent.code === 1002 || closeEvent.code === 1003) {
+	                _this.manager.reportDeath();
+	            }
+	            else if (!closeEvent.wasClean && openTimestamp) {
+	                var lifespan = util_1["default"].now() - openTimestamp;
+	                if (lifespan < 2 * _this.maxPingDelay) {
+	                    _this.manager.reportDeath();
+	                    _this.pingDelay = Math.max(lifespan / 2, _this.minPingDelay);
+	                }
+	            }
+	        };
+	        connection.bind("open", onOpen);
+	        return connection;
+	    };
+	    AssistantToTheTransportManager.prototype.isSupported = function (environment) {
+	        return this.manager.isAlive() && this.transport.isSupported(environment);
+	    };
+	    return AssistantToTheTransportManager;
+	}());
+	exports.__esModule = true;
+	exports["default"] = AssistantToTheTransportManager;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var Protocol = __webpack_require__(46);
+	var connection_1 = __webpack_require__(47);
+	var Handshake = (function () {
+	    function Handshake(transport, callback) {
+	        this.transport = transport;
+	        this.callback = callback;
+	        this.bindListeners();
+	    }
+	    Handshake.prototype.close = function () {
+	        this.unbindListeners();
+	        this.transport.close();
+	    };
+	    Handshake.prototype.bindListeners = function () {
+	        var _this = this;
+	        this.onMessage = function (m) {
+	            _this.unbindListeners();
+	            var result;
+	            try {
+	                result = Protocol.processHandshake(m);
+	            }
+	            catch (e) {
+	                _this.finish("error", { error: e });
+	                _this.transport.close();
+	                return;
+	            }
+	            if (result.action === "connected") {
+	                _this.finish("connected", {
+	                    connection: new connection_1["default"](result.id, _this.transport),
+	                    activityTimeout: result.activityTimeout
+	                });
+	            }
+	            else {
+	                _this.finish(result.action, { error: result.error });
+	                _this.transport.close();
+	            }
+	        };
+	        this.onClosed = function (closeEvent) {
+	            _this.unbindListeners();
+	            var action = Protocol.getCloseAction(closeEvent) || "backoff";
+	            var error = Protocol.getCloseError(closeEvent);
+	            _this.finish(action, { error: error });
+	        };
+	        this.transport.bind("message", this.onMessage);
+	        this.transport.bind("closed", this.onClosed);
+	    };
+	    Handshake.prototype.unbindListeners = function () {
+	        this.transport.unbind("message", this.onMessage);
+	        this.transport.unbind("closed", this.onClosed);
+	    };
+	    Handshake.prototype.finish = function (action, params) {
+	        this.callback(Collections.extend({ transport: this.transport, action: action }, params));
+	    };
+	    return Handshake;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Handshake;
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	exports.decodeMessage = function (message) {
+	    try {
+	        var params = JSON.parse(message.data);
+	        if (typeof params.data === 'string') {
+	            try {
+	                params.data = JSON.parse(params.data);
+	            }
+	            catch (e) {
+	                if (!(e instanceof SyntaxError)) {
+	                    throw e;
+	                }
+	            }
+	        }
+	        return params;
+	    }
+	    catch (e) {
+	        throw { type: 'MessageParseError', error: e, data: message.data };
+	    }
+	};
+	exports.encodeMessage = function (message) {
+	    return JSON.stringify(message);
+	};
+	exports.processHandshake = function (message) {
+	    message = exports.decodeMessage(message);
+	    if (message.event === "pusher:connection_established") {
+	        if (!message.data.activity_timeout) {
+	            throw "No activity timeout specified in handshake";
+	        }
+	        return {
+	            action: "connected",
+	            id: message.data.socket_id,
+	            activityTimeout: message.data.activity_timeout * 1000
+	        };
+	    }
+	    else if (message.event === "pusher:error") {
+	        return {
+	            action: this.getCloseAction(message.data),
+	            error: this.getCloseError(message.data)
+	        };
+	    }
+	    else {
+	        throw "Invalid handshake";
+	    }
+	};
+	exports.getCloseAction = function (closeEvent) {
+	    if (closeEvent.code < 4000) {
+	        if (closeEvent.code >= 1002 && closeEvent.code <= 1004) {
+	            return "backoff";
+	        }
+	        else {
+	            return null;
+	        }
+	    }
+	    else if (closeEvent.code === 4000) {
+	        return "ssl_only";
+	    }
+	    else if (closeEvent.code < 4100) {
+	        return "refused";
+	    }
+	    else if (closeEvent.code < 4200) {
+	        return "backoff";
+	    }
+	    else if (closeEvent.code < 4300) {
+	        return "retry";
+	    }
+	    else {
+	        return "refused";
+	    }
+	};
+	exports.getCloseError = function (closeEvent) {
+	    if (closeEvent.code !== 1000 && closeEvent.code !== 1001) {
+	        return {
+	            type: 'PusherError',
+	            data: {
+	                code: closeEvent.code,
+	                message: closeEvent.reason || closeEvent.message
+	            }
+	        };
+	    }
+	    else {
+	        return null;
+	    }
+	};
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Collections = __webpack_require__(9);
+	var dispatcher_1 = __webpack_require__(24);
+	var Protocol = __webpack_require__(46);
+	var logger_1 = __webpack_require__(8);
+	var Connection = (function (_super) {
+	    __extends(Connection, _super);
+	    function Connection(id, transport) {
+	        _super.call(this);
+	        this.id = id;
+	        this.transport = transport;
+	        this.activityTimeout = transport.activityTimeout;
+	        this.bindListeners();
+	    }
+	    Connection.prototype.handlesActivityChecks = function () {
+	        return this.transport.handlesActivityChecks();
+	    };
+	    Connection.prototype.send = function (data) {
+	        return this.transport.send(data);
+	    };
+	    Connection.prototype.send_event = function (name, data, channel) {
+	        var message = { event: name, data: data };
+	        if (channel) {
+	            message.channel = channel;
+	        }
+	        logger_1["default"].debug('Event sent', message);
+	        return this.send(Protocol.encodeMessage(message));
+	    };
+	    Connection.prototype.ping = function () {
+	        if (this.transport.supportsPing()) {
+	            this.transport.ping();
+	        }
+	        else {
+	            this.send_event('pusher:ping', {});
+	        }
+	    };
+	    Connection.prototype.close = function () {
+	        this.transport.close();
+	    };
+	    Connection.prototype.bindListeners = function () {
+	        var _this = this;
+	        var listeners = {
+	            message: function (m) {
+	                var message;
+	                try {
+	                    message = Protocol.decodeMessage(m);
+	                }
+	                catch (e) {
+	                    _this.emit('error', {
+	                        type: 'MessageParseError',
+	                        error: e,
+	                        data: m.data
+	                    });
+	                }
+	                if (message !== undefined) {
+	                    logger_1["default"].debug('Event recd', message);
+	                    switch (message.event) {
+	                        case 'pusher:error':
+	                            _this.emit('error', { type: 'PusherError', data: message.data });
+	                            break;
+	                        case 'pusher:ping':
+	                            _this.emit("ping");
+	                            break;
+	                        case 'pusher:pong':
+	                            _this.emit("pong");
+	                            break;
+	                    }
+	                    _this.emit('message', message);
+	                }
+	            },
+	            activity: function () {
+	                _this.emit("activity");
+	            },
+	            error: function (error) {
+	                _this.emit("error", { type: "WebSocketError", error: error });
+	            },
+	            closed: function (closeEvent) {
+	                unbindListeners();
+	                if (closeEvent && closeEvent.code) {
+	                    _this.handleCloseEvent(closeEvent);
+	                }
+	                _this.transport = null;
+	                _this.emit("closed");
+	            }
+	        };
+	        var unbindListeners = function () {
+	            Collections.objectApply(listeners, function (listener, event) {
+	                _this.transport.unbind(event, listener);
+	            });
+	        };
+	        Collections.objectApply(listeners, function (listener, event) {
+	            _this.transport.bind(event, listener);
+	        });
+	    };
+	    Connection.prototype.handleCloseEvent = function (closeEvent) {
+	        var action = Protocol.getCloseAction(closeEvent);
+	        var error = Protocol.getCloseError(closeEvent);
+	        if (error) {
+	            this.emit('error', error);
+	        }
+	        if (action) {
+	            this.emit(action);
+	        }
+	    };
+	    return Connection;
+	}(dispatcher_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = Connection;
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var runtime_1 = __webpack_require__(2);
+	var PusherAuthorizer = (function () {
+	    function PusherAuthorizer(channel, options) {
+	        this.channel = channel;
+	        var authTransport = options.authTransport;
+	        if (typeof runtime_1["default"].getAuthorizers()[authTransport] === "undefined") {
+	            throw "'" + authTransport + "' is not a recognized auth transport";
+	        }
+	        this.type = authTransport;
+	        this.options = options;
+	        this.authOptions = (options || {}).auth || {};
+	    }
+	    PusherAuthorizer.prototype.composeQuery = function (socketId) {
+	        var query = 'socket_id=' + encodeURIComponent(socketId) +
+	            '&channel_name=' + encodeURIComponent(this.channel.name);
+	        for (var i in this.authOptions.params) {
+	            query += "&" + encodeURIComponent(i) + "=" + encodeURIComponent(this.authOptions.params[i]);
+	        }
+	        return query;
+	    };
+	    PusherAuthorizer.prototype.authorize = function (socketId, callback) {
+	        PusherAuthorizer.authorizers = PusherAuthorizer.authorizers || runtime_1["default"].getAuthorizers();
+	        return PusherAuthorizer.authorizers[this.type].call(this, runtime_1["default"], socketId, callback);
+	    };
+	    return PusherAuthorizer;
+	}());
+	exports.__esModule = true;
+	exports["default"] = PusherAuthorizer;
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var runtime_1 = __webpack_require__(2);
+	var TimelineSender = (function () {
+	    function TimelineSender(timeline, options) {
+	        this.timeline = timeline;
+	        this.options = options || {};
+	    }
+	    TimelineSender.prototype.send = function (encrypted, callback) {
+	        if (this.timeline.isEmpty()) {
+	            return;
+	        }
+	        this.timeline.send(runtime_1["default"].TimelineTransport.getAgent(this, encrypted), callback);
+	    };
+	    return TimelineSender;
+	}());
+	exports.__esModule = true;
+	exports["default"] = TimelineSender;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var private_channel_1 = __webpack_require__(51);
+	var logger_1 = __webpack_require__(8);
+	var members_1 = __webpack_require__(53);
+	var url_store_1 = __webpack_require__(14);
+	var PresenceChannel = (function (_super) {
+	    __extends(PresenceChannel, _super);
+	    function PresenceChannel(name, pusher) {
+	        _super.call(this, name, pusher);
+	        this.members = new members_1["default"]();
+	    }
+	    PresenceChannel.prototype.authorize = function (socketId, callback) {
+	        var _this = this;
+	        _super.prototype.authorize.call(this, socketId, function (error, authData) {
+	            if (!error) {
+	                if (authData.channel_data === undefined) {
+	                    var suffix = url_store_1["default"].buildLogSuffix("authenticationEndpoint");
+	                    logger_1["default"].warn(("Invalid auth response for channel '" + _this.name + "',") +
+	                        ("expected 'channel_data' field. " + suffix));
+	                    callback("Invalid auth response");
+	                    return;
+	                }
+	                var channelData = JSON.parse(authData.channel_data);
+	                _this.members.setMyID(channelData.user_id);
+	            }
+	            callback(error, authData);
+	        });
+	    };
+	    PresenceChannel.prototype.handleEvent = function (event, data) {
+	        switch (event) {
+	            case "pusher_internal:subscription_succeeded":
+	                this.subscriptionPending = false;
+	                this.subscribed = true;
+	                if (this.subscriptionCancelled) {
+	                    this.pusher.unsubscribe(this.name);
+	                }
+	                else {
+	                    this.members.onSubscription(data);
+	                    this.emit("pusher:subscription_succeeded", this.members);
+	                }
+	                break;
+	            case "pusher_internal:member_added":
+	                var addedMember = this.members.addMember(data);
+	                this.emit('pusher:member_added', addedMember);
+	                break;
+	            case "pusher_internal:member_removed":
+	                var removedMember = this.members.removeMember(data);
+	                if (removedMember) {
+	                    this.emit('pusher:member_removed', removedMember);
+	                }
+	                break;
+	            default:
+	                private_channel_1["default"].prototype.handleEvent.call(this, event, data);
+	        }
+	    };
+	    PresenceChannel.prototype.disconnect = function () {
+	        this.members.reset();
+	        _super.prototype.disconnect.call(this);
+	    };
+	    return PresenceChannel;
+	}(private_channel_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = PresenceChannel;
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var factory_1 = __webpack_require__(43);
+	var channel_1 = __webpack_require__(52);
+	var PrivateChannel = (function (_super) {
+	    __extends(PrivateChannel, _super);
+	    function PrivateChannel() {
+	        _super.apply(this, arguments);
+	    }
+	    PrivateChannel.prototype.authorize = function (socketId, callback) {
+	        var authorizer = factory_1["default"].createAuthorizer(this, this.pusher.config);
+	        return authorizer.authorize(socketId, callback);
+	    };
+	    return PrivateChannel;
+	}(channel_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = PrivateChannel;
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var dispatcher_1 = __webpack_require__(24);
+	var Errors = __webpack_require__(31);
+	var logger_1 = __webpack_require__(8);
+	var Channel = (function (_super) {
+	    __extends(Channel, _super);
+	    function Channel(name, pusher) {
+	        _super.call(this, function (event, data) {
+	            logger_1["default"].debug('No callbacks on ' + name + ' for ' + event);
+	        });
+	        this.name = name;
+	        this.pusher = pusher;
+	        this.subscribed = false;
+	        this.subscriptionPending = false;
+	        this.subscriptionCancelled = false;
+	    }
+	    Channel.prototype.authorize = function (socketId, callback) {
+	        return callback(false, {});
+	    };
+	    Channel.prototype.trigger = function (event, data) {
+	        if (event.indexOf("client-") !== 0) {
+	            throw new Errors.BadEventName("Event '" + event + "' does not start with 'client-'");
+	        }
+	        return this.pusher.send_event(event, data, this.name);
+	    };
+	    Channel.prototype.disconnect = function () {
+	        this.subscribed = false;
+	        this.subscriptionPending = false;
+	    };
+	    Channel.prototype.handleEvent = function (event, data) {
+	        if (event.indexOf("pusher_internal:") === 0) {
+	            if (event === "pusher_internal:subscription_succeeded") {
+	                this.subscriptionPending = false;
+	                this.subscribed = true;
+	                if (this.subscriptionCancelled) {
+	                    this.pusher.unsubscribe(this.name);
+	                }
+	                else {
+	                    this.emit("pusher:subscription_succeeded", data);
+	                }
+	            }
+	        }
+	        else {
+	            this.emit(event, data);
+	        }
+	    };
+	    Channel.prototype.subscribe = function () {
+	        var _this = this;
+	        if (this.subscribed) {
+	            return;
+	        }
+	        this.subscriptionPending = true;
+	        this.subscriptionCancelled = false;
+	        this.authorize(this.pusher.connection.socket_id, function (error, data) {
+	            if (error) {
+	                _this.handleEvent('pusher:subscription_error', data);
+	            }
+	            else {
+	                _this.pusher.send_event('pusher:subscribe', {
+	                    auth: data.auth,
+	                    channel_data: data.channel_data,
+	                    channel: _this.name
+	                });
+	            }
+	        });
+	    };
+	    Channel.prototype.unsubscribe = function () {
+	        this.subscribed = false;
+	        this.pusher.send_event('pusher:unsubscribe', {
+	            channel: this.name
+	        });
+	    };
+	    Channel.prototype.cancelSubscription = function () {
+	        this.subscriptionCancelled = true;
+	    };
+	    Channel.prototype.reinstateSubscription = function () {
+	        this.subscriptionCancelled = false;
+	    };
+	    return Channel;
+	}(dispatcher_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = Channel;
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var Members = (function () {
+	    function Members() {
+	        this.reset();
+	    }
+	    Members.prototype.get = function (id) {
+	        if (Object.prototype.hasOwnProperty.call(this.members, id)) {
+	            return {
+	                id: id,
+	                info: this.members[id]
+	            };
+	        }
+	        else {
+	            return null;
+	        }
+	    };
+	    Members.prototype.each = function (callback) {
+	        var _this = this;
+	        Collections.objectApply(this.members, function (member, id) {
+	            callback(_this.get(id));
+	        });
+	    };
+	    Members.prototype.setMyID = function (id) {
+	        this.myID = id;
+	    };
+	    Members.prototype.onSubscription = function (subscriptionData) {
+	        this.members = subscriptionData.presence.hash;
+	        this.count = subscriptionData.presence.count;
+	        this.me = this.get(this.myID);
+	    };
+	    Members.prototype.addMember = function (memberData) {
+	        if (this.get(memberData.user_id) === null) {
+	            this.count++;
+	        }
+	        this.members[memberData.user_id] = memberData.user_info;
+	        return this.get(memberData.user_id);
+	    };
+	    Members.prototype.removeMember = function (memberData) {
+	        var member = this.get(memberData.user_id);
+	        if (member) {
+	            delete this.members[memberData.user_id];
+	            this.count--;
+	        }
+	        return member;
+	    };
+	    Members.prototype.reset = function () {
+	        this.members = {};
+	        this.count = 0;
+	        this.myID = null;
+	        this.me = null;
+	    };
+	    return Members;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Members;
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var dispatcher_1 = __webpack_require__(24);
+	var timers_1 = __webpack_require__(12);
+	var logger_1 = __webpack_require__(8);
+	var Collections = __webpack_require__(9);
+	var runtime_1 = __webpack_require__(2);
+	var ConnectionManager = (function (_super) {
+	    __extends(ConnectionManager, _super);
+	    function ConnectionManager(key, options) {
+	        var _this = this;
+	        _super.call(this);
+	        this.key = key;
+	        this.options = options || {};
+	        this.state = "initialized";
+	        this.connection = null;
+	        this.encrypted = !!options.encrypted;
+	        this.timeline = this.options.timeline;
+	        this.connectionCallbacks = this.buildConnectionCallbacks();
+	        this.errorCallbacks = this.buildErrorCallbacks();
+	        this.handshakeCallbacks = this.buildHandshakeCallbacks(this.errorCallbacks);
+	        var Network = runtime_1["default"].getNetwork();
+	        Network.bind("online", function () {
+	            _this.timeline.info({ netinfo: "online" });
+	            if (_this.state === "connecting" || _this.state === "unavailable") {
+	                _this.retryIn(0);
+	            }
+	        });
+	        Network.bind("offline", function () {
+	            _this.timeline.info({ netinfo: "offline" });
+	            if (_this.connection) {
+	                _this.sendActivityCheck();
+	            }
+	        });
+	        this.updateStrategy();
+	    }
+	    ConnectionManager.prototype.connect = function () {
+	        if (this.connection || this.runner) {
+	            return;
+	        }
+	        if (!this.strategy.isSupported()) {
+	            this.updateState("failed");
+	            return;
+	        }
+	        this.updateState("connecting");
+	        this.startConnecting();
+	        this.setUnavailableTimer();
+	    };
+	    ;
+	    ConnectionManager.prototype.send = function (data) {
+	        if (this.connection) {
+	            return this.connection.send(data);
+	        }
+	        else {
+	            return false;
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.send_event = function (name, data, channel) {
+	        if (this.connection) {
+	            return this.connection.send_event(name, data, channel);
+	        }
+	        else {
+	            return false;
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.disconnect = function () {
+	        this.disconnectInternally();
+	        this.updateState("disconnected");
+	    };
+	    ;
+	    ConnectionManager.prototype.isEncrypted = function () {
+	        return this.encrypted;
+	    };
+	    ;
+	    ConnectionManager.prototype.startConnecting = function () {
+	        var _this = this;
+	        var callback = function (error, handshake) {
+	            if (error) {
+	                _this.runner = _this.strategy.connect(0, callback);
+	            }
+	            else {
+	                if (handshake.action === "error") {
+	                    _this.emit("error", { type: "HandshakeError", error: handshake.error });
+	                    _this.timeline.error({ handshakeError: handshake.error });
+	                }
+	                else {
+	                    _this.abortConnecting();
+	                    _this.handshakeCallbacks[handshake.action](handshake);
+	                }
+	            }
+	        };
+	        this.runner = this.strategy.connect(0, callback);
+	    };
+	    ;
+	    ConnectionManager.prototype.abortConnecting = function () {
+	        if (this.runner) {
+	            this.runner.abort();
+	            this.runner = null;
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.disconnectInternally = function () {
+	        this.abortConnecting();
+	        this.clearRetryTimer();
+	        this.clearUnavailableTimer();
+	        if (this.connection) {
+	            var connection = this.abandonConnection();
+	            connection.close();
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.updateStrategy = function () {
+	        this.strategy = this.options.getStrategy({
+	            key: this.key,
+	            timeline: this.timeline,
+	            encrypted: this.encrypted
+	        });
+	    };
+	    ;
+	    ConnectionManager.prototype.retryIn = function (delay) {
+	        var _this = this;
+	        this.timeline.info({ action: "retry", delay: delay });
+	        if (delay > 0) {
+	            this.emit("connecting_in", Math.round(delay / 1000));
+	        }
+	        this.retryTimer = new timers_1.OneOffTimer(delay || 0, function () {
+	            _this.disconnectInternally();
+	            _this.connect();
+	        });
+	    };
+	    ;
+	    ConnectionManager.prototype.clearRetryTimer = function () {
+	        if (this.retryTimer) {
+	            this.retryTimer.ensureAborted();
+	            this.retryTimer = null;
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.setUnavailableTimer = function () {
+	        var _this = this;
+	        this.unavailableTimer = new timers_1.OneOffTimer(this.options.unavailableTimeout, function () {
+	            _this.updateState("unavailable");
+	        });
+	    };
+	    ;
+	    ConnectionManager.prototype.clearUnavailableTimer = function () {
+	        if (this.unavailableTimer) {
+	            this.unavailableTimer.ensureAborted();
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.sendActivityCheck = function () {
+	        var _this = this;
+	        this.stopActivityCheck();
+	        this.connection.ping();
+	        this.activityTimer = new timers_1.OneOffTimer(this.options.pongTimeout, function () {
+	            _this.timeline.error({ pong_timed_out: _this.options.pongTimeout });
+	            _this.retryIn(0);
+	        });
+	    };
+	    ;
+	    ConnectionManager.prototype.resetActivityCheck = function () {
+	        var _this = this;
+	        this.stopActivityCheck();
+	        if (this.connection && !this.connection.handlesActivityChecks()) {
+	            this.activityTimer = new timers_1.OneOffTimer(this.activityTimeout, function () {
+	                _this.sendActivityCheck();
+	            });
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.stopActivityCheck = function () {
+	        if (this.activityTimer) {
+	            this.activityTimer.ensureAborted();
+	        }
+	    };
+	    ;
+	    ConnectionManager.prototype.buildConnectionCallbacks = function () {
+	        var _this = this;
+	        return {
+	            message: function (message) {
+	                _this.resetActivityCheck();
+	                _this.emit('message', message);
+	            },
+	            ping: function () {
+	                _this.send_event('pusher:pong', {});
+	            },
+	            activity: function () {
+	                _this.resetActivityCheck();
+	            },
+	            error: function (error) {
+	                _this.emit("error", { type: "WebSocketError", error: error });
+	            },
+	            closed: function () {
+	                _this.abandonConnection();
+	                if (_this.shouldRetry()) {
+	                    _this.retryIn(1000);
+	                }
+	            }
+	        };
+	    };
+	    ;
+	    ConnectionManager.prototype.buildHandshakeCallbacks = function (errorCallbacks) {
+	        var _this = this;
+	        return Collections.extend({}, errorCallbacks, {
+	            connected: function (handshake) {
+	                _this.activityTimeout = Math.min(_this.options.activityTimeout, handshake.activityTimeout, handshake.connection.activityTimeout || Infinity);
+	                _this.clearUnavailableTimer();
+	                _this.setConnection(handshake.connection);
+	                _this.socket_id = _this.connection.id;
+	                _this.updateState("connected", { socket_id: _this.socket_id });
+	            }
+	        });
+	    };
+	    ;
+	    ConnectionManager.prototype.buildErrorCallbacks = function () {
+	        var _this = this;
+	        var withErrorEmitted = function (callback) {
+	            return function (result) {
+	                if (result.error) {
+	                    _this.emit("error", { type: "WebSocketError", error: result.error });
+	                }
+	                callback(result);
+	            };
+	        };
+	        return {
+	            ssl_only: withErrorEmitted(function () {
+	                _this.encrypted = true;
+	                _this.updateStrategy();
+	                _this.retryIn(0);
+	            }),
+	            refused: withErrorEmitted(function () {
+	                _this.disconnect();
+	            }),
+	            backoff: withErrorEmitted(function () {
+	                _this.retryIn(1000);
+	            }),
+	            retry: withErrorEmitted(function () {
+	                _this.retryIn(0);
+	            })
+	        };
+	    };
+	    ;
+	    ConnectionManager.prototype.setConnection = function (connection) {
+	        this.connection = connection;
+	        for (var event in this.connectionCallbacks) {
+	            this.connection.bind(event, this.connectionCallbacks[event]);
+	        }
+	        this.resetActivityCheck();
+	    };
+	    ;
+	    ConnectionManager.prototype.abandonConnection = function () {
+	        if (!this.connection) {
+	            return;
+	        }
+	        this.stopActivityCheck();
+	        for (var event in this.connectionCallbacks) {
+	            this.connection.unbind(event, this.connectionCallbacks[event]);
+	        }
+	        var connection = this.connection;
+	        this.connection = null;
+	        return connection;
+	    };
+	    ConnectionManager.prototype.updateState = function (newState, data) {
+	        var previousState = this.state;
+	        this.state = newState;
+	        if (previousState !== newState) {
+	            var newStateDescription = newState;
+	            if (newStateDescription === "connected") {
+	                newStateDescription += " with new socket ID " + data.socket_id;
+	            }
+	            logger_1["default"].debug('State changed', previousState + ' -> ' + newStateDescription);
+	            this.timeline.info({ state: newState, params: data });
+	            this.emit('state_change', { previous: previousState, current: newState });
+	            this.emit(newState, data);
+	        }
+	    };
+	    ConnectionManager.prototype.shouldRetry = function () {
+	        return this.state === "connecting" || this.state === "connected";
+	    };
+	    return ConnectionManager;
+	}(dispatcher_1["default"]));
+	exports.__esModule = true;
+	exports["default"] = ConnectionManager;
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var factory_1 = __webpack_require__(43);
+	var Channels = (function () {
+	    function Channels() {
+	        this.channels = {};
+	    }
+	    Channels.prototype.add = function (name, pusher) {
+	        if (!this.channels[name]) {
+	            this.channels[name] = createChannel(name, pusher);
+	        }
+	        return this.channels[name];
+	    };
+	    Channels.prototype.all = function () {
+	        return Collections.values(this.channels);
+	    };
+	    Channels.prototype.find = function (name) {
+	        return this.channels[name];
+	    };
+	    Channels.prototype.remove = function (name) {
+	        var channel = this.channels[name];
+	        delete this.channels[name];
+	        return channel;
+	    };
+	    Channels.prototype.disconnect = function () {
+	        Collections.objectApply(this.channels, function (channel) {
+	            channel.disconnect();
+	        });
+	    };
+	    return Channels;
+	}());
+	exports.__esModule = true;
+	exports["default"] = Channels;
+	function createChannel(name, pusher) {
+	    if (name.indexOf('private-') === 0) {
+	        return factory_1["default"].createPrivateChannel(name, pusher);
+	    }
+	    else if (name.indexOf('presence-') === 0) {
+	        return factory_1["default"].createPresenceChannel(name, pusher);
+	    }
+	    else {
+	        return factory_1["default"].createChannel(name, pusher);
+	    }
+	}
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var factory_1 = __webpack_require__(43);
+	var util_1 = __webpack_require__(11);
+	var Errors = __webpack_require__(31);
+	var Collections = __webpack_require__(9);
+	var TransportStrategy = (function () {
+	    function TransportStrategy(name, priority, transport, options) {
+	        this.name = name;
+	        this.priority = priority;
+	        this.transport = transport;
+	        this.options = options || {};
+	    }
+	    TransportStrategy.prototype.isSupported = function () {
+	        return this.transport.isSupported({
+	            encrypted: this.options.encrypted
+	        });
+	    };
+	    TransportStrategy.prototype.connect = function (minPriority, callback) {
+	        var _this = this;
+	        if (!this.isSupported()) {
+	            return failAttempt(new Errors.UnsupportedStrategy(), callback);
+	        }
+	        else if (this.priority < minPriority) {
+	            return failAttempt(new Errors.TransportPriorityTooLow(), callback);
+	        }
+	        var connected = false;
+	        var transport = this.transport.createConnection(this.name, this.priority, this.options.key, this.options);
+	        var handshake = null;
+	        var onInitialized = function () {
+	            transport.unbind("initialized", onInitialized);
+	            transport.connect();
+	        };
+	        var onOpen = function () {
+	            handshake = factory_1["default"].createHandshake(transport, function (result) {
+	                connected = true;
+	                unbindListeners();
+	                callback(null, result);
+	            });
+	        };
+	        var onError = function (error) {
+	            unbindListeners();
+	            callback(error);
+	        };
+	        var onClosed = function () {
+	            unbindListeners();
+	            var serializedTransport;
+	            serializedTransport = Collections.safeJSONStringify(transport);
+	            callback(new Errors.TransportClosed(serializedTransport));
+	        };
+	        var unbindListeners = function () {
+	            transport.unbind("initialized", onInitialized);
+	            transport.unbind("open", onOpen);
+	            transport.unbind("error", onError);
+	            transport.unbind("closed", onClosed);
+	        };
+	        transport.bind("initialized", onInitialized);
+	        transport.bind("open", onOpen);
+	        transport.bind("error", onError);
+	        transport.bind("closed", onClosed);
+	        transport.initialize();
+	        return {
+	            abort: function () {
+	                if (connected) {
+	                    return;
+	                }
+	                unbindListeners();
+	                if (handshake) {
+	                    handshake.close();
+	                }
+	                else {
+	                    transport.close();
+	                }
+	            },
+	            forceMinPriority: function (p) {
+	                if (connected) {
+	                    return;
+	                }
+	                if (_this.priority < p) {
+	                    if (handshake) {
+	                        handshake.close();
+	                    }
+	                    else {
+	                        transport.close();
+	                    }
+	                }
+	            }
+	        };
+	    };
+	    return TransportStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = TransportStrategy;
+	function failAttempt(error, callback) {
+	    util_1["default"].defer(function () {
+	        callback(error);
+	    });
+	    return {
+	        abort: function () { },
+	        forceMinPriority: function () { }
+	    };
+	}
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var util_1 = __webpack_require__(11);
+	var timers_1 = __webpack_require__(12);
+	var SequentialStrategy = (function () {
+	    function SequentialStrategy(strategies, options) {
+	        this.strategies = strategies;
+	        this.loop = Boolean(options.loop);
+	        this.failFast = Boolean(options.failFast);
+	        this.timeout = options.timeout;
+	        this.timeoutLimit = options.timeoutLimit;
+	    }
+	    SequentialStrategy.prototype.isSupported = function () {
+	        return Collections.any(this.strategies, util_1["default"].method("isSupported"));
+	    };
+	    SequentialStrategy.prototype.connect = function (minPriority, callback) {
+	        var _this = this;
+	        var strategies = this.strategies;
+	        var current = 0;
+	        var timeout = this.timeout;
+	        var runner = null;
+	        var tryNextStrategy = function (error, handshake) {
+	            if (handshake) {
+	                callback(null, handshake);
+	            }
+	            else {
+	                current = current + 1;
+	                if (_this.loop) {
+	                    current = current % strategies.length;
+	                }
+	                if (current < strategies.length) {
+	                    if (timeout) {
+	                        timeout = timeout * 2;
+	                        if (_this.timeoutLimit) {
+	                            timeout = Math.min(timeout, _this.timeoutLimit);
+	                        }
+	                    }
+	                    runner = _this.tryStrategy(strategies[current], minPriority, { timeout: timeout, failFast: _this.failFast }, tryNextStrategy);
+	                }
+	                else {
+	                    callback(true);
+	                }
+	            }
+	        };
+	        runner = this.tryStrategy(strategies[current], minPriority, { timeout: timeout, failFast: this.failFast }, tryNextStrategy);
+	        return {
+	            abort: function () {
+	                runner.abort();
+	            },
+	            forceMinPriority: function (p) {
+	                minPriority = p;
+	                if (runner) {
+	                    runner.forceMinPriority(p);
+	                }
+	            }
+	        };
+	    };
+	    SequentialStrategy.prototype.tryStrategy = function (strategy, minPriority, options, callback) {
+	        var timer = null;
+	        var runner = null;
+	        if (options.timeout > 0) {
+	            timer = new timers_1.OneOffTimer(options.timeout, function () {
+	                runner.abort();
+	                callback(true);
+	            });
+	        }
+	        runner = strategy.connect(minPriority, function (error, handshake) {
+	            if (error && timer && timer.isRunning() && !options.failFast) {
+	                return;
+	            }
+	            if (timer) {
+	                timer.ensureAborted();
+	            }
+	            callback(error, handshake);
+	        });
+	        return {
+	            abort: function () {
+	                if (timer) {
+	                    timer.ensureAborted();
+	                }
+	                runner.abort();
+	            },
+	            forceMinPriority: function (p) {
+	                runner.forceMinPriority(p);
+	            }
+	        };
+	    };
+	    return SequentialStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = SequentialStrategy;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Collections = __webpack_require__(9);
+	var util_1 = __webpack_require__(11);
+	var BestConnectedEverStrategy = (function () {
+	    function BestConnectedEverStrategy(strategies) {
+	        this.strategies = strategies;
+	    }
+	    BestConnectedEverStrategy.prototype.isSupported = function () {
+	        return Collections.any(this.strategies, util_1["default"].method("isSupported"));
+	    };
+	    BestConnectedEverStrategy.prototype.connect = function (minPriority, callback) {
+	        return connect(this.strategies, minPriority, function (i, runners) {
+	            return function (error, handshake) {
+	                runners[i].error = error;
+	                if (error) {
+	                    if (allRunnersFailed(runners)) {
+	                        callback(true);
+	                    }
+	                    return;
+	                }
+	                Collections.apply(runners, function (runner) {
+	                    runner.forceMinPriority(handshake.transport.priority);
+	                });
+	                callback(null, handshake);
+	            };
+	        });
+	    };
+	    return BestConnectedEverStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = BestConnectedEverStrategy;
+	function connect(strategies, minPriority, callbackBuilder) {
+	    var runners = Collections.map(strategies, function (strategy, i, _, rs) {
+	        return strategy.connect(minPriority, callbackBuilder(i, rs));
+	    });
+	    return {
+	        abort: function () {
+	            Collections.apply(runners, abortRunner);
+	        },
+	        forceMinPriority: function (p) {
+	            Collections.apply(runners, function (runner) {
+	                runner.forceMinPriority(p);
+	            });
+	        }
+	    };
+	}
+	function allRunnersFailed(runners) {
+	    return Collections.all(runners, function (runner) {
+	        return Boolean(runner.error);
+	    });
+	}
+	function abortRunner(runner) {
+	    if (!runner.error && !runner.aborted) {
+	        runner.abort();
+	        runner.aborted = true;
+	    }
+	}
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var util_1 = __webpack_require__(11);
+	var runtime_1 = __webpack_require__(2);
+	var sequential_strategy_1 = __webpack_require__(57);
+	var Collections = __webpack_require__(9);
+	var CachedStrategy = (function () {
+	    function CachedStrategy(strategy, transports, options) {
+	        this.strategy = strategy;
+	        this.transports = transports;
+	        this.ttl = options.ttl || 1800 * 1000;
+	        this.encrypted = options.encrypted;
+	        this.timeline = options.timeline;
+	    }
+	    CachedStrategy.prototype.isSupported = function () {
+	        return this.strategy.isSupported();
+	    };
+	    CachedStrategy.prototype.connect = function (minPriority, callback) {
+	        var encrypted = this.encrypted;
+	        var info = fetchTransportCache(encrypted);
+	        var strategies = [this.strategy];
+	        if (info && info.timestamp + this.ttl >= util_1["default"].now()) {
+	            var transport = this.transports[info.transport];
+	            if (transport) {
+	                this.timeline.info({
+	                    cached: true,
+	                    transport: info.transport,
+	                    latency: info.latency
+	                });
+	                strategies.push(new sequential_strategy_1["default"]([transport], {
+	                    timeout: info.latency * 2 + 1000,
+	                    failFast: true
+	                }));
+	            }
+	        }
+	        var startTimestamp = util_1["default"].now();
+	        var runner = strategies.pop().connect(minPriority, function cb(error, handshake) {
+	            if (error) {
+	                flushTransportCache(encrypted);
+	                if (strategies.length > 0) {
+	                    startTimestamp = util_1["default"].now();
+	                    runner = strategies.pop().connect(minPriority, cb);
+	                }
+	                else {
+	                    callback(error);
+	                }
+	            }
+	            else {
+	                storeTransportCache(encrypted, handshake.transport.name, util_1["default"].now() - startTimestamp);
+	                callback(null, handshake);
+	            }
+	        });
+	        return {
+	            abort: function () {
+	                runner.abort();
+	            },
+	            forceMinPriority: function (p) {
+	                minPriority = p;
+	                if (runner) {
+	                    runner.forceMinPriority(p);
+	                }
+	            }
+	        };
+	    };
+	    return CachedStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = CachedStrategy;
+	function getTransportCacheKey(encrypted) {
+	    return "pusherTransport" + (encrypted ? "Encrypted" : "Unencrypted");
+	}
+	function fetchTransportCache(encrypted) {
+	    var storage = runtime_1["default"].getLocalStorage();
+	    if (storage) {
+	        try {
+	            var serializedCache = storage[getTransportCacheKey(encrypted)];
+	            if (serializedCache) {
+	                return JSON.parse(serializedCache);
+	            }
+	        }
+	        catch (e) {
+	            flushTransportCache(encrypted);
+	        }
+	    }
+	    return null;
+	}
+	function storeTransportCache(encrypted, transport, latency) {
+	    var storage = runtime_1["default"].getLocalStorage();
+	    if (storage) {
+	        try {
+	            storage[getTransportCacheKey(encrypted)] = Collections.safeJSONStringify({
+	                timestamp: util_1["default"].now(),
+	                transport: transport,
+	                latency: latency
+	            });
+	        }
+	        catch (e) {
+	        }
+	    }
+	}
+	function flushTransportCache(encrypted) {
+	    var storage = runtime_1["default"].getLocalStorage();
+	    if (storage) {
+	        try {
+	            delete storage[getTransportCacheKey(encrypted)];
+	        }
+	        catch (e) {
+	        }
+	    }
+	}
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var timers_1 = __webpack_require__(12);
+	var DelayedStrategy = (function () {
+	    function DelayedStrategy(strategy, _a) {
+	        var number = _a.delay;
+	        this.strategy = strategy;
+	        this.options = { delay: number };
+	    }
+	    DelayedStrategy.prototype.isSupported = function () {
+	        return this.strategy.isSupported();
+	    };
+	    DelayedStrategy.prototype.connect = function (minPriority, callback) {
+	        var strategy = this.strategy;
+	        var runner;
+	        var timer = new timers_1.OneOffTimer(this.options.delay, function () {
+	            runner = strategy.connect(minPriority, callback);
+	        });
+	        return {
+	            abort: function () {
+	                timer.ensureAborted();
+	                if (runner) {
+	                    runner.abort();
+	                }
+	            },
+	            forceMinPriority: function (p) {
+	                minPriority = p;
+	                if (runner) {
+	                    runner.forceMinPriority(p);
+	                }
+	            }
+	        };
+	    };
+	    return DelayedStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = DelayedStrategy;
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var IfStrategy = (function () {
+	    function IfStrategy(test, trueBranch, falseBranch) {
+	        this.test = test;
+	        this.trueBranch = trueBranch;
+	        this.falseBranch = falseBranch;
+	    }
+	    IfStrategy.prototype.isSupported = function () {
+	        var branch = this.test() ? this.trueBranch : this.falseBranch;
+	        return branch.isSupported();
+	    };
+	    IfStrategy.prototype.connect = function (minPriority, callback) {
+	        var branch = this.test() ? this.trueBranch : this.falseBranch;
+	        return branch.connect(minPriority, callback);
+	    };
+	    return IfStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = IfStrategy;
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var FirstConnectedStrategy = (function () {
+	    function FirstConnectedStrategy(strategy) {
+	        this.strategy = strategy;
+	    }
+	    FirstConnectedStrategy.prototype.isSupported = function () {
+	        return this.strategy.isSupported();
+	    };
+	    FirstConnectedStrategy.prototype.connect = function (minPriority, callback) {
+	        var runner = this.strategy.connect(minPriority, function (error, handshake) {
+	            if (handshake) {
+	                runner.abort();
+	            }
+	            callback(error, handshake);
+	        });
+	        return runner;
+	    };
+	    return FirstConnectedStrategy;
+	}());
+	exports.__esModule = true;
+	exports["default"] = FirstConnectedStrategy;
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var defaults_1 = __webpack_require__(5);
+	exports.getGlobalConfig = function () {
+	    return {
+	        wsHost: defaults_1["default"].host,
+	        wsPort: defaults_1["default"].ws_port,
+	        wssPort: defaults_1["default"].wss_port,
+	        wsPath: defaults_1["default"].ws_path,
+	        httpHost: defaults_1["default"].sockjs_host,
+	        httpPort: defaults_1["default"].sockjs_http_port,
+	        httpsPort: defaults_1["default"].sockjs_https_port,
+	        httpPath: defaults_1["default"].sockjs_path,
+	        statsHost: defaults_1["default"].stats_host,
+	        authEndpoint: defaults_1["default"].channel_auth_endpoint,
+	        authTransport: defaults_1["default"].channel_auth_transport,
+	        activity_timeout: defaults_1["default"].activity_timeout,
+	        pong_timeout: defaults_1["default"].pong_timeout,
+	        unavailable_timeout: defaults_1["default"].unavailable_timeout
+	    };
+	};
+	exports.getClusterConfig = function (clusterName) {
+	    return {
+	        wsHost: "ws-" + clusterName + ".pusher.com",
+	        httpHost: "sockjs-" + clusterName + ".pusher.com"
+	    };
+	};
+
+
+/***/ })
+/******/ ])
+});
+;
+
+/***/ }),
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(142)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(144)
+var __vue_script__ = __webpack_require__(154)
 /* template */
-var __vue_template__ = __webpack_require__(145)
+var __vue_template__ = __webpack_require__(155)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -55411,7 +63104,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\SellerRequest.vue"
+Component.options.__file = "resources\\assets\\js\\components\\SellerNotifications.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -55420,9 +63113,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c6ee829", Component.options)
+    hotAPI.createRecord("data-v-39c44c82", Component.options)
   } else {
-    hotAPI.reload("data-v-6c6ee829", Component.options)
+    hotAPI.reload("data-v-39c44c82", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55433,47 +63126,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 142 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(143);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(6)("3187e48d", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 143 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 144 */
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55488,6 +63141,161 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	mounted: function mounted() {
+
+		this.listen();
+	},
+
+
+	props: ['id'],
+
+	methods: {
+		listen: function listen() {
+			var _this = this;
+
+			Echo.private('App.User.' + this.id).notification(function (notification) {
+				if (notification.status == 0) {
+					return;
+				}
+				_this.getBuyerPendingTransactions();
+				_this.getBuyerActiveTransactions();
+				_this.getSellerActiveTransactions();
+				_this.getBuyerChats();
+				_this.getSellerChats();
+
+				document.getElementById('noty_audio').play();
+			});
+		},
+		getBuyerPendingTransactions: function getBuyerPendingTransactions() {
+			var _this2 = this;
+
+			axios.get('/get/pending/transactions').then(function (response) {
+
+				response.data.forEach(function (transactions) {
+					_this2.$store.commit('add_pending_transactions', transactions);
+				});
+			});
+		},
+		getBuyerActiveTransactions: function getBuyerActiveTransactions() {
+			var _this3 = this;
+
+			axios.get('/get/buyer/active/transactions').then(function (response) {
+
+				response.data.forEach(function (transactions) {
+					_this3.$store.commit('add_buyer_active_transactions', transactions);
+				});
+			});
+		},
+		getSellerActiveTransactions: function getSellerActiveTransactions() {
+			var _this4 = this;
+
+			axios.get('/get/seller/active/transactions').then(function (response) {
+
+				response.data.forEach(function (transactions) {
+					_this4.$store.commit('add_seller_active_transactions', transactions);
+				});
+			});
+		},
+		getBuyerChats: function getBuyerChats() {
+			var _this5 = this;
+
+			axios.get('/get/buyer/chats').then(function (response) {
+
+				response.data.forEach(function (chat) {
+					_this5.$store.commit('add_buyer_chats', chat);
+				});
+			});
+		},
+		getSellerChats: function getSellerChats() {
+			var _this6 = this;
+
+			axios.get('/get/seller/chats').then(function (response) {
+
+				response.data.forEach(function (chat) {
+					_this6.$store.commit('add_seller_chats', chat);
+				});
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-39c44c82", module.exports)
+  }
+}
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(157)
+/* template */
+var __vue_template__ = __webpack_require__(158)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BuyerLoader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-14fc46ff", Component.options)
+  } else {
+    hotAPI.reload("data-v-14fc46ff", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 157 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -55497,48 +63305,121 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+
+    this.reload();
+
+    this.removeLoader();
+  },
+
+
+  methods: {
+    reload: function reload() {
+      setInterval(refresh, 1800000);
+      function refresh() {
+        window.location = "/";
+      }
+    },
+    removeLoader: function removeLoader() {
+
+      setTimeout(remove, 4000);
+
+      function remove() {
+        var loader = document.getElementById('loader');
+        loader.classList.add('hidden');
+      }
+    }
+  }
+
+});
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("audio", {
+        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-14fc46ff", module.exports)
+  }
+}
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(160)
+/* template */
+var __vue_template__ = __webpack_require__(161)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\buyerNotifications.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5988cb0c", Component.options)
+  } else {
+    hotAPI.reload("data-v-5988cb0c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 160 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -55552,386 +63433,100 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'buyer', 'shop'],
-
-	data: function data() {
-
-		return {
-
-			buyerDetails: [],
-			trackedTransactions: [],
-			total: 0,
-			cancelled: false,
-			accepted: false,
-			delivery: 0,
-			totalAndDelivery: ''
-
-		};
-	},
 	mounted: function mounted() {
 
-		this.getbuyerDetails();
-		this.getTrackedTransactions();
+		this.listen();
 	},
 
 
-	watch: {
-		delivery: function delivery() {
-
-			this.totalAndDelivery = this.total + this.delivery;
-		}
-	},
+	props: ['id'],
 
 	methods: {
-		acceptRequest: function acceptRequest() {
-			this.accepted = true;
-			axios.get('/accept/transaction/' + this.id + '/' + this.delivery).then(function (response) {});
-		},
-		getbuyerDetails: function getbuyerDetails() {
+		listen: function listen() {
 			var _this = this;
 
-			axios.get('/get/user/details/' + this.buyer).then(function (response) {
+			Echo.private('App.User.' + this.id).notification(function (notification) {
 
-				_this.buyerDetails.push(response.data);
+				_this.getBuyerPendingTransactions();
+				_this.getBuyerActiveTransactions();
+				_this.getSellerActiveTransactions();
+				_this.getBuyerChats();
+				_this.getSellerChats();
+
+				document.getElementById('noty_audio').play();
 			});
 		},
-		getTrackedTransactions: function getTrackedTransactions() {
+		getBuyerPendingTransactions: function getBuyerPendingTransactions() {
 			var _this2 = this;
 
-			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
-				response.data.forEach(function (tracked) {
-					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
-						_this2.trackedTransactions.push(tracked);
-						_this2.total = _this2.total + tracked.price.price * tracked.quantity;
-					}
+			axios.get('/get/pending/transactions').then(function (response) {
+
+				response.data.forEach(function (transactions) {
+					_this2.$store.commit('add_pending_transactions', transactions);
 				});
-				_this2.totalAndDelivery = _this2.total;
-				if (_this2.total == 0) {
-
-					_this2.cancelTransaction();
-				}
 			});
 		},
-		cancelTransaction: function cancelTransaction() {
-			this.cancelled = true;
-			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
-		},
-		delTransaction: function delTransaction(id, amount) {
+		getBuyerActiveTransactions: function getBuyerActiveTransactions() {
+			var _this3 = this;
 
-			var transaction = this.trackedTransactions.find(function (t) {
-				return t.id === id;
+			axios.get('/get/buyer/active/transactions').then(function (response) {
+
+				response.data.forEach(function (transactions) {
+					_this3.$store.commit('add_buyer_active_transactions', transactions);
+				});
 			});
+		},
+		getSellerActiveTransactions: function getSellerActiveTransactions() {
+			var _this4 = this;
 
-			var index = this.trackedTransactions.indexOf(transaction);
+			axios.get('/get/seller/active/transactions').then(function (response) {
 
-			this.trackedTransactions.splice(index, 1);
+				response.data.forEach(function (transactions) {
+					_this4.$store.commit('add_seller_active_transactions', transactions);
+				});
+			});
+		},
+		getBuyerChats: function getBuyerChats() {
+			var _this5 = this;
 
-			if (this.total > 0) {
-				this.total = this.total - amount;
-			}
+			axios.get('/get/buyer/chats').then(function (response) {
 
-			if (this.total == 0) {
+				response.data.forEach(function (chat) {
+					_this5.$store.commit('add_buyer_chats', chat);
+				});
+			});
+		},
+		getSellerChats: function getSellerChats() {
+			var _this6 = this;
 
-				this.cancelTransaction();
-			}
+			axios.get('/get/seller/chats').then(function (response) {
 
-			axios.get('/delete/transaction/' + id).then(function (response) {});
+				response.data.forEach(function (chat) {
+					_this6.$store.commit('add_seller_chats', chat);
+				});
+			});
 		}
 	}
+
 });
 
 /***/ }),
-/* 145 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.buyerDetails.length > 0
-    ? _c("div", { staticClass: "transactions" }, [
-        _c("div", { staticClass: "seller-details" }, [
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("img", {
-              staticClass: "owner-avatar",
-              staticStyle: { "border-radius": "50%", margin: "10px" },
-              attrs: {
-                width: "50px",
-                height: "50px",
-                src: _vm.buyerDetails[0].avatar
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
-              [
-                _c("span", { staticClass: "user-name" }, [
-                  _vm._v(
-                    _vm._s(_vm.buyerDetails[0].fname) +
-                      " " +
-                      _vm._s(_vm.buyerDetails[0].lname)
-                  )
-                ]),
-                _vm._v(" as Buyer "),
-                _c("span", { staticClass: "unread" }, [_vm._v("100")]),
-                _c("div", { staticClass: "start-chat-button" }, [
-                  _vm._v("Chat")
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-              _vm._v(" " + _vm._s(_vm.buyerDetails[0].profile.location))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { height: "150px", "overflow-y": "auto" } },
-            _vm._l(_vm.trackedTransactions, function(transaction) {
-              return _c("span", [
-                _c("img", {
-                  staticClass: "product-avatar",
-                  staticStyle: { "border-radius": "5px", margin: "10px" },
-                  attrs: {
-                    width: "50px",
-                    height: "50px",
-                    src: transaction.price.product.image
-                  }
-                }),
-                _vm._v(" "),
-                transaction.quantity == 1
-                  ? _c("span", [
-                      _c("span", { staticClass: "pending-product-name" }, [
-                        _vm._v(
-                          _vm._s(transaction.price.product.name) +
-                            "(" +
-                            _vm._s(
-                              "N" +
-                                transaction.price.price +
-                                "x" +
-                                transaction.quantity +
-                                transaction.price.unit
-                            ) +
-                            ") "
-                        ),
-                        _vm.cancelled == false && _vm.accepted == false
-                          ? _c(
-                              "span",
-                              {
-                                staticStyle: {
-                                  color: "red",
-                                  cursor: "pointer"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.delTransaction(
-                                      transaction.id,
-                                      transaction.price.price *
-                                        transaction.quantity
-                                    )
-                                  }
-                                }
-                              },
-                              [_vm._v("remove")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _c("br")
-                    ])
-                  : _c("span", [
-                      _c("span", { staticClass: "pending-product-name" }, [
-                        _vm._v(
-                          _vm._s(transaction.price.product.name) +
-                            "(" +
-                            _vm._s(
-                              "N" +
-                                transaction.price.price +
-                                "x" +
-                                transaction.quantity +
-                                transaction.price.unit +
-                                "s"
-                            ) +
-                            ") "
-                        ),
-                        _vm.cancelled == false && _vm.accepted == false
-                          ? _c(
-                              "span",
-                              {
-                                staticStyle: {
-                                  color: "red",
-                                  cursor: "pointer"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.delTransaction(
-                                      transaction.id,
-                                      transaction.price.price *
-                                        transaction.quantity
-                                    )
-                                  }
-                                }
-                              },
-                              [_vm._v("remove")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _c("br")
-                    ])
-              ])
-            })
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "hr" }),
-        _vm._v(" "),
-        _c("div", { staticStyle: { height: "150px", "overflow-y": "auto" } }, [
-          _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-            _vm._v("N " + _vm._s(_vm.total) + " "),
-            _c("br"),
-            _vm._v(" Delivery Fee(N): "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.delivery,
-                  expression: "delivery"
-                }
-              ],
-              staticStyle: { width: "80px" },
-              attrs: { type: "number", value: "0" },
-              domProps: { value: _vm.delivery },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.delivery = $event.target.value
-                }
-              }
-            }),
-            _c("br"),
-            _vm._v("Total + Delivery = N " + _vm._s(_vm.totalAndDelivery))
-          ]),
-          _vm._v(" "),
-          _vm.cancelled == false && _vm.accepted == false
-            ? _c("span", [
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#fff",
-                      background: "green",
-                      "font-weight": "bold"
-                    },
-                    on: { click: _vm.acceptRequest }
-                  },
-                  [_vm._v("Accept")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#000",
-                      background: "yellow",
-                      "font-weight": "bold"
-                    }
-                  },
-                  [_vm._v("Finish")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#fff",
-                      background: "red",
-                      "font-weight": "bold"
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.cancelTransaction()
-                      }
-                    }
-                  },
-                  [_vm._v("Decline")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#fff",
-                      background: "black",
-                      "font-weight": "bold"
-                    }
-                  },
-                  [_vm._v("Report")]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.cancelled
-            ? _c(
-                "span",
-                { staticStyle: { color: "red", "margin-left": "10px" } },
-                [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.accepted
-            ? _c(
-                "span",
-                { staticStyle: { color: "green", "margin-left": "10px" } },
-                [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
-              )
-            : _vm._e()
-        ])
-      ])
-    : _vm._e()
+  return _c("div")
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Modify Request")
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6c6ee829", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5988cb0c", module.exports)
   }
 }
 

@@ -90,7 +90,7 @@ checkAuth() {
 	axios.get('/check/auth').then(response=>{
 		
 		if(response.data==0) {
-		window.location= '/login/seller/login'
+		window.location= '/login'
 		return
 		} 
 		

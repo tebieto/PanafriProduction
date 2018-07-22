@@ -44,7 +44,7 @@ class ShopController extends Controller
 		
 	}
 	
-	public function requestTransaction($tracker) 
+	public function requestTransaction($tracker, $location, $seller) 
 	
 	{
 		
@@ -52,14 +52,20 @@ class ShopController extends Controller
 	  ->update([
 			
 			'status' => 2,
+			'location' => $location,
 			
 		]);	
 		
-		
+	User::find($seller)->notify(new \App\Notifications\NewRequest(Auth::user()));		
 		
 	}
 	
-	public function acceptTransaction($tracker, $delivery) 
+	
+	
+	
+	
+	
+	public function acceptTransaction($tracker, $delivery, $buyer) 
 	
 	{
 		
@@ -72,9 +78,26 @@ class ShopController extends Controller
 			
 		]);	
 		
-		
+		User::find($buyer)->notify(new \App\Notifications\NewAvailable(Auth::user()));	
 		
 	}
+	
+	public function buyerAcceptTransaction($tracker, $seller) 
+	
+	{
+		
+	 $tracker = Tracker::where('id', $tracker)->first()
+	  ->update([
+			
+			'buyer_status' => 1
+			
+			
+		]);	
+		
+	User::find($seller)->notify(new \App\Notifications\NewAccept(Auth::user()));	
+		
+	}
+	
 	
 	public function cancelTransaction($tracker) 
 	
@@ -84,6 +107,22 @@ class ShopController extends Controller
 	  ->update([
 			
 			'status' => 3,
+			
+		]);	
+		
+		
+		
+	}
+	
+	
+	public function finishTransaction($tracker) 
+	
+	{
+		
+	 $tracker = Tracker::where('id', $tracker)->first()
+	  ->update([
+			
+			'status' => 6,
 			
 		]);	
 		
@@ -133,7 +172,7 @@ class ShopController extends Controller
 	public function allShops($start)
     {
 		
-	$shops = Store::where('online', 1)->orderBy('created_at', 'DESC')->skip($start)->take(1)->get();
+	$shops = Store::where('online', 1)->orderBy('created_at', 'DESC')->skip($start)->take(5)->get();
 	$all = array();
 	
 	 foreach ($shops as $shop):
@@ -204,12 +243,111 @@ public function pendingTrackers()
 	}
 	
 	
+public function buyerActiveTrackers()
+    {
+	
+	$all = array();
+	
+	$trackers = Tracker::where('status', 2)->where('buyer_id', auth::id())->where('seller_status', 1)->where('buyer_status', 0)->orderBy('created_at', 'DESC')->get();
+	
+	
+	 foreach ($trackers as $tracker):
+	 $transactions = Transaction::where('tracker_id', $tracker->id)->first(); 
+		 if(!empty($transactions)){
+			
+		 array_push($all, $tracker);
+		 
+		 }
+		 
+		 
+
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+	}
+	
+	
+public function buyerChatTrackers()
+    {
+	
+	$all = array();
+	
+	$trackers = Tracker::where('status', 2)->where('buyer_id', auth::id())->where('seller_status', 1)->where('buyer_status', 1)->orderBy('created_at', 'DESC')->get();
+	
+	
+	 foreach ($trackers as $tracker):
+	 $transactions = Transaction::where('tracker_id', $tracker->id)->first(); 
+		 if(!empty($transactions)){
+			
+		 array_push($all, $tracker);
+		 
+		 }
+		 
+		 
+
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+}
+
+public function recentBuyerChat($buyer, $tracker)
+    {
+	
+	$chat = Chat::where('tracker_id', $tracker)->where('sender_id', auth::id())->orderBy('created_at', 'DESC')->first();
+	
+	return $chat;	
+		
+}
+
+public function recentSellerChat($seller, $tracker)
+    {
+	
+	$chat = Chat::where('tracker_id', $tracker)->where('sender_id', auth::id())->orderBy('created_at', 'DESC')->first();
+	
+	return $chat;	
+		
+}
+
+
+public function sellerChatTrackers()
+    {
+	
+	$all = array();
+	
+	$trackers = Tracker::where('status', 2)->where('seller_id', auth::id())->where('seller_status', 1)->where('buyer_status', 1)->orderBy('created_at', 'DESC')->get();
+	
+	
+	 foreach ($trackers as $tracker):
+	 $transactions = Transaction::where('tracker_id', $tracker->id)->first(); 
+		 if(!empty($transactions)){
+			
+		 array_push($all, $tracker);
+		 
+		 }
+		 
+		 
+
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+}
+	
+	
 public function requestTrackers()
     {
 	
 	$all = array();
 	
-	$trackers = Tracker::where('status', 2)->where('seller_id', auth::id())->where('seller_status', 0)->orderBy('created_at', 'DESC')->get();
+	$trackers = Tracker::where('status', 2)->where('seller_id', auth::id())->where('seller_status', 0)->where('buyer_status', 0)->orderBy('created_at', 'DESC')->get();
 	
 	
 	 foreach ($trackers as $tracker):
@@ -251,6 +389,94 @@ public function pendingTransactions()
 	
 		
 	}
+	
+public function buyerActiveTransactions()
+    {
+	
+	$all = array();
+	$trackers = Tracker::where('status', 2)->where('seller_status', 1)->where('buyer_status', 0)->where('buyer_id', auth::id())->get();
+	
+	
+	 foreach ($trackers as $tracker):
+		 
+		 $transactions = Transaction::where('tracker_id', $tracker->id)->get();
+		
+		foreach ($transactions as $transaction):
+		 
+		 array_push($all, $transaction); 
+		 
+		endforeach;
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+	}
+	
+	public function sellerActiveTransactions()
+    {
+	
+	$all = array();
+	$trackers = Tracker::where('status', 2)->where('seller_status', 0)->where('buyer_status', 0)->where('seller_id', auth::id())->get();
+	
+	
+	 foreach ($trackers as $tracker):
+		 
+		 $transactions = Transaction::where('tracker_id', $tracker->id)->get();
+		
+		foreach ($transactions as $transaction):
+		 
+		 array_push($all, $transaction); 
+		 
+		endforeach;
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+	}
+	
+	
+public function buyerChats()
+    {
+	
+	$all = array();
+	$trackers = Tracker::where('status', 2)->where('seller_status', 1)->where('buyer_status', 1)->where('buyer_id', auth::id())->get();
+	
+	
+	 foreach ($trackers as $tracker):
+		
+		 
+		 array_push($all, $tracker); 
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+	}
+	
+	public function sellerChats()
+    {
+	
+	$all = array();
+	$trackers = Tracker::where('status', 2)->where('seller_status', 1)->where('buyer_status', 1)->where('seller_id', auth::id())->get();
+	
+	
+	 foreach ($trackers as $tracker):
+		
+		 
+		 array_push($all, $tracker); 
+		
+	 endforeach;
+	
+	return $all;
+	
+		
+	}
+	
 	
 	
 public function shopOwner($id)
@@ -342,6 +568,69 @@ public function shopOwner($id)
 	
 		
 	}
+	
+
+public function sendSellerChat(Request $request) {
+	
+	$tracker = Tracker::where('id', $request->tracker)->first();
+	
+	if (($tracker->seller_id == auth::id())) {
+		
+		 $chat = Chat::create([
+			
+			'sender_id' => auth::id(),
+			'receiver_id' => $request->receiver,
+			'tracker_id' => $request->tracker,
+			'body' => $request->body,
+			'status' => 1,
+		]);
+		
+		User::find($request->receiver)->notify(new \App\Notifications\NewSellerMessage(Auth::user()));
+		
+		return 1;
+		
+	} else {
+		
+		return 0;
+		
+		
+		
+	}
+	
+	
+}
+	
+public function sendBuyerChat(Request $request) {
+	
+	$tracker = Tracker::where('id', $request->tracker)->first();
+	
+	if (($tracker->buyer_id == auth::id())) {
+		
+		 $chat = Chat::create([
+			
+			'sender_id' => auth::id(),
+			'receiver_id' => $request->receiver,
+			'tracker_id' => $request->tracker,
+			'body' => $request->body,
+			'status' => 0,
+		]);
+		
+		User::find($request->receiver)->notify(new \App\Notifications\NewMessage(Auth::user()));
+		
+		return 1;
+		
+	} else {
+		
+		return 0;
+		
+		
+		
+	}
+	
+	
+}
+		
+	
 	
 	
 }

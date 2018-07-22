@@ -60,6 +60,7 @@ class ComposerStaticInitdfb07fd8f6d9711b0f7c4a59a974bb80
         ),
         'P' => 
         array (
+            'Pusher\\' => 7,
             'Psy\\' => 4,
             'Psr\\Log\\' => 8,
             'PhpParser\\' => 10,
@@ -181,6 +182,10 @@ class ComposerStaticInitdfb07fd8f6d9711b0f7c4a59a974bb80
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
+        ),
+        'Pusher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pusher/pusher-php-server/src',
         ),
         'Psy\\' => 
         array (
@@ -328,6 +333,11 @@ class ComposerStaticInitdfb07fd8f6d9711b0f7c4a59a974bb80
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Location' => __DIR__ . '/../..' . '/app/Location.php',
+        'App\\Notifications\\NewAccept' => __DIR__ . '/../..' . '/app/Notifications/NewAccept.php',
+        'App\\Notifications\\NewAvailable' => __DIR__ . '/../..' . '/app/Notifications/NewAvailable.php',
+        'App\\Notifications\\NewMessage' => __DIR__ . '/../..' . '/app/Notifications/NewMessage.php',
+        'App\\Notifications\\NewRequest' => __DIR__ . '/../..' . '/app/Notifications/NewRequest.php',
+        'App\\Notifications\\NewSellerMessage' => __DIR__ . '/../..' . '/app/Notifications/NewSellerMessage.php',
         'App\\Price' => __DIR__ . '/../..' . '/app/Price.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -351,7 +361,9 @@ class ComposerStaticInitdfb07fd8f6d9711b0f7c4a59a974bb80
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_06_21_212702_create_categories_table.php',
         'CreateChatsTable' => __DIR__ . '/../..' . '/database/migrations/2018_06_24_232530_create_chats_table.php',
+        'CreateJobsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_21_070813_create_jobs_table.php',
         'CreateLocationsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_03_085502_create_locations_table.php',
+        'CreateNotificationsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_20_204734_create_notifications_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePricesTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_06_003507_create_prices_table.php',
         'CreateProductsTable' => __DIR__ . '/../..' . '/database/migrations/2018_06_22_000211_create_products_table.php',
@@ -2650,6 +2662,10 @@ class ComposerStaticInitdfb07fd8f6d9711b0f7c4a59a974bb80
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/Psy/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/Psy/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/Psy/VersionUpdater/NoopChecker.php',
+        'Pusher\\Pusher' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Pusher.php',
+        'Pusher\\PusherException' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherException.php',
+        'Pusher\\PusherInstance' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherInstance.php',
+        'Pusher\\Webhook' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Webhook.php',
         'Ramsey\\Uuid\\BinaryUtils' => __DIR__ . '/..' . '/ramsey/uuid/src/BinaryUtils.php',
         'Ramsey\\Uuid\\Builder\\DefaultUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DefaultUuidBuilder.php',
         'Ramsey\\Uuid\\Builder\\DegradedUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DegradedUuidBuilder.php',

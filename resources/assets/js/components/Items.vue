@@ -11,19 +11,25 @@
 		
 		<div class="item-price-menu">
 		<span style="margin:20px; color: red;" v-if="this.online==0">This item is offline</span>
-		<table v-else>
+		
+		<span v-else>
+		<table >
 		<tr>
-		<span>
 		<td><b>Price(N)</b></td> <td><b>Unit</b></td> <td><b>Quantity</b></td><td><b>Request</b></td>
-		</span>
 		</tr>
 		
-		<tr v-for="price in itemPrices">
-		<buy-item :price="price.price" :id="price.id" :product="price.product_id" :unit="price.unit"></buy-item>
+		<tr class="invisible">
+		<td></td> <td></td> <td> <input type="number" style="width:50px"/> </td><td><button>Add</button></td>
 		</tr>
-		
+	
 		</table>
 		
+		<table  style="position:relative; top: -50px;">
+		<span v-for="price in itemPrices">
+		<buy-item :price="price.price" :id="price.id" :product="price.product_id" :unit="price.unit"></buy-item>
+		</span>
+		</table>
+		</span>
 		</div>
 		
 		</div>

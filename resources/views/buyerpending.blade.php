@@ -12,9 +12,18 @@
 
 <!--Begin Container class DIV-->
       
-<div id="app" class="container">
+<div id="app" class="container" v-cloak>
 
+<div id="loader" class="loader">
+
+			
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Connect</span>
+	 
+	 <buyer-loader></buyer-loader>
 	
+</div>	
+
+ <buyer-not :id="{{auth::id()}}"></buyer-not>
 	<!--Begin header class DIV-->
 	
 	 <div  class="header">
@@ -107,18 +116,7 @@
 			
 			
 			<!--Begin welcome-search class DIV-->
-			<center>
-			<div  class="welcome-search" @click="">
 			
-			
-			<div class="fake-search-input">
-			
-			<span>Search Anything...Request Everything!</span>
-			
-			</div>
-			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
-			
-			</center>
 			
 			<!--End of welcome-search class DIV-->
 			
@@ -142,7 +140,7 @@
 		<div class="main-categories">
 		
 		<div class="category-title">
-		<h3> Transactions . Pending <a class="learn-more" style="color:blue;">Active</a> <a class="learn-more" style="color:blue;">Completed</a> 	
+		<h3> Transactions . Pending <a class="learn-more" style="color:blue;" @click="transactionsUrl()">Active</a> <a class="learn-more" style="color:blue;">Completed</a> 	
 		</div>
 		
 		<div class="suggestions">
@@ -182,7 +180,16 @@
 		<img class="transaction-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/transactions.png')}}"/>
 		
 		</div>
-		<span class="transaction-count">100</span>
+		<span class="transaction-count">@{{buyerActiveTrans.length}}</span>
+		</div>
+		
+		<div class="pending-transaction-chat-button" @click="transactionsChatUrl()">
+		<div>
+		
+		<img class="transaction-chat-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/chat.png')}}"/>
+		
+		</div>
+		<span class="transaction-chat-count">@{{buyerChats.length}}</span>
 		</div>
 		
 		@endif

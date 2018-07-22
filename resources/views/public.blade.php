@@ -15,7 +15,16 @@
       
 	<div id="app" class="container">
 
+		
+	<div id="loader" class="loader">
+
+			
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Connect</span>
+	 
+	 <buyer-loader></buyer-loader>
+	 
 	
+</div>
 	<!--Begin header class DIV-->
 	
 	 <div  class="header">
@@ -71,10 +80,10 @@
 				<a id="delivery-link" >Start Freelance Delivery</a>
 				</li>
 				-->
-				<li @click="welcomeLoginModal()">
+				<li @click="publicLoginUrl()">
 				<a id="login-link" >Login</a>
 				</li>
-				<li @click="welcomeRegisterModal()">
+				<li @click="publicRegisterUrl()">
 				<a id="register-link" >Register</a>
 				</li>
 			</div>
@@ -85,23 +94,31 @@
 			
 			<!--Begin welcome-search class DIV-->
 			<center>
-			<div  class="welcome-search" @click="">
+			<div  id="fake-search" class="welcome-search" @click="showMainSearch">
 			
 			
 			<div class="fake-search-input">
 			
-			<span>Search Anything...Request Everything!</span>
+			<span>Find goods, services and stores</span>
 			
 			</div>
-			
 			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
 			</center>
+			<center>
+			<div id="main-search"  class="panafri-main-search hidden">
 			
-			<!--End of welcome-search class DIV-->
+			<input  type="text" @keyup="clearSearch" placeholder="Product or Store" autofocus v-model="productAndStoreQuery"><input type="text" placeholder="Location" @keyup="clearSearch" v-model="locationQuery">
 			
+			<img @click="getSearchQuery" class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
 			</div>
+			<span id="noResult" class="hidden"><span v-if="noResult==true && storesFound.length==0"  style="color:#fff; font-weight:bold; position: relative; top:10px;">No data found...</span></span>
+			</center>
+			<!--End of welcome-search class DIV-->
+			
+			</div>
+			
 			
 			<!--End of hidden class div-->
 			
@@ -113,21 +130,47 @@
 		
 		<!--Begin content-body class div-->
 		
-		<div id="content-body" class="content-body">
+		<div id="content-body" class="content-body" v-cloak>
 		
 		
 		<!--Begin main-categories class div-->
 		<div class="main-categories">
-		
+		<!--If there is search result-->
+		<span id="searchResult" class="hidden">
+		<span v-if="storesFound.length>0 && productAndStoreQuery.length>0">
 		<div class="category-title">
-		<h3> Online Shops . Everywhere <a class="learn-more" style="color:blue;">Edit</a> </h3>		
+		<h3> @{{productAndStoreQuery}} <span v-if="locationQuery.length>0">in @{{locationQuery}}</span><span v-if="locationQuery==0">Everywhere</span></h3>		
 		</div>
 		
 		<div class="suggestions">
-		<span v-for="shop in allShops" >
+		<span v-for="shop in storesFound" >
 		<store  :id="shop.id" :location="shop.location_id" :name="shop.name" :owner="shop.seller.id"></store>
 		</span>
 		</div>
+		</span>
+		</span>
+		
+		<!-- If there is no search result show 
+				online stores-->
+				
+		<span v-if="storesFound.length==0">
+		<div class="category-title">
+		<h3> Online Shops . <span id="everyWhere">@{{place}} <a class="learn-more" style="color:green;" @click="changeLocation">Change</a></span>  <span id="enterLocation" class="hidden"><input type="text" placeholder="Enter location" style="border:none; font-weight:bold; padding:5px;" v-model="place" autofocus ><button style="background:green; color:#fff; border:none; border-radius: 2px; margin:5px; " @click="queryLocation">Ok</button></span> </h3>		
+		</div>
+		
+		<div class="suggestions">
+		<span v-if="onlineShops.length==0 && place=='Everywhere'">
+		<span v-for="store in allShops" >
+		<store  :id="store.id" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
+		</span>
+		</span>
+		<span  v-else>
+		<span v-for="store in onlineShops" >
+		<store  :id="store.id" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
+		</span>
+		</span>
+		</div>
+		</span>
 		
 		</div>
 		
@@ -139,9 +182,9 @@
 		<!--End of content-body class div-->
 		
 		<!--Begin transaction class button div-->
+		
 		@if (auth::check())
 		<div class="pending-transaction-button" @click="pendingUrl()">
-		
 		<div>
 		
 		<img class="pending-transaction-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/cart.png')}}"/>
@@ -158,7 +201,16 @@
 		<img class="transaction-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/transactions.png')}}"/>
 		
 		</div>
-		<span class="transaction-count">100</span>
+		<span class="transaction-count">@{{buyerActiveTrans.length}}</span>
+		</div>
+		
+		<div class="transaction-chat-button" @click="transactionsChatUrl()">
+		<div>
+		
+		<img class="transaction-chat-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/chat.png')}}"/>
+		
+		</div>
+		<span class="transaction-chat-count">@{{buyerChats.length}}</span>
 		</div>
 		
 		@endif

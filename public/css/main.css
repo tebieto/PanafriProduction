@@ -2,7 +2,35 @@ body {
 width:100%;
 }
 
-.pending-transaction-avatar{
+
+.pending-product-name {
+max-width: 10px;
+	
+}
+
+
+.item-price-menu td{
+	
+min-width:50px;	
+max-width:50px;
+padding:10px;
+	
+}
+
+.item-price-menu td button{
+	
+border:none;
+border-radius: 5px;
+padding:5px;
+	
+}
+.invisible {
+
+visibility: hidden;
+	
+}
+
+.pending-transaction-avatar, .transaction-chat-avatar{
 	
 margin-left: 8px;
 margin-top:10px;	
@@ -21,7 +49,7 @@ border-radius: 10px 0px 0px 10px;
 .inactive-transactions {
 
 	
-height: 500px;	
+height: 530px;	
 	
 }
 .user-name {
@@ -54,7 +82,7 @@ margin-top: 5px;
 	
 }
 
-.transaction-button, .pending-transaction-button{
+.transaction-button,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
 
 position: fixed;
 top: 400px;
@@ -70,24 +98,125 @@ cursor:pointer;
 
 .pending-transaction-button{
 top: 330px;
-color: #000;
+color: #fff;
 font-weight: bold;
 z-index: 20;	
 }
+.pending-transaction-chat-button {
+	
+top: 320px;	
+	
+}
 
-.pending-transaction-button span{
+.pending-transaction-button span, .pending-transaction-chat-button span{
 position: relative;
-top: 7px;
-left: 15px;
+top: 10px;
+left: 10px;
+font-size: small;	
+}
+
+.transaction-chat-button{
+top: 480px;
+color: #fff;
+font-weight: bold;	
+}
+
+.transaction-chat-button span{
+position: relative;
+top: 10px;
+left: 10px;
+font-size: small;	
+}
+
+.chat-button, .details-button {
+
+background:green;
+width: 35px;
+color:#fff;
+padding:5px;
+font-weight: bold;
+border-radius: 5px;	
+cursor:pointer;	
+}
+
+.chat-content{
+	
+width: 100%;
+height:250px;
+overflow-y: auto;
+	
+	
+}
+
+.chat-input{
+border-top:1px solid #ddd;
+}
+
+.chat-input input{
+outline: none !important;	
+width: 250px;
+border:none;
+padding: 5px;
+	
+}
+
+.authChat, .userChat, .false-paragraph {
+color:#fff;
+padding: 5px;
+max-width: 300px;	
+margin: 3px;
+margin-bottom: 2px;
+display:table;
+clear:both;	
+}
+
+.userChat{
+background: #DAF7A6;
+border-radius: 0px 10px 10px 10px;	
+color:#000;
+float:left;		
+}
+
+.authChat{
+background: red;
+
+border-radius: 10px 0px 10px 10px;
+float:right;	
+}
+
+.send-chat-icon{
+
+position: relative;
+top:5px;
+cursor:pointer;
+	
+}
+
+.details-button {
+
+width:90px;	
+	
+}
+
+.unread-chat {
+cursor:pointer;
+background: red;
+color:#fff;
+padding: 2px;
+border-radius: 5px;	
+position: relative;
+top:24px;
+left:-107px;	
 }
 
 .transaction-count {
 	
-color: #000;
+color: #fff;
 position: relative;
-top: 15px;
-left: 13px;
-font-weight: bold;	
+top: 10px;
+left: 10px;
+font-weight: bold;
+font-size: small;	
 }
 
 .transaction-button div {
@@ -98,9 +227,10 @@ width: 30px;
 	
 }
 
+
 #pending-home {
 	
-top: 470px;	
+top: 480px;	
 }
 
 .suggestions{
@@ -127,7 +257,7 @@ background: #fff;
 height: 430px;
 width: 250px;
 margin:35px;
-border-radius: 10px 10px 0px 0px;	
+border-radius: 5px 5px 5px 5px;	
 	
 		
 }
@@ -154,7 +284,7 @@ left:0px;
 width: 100%;
 height: 100%;
 background: #fff;	
-z-index: 20;
+z-index: 50;
 font-weight:bold;
 }
 
@@ -169,7 +299,7 @@ left:45%;
 	
 position: fixed;	
 top: 39%;
-left:37%;		
+left:43%;		
 	
 }
 
@@ -436,19 +566,50 @@ li button {
 	
 }
 
+#main-search input {
+	
+padding: 5px;
+font-weight: bold;
+border:none;
+margin:5px;
+color: rgba(0,0,0,0.5)
+	
+}
+
+[v-cloak] {
+
+display: none;	
+	
+}
+
+#main-search img {
+
+cursor:pointer;	
+position: relative;
+left:20px;
+	
+}
+
+#main-search {
+background:#fff;
+width: 40%;
+padding: 5px;
+border-radius:25px;
+	
+}
+
 .fake-search-input{
 	
 background: #fff;
 display: inline-block;
-color:#ddd;	
+color:rgba(0,0,0,0.5);
 padding: 10px 50px 10px 10px;
-border-radius: 25px;
-
+border-radius: 10px;
+margin:5px;
 	
 }
 
 .search-icon {
-display: inline-block;
 position:relative;	
 left:-40px;
 top:5px;	
@@ -526,7 +687,6 @@ margin-left: 124px;
 .products div {
 background:#fff;
 color:#000;	
-display: inline-block; 
 vertical-align: top;
 width:200px;
 margin:20px;
@@ -960,7 +1120,6 @@ padding-top: 5px;
 .products {
 	
 width: 100%;
-margin:auto;
 margin-left: -5px;
 
 }
@@ -1005,6 +1164,75 @@ width: 1048px;
 }
 
 @media only screen and (max-width: 800px) {
+
+.loader span {
+		
+top: 35%;
+left:42%;		
+	
+}
+
+.inactive-transactions, .transactions{
+	
+margin-left:3%;
+width:320px;
+}
+
+.shops{
+
+margin:10px;
+margin-left:30px;
+width: 300px;
+	
+		
+}
+
+.suggestions{
+
+width: 103%;	
+		
+}
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:10px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 5px;
+margin-top: 20px;
+height:700px;
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#fff;
+}
+	
+.pending-transactions {	
+color:#fff;	
+}
+.category-title input{
+	
+width: 130px;
+	
+}
+
+.items-container {
+	
+margin-left:10px;
+width: 320px;
+	
+}
 
 
 #login-page {
@@ -1212,6 +1440,13 @@ background:#ddd;
 }
 @media only screen and (max-width: 768px) {
 
+.loader span {
+		
+top: 36%;
+left:42%;		
+	
+}
+
 .add-product{
 	
 width: 778px;	
@@ -1240,6 +1475,97 @@ height: 60px;
 }
 
 @media only screen and (max-width: 640px) {
+	
+.inactive-transactions, .transactions{
+	
+margin-left:2px;
+width:270px;
+}
+
+
+.shops{
+
+margin:10px;
+margin-left:10px;
+width: 250px;
+	
+		
+}
+
+.suggestions{
+
+width: 100%;	
+		
+}
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:10px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 5px;
+margin-top: 20px;
+
+}
+
+.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+top: 80px;
+}
+
+.transaction-button {
+
+top: 160px;	
+	
+}
+
+.transaction-chat-button {
+
+top: 240px;	
+	
+}
+
+
+
+#pending-home{
+	
+top:240px;	
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;
+}
+	
+.pending-transactions {	
+color:#fff;	
+}
+
+
+.category-title input{
+	
+width: 130px;
+	
+}
+
+
+
+.items-container {
+	
+margin-left:20%;
+width: 350px;	
+	
+}
+
 	
 #login-page {
 
@@ -1510,8 +1836,103 @@ background:#ddd;
 }
 
 @media only screen and (max-width: 600px) {
+
+.loader span {
+		
+top: 36%;
+left:40%;		
 	
-	.add-product{
+}
+	
+.inactive-transactions, .transactions{
+	
+margin-left:15%;
+width:400px;
+}
+
+.shops{
+
+margin:10px;
+margin-left:60px;
+width: 400px;
+	
+		
+}
+
+.suggestions{
+
+width: 100%;	
+		
+}
+
+.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+top: 280px;
+}
+
+.transaction-button {
+
+top: 350px;	
+	
+}
+
+.transaction-chat-button {
+
+top: 430px;	
+	
+}
+
+
+
+#pending-home{
+	
+top:450px;	
+}
+
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:10px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 5px;
+margin-top: 20px;
+height:700px;
+
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;
+}
+	
+.pending-transactions {	
+color:#fff;	
+}
+.category-title input{
+	
+width: 130px;
+	
+}
+
+.items-container {
+	
+margin-left:20%;
+width: 350px;	
+	
+}
+
+	
+.add-product{
 	
 width: 610px;	
 }
@@ -1521,6 +1942,99 @@ width: 610px;
 
 @media only screen and (max-width: 480px) {
 
+.loader span {
+		
+top: 37%;
+left:40%;		
+	
+}
+
+.inactive-transactions, .transactions{
+	
+margin-left:10px;;
+width:400px;
+}
+
+.shops{
+
+margin:10px;
+margin-left:10px;
+width: 400px;
+	
+		
+}
+
+.suggestions{
+
+width: 97%;	
+		
+}
+
+.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+top: 280px;
+}
+
+.transaction-button {
+
+top: 350px;	
+	
+}
+
+.transaction-chat-button {
+
+top: 430px;	
+	
+}
+
+
+
+#pending-home{
+	
+top:450px;	
+}
+
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:10px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 5px;
+margin-top: 20px;
+height:700px;
+margin-left: 50px;
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;
+}
+	
+.pending-transactions {	
+color:#fff;	
+}
+.category-title input{
+	
+width: 130px;
+	
+}
+
+.items-container {
+	
+margin-left:5px;
+width: 350px;	
+	
+}
 
 #login-page {
 
@@ -1625,7 +2139,7 @@ padding-top: 5px;
 .products {
 	
 width: 100%;
-margin:auto;
+
 margin-left: -5px;
 
 }
@@ -1692,6 +2206,70 @@ height: 60px;
 }
 
 @media only screen and (max-width: 414px) {
+
+.loader span {
+		
+top: 39%;
+left:39%;		
+	
+}
+
+.suggestions{
+
+width: 95%;		
+}
+
+
+
+.inactive-transactions, .transactions{
+	
+margin-left:20px;
+width:300px;
+}
+
+
+.items-container {
+	
+margin-left:40px;
+width: 300px;	
+	
+}
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:-3px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 5px;
+margin-top: 20px;
+
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;	
+}
+
+.pending-transactions {	
+color:#fff;	
+}
+
+.shops {
+width:300px;
+margin:20px;	
+	
+}
+
 
 #login-page .form-container form input {
 	
@@ -1872,6 +2450,68 @@ max-width: 300px;
 
 
 @media only screen and (max-width: 384px) {
+
+.loader span {
+		
+top: 39%;
+left:39%;		
+	
+}
+
+.suggestions{
+
+width: 95%;
+		
+}
+
+.inactive-transactions, .transactions{
+	
+margin-left:5px;
+width:300px;
+}
+
+
+.items-container {
+	
+margin-left:2px;
+width: 300px;	
+	
+}
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:-3px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 5px;
+margin-top: 20px;
+
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;	
+}
+
+.pending-transactions {	
+color:#000;	
+}
+
+.shops {
+width:300px;
+margin:5px;	
+	
+}
 	
 	
 #login-page {
@@ -2039,6 +2679,81 @@ background:#ddd;
 	
 @media only screen and (max-width: 360px) {
 
+.loader span {
+		
+top: 39%;
+left:38%;		
+	
+}
+
+.suggestions{
+
+width: 95%;
+		
+}
+
+
+
+.inactive-transactions, .transactions{
+	
+margin-left:5px;
+width:300px;
+}
+
+
+.items-container {
+	
+margin-left:0px;
+width: 300px;	
+	
+}
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:-3px;
+width:30px;
+}
+
+.items-wrapper {
+width: 89%;
+height: 500px;
+margin: 20px;
+margin-top: 50px;
+
+}
+
+.transaction-count,.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;	
+}
+
+#pending-home {
+	
+top: 430px;	
+}
+
+.pending-transactions {	
+color:#000;	
+}
+
+.shops {
+width:300px;
+margin:5px;	
+	
+}
+
+
+.category-title input{
+	
+width: 130px;
+	
+}
 
 #login-page {
 
@@ -2153,18 +2868,18 @@ width: 250px;
 position:relative;	
 background: #fff;
 display: inline-block;
-color:#ddd;	
+color:rgba(0,0,0,0.5);	
 padding: 10px 50px 10px 10px;
-border-radius: 25px;
+border-radius: 10px;
 left:-1px;
 	
 }
 
 .search-icon {
-display: inline-block;
+display:block;
 position:relative;	
-left:140px;
-top:-30px;
+left:110px;
+top:-35px;
 	
 }
 
@@ -2258,6 +2973,99 @@ width: 370px;
 	
 }
 @media only screen and (max-width: 320px) {
+
+.loader span {
+		
+top: 41%;
+left:38%;		
+	
+}
+
+.suggestions{
+
+width: 90%;
+		
+}
+
+
+
+.inactive-transactions, .transactions{
+	
+margin-left:5px;
+width:250px;
+}
+
+
+.items-container {
+	
+margin-left:0px;
+width: 300px;	
+}
+
+
+#main-search {
+background:#fff;
+width: 80%;
+border-radius:5px;	
+}
+
+#main-search img {
+
+left:5px;
+top:-3px;
+width:30px;
+}
+
+.items-wrapper {
+width: 100%;
+height: 500px;
+margin: 20px;
+margin-top: 40px;
+margin-left:10px;
+
+}
+
+.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+color:#000;	
+top: 200px;
+}
+
+#pending-home {
+	
+top: 420px;	
+}
+
+.transaction-button {
+	
+	top: 350px;
+}
+
+.search-icon {
+position:relative;	
+left:80px;	
+	
+}
+
+.transaction-chat-button {
+	
+	top: 270px;
+	
+}
+
+.pending-transaction-chat-button {
+	
+top:260px;	
+}
+
+.pending-transactions {	
+color:#000;	
+}
+
+.shops {
+width:250px;
+margin:5px;	
+	
+}
 
 #login-page .form-container form input {
 	
@@ -2414,24 +3222,14 @@ width: 285px;
 position:relative;	
 background: #fff;
 display: inline-block;
-color:#ddd;	
+color:rgba(0,0,0,0.5);	
 padding: 10px 50px 10px 10px;
-border-radius: 25px;
+border-radius: 10px;
 left:-0.5px;
 font-size:small;
 	
 }
 
-
-.search-icon {
-
-position:relative;
-left:-85.9px;
-top: -27px;	
-display: inline-block;	
-margin-left:1px;
-display:none;	
-}
 
 
 .header {
@@ -2453,7 +3251,6 @@ padding-top: 5px;
 .products {
 	
 width: 90%;
-margin:auto;
 margin-left: -5px;
 
 }
@@ -2503,6 +3300,67 @@ font-size:15px;
 }
 
 @media only screen and (max-height: 360px) {
+
+.pending-transaction-chat-button, .pending-transaction-button, .transaction-chat-button{
+top: 200px;
+}
+
+.pending-transaction-button{
+	
+top:120px;	
+}
+
+.transaction-button {
+
+top: 190px;	
+	
+}
+
+.transaction-chat-button {
+
+top: 270px;	
+	
+}
+
+.pending-transaction-chat-button {
+
+top: 210px;	
+	
+}
+
+
+#pending-home{
+	
+top:290px;	
+}
+
+.product-price {
+
+top: 5px;	
+	
+}
+
+.items-wrapper {
+height: 300px;
+}
+
+.products div, .products div img{
+
+width:400px;	
+	
+}
+
+.products {
+	
+width:600px;	
+min-height: 200px;
+}
+
+.seller-products{
+	
+display: inline-block;	
+
+}
 
 .form-container {
 

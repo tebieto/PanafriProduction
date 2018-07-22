@@ -31,13 +31,14 @@
 		
 		<span v-for="transaction in trackedTransactions">
 		<img class="product-avatar"  width="50px" height="50px" style="border-radius:5px; margin:10px;" :src="transaction.price.product.image"/>
-		
+		<div style="width:180px; position:relative; top:-25px; left:70px;">
 		<span v-if="transaction.quantity==1">
-		<span class="pending-product-name">{{transaction.price.product.name}}({{'N' + transaction.price.price + 'x' + transaction.quantity + transaction.price.unit }}) <span style="color:red; cursor:pointer;"  @click="delTransaction(transaction.id, transaction.price.price*transaction.quantity)" v-if="cancelled==false && requested==false">remove</span></span><br>
+		<span class="pending-product-name">{{transaction.price.product.name}}({{'N' + transaction.price.price + 'x' + transaction.quantity + transaction.price.unit }}) <span style="color:red; cursor:pointer;"  @click="delTransaction(transaction.id, transaction.price.price*transaction.quantity)" v-if="cancelled==false && requested==false"> remove</span></span><br>
 		</span>
 		<span v-else>
-		<span class="pending-product-name">{{transaction.price.product.name}}({{'N' + transaction.price.price + 'x' + transaction.quantity + transaction.price.unit +'s'}}) <span style="color:red; cursor:pointer;" @click="delTransaction(transaction.id, transaction.price.price*transaction.quantity)" v-if="cancelled==false && requested==false">remove</span></span><br>
+		<span class="pending-product-name">{{transaction.price.product.name}}({{'N' + transaction.price.price + 'x' + transaction.quantity + transaction.price.unit +'s'}}) <span style="color:red; cursor:pointer;" @click="delTransaction(transaction.id, transaction.price.price*transaction.quantity)" v-if="cancelled==false && requested==false"> remove</span></span><br>
 		</span>
+		</div>
 		</span>	
 		</div>
 		
@@ -45,8 +46,8 @@
 		
 		<div class="hr"></div>
 		
-		<div style="height:100px; overflow-y:auto;">
-		<h4 style="margin-left:10px;">Total= N{{total}} Delivery Fee: TBD</h4>
+		<div style="height:150px; overflow-y:auto;">
+		<h4 style="margin-left:10px;">Total= N{{total}} Delivery Fee: TBD <br> Your Location: <input type="text" style="width:150px;" value="0" v-model="location"/></h4>
 		<span v-if="cancelled==false && requested==false">
 		<button style="margin-left:10px; border:none; color:#fff; background:green; font-weight:bold;"   @click="sendRequest()" >Request</button>   <button @click="cancelTransaction()" style="margin-left:10px; border:none; color:#fff; background:red; font-weight:bold;">Cancel</button>
 		</span>
@@ -90,6 +91,7 @@ trackedTransactions: [],
 total: 0,
 cancelled: false,
 requested: false,
+location:'',
 
 }
 
@@ -101,7 +103,11 @@ methods: {
 sendRequest() {
 this.requested=  true
 
-axios.get('/request/transaction/' + this.id).then(response=>{
+if (this.location.length==0) {
+this.location = 'n.a'
+}
+
+axios.get('/request/transaction/' + this.id + '/' + this.location + '/' + this.seller).then(response=>{
 
 })
 

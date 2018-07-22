@@ -12,8 +12,19 @@
 
 <!--Begin Container class DIV-->
       
-<div id="app" class="container">
+<div id="app" class="container" v-cloak>
 
+<div id="loader" class="loader">
+
+			
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
+	 
+	 <loader></loader>
+	 
+	
+</div>
+
+	 <seller-not :id="{{auth::id()}}"></seller-not>
 	
 	<!--Begin header class DIV-->
 	
@@ -107,18 +118,6 @@
 			
 			
 			<!--Begin welcome-search class DIV-->
-			<center>
-			<div  class="welcome-search" @click="">
-			
-			
-			<div class="fake-search-input">
-			
-			<span>Search Anything...Request Everything!</span>
-			
-			</div>
-			<img class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
-			
-			</center>
 			
 			<!--End of welcome-search class DIV-->
 			
@@ -142,7 +141,7 @@
 		<div class="main-categories">
 		
 		<div class="category-title">
-		<h3> Transactions . Requests <a class="learn-more" style="color:blue;">Accepted</a> <a class="learn-more" style="color:blue;">Completed</a></h3>		
+		<h3> Transactions . Requests <a class="learn-more" style="color:blue;" @click="sellerTransactionsChatUrl()">Accepted</a> <a class="learn-more" style="color:blue;">Completed</a></h3>		
 		</div>
 		
 		<div class="suggestions">
@@ -166,14 +165,23 @@
 		
 		<!--Begin transaction class button div-->
 		
-		<div class="transaction-button" @click="homeUrl()">
+		<div class="transaction-button" @click="sellerHomeUrl()">
 		<div>
 		
 		<img class="transaction-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/home.png')}}"/>
 		</div>
 		
 		</div>
+		@if (auth::check())
+		<div class="transaction-chat-button" @click="sellerTransactionsChatUrl()">
+		<div>
 		
+		<img class="transaction-chat-avatar"  width="30px" height="auto" src="{{Storage::url('public/icons/chat.png')}}"/>
+		
+		</div>
+		<span class="transaction-chat-count">@{{sellerChats.length}}</span>
+		</div>
+		@endif
 		
 		<!--End transaction class button div-->
 		

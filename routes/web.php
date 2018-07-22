@@ -36,6 +36,21 @@ Route::get('/transactions/sellers/transactions', function () {
     if (auth::check()) {
 	return view('sellertransactions');
 	}
+    return view('sellerLogin');
+});
+
+
+Route::get('/chat/sellers/chat', function () {
+    if (auth::check()) {
+	return view('sellertransactionschat');
+	}
+    return view('sellerLogin');
+});
+
+Route::get('/chat/transactions', function () {
+    if (auth::check()) {
+	return view('buyertransactionschat');
+	}
     return view('public');
 });
 
@@ -126,6 +141,27 @@ Route::get('/get/pending/transactions', [
 	'as' => 'pendingTransactions'
 	]);
 	
+Route::get('/get/buyer/active/transactions', [
+	'uses' => 'ShopController@buyerActiveTransactions',
+	'as' => 'buyerActiveTransactions'
+	]);
+	
+Route::get('/get/seller/active/transactions', [
+	'uses' => 'ShopController@sellerActiveTransactions',
+	'as' => 'sellerActiveTransactions'
+	]);
+	
+	
+Route::get('/get/buyer/chats', [
+	'uses' => 'ShopController@buyerChats',
+	'as' => 'buyerChats'
+	]);
+	
+Route::get('/get/seller/chats', [
+	'uses' => 'ShopController@sellerChats',
+	'as' => 'sellerChats'
+	]);
+	
 Route::get('/get/pending/trackers', [
 	'uses' => 'ShopController@pendingTrackers',
 	'as' => 'pendingTrackers'
@@ -135,6 +171,21 @@ Route::get('/get/pending/trackers', [
 Route::get('/get/request/trackers', [
 	'uses' => 'ShopController@requestTrackers',
 	'as' => 'requestTrackers'
+	]);
+	
+Route::get('/get/buyer/active/trackers', [
+	'uses' => 'ShopController@buyerActiveTrackers',
+	'as' => 'buyerActiveTrackers'
+	]);
+	
+Route::get('/get/buyer/chat/trackers', [
+	'uses' => 'ShopController@buyerChatTrackers',
+	'as' => 'buyerChatTrackers'
+	]);
+	
+Route::get('/get/seller/chat/trackers', [
+	'uses' => 'ShopController@sellerChatTrackers',
+	'as' => 'sellerChatTrackers'
 	]);
 	
 Route::get('/get/user/details/{id}', [
@@ -159,15 +210,26 @@ Route::get('/cancel/transaction/{tracker}', [
 	'as' => 'cancelTransaction'
 	]);
 	
-Route::get('/request/transaction/{tracker}', [
+Route::get('/finish/transaction/{tracker}', [
+	'uses' => 'ShopController@finishTransaction',
+	'as' => 'finishTransaction'
+	]);
+	
+Route::get('/request/transaction/{tracker}/{location}/{seller}', [
 	'uses' => 'ShopController@requestTransaction',
 	'as' => 'requestTransaction'
 	]);
 	
-Route::get('/accept/transaction/{tracker}/{delivery}', [
+Route::get('/accept/transaction/{tracker}/{delivery}/{buyer}', [
 	'uses' => 'ShopController@acceptTransaction',
 	'as' => 'acceptTransaction'
 	]);
+	
+Route::get('/buyer/accept/transaction/{tracker}/{seller}', [
+	'uses' => 'ShopController@buyerAcceptTransaction',
+	'as' => 'buyerAcceptTransaction'
+	]);
+	
 	
 Route::get('/delete/transaction/{id}', [
 	'uses' => 'ShopController@deleteTransaction',
@@ -234,6 +296,17 @@ Route::get('/remove/product/{pid}', [
 Route::get('/get/chat/{tid}', [
 	'uses' => 'HomeController@getChat',
 	'as' => 'getChat'
+	]);
+	
+	
+Route::get('/get/recent/seller/chat/{seller}/{tacker}', [
+	'uses' => 'ShopController@recentSellerChat',
+	'as' => 'recentSellerChat'
+	]);
+	
+Route::get('/get/recent/buyer/chat/{buyer}/{tacker}', [
+	'uses' => 'ShopController@recentBuyerChat',
+	'as' => 'recentBuyerChat'
 	]);
 	
 Route::get('/on/product/{pid}', [
@@ -303,6 +376,16 @@ Route::post('/upload/image', [
 Route::post('/send/chat', [
 	'uses' => 'HomeController@sendChat',
 	'as' => 'sendChat'
+	]);	
+	
+Route::post('/send/seller/chat', [
+	'uses' => 'ShopController@sendSellerChat',
+	'as' => 'sendSellerChat'
+	]);	
+	
+Route::post('/send/buyer/chat', [
+	'uses' => 'ShopController@sendBuyerChat',
+	'as' => 'sendBuyerChat'
 	]);	
 	
 Route::post('/submit/product', [
