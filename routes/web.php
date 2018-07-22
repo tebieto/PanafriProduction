@@ -180,7 +180,7 @@ Route::get('/get/buyer/active/trackers', [
 	
 Route::get('/get/buyer/chat/trackers', [
 	'uses' => 'ShopController@buyerChatTrackers',
-	'as' => 'buyerChatTrackers'
+	'as' => 'buyerChatTrackerss'
 	]);
 	
 Route::get('/get/seller/chat/trackers', [
