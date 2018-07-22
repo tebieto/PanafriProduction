@@ -187,7 +187,7 @@
 		</div>
 		
 		<div class="suggestions">
-		<span v-if="onlineShops.length==0 && place=='Everywhere'">
+		<span v-if="onlineShops.length==0 || place=='Everywhere'">
 		<span v-for="store in allShops" >
 		<store  :id="store.id" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
 		</span>
