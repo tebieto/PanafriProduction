@@ -48018,7 +48018,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			products: [],
 			showPrice: false,
 			available: true,
-			root: 'http://localhost:8000',
+			root: 'https://jokesterbox.com',
 			pprice: '',
 			punit: '',
 			prices: []
