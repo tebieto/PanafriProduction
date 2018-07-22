@@ -3061,3 +3061,9 @@ Stack trace:
 #23 /opt/bitnami/apache2/htdocs/Panafripro/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #24 /opt/bitnami/apache2/htdocs/Panafripro/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #25 {main}  
+[2018-07-22 22:34:49] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Product' not found' in /opt/bitnami/apache2/htdocs/Panafripro/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php:487
+Stack trace:
+#0 {main}  
+[2018-07-22 22:35:05] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Product' not found' in /opt/bitnami/apache2/htdocs/Panafripro/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php:487
+Stack trace:
+#0 {main}  
