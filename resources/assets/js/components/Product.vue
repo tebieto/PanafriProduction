@@ -106,7 +106,11 @@ authDetails: [],
 products: [],
 showPrice:false,
 available: true,
+<<<<<<< HEAD
 root:'http://localhost',
+=======
+root:'https://jokesterbox.com',
+>>>>>>> 08131f3750a8a173a8713d34e83c52bd26ef5ef2
 pprice:'',
 punit:'',
 prices: []
