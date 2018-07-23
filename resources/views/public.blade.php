@@ -143,7 +143,7 @@
 		</div>
 		
 		<div class="suggestions">
-		<span v-for="shop in storesFound" >
+		<span v-for="store in storesFound" >
 		<store  :id="store.id" :status="store.seller.online" :online="store.online" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
 		</span>
 		</div>
