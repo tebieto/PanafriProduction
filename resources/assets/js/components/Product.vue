@@ -107,10 +107,14 @@ products: [],
 showPrice:false,
 available: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
 root:'http://localhost',
 =======
 root:'https://jokesterbox.com',
 >>>>>>> 08131f3750a8a173a8713d34e83c52bd26ef5ef2
+=======
+root:'http://jokesterbox.com',
+>>>>>>> 2ca84d3aa0ee2839f863542aed349abb84212903
 pprice:'',
 punit:'',
 prices: []

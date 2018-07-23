@@ -2,6 +2,31 @@ body {
 width:100%;
 }
 
+.big-online, .big-offline, .small-online, .small-offline {
+
+position:relative;
+top:62px;
+left:45px;
+width: 15px;
+height: 15px;
+background: green;
+border-radius:50%;	
+border:2px solid #fff;	
+}
+
+.small-online, .small-offline { 
+
+top:20px;
+left:55px;
+width: 8px;
+height: 8px;
+
+}
+
+.big-offline, .small-offline {
+	
+background: rgba(0,0,0,0.4);	
+}
 
 .pending-product-name {
 max-width: 10px;
