@@ -2,7 +2,8 @@
 
 <div class="shops">
 		
-		<div style="height: 80px; overflow-y:auto" v-if="shopOwner.length>0">
+		<div style="height: 93px; overflow-y:auto" v-if="shopOwner.length>0">
+		<div class="big-online"  v-if="this.online==1 && this.status==1 "></div><div class="big-offline"  v-else></div>
 		<img class="owner-avatar"  width="50px" height="50px" style="border-radius:50%; margin:10px;" :src="shopOwner[0].avatar"/>
 		
 		<div style="margin-top:-50px; margin-left:80px;"><span class="user-name">{{shopOwner[0].fname}} {{shopOwner[0].lname }}</span> is Owner</div>
@@ -17,14 +18,21 @@
 		
 		
 		
-		<div style="height:200px; overflow-y:auto;">
+		<div style="height:200px; overflow-y:auto;" v-if="this.online==1 && this.status==1">
 		<span v-for="item in shopItems">
+		<div class="small-online"  v-if="item.status==1"></div><div class="small-offline"  v-else></div>
 		<img class="product-avatar"  width="50px" height="50px" style="border-radius:5px; margin:10px;" :src="item.image"/>
 		<span class="pending-product-name">{{item.name}}</span><br>
 		</span>
 		
+		</div>
 		
-		
+		<div style="height:200px; overflow-y:auto;" v-else>
+		<span v-for="item in shopItems">
+		<div class="small-offline"></div>
+		<img class="product-avatar"  width="50px" height="50px" style="border-radius:5px; margin:10px;" :src="item.image"/>
+		<span class="pending-product-name">{{item.name}}</span><br>
+		</span>
 		
 		</div>
 		
@@ -33,14 +41,16 @@
 		
 		<center>
 		
-		<button @click="displayShop()" style="background:green; color:#fff; border-radius:10px; border:none; margin-top:10px; padding:10px; font-weight:bold; cursor:pointer;">Enter Store</button>
+		<button  v-if="this.online==1 && this.status==1 && this.shopItems.length>0" @click="displayShop()" style="background:green; color:#fff; border-radius:10px; border:none; margin-top:10px; padding:10px; font-weight:bold; cursor:pointer;">Enter Store</button>
 		
 		</center>
-		<div class="items-modal"  v-if="showShop" @click="hideShop()">
+		<div class="items-modal"  v-if="showShop && this.online==1 && this.status==1" @click="hideShop()">
 		<span class="items-close">X</span>
 		<div class="items-wrapper" @click.stop>
 		<span v-for="item in shopItems">
+		<span v-if="item.status==1">
 		<items :online="item.status" :image="item.image" :name="item.name" :store="item.store_id" :id="item.id"></items>
+		</span>
 		</span>
 		</div>
 		
@@ -52,7 +62,7 @@
 
 export default {
 
-props: ['id', 'location', 'owner', 'name'],
+props: ['id', 'location', 'status', 'online', 'owner', 'name'],
 
 data() {
 

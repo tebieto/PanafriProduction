@@ -595,7 +595,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(64)
+var listToStyles = __webpack_require__(66)
 
 /*
 type StyleObject = {
@@ -1196,7 +1196,7 @@ process.umask = function() { return 0; };
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(128);
+exports = module.exports = __webpack_require__(139);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -12595,7 +12595,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(54).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(56).setImmediate))
 
 /***/ }),
 /* 22 */
@@ -12604,8 +12604,8 @@ module.exports = Vue$3;
 "use strict";
 
 
-var AlgoliaSearch = __webpack_require__(120);
-var createAlgoliasearch = __webpack_require__(131);
+var AlgoliaSearch = __webpack_require__(131);
+var createAlgoliasearch = __webpack_require__(142);
 
 module.exports = createAlgoliasearch(AlgoliaSearch);
 
@@ -13102,7 +13102,7 @@ module.exports = function merge(destination/* , sources */) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(122);
+  var keys = __webpack_require__(133);
   var foreach = __webpack_require__(8);
 
   var filtered = {};
@@ -13135,7 +13135,7 @@ module.exports = function exitPromise(fn, _setTimeout) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(29);
-module.exports = __webpack_require__(141);
+module.exports = __webpack_require__(152);
 
 
 /***/ }),
@@ -13144,7 +13144,7 @@ module.exports = __webpack_require__(141);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(150);
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -13165,25 +13165,25 @@ window.Vue = __webpack_require__(21);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(56));
-Vue.component('welcome', __webpack_require__(59));
-Vue.component('store', __webpack_require__(61));
-Vue.component('office', __webpack_require__(67));
-Vue.component('buyer-active', __webpack_require__(70));
-Vue.component('seller-request', __webpack_require__(75));
-Vue.component('items', __webpack_require__(80));
-Vue.component('loader', __webpack_require__(85));
-Vue.component('product', __webpack_require__(88));
-Vue.component('buy-item', __webpack_require__(91));
-Vue.component('seller-chat', __webpack_require__(94));
-Vue.component('buyer-chat', __webpack_require__(99));
-Vue.component('sell-button', __webpack_require__(104));
-Vue.component('products', __webpack_require__(107));
-Vue.component('chat-body', __webpack_require__(110));
-Vue.component('seller-not', __webpack_require__(153));
-Vue.component('buyer-not', __webpack_require__(159));
-Vue.component('buyer-pending', __webpack_require__(115));
-Vue.component('buyer-loader', __webpack_require__(156));
+Vue.component('example', __webpack_require__(58));
+Vue.component('welcome', __webpack_require__(61));
+Vue.component('store', __webpack_require__(63));
+Vue.component('office', __webpack_require__(69));
+Vue.component('buyer-active', __webpack_require__(72));
+Vue.component('seller-request', __webpack_require__(77));
+Vue.component('items', __webpack_require__(82));
+Vue.component('loader', __webpack_require__(87));
+Vue.component('product', __webpack_require__(90));
+Vue.component('buy-item', __webpack_require__(93));
+Vue.component('seller-chat', __webpack_require__(96));
+Vue.component('buyer-chat', __webpack_require__(101));
+Vue.component('sell-button', __webpack_require__(106));
+Vue.component('products', __webpack_require__(109));
+Vue.component('chat-body', __webpack_require__(112));
+Vue.component('seller-not', __webpack_require__(117));
+Vue.component('buyer-not', __webpack_require__(120));
+Vue.component('buyer-pending', __webpack_require__(123));
+Vue.component('buyer-loader', __webpack_require__(128));
 
 var algoliasearch = __webpack_require__(22);
 var client = algoliasearch('Z47FXBRF0T', '3efcf7ba7656c62c257f0a201211686d');
@@ -14423,7 +14423,7 @@ var app = new Vue({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
 
 window._ = __webpack_require__(31);
@@ -14472,7 +14472,7 @@ if (token) {
 
 
 
-window.Pusher = __webpack_require__(152);
+window.Pusher = __webpack_require__(55);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
@@ -45249,12711 +45249,6 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(55);
-// On some exotic environments, it's not clear which object `setimmeidate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var registerImmediate;
-
-    function setImmediate(callback) {
-      // Callback can either be a function or a string
-      if (typeof callback !== "function") {
-        callback = new Function("" + callback);
-      }
-      // Copy function arguments
-      var args = new Array(arguments.length - 1);
-      for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i + 1];
-      }
-      // Store and register the task
-      var task = { callback: callback, args: args };
-      tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
-      return nextHandle++;
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function run(task) {
-        var callback = task.callback;
-        var args = task.args;
-        switch (args.length) {
-        case 0:
-            callback();
-            break;
-        case 1:
-            callback(args[0]);
-            break;
-        case 2:
-            callback(args[0], args[1]);
-            break;
-        case 3:
-            callback(args[0], args[1], args[2]);
-            break;
-        default:
-            callback.apply(undefined, args);
-            break;
-        }
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(runIfPresent, 0, handle);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    run(task);
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        registerImmediate = function(handle) {
-            global.postMessage(messagePrefix + handle, "*");
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(11)))
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(57)
-/* template */
-var __vue_template__ = __webpack_require__(58)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Example.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b6ebd97a", Component.options)
-  } else {
-    hotAPI.reload("data-v-b6ebd97a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b6ebd97a", module.exports)
-  }
-}
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__(60)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Welcome.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-181ee13b", Component.options)
-  } else {
-    hotAPI.reload("data-v-181ee13b", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-181ee13b", module.exports)
-  }
-}
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(62)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(65)
-/* template */
-var __vue_template__ = __webpack_require__(66)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\FrontOffice.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b219cbc4", Component.options)
-  } else {
-    hotAPI.reload("data-v-b219cbc4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(63);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("355d265f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b219cbc4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FrontOffice.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b219cbc4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FrontOffice.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\n.items-wrapper {\r\nborder: 2px solid transparent;\r\nwidth: 80%;\r\nheight: 500px;\r\noverflow-y:auto;\r\nmargin: 20px;\n}\n.items-modal{\r\n\r\nposition: fixed;\r\ntop: 0px;\r\nleft:0px;\r\nwidth: 100%;\r\nheight: 100%;\r\nbackground: rgba(0,0,0,.8);\r\nz-index:20;\n}\n.items-close {\r\n\r\nposition:fixed;\r\nright:20px;\r\ntop:20px;\r\ncolor:#fff;\r\ncursor:pointer;\r\nfont-family: arial;\n}\n.items-close:hover {\r\n\r\ncolor:rgba(255,255,255,0.5);\n}\n.items-container {\r\n\r\nbackground: #fff;\r\nheight: 400px;\r\nwidth: 300px;\r\noverflow-y:auto;\r\nmargin: 100px 0px 0px 100px;\n}\n.item-name {\r\n\r\nfont-weight:bold;\r\nmargin-top: -100px;\r\nmargin-left: 130px;\n}\n.item-details{\r\n\r\nheight: 125px;\r\noverflow-y: auto;\n}\r\n\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-/**
- * Translates the list format produced by css-loader into something
- * easier to manipulate.
- */
-module.exports = function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = {
-      id: parentId + ':' + i,
-      css: css,
-      media: media,
-      sourceMap: sourceMap
-    }
-    if (!newStyles[id]) {
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
-}
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'location', 'owner', 'name'],
-
-	data: function data() {
-
-		return {
-
-			showShop: false,
-
-			shopOwner: [],
-			shopLocation: [],
-			shopItems: [],
-			transactionTracker: []
-
-		};
-	},
-	mounted: function mounted() {
-
-		this.getShopOwner();
-		this.getShopLocation();
-		this.getItems();
-	},
-
-
-	methods: {
-		checkAuth: function checkAuth() {
-			var _this = this;
-
-			axios.get('/check/auth').then(function (response) {
-
-				if (response.data == 0) {
-					window.location = '/login';
-					return;
-				} else {
-					_this.createTracker();
-				}
-			});
-		},
-		createTracker: function createTracker() {
-			var _this2 = this;
-
-			if (this.transactionTracker.length > 0 && this.transactionTracker.status) {
-
-				return;
-			}
-
-			axios.get('/create/transaction/tracker/' + this.id + '/' + this.owner).then(function (response) {
-
-				_this2.transactionTracker.push(response.data);
-			});
-		},
-		getItems: function getItems() {
-			var _this3 = this;
-
-			axios.get('/get/shop/items/' + this.id).then(function (response) {
-
-				response.data.forEach(function (item) {
-
-					if (_this3.shopItems.length == 0) {
-
-						_this3.shopItems.push(item);
-						return 1;
-					}
-
-					var verify = _this3.shopItems.find(function (i) {
-						return i.id === item.id;
-					});
-
-					if (!verify) {
-						_this3.shopItems.push(item);
-					}
-				});
-			});
-		},
-		getShopLocation: function getShopLocation() {
-			var _this4 = this;
-
-			axios.get('/get/shop/location/' + this.location).then(function (response) {
-
-				_this4.shopLocation.push(response.data);
-			});
-		},
-		getShopOwner: function getShopOwner() {
-			var _this5 = this;
-
-			axios.get('/get/shop/owner/' + this.owner).then(function (response) {
-
-				_this5.shopOwner.push(response.data);
-			});
-		},
-		displayShop: function displayShop() {
-			var bodyScroll = document.getElementsByTagName("body")[0].style.overflow = "hidden";
-			this.showShop = true;
-			this.checkAuth();
-		},
-		hideShop: function hideShop() {
-			var bodyScroll = document.getElementsByTagName("body")[0].style.overflow = "auto";
-			this.showShop = false;
-		}
-	}
-
-});
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "shops" },
-    [
-      _vm.shopOwner.length > 0
-        ? _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("img", {
-              staticClass: "owner-avatar",
-              staticStyle: { "border-radius": "50%", margin: "10px" },
-              attrs: {
-                width: "50px",
-                height: "50px",
-                src: _vm.shopOwner[0].avatar
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
-              [
-                _c("span", { staticClass: "user-name" }, [
-                  _vm._v(
-                    _vm._s(_vm.shopOwner[0].fname) +
-                      " " +
-                      _vm._s(_vm.shopOwner[0].lname)
-                  )
-                ]),
-                _vm._v(" is Owner")
-              ]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "hr" }),
-      _vm._v(" "),
-      _vm.shopOwner.length > 0 && _vm.shopLocation.length > 0
-        ? _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-              _vm._v(
-                _vm._s(this.name) +
-                  ", " +
-                  _vm._s(_vm.shopLocation[0].location) +
-                  ", " +
-                  _vm._s(_vm.shopOwner[0].phone) +
-                  " "
-              )
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticStyle: { height: "200px", "overflow-y": "auto" } },
-        _vm._l(_vm.shopItems, function(item) {
-          return _c("span", [
-            _c("img", {
-              staticClass: "product-avatar",
-              staticStyle: { "border-radius": "5px", margin: "10px" },
-              attrs: { width: "50px", height: "50px", src: item.image }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "pending-product-name" }, [
-              _vm._v(_vm._s(item.name))
-            ]),
-            _c("br")
-          ])
-        })
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "hr" }),
-      _vm._v(" "),
-      _c("center", [
-        _c(
-          "button",
-          {
-            staticStyle: {
-              background: "green",
-              color: "#fff",
-              "border-radius": "10px",
-              border: "none",
-              "margin-top": "10px",
-              padding: "10px",
-              "font-weight": "bold",
-              cursor: "pointer"
-            },
-            on: {
-              click: function($event) {
-                _vm.displayShop()
-              }
-            }
-          },
-          [_vm._v("Enter Store")]
-        )
-      ]),
-      _vm._v(" "),
-      _vm.showShop
-        ? _c(
-            "div",
-            {
-              staticClass: "items-modal",
-              on: {
-                click: function($event) {
-                  _vm.hideShop()
-                }
-              }
-            },
-            [
-              _c("span", { staticClass: "items-close" }, [_vm._v("X")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "items-wrapper",
-                  on: {
-                    click: function($event) {
-                      $event.stopPropagation()
-                    }
-                  }
-                },
-                _vm._l(_vm.shopItems, function(item) {
-                  return _c(
-                    "span",
-                    [
-                      _c("items", {
-                        attrs: {
-                          online: item.status,
-                          image: item.image,
-                          name: item.name,
-                          store: item.store_id,
-                          id: item.id
-                        }
-                      })
-                    ],
-                    1
-                  )
-                })
-              )
-            ]
-          )
-        : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b219cbc4", module.exports)
-  }
-}
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(68)
-/* template */
-var __vue_template__ = __webpack_require__(69)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Office.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-69cb12f3", Component.options)
-  } else {
-    hotAPI.reload("data-v-69cb12f3", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'name', 'root', 'online'],
-
-	mounted: function mounted() {
-		if (this.online == 0) {
-
-			this.storeOn = false;
-		}
-		this.getAuthDetails();
-		this.getStoreProducts();
-	},
-	data: function data() {
-
-		return {
-
-			authDetails: [],
-			products: [],
-			storeOn: true
-
-		};
-	},
-
-
-	methods: {
-		onStore: function onStore() {
-
-			this.storeOn = true;
-
-			axios.get(this.root + '/on/store/' + this.id).then(function (response) {});
-		},
-		offStore: function offStore() {
-
-			this.storeOn = false;
-
-			axios.get(this.root + '/off/store/' + this.id).then(function (response) {});
-		},
-		getAuthDetails: function getAuthDetails() {
-			var _this = this;
-
-			axios.get(this.root + '/auth/details').then(function (response) {
-
-				_this.authDetails.push(response.data);
-			});
-		},
-		getStoreProducts: function getStoreProducts() {
-			var _this2 = this;
-
-			axios.get(this.root + '/products/store/' + this.id).then(function (response) {
-				response.data.forEach(function (product) {
-					_this2.products.push(product);
-				});
-			});
-		},
-		showProductPrice: function showProductPrice() {
-
-			var product = document.getElementById('product-price');
-
-			product.classList.remove('hidden');
-		},
-		hideProductPrice: function hideProductPrice() {
-
-			var product = document.getElementById('product-price');
-
-			product.classList.add('hidden');
-		}
-	}
-
-});
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        { staticClass: "office" },
-        [
-          _c("center", [
-            _c(
-              "div",
-              {
-                staticStyle: {
-                  height: "80px",
-                  width: "250px",
-                  "overflow-y": "auto"
-                }
-              },
-              [
-                _c("h4", [
-                  _vm._v(
-                    "Office, " +
-                      _vm._s("#" + this.id) +
-                      ", " +
-                      _vm._s(this.name)
-                  )
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            !_vm.storeOn
-              ? _c("span", { attrs: { id: "onStore" } }, [
-                  _c(
-                    "span",
-                    { staticStyle: { color: "#ddd", margin: "7px" } },
-                    [_vm._v("Offline")]
-                  ),
-                  _c(
-                    "button",
-                    {
-                      staticStyle: { background: "green" },
-                      on: {
-                        click: function($event) {
-                          _vm.onStore()
-                        }
-                      }
-                    },
-                    [_vm._v("Go Online")]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.storeOn
-              ? _c("span", { attrs: { id: "offStore" } }, [
-                  _c(
-                    "button",
-                    {
-                      staticStyle: { background: "red", color: "#fff" },
-                      on: {
-                        click: function($event) {
-                          _vm.offStore()
-                        }
-                      }
-                    },
-                    [_vm._v("Go Offline")]
-                  ),
-                  _c(
-                    "span",
-                    { staticStyle: { color: "#ddd", margin: "7px" } },
-                    [_vm._v("online")]
-                  )
-                ])
-              : _vm._e()
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._l(this.products, function(product) {
-        return _c(
-          "div",
-          [
-            _c("product", {
-              attrs: {
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                status: product.status,
-                store: this.id,
-                category: product.category_id,
-                image: product.image
-              }
-            })
-          ],
-          1
-        )
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-69cb12f3", module.exports)
-  }
-}
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(71)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(73)
-/* template */
-var __vue_template__ = __webpack_require__(74)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\BuyerActive.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7d1fe472", Component.options)
-  } else {
-    hotAPI.reload("data-v-7d1fe472", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(72);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("5d396683", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7d1fe472\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerActive.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7d1fe472\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerActive.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'seller', 'shop', 'delivery'],
-
-	mounted: function mounted() {
-
-		this.getShopDetails();
-		this.getTrackedTransactions();
-	},
-	data: function data() {
-
-		return {
-
-			shopDetails: [],
-			trackedTransactions: [],
-			total: 0,
-			cancelled: false,
-			accepted: false
-
-		};
-	},
-
-
-	methods: {
-		cancelTransaction: function cancelTransaction() {
-			this.cancelled = true;
-
-			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
-		},
-		acceptRequest: function acceptRequest() {
-			this.accepted = true;
-			axios.get('/buyer/accept/transaction/' + this.id + '/' + this.seller).then(function (response) {});
-		},
-		getTrackedTransactions: function getTrackedTransactions() {
-			var _this = this;
-
-			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
-				response.data.forEach(function (tracked) {
-					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
-						_this.trackedTransactions.push(tracked);
-						_this.total = _this.total + tracked.price.price * tracked.quantity;
-					}
-				});
-
-				if (_this.total == 0) {
-
-					_this.cancelTransaction();
-				}
-			});
-		},
-		getShopDetails: function getShopDetails() {
-			var _this2 = this;
-
-			axios.get('/get/shop/details/' + this.shop).then(function (response) {
-
-				if (response.data.online == 0 || response.data.seller.online == 0) {
-
-					_this2.cancelTransaction();
-				}
-				_this2.shopDetails.push(response.data);
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.shopDetails.length > 0
-    ? _c("div", { staticClass: "inactive-transactions" }, [
-        _c("div", { staticClass: "seller-details" }, [
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("img", {
-              staticClass: "owner-avatar",
-              staticStyle: { "border-radius": "50%", margin: "10px" },
-              attrs: {
-                width: "50px",
-                height: "50px",
-                src: _vm.shopDetails[0].seller.avatar
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
-              [
-                _c("span", { staticClass: "user-name" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm.shopDetails[0].seller.fname +
-                        " " +
-                        _vm.shopDetails[0].seller.lname
-                    )
-                  )
-                ]),
-                _vm._v(" as Seller")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-              _vm._v(
-                _vm._s(
-                  _vm.shopDetails[0].name +
-                    ", " +
-                    _vm.shopDetails[0].location.location +
-                    ", " +
-                    _vm.shopDetails[0].seller.phone
-                )
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { height: "150px", "overflow-y": "auto" } },
-            _vm._l(_vm.trackedTransactions, function(transaction) {
-              return _c("span", [
-                _c("img", {
-                  staticClass: "product-avatar",
-                  staticStyle: { "border-radius": "5px", margin: "10px" },
-                  attrs: {
-                    width: "50px",
-                    height: "50px",
-                    src: transaction.price.product.image
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      width: "180px",
-                      position: "relative",
-                      top: "-25px",
-                      left: "70px"
-                    }
-                  },
-                  [
-                    transaction.quantity == 1
-                      ? _c("span", [
-                          _c("span", { staticClass: "pending-product-name" }, [
-                            _vm._v(
-                              _vm._s(transaction.price.product.name) +
-                                "(" +
-                                _vm._s(
-                                  "N" +
-                                    transaction.price.price +
-                                    "x" +
-                                    transaction.quantity +
-                                    transaction.price.unit
-                                ) +
-                                ") "
-                            )
-                          ]),
-                          _c("br")
-                        ])
-                      : _c("span", [
-                          _c("span", { staticClass: "pending-product-name" }, [
-                            _vm._v(
-                              _vm._s(transaction.price.product.name) +
-                                "(" +
-                                _vm._s(
-                                  "N" +
-                                    transaction.price.price +
-                                    "x" +
-                                    transaction.quantity +
-                                    transaction.price.unit +
-                                    "s"
-                                ) +
-                                ") "
-                            )
-                          ]),
-                          _c("br")
-                        ])
-                  ]
-                )
-              ])
-            })
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { height: "100px", "overflow-y": "auto" } },
-            [
-              _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                _vm._v(
-                  "Total= N " +
-                    _vm._s(_vm.total) +
-                    " Delivery= N " +
-                    _vm._s(this.delivery) +
-                    " "
-                ),
-                _c("br"),
-                _vm._v(
-                  "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
-                )
-              ]),
-              _vm._v(" "),
-              _vm.cancelled == false && _vm.accepted == false
-                ? _c("span", [
-                    _c(
-                      "button",
-                      {
-                        staticStyle: {
-                          "margin-left": "10px",
-                          border: "none",
-                          color: "#fff",
-                          background: "green",
-                          "font-weight": "bold"
-                        },
-                        on: { click: _vm.acceptRequest }
-                      },
-                      [_vm._v("Accept")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticStyle: {
-                          "margin-left": "10px",
-                          border: "none",
-                          color: "#000",
-                          background: "yellow",
-                          "font-weight": "bold"
-                        }
-                      },
-                      [_vm._v("Finish")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticStyle: {
-                          "margin-left": "10px",
-                          border: "none",
-                          color: "#fff",
-                          background: "red",
-                          "font-weight": "bold"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.cancelTransaction()
-                          }
-                        }
-                      },
-                      [_vm._v("Decline")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticStyle: {
-                          "margin-left": "10px",
-                          border: "none",
-                          color: "#fff",
-                          background: "black",
-                          "font-weight": "bold"
-                        }
-                      },
-                      [_vm._v("Report")]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.cancelled
-                ? _c(
-                    "span",
-                    { staticStyle: { color: "red", "margin-left": "10px" } },
-                    [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.accepted
-                ? _c(
-                    "span",
-                    { staticStyle: { color: "green", "margin-left": "10px" } },
-                    [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
-                  )
-                : _vm._e()
-            ]
-          )
-        ])
-      ])
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Available at the moment")
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7d1fe472", module.exports)
-  }
-}
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(76)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(78)
-/* template */
-var __vue_template__ = __webpack_require__(79)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\SellerRequest.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c6ee829", Component.options)
-  } else {
-    hotAPI.reload("data-v-6c6ee829", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(77);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("3187e48d", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 78 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'buyer', 'shop'],
-
-	data: function data() {
-
-		return {
-
-			buyerDetails: [],
-			trackedTransactions: [],
-			total: 0,
-			cancelled: false,
-			accepted: false,
-			delivery: 0,
-			totalAndDelivery: 0
-
-		};
-	},
-	mounted: function mounted() {
-
-		this.getbuyerDetails();
-		this.getTrackedTransactions();
-	},
-
-
-	watch: {
-		delivery: function delivery() {
-
-			this.totalAndDelivery = +this.total + +this.delivery;
-		}
-	},
-
-	methods: {
-		acceptRequest: function acceptRequest() {
-			this.accepted = true;
-			axios.get('/accept/transaction/' + this.id + '/' + this.delivery + '/' + this.buyer).then(function (response) {});
-		},
-		getbuyerDetails: function getbuyerDetails() {
-			var _this = this;
-
-			axios.get('/get/user/details/' + this.buyer).then(function (response) {
-
-				_this.buyerDetails.push(response.data);
-			});
-		},
-		getTrackedTransactions: function getTrackedTransactions() {
-			var _this2 = this;
-
-			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
-				response.data.forEach(function (tracked) {
-					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
-						_this2.trackedTransactions.push(tracked);
-						_this2.total = _this2.total + tracked.price.price * tracked.quantity;
-					}
-				});
-				_this2.totalAndDelivery = _this2.total;
-				if (_this2.total == 0) {
-
-					_this2.cancelTransaction();
-				}
-			});
-		},
-		cancelTransaction: function cancelTransaction() {
-			this.cancelled = true;
-			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
-		},
-		delTransaction: function delTransaction(id, amount) {
-
-			var transaction = this.trackedTransactions.find(function (t) {
-				return t.id === id;
-			});
-
-			var index = this.trackedTransactions.indexOf(transaction);
-
-			this.trackedTransactions.splice(index, 1);
-
-			if (this.total > 0) {
-				this.total = this.total - amount;
-			}
-
-			if (this.total == 0) {
-
-				this.cancelTransaction();
-			}
-
-			axios.get('/delete/transaction/' + id).then(function (response) {});
-		}
-	}
-});
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.buyerDetails.length > 0 && _vm.trackedTransactions.length > 0
-    ? _c("div", { staticClass: "transactions" }, [
-        _c("div", { staticClass: "seller-details" }, [
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("img", {
-              staticClass: "owner-avatar",
-              staticStyle: { "border-radius": "50%", margin: "10px" },
-              attrs: {
-                width: "50px",
-                height: "50px",
-                src: _vm.buyerDetails[0].avatar
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
-              [
-                _c("span", { staticClass: "user-name" }, [
-                  _vm._v(
-                    _vm._s(_vm.buyerDetails[0].fname) +
-                      " " +
-                      _vm._s(_vm.buyerDetails[0].lname)
-                  )
-                ]),
-                _vm._v(" as Buyer ")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-              _vm._v(
-                " Location: " +
-                  _vm._s(_vm.trackedTransactions[0].tracker.location)
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { height: "150px", "overflow-y": "auto" } },
-            _vm._l(_vm.trackedTransactions, function(transaction) {
-              return _c("span", [
-                _c("img", {
-                  staticClass: "product-avatar",
-                  staticStyle: { "border-radius": "5px", margin: "10px" },
-                  attrs: {
-                    width: "50px",
-                    height: "50px",
-                    src: transaction.price.product.image
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      width: "180px",
-                      position: "relative",
-                      top: "-25px",
-                      left: "70px"
-                    }
-                  },
-                  [
-                    transaction.quantity == 1
-                      ? _c("span", [
-                          _c("span", { staticClass: "pending-product-name" }, [
-                            _vm._v(
-                              _vm._s(transaction.price.product.name) +
-                                "(" +
-                                _vm._s(
-                                  "N" +
-                                    transaction.price.price +
-                                    "x" +
-                                    transaction.quantity +
-                                    transaction.price.unit
-                                ) +
-                                ") "
-                            ),
-                            _vm.cancelled == false && _vm.accepted == false
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      color: "red",
-                                      cursor: "pointer"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.delTransaction(
-                                          transaction.id,
-                                          transaction.price.price *
-                                            transaction.quantity
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(" remove")]
-                                )
-                              : _vm._e()
-                          ]),
-                          _c("br")
-                        ])
-                      : _c("span", [
-                          _c("span", { staticClass: "pending-product-name" }, [
-                            _vm._v(
-                              _vm._s(transaction.price.product.name) +
-                                "(" +
-                                _vm._s(
-                                  "N" +
-                                    transaction.price.price +
-                                    "x" +
-                                    transaction.quantity +
-                                    transaction.price.unit +
-                                    "s"
-                                ) +
-                                ") "
-                            ),
-                            _vm.cancelled == false && _vm.accepted == false
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      color: "red",
-                                      cursor: "pointer"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.delTransaction(
-                                          transaction.id,
-                                          transaction.price.price *
-                                            transaction.quantity
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(" remove")]
-                                )
-                              : _vm._e()
-                          ]),
-                          _c("br")
-                        ])
-                  ]
-                )
-              ])
-            })
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "hr" }),
-        _vm._v(" "),
-        _c("div", { staticStyle: { height: "150px", "overflow-y": "auto" } }, [
-          _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-            _vm._v("Total = N " + _vm._s(_vm.total) + " "),
-            _c("br"),
-            _vm._v(" Delivery Fee(N): "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.delivery,
-                  expression: "delivery"
-                }
-              ],
-              staticStyle: { width: "80px" },
-              attrs: { type: "number", value: "0" },
-              domProps: { value: _vm.delivery },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.delivery = $event.target.value
-                }
-              }
-            }),
-            _c("br"),
-            _vm._v("Total + Delivery = N " + _vm._s(_vm.totalAndDelivery))
-          ]),
-          _vm._v(" "),
-          _vm.cancelled == false && _vm.accepted == false
-            ? _c("span", [
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#fff",
-                      background: "green",
-                      "font-weight": "bold"
-                    },
-                    on: { click: _vm.acceptRequest }
-                  },
-                  [_vm._v("Accept")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#fff",
-                      background: "red",
-                      "font-weight": "bold"
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.cancelTransaction()
-                      }
-                    }
-                  },
-                  [_vm._v("Decline")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticStyle: {
-                      "margin-left": "10px",
-                      border: "none",
-                      color: "#fff",
-                      background: "black",
-                      "font-weight": "bold"
-                    }
-                  },
-                  [_vm._v("Report")]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.cancelled
-            ? _c(
-                "span",
-                { staticStyle: { color: "red", "margin-left": "10px" } },
-                [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.accepted
-            ? _c(
-                "span",
-                { staticStyle: { color: "green", "margin-left": "10px" } },
-                [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
-              )
-            : _vm._e()
-        ])
-      ])
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Modify Request")
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6c6ee829", module.exports)
-  }
-}
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(81)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(83)
-/* template */
-var __vue_template__ = __webpack_require__(84)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Items.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2c642a4e", Component.options)
-  } else {
-    hotAPI.reload("data-v-2c642a4e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(82);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("2cf0d474", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2c642a4e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Items.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2c642a4e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Items.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.items-container {\r\ndisplay: inline-block;\r\nbackground: #fff;\r\nheight: 400px;\r\nwidth: 300px;\r\noverflow-y:auto;\r\nmargin: 10px;\n}\n.item-name {\r\n\r\nfont-weight:bold;\r\nmargin-top: -100px;\r\nmargin-left: 130px;\n}\n.item-details{\r\n\r\nheight: 125px;\r\noverflow-y: auto;\n}\n.item-price-menu{\r\n\r\nborder-top: 2px solid red;\r\nmargin-top: 5px;\r\nheight: 220px;\n}\n.item-price-menu td {\r\n\r\npadding: 5px;\n}\n.item-price-menu button{\r\n\r\nbackground: green;\r\ncolor: #fff;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 83 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['image', 'id', 'name', 'store', 'online'],
-
-	data: function data() {
-
-		return {
-
-			itemPrices: [],
-			shopOwner: []
-
-		};
-	},
-	mounted: function mounted() {
-		this.getShopOwner();
-		this.getItemPrices();
-	},
-
-
-	methods: {
-		getShopOwner: function getShopOwner() {
-			var _this = this;
-
-			axios.get('/get/item/owner/' + this.store).then(function (response) {
-
-				_this.shopOwner.push(response.data);
-			});
-		},
-		getItemPrices: function getItemPrices() {
-			var _this2 = this;
-
-			axios.get('/get/item/Prices/' + this.id).then(function (response) {
-
-				response.data.forEach(function (price) {
-
-					_this2.itemPrices.push(price);
-				});
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "items-container" }, [
-    _c("div", { staticClass: "shop-items" }, [
-      _c("div", { staticClass: "item-details" }, [
-        _c("img", {
-          staticClass: "product-avatar",
-          staticStyle: { "border-radius": "5px", margin: "10px" },
-          attrs: { width: "100px", height: "100px", src: this.image }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "item-name" }, [
-          _c("span", [_vm._v(_vm._s(this.name))])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "item-price-menu" }, [
-        this.online == 0
-          ? _c("span", { staticStyle: { margin: "20px", color: "red" } }, [
-              _vm._v("This item is offline")
-            ])
-          : _c("span", [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "table",
-                { staticStyle: { position: "relative", top: "-50px" } },
-                _vm._l(_vm.itemPrices, function(price) {
-                  return _c(
-                    "span",
-                    [
-                      _c("buy-item", {
-                        attrs: {
-                          price: price.price,
-                          id: price.id,
-                          product: price.product_id,
-                          unit: price.unit
-                        }
-                      })
-                    ],
-                    1
-                  )
-                })
-              )
-            ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("table", [
-      _c("tr", [
-        _c("td", [_c("b", [_vm._v("Price(N)")])]),
-        _vm._v(" "),
-        _c("td", [_c("b", [_vm._v("Unit")])]),
-        _vm._v(" "),
-        _c("td", [_c("b", [_vm._v("Quantity")])]),
-        _c("td", [_c("b", [_vm._v("Request")])])
-      ]),
-      _vm._v(" "),
-      _c("tr", { staticClass: "invisible" }, [
-        _c("td"),
-        _vm._v(" "),
-        _c("td"),
-        _vm._v(" "),
-        _c("td", [
-          _c("input", {
-            staticStyle: { width: "50px" },
-            attrs: { type: "number" }
-          })
-        ]),
-        _c("td", [_c("button", [_vm._v("Add")])])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2c642a4e", module.exports)
-  }
-}
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(86)
-/* template */
-var __vue_template__ = __webpack_require__(87)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Loader.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-90dafe6c", Component.options)
-  } else {
-    hotAPI.reload("data-v-90dafe6c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 86 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-
-    this.reload();
-
-    this.removeLoader();
-  },
-
-
-  methods: {
-    reload: function reload() {
-      setInterval(refresh, 1800000);
-      function refresh() {
-        window.location = "/login/seller/login";
-      }
-    },
-    removeLoader: function removeLoader() {
-
-      setTimeout(remove, 4000);
-
-      function remove() {
-        var loader = document.getElementById('loader');
-        loader.classList.add('hidden');
-      }
-    }
-  }
-
-});
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("audio", {
-        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
-      })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-90dafe6c", module.exports)
-  }
-}
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(89)
-/* template */
-var __vue_template__ = __webpack_require__(90)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Product.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8120f770", Component.options)
-  } else {
-    hotAPI.reload("data-v-8120f770", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 89 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'name', 'storeName', 'category', 'description', 'image', 'status', 'store'],
-
-	mounted: function mounted() {
-		if (this.status == 0) {
-
-			this.available = false;
-		}
-		this.getPrices();
-		this.getAuthDetails();
-		this.getStoreProducts();
-	},
-	data: function data() {
-
-		return {
-
-			authDetails: [],
-			products: [],
-			showPrice: false,
-			available: true,
-			root: 'https://jokesterbox.com',
-			pprice: '',
-			punit: '',
-			prices: []
-
-		};
-	},
-
-
-	methods: {
-		removePrice: function removePrice(pid) {
-			var _this = this;
-
-			var price = this.prices.find(function (p) {
-				return p.id === pid;
-			});
-
-			var index = this.prices.indexOf(price);
-
-			this.prices.splice(index, 1);
-
-			axios.get(this.root + '/remove/prices/' + pid).then(function (response) {
-
-				_this.getPrices();
-			});
-		},
-		sendPrice: function sendPrice() {
-			var _this2 = this;
-
-			var data = JSON.stringify({
-				price: this.pprice,
-				unit: this.punit,
-				product_id: this.id
-
-			});
-
-			axios.post(this.root + '/send/price', data, {
-				headers: {
-					'Content-Type': 'application/json'
-
-				}
-
-			}).then(function (response) {
-
-				_this2.pprice = '';
-				_this2.punit = '';
-
-				_this2.getPrices();
-			});
-		},
-		getPrices: function getPrices() {
-			var _this3 = this;
-
-			axios.get(this.root + '/get/prices/' + this.id).then(function (response) {
-
-				_this3.prices = [];
-				response.data.forEach(function (price) {
-					_this3.prices.push(price);
-				});
-			});
-		},
-		getAuthDetails: function getAuthDetails() {
-			var _this4 = this;
-
-			axios.get(this.root + '/auth/details').then(function (response) {
-
-				_this4.authDetails.push(response.data);
-			});
-		},
-		getStoreProducts: function getStoreProducts() {},
-		showProductPrice: function showProductPrice() {
-
-			this.showPrice = true;
-		},
-		hideProductPrice: function hideProductPrice() {
-
-			this.showPrice = false;
-		},
-		onProduct: function onProduct() {
-
-			this.available = true;
-
-			axios.get(this.root + '/on/product/' + this.id).then(function (response) {});
-		},
-		offProduct: function offProduct() {
-
-			this.available = false;
-
-			axios.get(this.root + '/off/product/' + this.id).then(function (response) {});
-		}
-	}
-
-});
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "products" }, [
-      _c("div", { staticClass: "seller-products" }, [
-        this.image
-          ? _c("img", {
-              attrs: {
-                src: this.image,
-                height: "150px",
-                width: "200px",
-                alt: ""
-              }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(this.name))]),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(this.description))]),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "grey-button",
-            on: {
-              click: function($event) {
-                _vm.showProductPrice()
-              }
-            }
-          },
-          [_vm._v("Price Menu")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "product-details" }, [
-          !_vm.available
-            ? _c("span", { attrs: { id: "onproduct" } }, [
-                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
-                  _vm._v("off")
-                ]),
-                _c(
-                  "button",
-                  {
-                    staticStyle: { background: "green" },
-                    on: {
-                      click: function($event) {
-                        _vm.onProduct()
-                      }
-                    }
-                  },
-                  [_vm._v("On")]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.available
-            ? _c("span", { attrs: { id: "offproduct" } }, [
-                _c(
-                  "button",
-                  {
-                    staticStyle: { background: "red" },
-                    on: {
-                      click: function($event) {
-                        _vm.offProduct()
-                      }
-                    }
-                  },
-                  [_vm._v("Off")]
-                ),
-                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
-                  _vm._v("on")
-                ])
-              ])
-            : _vm._e()
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.showPrice
-      ? _c(
-          "div",
-          { staticClass: "product-price", attrs: { id: "product-price" } },
-          [
-            _c("div", { staticClass: "price-menu" }, [
-              _c("div", { staticClass: "hide-price" }, [
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.hideProductPrice()
-                      }
-                    }
-                  },
-                  [_vm._v("x")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [_c("b", [_vm._v(_vm._s(this.name))])]),
-              _vm._v(" "),
-              _c("p"),
-              _vm._v(" "),
-              _c(
-                "table",
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pprice,
-                            expression: "pprice"
-                          }
-                        ],
-                        staticStyle: { width: "60px" },
-                        attrs: { type: "number", placeholder: "price" },
-                        domProps: { value: _vm.pprice },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.pprice = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.punit,
-                            expression: "punit"
-                          }
-                        ],
-                        staticStyle: { width: "60px" },
-                        attrs: { type: "text", placeholder: "unit" },
-                        domProps: { value: _vm.punit },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.punit = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
-                    _c("td", [
-                      _c(
-                        "a",
-                        {
-                          staticStyle: {
-                            color: "#fff",
-                            background: "green",
-                            padding: "5px",
-                            "border-radius": "10px"
-                          },
-                          on: { click: _vm.sendPrice }
-                        },
-                        [_vm._v("Add")]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.prices, function(price) {
-                    return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(price.price))]),
-                      _c("td", [_vm._v(_vm._s(price.unit))]),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            staticStyle: { color: "red" },
-                            on: {
-                              click: function($event) {
-                                _vm.removePrice(price.id)
-                              }
-                            }
-                          },
-                          [_vm._v("Remove")]
-                        )
-                      ])
-                    ])
-                  })
-                ],
-                2
-              )
-            ])
-          ]
-        )
-      : _vm._e()
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_c("b", [_vm._v("Price(N)")])]),
-      _c("td", [_c("b", [_vm._v("Unit")])]),
-      _c("td", [_c("b", [_vm._v("Action")])])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8120f770", module.exports)
-  }
-}
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(92)
-/* template */
-var __vue_template__ = __webpack_require__(93)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\BuyItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1bd77d12", Component.options)
-  } else {
-    hotAPI.reload("data-v-1bd77d12", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 92 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-
-		return {
-
-			shopOwner: [],
-
-			quantity: 1
-
-		};
-	},
-	mounted: function mounted() {
-
-		this.getShopOwner();
-	},
-
-
-	props: ['product', 'unit', 'price', 'id'],
-
-	methods: {
-		getPendingTransactions: function getPendingTransactions() {
-			var _this = this;
-
-			axios.get('/get/pending/transactions').then(function (response) {
-
-				response.data.forEach(function (transactions) {
-					_this.$store.commit('add_pending_transactions', transactions);
-				});
-			});
-		},
-		getShopOwner: function getShopOwner() {
-			var _this2 = this;
-
-			axios.get('/get/product/owner/' + this.product).then(function (response) {
-
-				_this2.shopOwner.push(response.data);
-			});
-		},
-		addToCart: function addToCart() {
-			var _this3 = this;
-
-			if (this.quantity < 1) {
-
-				return;
-			}
-
-			axios.get('/add/to/cart/' + this.product + '/' + this.id + '/' + this.quantity).then(function (response) {
-
-				_this3.getPendingTransactions();
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("span", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("tr", [
-      _c("td", [_vm._v(_vm._s(this.price))]),
-      _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(this.unit))]),
-      _vm._v(" "),
-      _c("td", [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.quantity,
-              expression: "quantity"
-            }
-          ],
-          staticStyle: { width: "50px" },
-          attrs: { type: "number" },
-          domProps: { value: _vm.quantity },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.quantity = $event.target.value
-            }
-          }
-        })
-      ]),
-      _c("td", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.addToCart()
-              }
-            }
-          },
-          [_vm._v("Add")]
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "invisible" }, [
-      _c("td", [_c("b", [_vm._v("Price(N)")])]),
-      _vm._v(" "),
-      _c("td", [_c("b", [_vm._v("Unit")])]),
-      _vm._v(" "),
-      _c("td", [_c("b", [_vm._v("Quantity")])]),
-      _c("td", [_c("b", [_vm._v("Request")])])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1bd77d12", module.exports)
-  }
-}
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(95)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(97)
-/* template */
-var __vue_template__ = __webpack_require__(98)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\seller-chat.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-599c605f", Component.options)
-  } else {
-    hotAPI.reload("data-v-599c605f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(96);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("b6f28920", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-599c605f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./seller-chat.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-599c605f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./seller-chat.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 97 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'seller', 'auth', 'buyer', 'shop', 'delivery'],
-
-	mounted: function mounted() {
-		this.getbuyerDetails();
-		this.getShopDetails();
-		this.getTrackedTransactions();
-		this.listen();
-	},
-	data: function data() {
-
-		return {
-			buyerDetails: [],
-			shopDetails: [],
-			trackedTransactions: [],
-			total: 0,
-			finished: false,
-			accepted: false,
-			showChat: false,
-			chat: "",
-			message: "",
-			trackedChat: []
-
-		};
-	},
-
-
-	methods: {
-		tr: function tr() {
-
-			this.getTrackedTransactions();
-			this.chatScroller();
-		},
-		listen: function listen() {
-			var _this = this;
-
-			Echo.private('App.User.' + this.auth).notification(function (notification) {
-
-				if (notification.ntype == 4 && notification.status == 1) {
-
-					_this.getTrackedTransactions();
-					_this.chatScroller();
-				}
-
-				document.getElementById('noty_audio').play();
-				_this.chatScroller();
-			});
-		},
-		sendMessage: function sendMessage() {
-			var _this2 = this;
-
-			if (this.message.length == 0) {
-
-				return;
-			}
-
-			this.chat = this.message;
-			this.message = "";
-
-			this.showFakeMessage();
-			this.chatScroller();
-
-			var data = JSON.stringify({
-				body: this.chat,
-				sender: this.seller,
-				receiver: this.buyer,
-				tracker: this.id
-			});
-
-			axios.post('/send/seller/chat', data, {
-				headers: {
-					'Content-Type': 'application/json'
-
-				}
-
-			}).then(function (response) {
-
-				_this2.getRecentChat();
-			});
-		},
-		getRecentChat: function getRecentChat() {
-			var _this3 = this;
-
-			axios.get('/get/recent/seller/chat/' + this.buyer + '/' + this.id).then(function (response) {
-
-				_this3.trackedChat.push(response.data);
-				_this3.hideFakeMessage();
-			});
-		},
-		showFakeMessage: function showFakeMessage() {
-
-			var fake = document.getElementById('fake-message' + this.id);
-			fake.classList.remove("hidden");
-		},
-		hideFakeMessage: function hideFakeMessage() {
-
-			var fake = document.getElementById('fake-message' + this.id);
-			fake.classList.add("hidden");
-		},
-		displayChat: function displayChat() {
-			var chat = document.getElementById('chat-container' + this.id);
-			chat.classList.remove("hidden");
-			if (this.showChat = true) this.chatScroller();
-		},
-		getbuyerDetails: function getbuyerDetails() {
-			var _this4 = this;
-
-			axios.get('/get/user/details/' + this.buyer).then(function (response) {
-
-				_this4.buyerDetails.push(response.data);
-			});
-		},
-		chatScroller: function chatScroller() {
-
-			var chat = document.getElementById('chat-message' + this.id);
-			chat.scrollTop = 5000;
-		},
-		hideChat: function hideChat() {
-			var chat = document.getElementById('chat-container' + this.id);
-			chat.classList.add("hidden");
-			this.showChat = false;
-		},
-		finishTransaction: function finishTransaction() {
-			this.finished = true;
-
-			axios.get('/finish/transaction/' + this.id).then(function (response) {});
-		},
-		acceptRequest: function acceptRequest() {
-			this.accepted = true;
-			axios.get('/buyer/accept/transaction/' + this.id).then(function (response) {});
-		},
-		getTrackedTransactions: function getTrackedTransactions() {
-			var _this5 = this;
-
-			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
-				response.data.forEach(function (tracked) {
-
-					_this5.trackedTransactions = [];
-					_this5.total = 0;
-
-					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
-						_this5.trackedTransactions.push(tracked);
-						_this5.total = _this5.total + tracked.price.price * tracked.quantity;
-					}
-				});
-
-				if (_this5.total == 0) {
-
-					_this5.cancelTransaction();
-				}
-
-				_this5.trackedChat = _this5.trackedTransactions[0].tracker.chats;
-			});
-		},
-		getShopDetails: function getShopDetails() {
-			var _this6 = this;
-
-			axios.get('/get/shop/details/' + this.shop).then(function (response) {
-
-				if (response.data.online == 0 || response.data.seller.online == 0) {
-
-					_this6.cancelTransaction();
-				}
-				_this6.shopDetails.push(response.data);
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.buyerDetails.length > 0 && _vm.trackedTransactions.length > 0
-    ? _c(
-        "div",
-        {
-          staticClass: "inactive-transactions",
-          staticStyle: { height: "520px", overflow: "hidden" }
-        },
-        [
-          _c("div", { staticClass: "seller-details" }, [
-            _c(
-              "div",
-              { staticStyle: { height: "80px", "overflow-y": "auto" } },
-              [
-                _c("img", {
-                  staticClass: "owner-avatar",
-                  staticStyle: { "border-radius": "50%", margin: "10px" },
-                  attrs: {
-                    width: "50px",
-                    height: "50px",
-                    src: _vm.buyerDetails[0].avatar
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      "margin-top": "-50px",
-                      "margin-left": "80px"
-                    }
-                  },
-                  [
-                    _c("span", { staticClass: "user-name" }, [
-                      _vm._v(
-                        _vm._s(_vm.buyerDetails[0].fname) +
-                          " " +
-                          _vm._s(_vm.buyerDetails[0].lname)
-                      )
-                    ]),
-                    _vm._v(" as Buyer "),
-                    !_vm.showChat
-                      ? _c("span", { on: { click: _vm.displayChat } }, [
-                          _c("span", { staticClass: "unread-chat hidden" }, [
-                            _vm._v("10")
-                          ]),
-                          _vm.finished == false && _vm.accepted == false
-                            ? _c("div", { staticClass: "chat-button" }, [
-                                _vm._v("Chat")
-                              ])
-                            : _vm._e()
-                        ])
-                      : _vm._e(),
-                    _vm.showChat
-                      ? _c("span", { on: { click: _vm.hideChat } }, [
-                          _c("div", { staticClass: "details-button" }, [
-                            _vm._v("Show items")
-                          ])
-                        ])
-                      : _vm._e()
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "hr" }),
-            _vm._v(" "),
-            !_vm.showChat
-              ? _c("span", [
-                  _c(
-                    "div",
-                    { staticStyle: { height: "80px", "overflow-y": "auto" } },
-                    [
-                      _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                        _vm._v(
-                          " Location: " +
-                            _vm._s(_vm.trackedTransactions[0].tracker.location)
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "hr" }),
-                  _vm._v(" "),
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { height: "150px", "overflow-y": "auto" } },
-                    _vm._l(_vm.trackedTransactions, function(transaction) {
-                      return _c("span", [
-                        _c("img", {
-                          staticClass: "product-avatar",
-                          staticStyle: {
-                            "border-radius": "5px",
-                            margin: "10px"
-                          },
-                          attrs: {
-                            width: "50px",
-                            height: "50px",
-                            src: transaction.price.product.image
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticStyle: {
-                              width: "180px",
-                              position: "relative",
-                              top: "-25px",
-                              left: "70px"
-                            }
-                          },
-                          [
-                            transaction.quantity == 1
-                              ? _c("span", [
-                                  _c(
-                                    "span",
-                                    { staticClass: "pending-product-name" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(transaction.price.product.name) +
-                                          "(" +
-                                          _vm._s(
-                                            "N" +
-                                              transaction.price.price +
-                                              "x" +
-                                              transaction.quantity +
-                                              transaction.price.unit
-                                          ) +
-                                          ")"
-                                      )
-                                    ]
-                                  ),
-                                  _c("br")
-                                ])
-                              : _c("span", [
-                                  _c(
-                                    "span",
-                                    { staticClass: "pending-product-name" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(transaction.price.product.name) +
-                                          "(" +
-                                          _vm._s(
-                                            "N" +
-                                              transaction.price.price +
-                                              "x" +
-                                              transaction.quantity +
-                                              transaction.price.unit +
-                                              "s"
-                                          ) +
-                                          ") "
-                                      )
-                                    ]
-                                  ),
-                                  _c("br")
-                                ])
-                          ]
-                        )
-                      ])
-                    })
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.finished == false && _vm.accepted == false
-              ? _c(
-                  "span",
-                  {
-                    staticClass: "hidden",
-                    attrs: { id: "chat-container" + this.id }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "chat-content ",
-                        attrs: { id: "chat-message" + this.id }
-                      },
-                      [
-                        _vm._l(_vm.trackedChat, function(chat) {
-                          return _c("span", [
-                            chat.status == 1
-                              ? _c("p", { staticClass: "authChat" }, [
-                                  _vm._v(_vm._s(chat.body))
-                                ])
-                              : _c("p", { staticClass: "userChat" }, [
-                                  _vm._v(_vm._s(chat.body))
-                                ])
-                          ])
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          {
-                            staticClass: "authChat hidden",
-                            attrs: { id: "fake-message" + this.id }
-                          },
-                          [_vm._v(_vm._s(_vm.chat))]
-                        ),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "false-paragraph" }),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "false-paragraph" })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "chat-input" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.message,
-                            expression: "message"
-                          }
-                        ],
-                        attrs: {
-                          type: "text",
-                          placeholder: "Type your message"
-                        },
-                        domProps: { value: _vm.message },
-                        on: {
-                          keyup: function($event) {
-                            if (
-                              !("button" in $event) &&
-                              _vm._k($event.keyCode, "enter", 13, $event.key)
-                            ) {
-                              return null
-                            }
-                            _vm.sendMessage($event)
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.message = $event.target.value
-                          }
-                        }
-                      }),
-                      _c("span", { staticClass: "send-chat-icon" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/storage/icons/right-arrow.png",
-                            width: "20px",
-                            height: "auto"
-                          },
-                          on: { click: _vm.sendMessage }
-                        })
-                      ])
-                    ])
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "hr", staticStyle: { border: "none" } }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { height: "100px", "overflow-y": "auto" } },
-              [
-                _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                  _vm._v(
-                    "Total= N " +
-                      _vm._s(_vm.total) +
-                      " Delivery= N " +
-                      _vm._s(this.delivery) +
-                      " "
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.finished == false && _vm.accepted == false
-                  ? _c("span", [
-                      _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            "margin-left": "10px",
-                            cursor: "default",
-                            border: "none",
-                            color: "green",
-                            background: "#fff",
-                            "font-weight": "bold"
-                          }
-                        },
-                        [_vm._v("Accepted")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            "margin-left": "10px",
-                            border: "1px solid #ddd",
-                            color: "#000",
-                            background: "yellow",
-                            "font-weight": "bold"
-                          },
-                          on: { click: _vm.finishTransaction }
-                        },
-                        [_vm._v("Delivered")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            "margin-left": "10px",
-                            border: "none",
-                            color: "#fff",
-                            background: "black",
-                            "font-weight": "bold"
-                          }
-                        },
-                        [_vm._v("Report")]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.finished
-                  ? _c(
-                      "span",
-                      {
-                        staticStyle: { color: "green", "margin-left": "10px" }
-                      },
-                      [_vm._v("\r\n\t\tTransaction Completed\r\n\t\t")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.accepted
-                  ? _c(
-                      "span",
-                      {
-                        staticStyle: { color: "green", "margin-left": "10px" }
-                      },
-                      [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ])
-        ]
-      )
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Available at the moment")
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-599c605f", module.exports)
-  }
-}
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(100)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(102)
-/* template */
-var __vue_template__ = __webpack_require__(103)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\buyer-chat.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1f907e6e", Component.options)
-  } else {
-    hotAPI.reload("data-v-1f907e6e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(101);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("e124900c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f907e6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buyer-chat.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f907e6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buyer-chat.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 102 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'seller', 'buyer', 'auth', 'shop', 'delivery'],
-
-	mounted: function mounted() {
-		this.getShopDetails();
-		this.getTrackedTransactions();
-		this.listen();
-	},
-	data: function data() {
-
-		return {
-
-			shopDetails: [],
-			trackedTransactions: [],
-			total: 0,
-			finished: false,
-			accepted: false,
-			showChat: false,
-			message: "",
-			chat: "",
-			trackedChat: []
-
-		};
-	},
-
-
-	methods: {
-		listen: function listen() {
-			var _this = this;
-
-			Echo.private('App.User.' + this.auth).notification(function (notification) {
-
-				if (notification.ntype == 4 && notification.status == 0) {
-
-					_this.getTrackedTransactions();
-				}
-				document.getElementById('noty_audio').play();
-				_this.chatScroller();
-			});
-		},
-		sendMessage: function sendMessage() {
-			var _this2 = this;
-
-			if (this.message.length == 0) {
-
-				return;
-			}
-
-			this.chat = this.message;
-			this.message = "";
-
-			this.showFakeMessage();
-			this.chatScroller();
-
-			var data = JSON.stringify({
-				body: this.chat,
-				sender: this.buyer,
-				receiver: this.buyer,
-				tracker: this.id
-			});
-
-			axios.post('/send/buyer/chat', data, {
-				headers: {
-					'Content-Type': 'application/json'
-
-				}
-
-			}).then(function (response) {
-
-				_this2.getRecentChat();
-			});
-		},
-		getRecentChat: function getRecentChat() {
-			var _this3 = this;
-
-			axios.get('/get/recent/buyer/chat/' + this.buyer + '/' + this.id).then(function (response) {
-
-				_this3.trackedChat.push(response.data);
-				_this3.hideFakeMessage();
-			});
-		},
-		showFakeMessage: function showFakeMessage() {
-
-			var fake = document.getElementById('fake-message' + this.id);
-			fake.classList.remove("hidden");
-		},
-		hideFakeMessage: function hideFakeMessage() {
-
-			var fake = document.getElementById('fake-message' + this.id);
-			fake.classList.add("hidden");
-		},
-		displayChat: function displayChat() {
-			var chat = document.getElementById('chat-container' + this.id);
-			chat.classList.remove("hidden");
-			if (this.showChat = true) this.chatScroller();
-		},
-		chatScroller: function chatScroller() {
-
-			var chat = document.getElementById('chat-message' + this.id);
-			chat.scrollTop = 5000;
-		},
-		hideChat: function hideChat() {
-			var chat = document.getElementById('chat-container' + this.id);
-			chat.classList.add("hidden");
-			this.showChat = false;
-		},
-		finishTransaction: function finishTransaction() {
-			this.finished = true;
-
-			axios.get('/finish/transaction/' + this.id).then(function (response) {});
-		},
-		acceptRequest: function acceptRequest() {
-			this.accepted = true;
-			axios.get('/buyer/accept/transaction/' + this.id).then(function (response) {});
-		},
-		getTrackedTransactions: function getTrackedTransactions() {
-			var _this4 = this;
-
-			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
-				response.data.forEach(function (tracked) {
-
-					_this4.trackedTransactions = [];
-					_this4.total = 0;
-
-					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
-						_this4.trackedTransactions.push(tracked);
-						_this4.total = _this4.total + tracked.price.price * tracked.quantity;
-					}
-				});
-
-				if (_this4.total == 0) {
-
-					_this4.cancelTransaction();
-				}
-
-				_this4.trackedChat = _this4.trackedTransactions[0].tracker.chats;
-			});
-		},
-		getShopDetails: function getShopDetails() {
-			var _this5 = this;
-
-			axios.get('/get/shop/details/' + this.shop).then(function (response) {
-
-				if (response.data.online == 0 || response.data.seller.online == 0) {
-
-					_this5.cancelTransaction();
-				}
-				_this5.shopDetails.push(response.data);
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.shopDetails.length > 0
-    ? _c(
-        "div",
-        {
-          staticClass: "inactive-transactions",
-          staticStyle: { height: "520px", overflow: "hidden" }
-        },
-        [
-          _c("div", { staticClass: "seller-details" }, [
-            _c(
-              "div",
-              { staticStyle: { height: "80px", "overflow-y": "auto" } },
-              [
-                _c("img", {
-                  staticClass: "owner-avatar",
-                  staticStyle: { "border-radius": "50%", margin: "10px" },
-                  attrs: {
-                    width: "50px",
-                    height: "50px",
-                    src: _vm.shopDetails[0].seller.avatar
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      "margin-top": "-50px",
-                      "margin-left": "80px"
-                    }
-                  },
-                  [
-                    _c("span", { staticClass: "user-name" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.shopDetails[0].seller.fname +
-                            " " +
-                            _vm.shopDetails[0].seller.lname
-                        )
-                      )
-                    ]),
-                    _vm._v(" as Seller "),
-                    !_vm.showChat
-                      ? _c("span", { on: { click: _vm.displayChat } }, [
-                          _c("span", { staticClass: "unread-chat hidden" }, [
-                            _vm._v("10")
-                          ]),
-                          _vm.finished == false && _vm.accepted == false
-                            ? _c("div", { staticClass: "chat-button" }, [
-                                _vm._v("Chat")
-                              ])
-                            : _vm._e()
-                        ])
-                      : _vm._e(),
-                    _vm.showChat
-                      ? _c("span", { on: { click: _vm.hideChat } }, [
-                          _c("div", { staticClass: "details-button" }, [
-                            _vm._v("Show items")
-                          ])
-                        ])
-                      : _vm._e()
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "hr" }),
-            _vm._v(" "),
-            !_vm.showChat
-              ? _c("span", [
-                  _c(
-                    "div",
-                    { staticStyle: { height: "80px", "overflow-y": "auto" } },
-                    [
-                      _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                        _vm._v(
-                          _vm._s(
-                            _vm.shopDetails[0].name +
-                              ", " +
-                              _vm.shopDetails[0].location.location +
-                              ", " +
-                              _vm.shopDetails[0].seller.phone
-                          )
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "hr" }),
-                  _vm._v(" "),
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { height: "150px", "overflow-y": "auto" } },
-                    _vm._l(_vm.trackedTransactions, function(transaction) {
-                      return _c("span", [
-                        _c("img", {
-                          staticClass: "product-avatar",
-                          staticStyle: {
-                            "border-radius": "5px",
-                            margin: "10px"
-                          },
-                          attrs: {
-                            width: "50px",
-                            height: "50px",
-                            src: transaction.price.product.image
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticStyle: {
-                              width: "180px",
-                              position: "relative",
-                              top: "-25px",
-                              left: "70px"
-                            }
-                          },
-                          [
-                            transaction.quantity == 1
-                              ? _c("span", [
-                                  _c(
-                                    "span",
-                                    { staticClass: "pending-product-name" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(transaction.price.product.name) +
-                                          "(" +
-                                          _vm._s(
-                                            "N" +
-                                              transaction.price.price +
-                                              "x" +
-                                              transaction.quantity +
-                                              transaction.price.unit
-                                          ) +
-                                          ")"
-                                      )
-                                    ]
-                                  ),
-                                  _c("br")
-                                ])
-                              : _c("span", [
-                                  _c(
-                                    "span",
-                                    { staticClass: "pending-product-name" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(transaction.price.product.name) +
-                                          "(" +
-                                          _vm._s(
-                                            "N" +
-                                              transaction.price.price +
-                                              "x" +
-                                              transaction.quantity +
-                                              transaction.price.unit +
-                                              "s"
-                                          ) +
-                                          ") "
-                                      )
-                                    ]
-                                  ),
-                                  _c("br")
-                                ])
-                          ]
-                        )
-                      ])
-                    })
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.finished == false && _vm.accepted == false
-              ? _c(
-                  "span",
-                  {
-                    staticClass: "hidden",
-                    attrs: { id: "chat-container" + this.id }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "chat-content ",
-                        attrs: { id: "chat-message" + this.id }
-                      },
-                      [
-                        _vm._l(_vm.trackedChat, function(chat) {
-                          return _c("span", [
-                            chat.status == 0
-                              ? _c("p", { staticClass: "authChat" }, [
-                                  _vm._v(_vm._s(chat.body))
-                                ])
-                              : _c("p", { staticClass: "userChat" }, [
-                                  _vm._v(_vm._s(chat.body))
-                                ])
-                          ])
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          {
-                            staticClass: "authChat hidden",
-                            attrs: { id: "fake-message" + this.id }
-                          },
-                          [_vm._v(_vm._s(_vm.chat))]
-                        ),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "false-paragraph" }),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "false-paragraph" })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "chat-input" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.message,
-                            expression: "message"
-                          }
-                        ],
-                        attrs: {
-                          type: "text",
-                          placeholder: "Type your message"
-                        },
-                        domProps: { value: _vm.message },
-                        on: {
-                          keyup: function($event) {
-                            if (
-                              !("button" in $event) &&
-                              _vm._k($event.keyCode, "enter", 13, $event.key)
-                            ) {
-                              return null
-                            }
-                            _vm.sendMessage($event)
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.message = $event.target.value
-                          }
-                        }
-                      }),
-                      _c("span", { staticClass: "send-chat-icon" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/storage/icons/right-arrow.png",
-                            width: "20px",
-                            height: "auto"
-                          },
-                          on: { click: _vm.sendMessage }
-                        })
-                      ])
-                    ])
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "hr", staticStyle: { border: "none" } }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { height: "100px", "overflow-y": "auto" } },
-              [
-                _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                  _vm._v(
-                    "Total= N " +
-                      _vm._s(_vm.total) +
-                      " Delivery= N " +
-                      _vm._s(this.delivery) +
-                      " "
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.finished == false && _vm.accepted == false
-                  ? _c("span", [
-                      _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            "margin-left": "10px",
-                            cursor: "default",
-                            border: "none",
-                            color: "green",
-                            background: "#fff",
-                            "font-weight": "bold"
-                          }
-                        },
-                        [_vm._v("Accepted")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            "margin-left": "10px",
-                            border: "1px solid #ddd",
-                            color: "#000",
-                            background: "yellow",
-                            "font-weight": "bold"
-                          },
-                          on: { click: _vm.finishTransaction }
-                        },
-                        [_vm._v("Delivered")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            "margin-left": "10px",
-                            border: "none",
-                            color: "#fff",
-                            background: "black",
-                            "font-weight": "bold"
-                          }
-                        },
-                        [_vm._v("Report")]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.finished
-                  ? _c(
-                      "span",
-                      {
-                        staticStyle: { color: "green", "margin-left": "10px" }
-                      },
-                      [_vm._v("\r\n\t\tTransaction Completed\r\n\t\t")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.accepted
-                  ? _c(
-                      "span",
-                      {
-                        staticStyle: { color: "green", "margin-left": "10px" }
-                      },
-                      [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ])
-        ]
-      )
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Available at the moment")
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1f907e6e", module.exports)
-  }
-}
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(105)
-/* template */
-var __vue_template__ = __webpack_require__(106)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\SellButton.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4fe7d44a", Component.options)
-  } else {
-    hotAPI.reload("data-v-4fe7d44a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['pid', 'pname', 'cid', 'type'],
-
-	mounted: function mounted() {
-
-		this.authStore();
-		this.checkStore();
-	},
-	data: function data() {
-
-		return {
-
-			hide: false,
-			similar: [],
-			store: []
-
-		};
-	},
-
-
-	methods: {
-		checkStore: function checkStore() {
-			var _this = this;
-
-			axios.get('/check/store/' + this.pid).then(function (response) {
-
-				if (response.data == 1) {
-
-					_this.hide = true;
-				} else {
-
-					_this.hide = false;
-				}
-			});
-		},
-		authStore: function authStore() {
-			var _this2 = this;
-
-			axios.get('/auth/store').then(function (response) {
-				_this2.store = [];
-
-				response.data.forEach(function (item) {
-
-					_this2.store.push(item);
-				});
-			});
-		},
-		iSellProduct: function iSellProduct() {
-			var _this3 = this;
-
-			this.hide = true;
-			axios.get('/sell/products/' + this.cid + '/' + this.pid).then(function (response) {
-
-				_this3.similar = [];
-
-				response.data.forEach(function (similar) {
-
-					_this3.similar.push(similar);
-				});
-
-				_this3.authStore();
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("span", [
-    !_vm.hide && this.cid != 3 && this.type !== "remove"
-      ? _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.iSellProduct()
-              }
-            }
-          },
-          [_vm._v("I Sell " + _vm._s(this.pname) + " Nearby")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    !_vm.hide && this.cid == 3 && this.type !== "remove"
-      ? _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.iSellProduct()
-              }
-            }
-          },
-          [_vm._v("I render this service")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.hide && _vm.type != "remove"
-      ? _c("p", [_vm._v(" Already in your store")])
-      : _vm._e(),
-    _vm._v(" "),
-    this.type == "remove"
-      ? _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.removeProduct()
-              }
-            }
-          },
-          [_vm._v("Remove " + _vm._s(this.pid))]
-        )
-      : _vm._e()
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4fe7d44a", module.exports)
-  }
-}
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(108)
-/* template */
-var __vue_template__ = __webpack_require__(109)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\ActiveProduct.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-08578ebc", Component.options)
-  } else {
-    hotAPI.reload("data-v-08578ebc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 108 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-
-			activeProduct: []
-
-		};
-	}
-});
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-08578ebc", module.exports)
-  }
-}
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(111)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(113)
-/* template */
-var __vue_template__ = __webpack_require__(114)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\ChatBody.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d91e42de", Component.options)
-  } else {
-    hotAPI.reload("data-v-d91e42de", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(112);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("4062d149", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d91e42de\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChatBody.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d91e42de\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChatBody.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.hidden {\r\ndisplay:none;\n}\r\n\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 113 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-
-		return {
-
-			authDetails: []
-
-		};
-	},
-
-
-	props: ['body', 'id', 'status'],
-
-	mounted: function mounted() {
-
-		this.getAuthDetails();
-	},
-
-
-	methods: {
-		getAuthDetails: function getAuthDetails() {
-			var _this = this;
-
-			axios.get('/auth/details').then(function (response) {
-
-				_this.authDetails.push(response.data);
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    this.authDetails.length > 0
-      ? _c("span", [
-          (this.authDetails[0].id = this.id && this.status == 1)
-            ? _c("span", [
-                _c("p", { staticClass: "authChat" }, [
-                  _vm._v(_vm._s(this.body))
-                ])
-              ])
-            : _c("span", [
-                _c("p", { staticClass: "userChat" }, [
-                  _vm._v(_vm._s(this.body))
-                ])
-              ])
-        ])
-      : _vm._e()
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d91e42de", module.exports)
-  }
-}
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(116)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(118)
-/* template */
-var __vue_template__ = __webpack_require__(119)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\BuyerPending.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-aafaa54a", Component.options)
-  } else {
-    hotAPI.reload("data-v-aafaa54a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(117);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("8b60091e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aafaa54a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerPending.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aafaa54a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerPending.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 118 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ['id', 'seller', 'shop'],
-
-	mounted: function mounted() {
-
-		this.getShopDetails();
-		this.getTrackedTransactions();
-	},
-	data: function data() {
-
-		return {
-
-			shopDetails: [],
-			trackedTransactions: [],
-			total: 0,
-			cancelled: false,
-			requested: false,
-			location: ''
-
-		};
-	},
-
-
-	methods: {
-		sendRequest: function sendRequest() {
-			this.requested = true;
-
-			if (this.location.length == 0) {
-				this.location = 'n.a';
-			}
-
-			axios.get('/request/transaction/' + this.id + '/' + this.location + '/' + this.seller).then(function (response) {});
-		},
-		delTransaction: function delTransaction(id, amount) {
-
-			var transaction = this.trackedTransactions.find(function (t) {
-				return t.id === id;
-			});
-
-			var index = this.trackedTransactions.indexOf(transaction);
-
-			this.trackedTransactions.splice(index, 1);
-
-			if (this.total > 0) {
-				this.total = this.total - amount;
-			}
-
-			if (this.total == 0) {
-
-				this.cancelTransaction();
-			}
-
-			axios.get('/delete/transaction/' + id).then(function (response) {});
-		},
-		cancelTransaction: function cancelTransaction() {
-			this.cancelled = true;
-
-			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
-		},
-		getTrackedTransactions: function getTrackedTransactions() {
-			var _this = this;
-
-			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
-				response.data.forEach(function (tracked) {
-					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
-						_this.trackedTransactions.push(tracked);
-						_this.total = _this.total + tracked.price.price * tracked.quantity;
-					}
-				});
-
-				if (_this.total == 0) {
-
-					_this.cancelTransaction();
-				}
-			});
-		},
-		getShopDetails: function getShopDetails() {
-			var _this2 = this;
-
-			axios.get('/get/shop/details/' + this.shop).then(function (response) {
-
-				if (response.data.online == 0 || response.data.seller.online == 0) {
-
-					_this2.cancelTransaction();
-				}
-				_this2.shopDetails.push(response.data);
-			});
-		}
-	}
-
-});
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.shopDetails.length > 0
-    ? _c("div", { staticClass: "inactive-transactions" }, [
-        _c("div", { staticClass: "seller-details" }, [
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("img", {
-              staticClass: "owner-avatar",
-              staticStyle: { "border-radius": "50%", margin: "10px" },
-              attrs: {
-                width: "50px",
-                height: "50px",
-                src: _vm.shopDetails[0].seller.avatar
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
-              [
-                _c("span", { staticClass: "user-name" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm.shopDetails[0].seller.fname +
-                        " " +
-                        _vm.shopDetails[0].seller.lname
-                    )
-                  )
-                ]),
-                _vm._v(" as Seller "),
-                _vm.cancelled == false && _vm.requested == false
-                  ? _c(
-                      "div",
-                      {
-                        staticClass: "start-chat-button",
-                        staticStyle: { width: "100px" },
-                        on: {
-                          click: function($event) {
-                            _vm.sendRequest()
-                          }
-                        }
-                      },
-                      [_vm._v("Send Request")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
-            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-              _vm._v(
-                _vm._s(
-                  _vm.shopDetails[0].name +
-                    ", " +
-                    _vm.shopDetails[0].location.location +
-                    ", " +
-                    _vm.shopDetails[0].seller.phone
-                )
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { height: "150px", "overflow-y": "auto" } },
-            _vm._l(_vm.trackedTransactions, function(transaction) {
-              return _c("span", [
-                _c("img", {
-                  staticClass: "product-avatar",
-                  staticStyle: { "border-radius": "5px", margin: "10px" },
-                  attrs: {
-                    width: "50px",
-                    height: "50px",
-                    src: transaction.price.product.image
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      width: "180px",
-                      position: "relative",
-                      top: "-25px",
-                      left: "70px"
-                    }
-                  },
-                  [
-                    transaction.quantity == 1
-                      ? _c("span", [
-                          _c("span", { staticClass: "pending-product-name" }, [
-                            _vm._v(
-                              _vm._s(transaction.price.product.name) +
-                                "(" +
-                                _vm._s(
-                                  "N" +
-                                    transaction.price.price +
-                                    "x" +
-                                    transaction.quantity +
-                                    transaction.price.unit
-                                ) +
-                                ") "
-                            ),
-                            _vm.cancelled == false && _vm.requested == false
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      color: "red",
-                                      cursor: "pointer"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.delTransaction(
-                                          transaction.id,
-                                          transaction.price.price *
-                                            transaction.quantity
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(" remove")]
-                                )
-                              : _vm._e()
-                          ]),
-                          _c("br")
-                        ])
-                      : _c("span", [
-                          _c("span", { staticClass: "pending-product-name" }, [
-                            _vm._v(
-                              _vm._s(transaction.price.product.name) +
-                                "(" +
-                                _vm._s(
-                                  "N" +
-                                    transaction.price.price +
-                                    "x" +
-                                    transaction.quantity +
-                                    transaction.price.unit +
-                                    "s"
-                                ) +
-                                ") "
-                            ),
-                            _vm.cancelled == false && _vm.requested == false
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      color: "red",
-                                      cursor: "pointer"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.delTransaction(
-                                          transaction.id,
-                                          transaction.price.price *
-                                            transaction.quantity
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(" remove")]
-                                )
-                              : _vm._e()
-                          ]),
-                          _c("br")
-                        ])
-                  ]
-                )
-              ])
-            })
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "hr" }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { height: "150px", "overflow-y": "auto" } },
-            [
-              _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-                _vm._v("Total= N" + _vm._s(_vm.total) + " Delivery Fee: TBD "),
-                _c("br"),
-                _vm._v(" Your Location: "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.location,
-                      expression: "location"
-                    }
-                  ],
-                  staticStyle: { width: "150px" },
-                  attrs: { type: "text", value: "0" },
-                  domProps: { value: _vm.location },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.location = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _vm.cancelled == false && _vm.requested == false
-                ? _c("span", [
-                    _c(
-                      "button",
-                      {
-                        staticStyle: {
-                          "margin-left": "10px",
-                          border: "none",
-                          color: "#fff",
-                          background: "green",
-                          "font-weight": "bold"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.sendRequest()
-                          }
-                        }
-                      },
-                      [_vm._v("Request")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticStyle: {
-                          "margin-left": "10px",
-                          border: "none",
-                          color: "#fff",
-                          background: "red",
-                          "font-weight": "bold"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.cancelTransaction()
-                          }
-                        }
-                      },
-                      [_vm._v("Cancel")]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.cancelled
-                ? _c(
-                    "span",
-                    { staticStyle: { color: "red", "margin-left": "10px" } },
-                    [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.requested
-                ? _c(
-                    "span",
-                    { staticStyle: { color: "green", "margin-left": "10px" } },
-                    [_vm._v("\r\n\t\tRequest Sent\r\n\t\t")]
-                  )
-                : _vm._e()
-            ]
-          )
-        ])
-      ])
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { height: "80px", "overflow-y": "auto" } },
-      [
-        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Your Requests")
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-aafaa54a", module.exports)
-  }
-}
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = AlgoliaSearch;
-
-var Index = __webpack_require__(121);
-var deprecate = __webpack_require__(14);
-var deprecatedMessage = __webpack_require__(15);
-var AlgoliaSearchCore = __webpack_require__(126);
-var inherits = __webpack_require__(10);
-var errors = __webpack_require__(7);
-
-function AlgoliaSearch() {
-  AlgoliaSearchCore.apply(this, arguments);
-}
-
-inherits(AlgoliaSearch, AlgoliaSearchCore);
-
-/*
- * Delete an index
- *
- * @param indexName the name of index to delete
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer that contains the task ID
- */
-AlgoliaSearch.prototype.deleteIndex = function(indexName, callback) {
-  return this._jsonRequest({
-    method: 'DELETE',
-    url: '/1/indexes/' + encodeURIComponent(indexName),
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/**
- * Move an existing index.
- * @param srcIndexName the name of index to copy.
- * @param dstIndexName the new index name that will contains a copy of
- * srcIndexName (destination will be overriten if it already exist).
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer that contains the task ID
- */
-AlgoliaSearch.prototype.moveIndex = function(srcIndexName, dstIndexName, callback) {
-  var postObj = {
-    operation: 'move', destination: dstIndexName
-  };
-  return this._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(srcIndexName) + '/operation',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/**
- * Copy an existing index.
- * @param srcIndexName the name of index to copy.
- * @param dstIndexName the new index name that will contains a copy
- * of srcIndexName (destination will be overriten if it already exist).
- * @param scope an array of scopes to copy: ['settings', 'synonyms', 'rules']
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer that contains the task ID
- */
-AlgoliaSearch.prototype.copyIndex = function(srcIndexName, dstIndexName, scopeOrCallback, _callback) {
-  var postObj = {
-    operation: 'copy',
-    destination: dstIndexName
-  };
-  var callback = _callback;
-  if (typeof scopeOrCallback === 'function') {
-    // oops, old behaviour of third argument being a function
-    callback = scopeOrCallback;
-  } else if (Array.isArray(scopeOrCallback) && scopeOrCallback.length > 0) {
-    postObj.scope = scopeOrCallback;
-  } else if (typeof scopeOrCallback !== 'undefined') {
-    throw new Error('the scope given to `copyIndex` was not an array with settings, synonyms or rules');
-  }
-  return this._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(srcIndexName) + '/operation',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/**
- * Return last log entries.
- * @param offset Specify the first entry to retrieve (0-based, 0 is the most recent log entry).
- * @param length Specify the maximum number of entries to retrieve starting
- * at offset. Maximum allowed value: 1000.
- * @param type Specify the maximum number of entries to retrieve starting
- * at offset. Maximum allowed value: 1000.
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer that contains the task ID
- */
-AlgoliaSearch.prototype.getLogs = function(offset, length, callback) {
-  var clone = __webpack_require__(5);
-  var params = {};
-  if (typeof offset === 'object') {
-    // getLogs(params)
-    params = clone(offset);
-    callback = length;
-  } else if (arguments.length === 0 || typeof offset === 'function') {
-    // getLogs([cb])
-    callback = offset;
-  } else if (arguments.length === 1 || typeof length === 'function') {
-    // getLogs(1, [cb)]
-    callback = length;
-    params.offset = offset;
-  } else {
-    // getLogs(1, 2, [cb])
-    params.offset = offset;
-    params.length = length;
-  }
-
-  if (params.offset === undefined) params.offset = 0;
-  if (params.length === undefined) params.length = 10;
-
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/logs?' + this._getSearchParams(params, ''),
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
- * List all existing indexes (paginated)
- *
- * @param page The page to retrieve, starting at 0.
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer with index list
- */
-AlgoliaSearch.prototype.listIndexes = function(page, callback) {
-  var params = '';
-
-  if (page === undefined || typeof page === 'function') {
-    callback = page;
-  } else {
-    params = '?page=' + page;
-  }
-
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/indexes' + params,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
- * Get the index object initialized
- *
- * @param indexName the name of index
- * @param callback the result callback with one argument (the Index instance)
- */
-AlgoliaSearch.prototype.initIndex = function(indexName) {
-  return new Index(this, indexName);
-};
-
-AlgoliaSearch.prototype.initAnalytics = function(opts) {
-  // the actual require must be inside the function, when put outside then you have a cyclic dependency
-  // not well resolved that ends up making the main "./index.js" (main module, the agloliasearch function)
-  // export an object instead of a function
-  // Other workarounds:
-  // - rewrite the lib in ES6, cyclic dependencies may be better supported
-  // - move initAnalytics to a property on the main module (algoliasearch.initAnalytics),
-  // same as places.
-  // The current API was made mostly to mimic the one made in PHP
-  var createAnalyticsClient = __webpack_require__(130);
-  return createAnalyticsClient(this.applicationID, this.apiKey, opts);
-};
-
-/*
- * @deprecated use client.listApiKeys
- */
-AlgoliaSearch.prototype.listUserKeys = deprecate(function(callback) {
-  return this.listApiKeys(callback);
-}, deprecatedMessage('client.listUserKeys()', 'client.listApiKeys()'));
-
-/*
- * List all existing api keys with their associated ACLs
- *
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer with api keys list
- */
-AlgoliaSearch.prototype.listApiKeys = function(callback) {
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/keys',
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
- * @deprecated see client.getApiKey
- */
-AlgoliaSearch.prototype.getUserKeyACL = deprecate(function(key, callback) {
-  return this.getApiKey(key, callback);
-}, deprecatedMessage('client.getUserKeyACL()', 'client.getApiKey()'));
-
-/*
- * Get an API key
- *
- * @param key
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer with the right API key
- */
-AlgoliaSearch.prototype.getApiKey = function(key, callback) {
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/keys/' + key,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/*
- * @deprecated see client.deleteApiKey
- */
-AlgoliaSearch.prototype.deleteUserKey = deprecate(function(key, callback) {
-  return this.deleteApiKey(key, callback);
-}, deprecatedMessage('client.deleteUserKey()', 'client.deleteApiKey()'));
-
-/*
- * Delete an existing API key
- * @param key
- * @param callback the result callback called with two arguments
- *  error: null or Error('message')
- *  content: the server answer with the date of deletion
- */
-AlgoliaSearch.prototype.deleteApiKey = function(key, callback) {
-  return this._jsonRequest({
-    method: 'DELETE',
-    url: '/1/keys/' + key,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
- @deprecated see client.addApiKey
- */
-AlgoliaSearch.prototype.addUserKey = deprecate(function(acls, params, callback) {
-  return this.addApiKey(acls, params, callback);
-}, deprecatedMessage('client.addUserKey()', 'client.addApiKey()'));
-
-/*
- * Add a new global API key
- *
- * @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
- *   can contains the following values:
- *     - search: allow to search (https and http)
- *     - addObject: allows to add/update an object in the index (https only)
- *     - deleteObject : allows to delete an existing object (https only)
- *     - deleteIndex : allows to delete index content (https only)
- *     - settings : allows to get index settings (https only)
- *     - editSettings : allows to change index settings (https only)
- * @param {Object} [params] - Optionnal parameters to set for the key
- * @param {number} params.validity - Number of seconds after which the key will be automatically removed (0 means no time limit for this key)
- * @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
- * @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
- * @param {string[]} params.indexes - Allowed targeted indexes for this key
- * @param {string} params.description - A description for your key
- * @param {string[]} params.referers - A list of authorized referers
- * @param {Object} params.queryParameters - Force the key to use specific query parameters
- * @param {Function} callback - The result callback called with two arguments
- *   error: null or Error('message')
- *   content: the server answer with the added API key
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.addApiKey(['search'], {
- *   validity: 300,
- *   maxQueriesPerIPPerHour: 2000,
- *   maxHitsPerQuery: 3,
- *   indexes: ['fruits'],
- *   description: 'Eat three fruits',
- *   referers: ['*.algolia.com'],
- *   queryParameters: {
- *     tagFilters: ['public'],
- *   }
- * })
- * @see {@link https://www.algolia.com/doc/rest_api#AddKey|Algolia REST API Documentation}
- */
-AlgoliaSearch.prototype.addApiKey = function(acls, params, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: client.addApiKey(arrayOfAcls[, params, callback])';
-
-  if (!isArray(acls)) {
-    throw new Error(usage);
-  }
-
-  if (arguments.length === 1 || typeof params === 'function') {
-    callback = params;
-    params = null;
-  }
-
-  var postObj = {
-    acl: acls
-  };
-
-  if (params) {
-    postObj.validity = params.validity;
-    postObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
-    postObj.maxHitsPerQuery = params.maxHitsPerQuery;
-    postObj.indexes = params.indexes;
-    postObj.description = params.description;
-
-    if (params.queryParameters) {
-      postObj.queryParameters = this._getSearchParams(params.queryParameters, '');
-    }
-
-    postObj.referers = params.referers;
-  }
-
-  return this._jsonRequest({
-    method: 'POST',
-    url: '/1/keys',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/**
- * @deprecated Please use client.addApiKey()
- */
-AlgoliaSearch.prototype.addUserKeyWithValidity = deprecate(function(acls, params, callback) {
-  return this.addApiKey(acls, params, callback);
-}, deprecatedMessage('client.addUserKeyWithValidity()', 'client.addApiKey()'));
-
-/**
- * @deprecated Please use client.updateApiKey()
- */
-AlgoliaSearch.prototype.updateUserKey = deprecate(function(key, acls, params, callback) {
-  return this.updateApiKey(key, acls, params, callback);
-}, deprecatedMessage('client.updateUserKey()', 'client.updateApiKey()'));
-
-/**
- * Update an existing API key
- * @param {string} key - The key to update
- * @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
- *   can contains the following values:
- *     - search: allow to search (https and http)
- *     - addObject: allows to add/update an object in the index (https only)
- *     - deleteObject : allows to delete an existing object (https only)
- *     - deleteIndex : allows to delete index content (https only)
- *     - settings : allows to get index settings (https only)
- *     - editSettings : allows to change index settings (https only)
- * @param {Object} [params] - Optionnal parameters to set for the key
- * @param {number} params.validity - Number of seconds after which the key will be automatically removed (0 means no time limit for this key)
- * @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
- * @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
- * @param {string[]} params.indexes - Allowed targeted indexes for this key
- * @param {string} params.description - A description for your key
- * @param {string[]} params.referers - A list of authorized referers
- * @param {Object} params.queryParameters - Force the key to use specific query parameters
- * @param {Function} callback - The result callback called with two arguments
- *   error: null or Error('message')
- *   content: the server answer with the modified API key
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.updateApiKey('APIKEY', ['search'], {
- *   validity: 300,
- *   maxQueriesPerIPPerHour: 2000,
- *   maxHitsPerQuery: 3,
- *   indexes: ['fruits'],
- *   description: 'Eat three fruits',
- *   referers: ['*.algolia.com'],
- *   queryParameters: {
- *     tagFilters: ['public'],
- *   }
- * })
- * @see {@link https://www.algolia.com/doc/rest_api#UpdateIndexKey|Algolia REST API Documentation}
- */
-AlgoliaSearch.prototype.updateApiKey = function(key, acls, params, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: client.updateApiKey(key, arrayOfAcls[, params, callback])';
-
-  if (!isArray(acls)) {
-    throw new Error(usage);
-  }
-
-  if (arguments.length === 2 || typeof params === 'function') {
-    callback = params;
-    params = null;
-  }
-
-  var putObj = {
-    acl: acls
-  };
-
-  if (params) {
-    putObj.validity = params.validity;
-    putObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
-    putObj.maxHitsPerQuery = params.maxHitsPerQuery;
-    putObj.indexes = params.indexes;
-    putObj.description = params.description;
-
-    if (params.queryParameters) {
-      putObj.queryParameters = this._getSearchParams(params.queryParameters, '');
-    }
-
-    putObj.referers = params.referers;
-  }
-
-  return this._jsonRequest({
-    method: 'PUT',
-    url: '/1/keys/' + key,
-    body: putObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/**
- * Initialize a new batch of search queries
- * @deprecated use client.search()
- */
-AlgoliaSearch.prototype.startQueriesBatch = deprecate(function startQueriesBatchDeprecated() {
-  this._batch = [];
-}, deprecatedMessage('client.startQueriesBatch()', 'client.search()'));
-
-/**
- * Add a search query in the batch
- * @deprecated use client.search()
- */
-AlgoliaSearch.prototype.addQueryInBatch = deprecate(function addQueryInBatchDeprecated(indexName, query, args) {
-  this._batch.push({
-    indexName: indexName,
-    query: query,
-    params: args
-  });
-}, deprecatedMessage('client.addQueryInBatch()', 'client.search()'));
-
-/**
- * Launch the batch of queries using XMLHttpRequest.
- * @deprecated use client.search()
- */
-AlgoliaSearch.prototype.sendQueriesBatch = deprecate(function sendQueriesBatchDeprecated(callback) {
-  return this.search(this._batch, callback);
-}, deprecatedMessage('client.sendQueriesBatch()', 'client.search()'));
-
-/**
- * Perform write operations accross multiple indexes.
- *
- * To reduce the amount of time spent on network round trips,
- * you can create, update, or delete several objects in one call,
- * using the batch endpoint (all operations are done in the given order).
- *
- * Available actions:
- *   - addObject
- *   - updateObject
- *   - partialUpdateObject
- *   - partialUpdateObjectNoCreate
- *   - deleteObject
- *
- * https://www.algolia.com/doc/rest_api#Indexes
- * @param  {Object[]} operations An array of operations to perform
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.batch([{
- *   action: 'addObject',
- *   indexName: 'clients',
- *   body: {
- *     name: 'Bill'
- *   }
- * }, {
- *   action: 'udpateObject',
- *   indexName: 'fruits',
- *   body: {
- *     objectID: '29138',
- *     name: 'banana'
- *   }
- * }], cb)
- */
-AlgoliaSearch.prototype.batch = function(operations, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: client.batch(operations[, callback])';
-
-  if (!isArray(operations)) {
-    throw new Error(usage);
-  }
-
-  return this._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/*/batch',
-    body: {
-      requests: operations
-    },
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/**
- * Assign or Move a userID to a cluster
- *
- * @param {string} data.userID The userID to assign to a new cluster
- * @param {string} data.cluster The cluster to assign the user to
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.assignUserID({ cluster: 'c1-test', userID: 'some-user' });
- */
-AlgoliaSearch.prototype.assignUserID = function(data, callback) {
-  if (!data.userID || !data.cluster) {
-    throw new errors.AlgoliaSearchError('You have to provide both a userID and cluster', data);
-  }
-  return this._jsonRequest({
-    method: 'POST',
-    url: '/1/clusters/mapping',
-    hostType: 'write',
-    body: {cluster: data.cluster},
-    callback: callback,
-    headers: {
-      'x-algolia-user-id': data.userID
-    }
-  });
-};
-
-/**
- * Get the top userIDs
- *
- * (the callback is the second argument)
- *
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.getTopUserID();
- */
-AlgoliaSearch.prototype.getTopUserID = function(callback) {
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/clusters/mapping/top',
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/**
- * Get userID
- *
- * @param {string} data.userID The userID to get info about
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.getUserID({ userID: 'some-user' });
- */
-AlgoliaSearch.prototype.getUserID = function(data, callback) {
-  if (!data.userID) {
-    throw new errors.AlgoliaSearchError('You have to provide a userID', {debugData: data});
-  }
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/clusters/mapping/' + data.userID,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/**
- * List all the clusters
- *
- * (the callback is the second argument)
- *
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.listClusters();
- */
-AlgoliaSearch.prototype.listClusters = function(callback) {
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/clusters',
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/**
- * List the userIDs
- *
- * (the callback is the second argument)
- *
- * @param {string} data.hitsPerPage How many hits on every page
- * @param {string} data.page The page to retrieve
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.listClusters();
- * client.listClusters({ page: 3, hitsPerPage: 30});
- */
-AlgoliaSearch.prototype.listUserIDs = function(data, callback) {
-  return this._jsonRequest({
-    method: 'GET',
-    url: '/1/clusters/mapping',
-    body: data,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-/**
- * Remove an userID
- *
- * @param {string} data.userID The userID to assign to a new cluster
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.removeUserID({ userID: 'some-user' });
- */
-AlgoliaSearch.prototype.removeUserID = function(data, callback) {
-  if (!data.userID) {
-    throw new errors.AlgoliaSearchError('You have to provide a userID', {debugData: data});
-  }
-  return this._jsonRequest({
-    method: 'DELETE',
-    url: '/1/clusters/mapping',
-    hostType: 'write',
-    callback: callback,
-    headers: {
-      'x-algolia-user-id': data.userID
-    }
-  });
-};
-
-/**
- * Search for userIDs
- *
- * @param {string} data.cluster The cluster to target
- * @param {string} data.query The query to execute
- * @param {string} data.hitsPerPage How many hits on every page
- * @param {string} data.page The page to retrieve
- * @return {Promise|undefined} Returns a promise if no callback given
- * @example
- * client.searchUserIDs({ cluster: 'c1-test', query: 'some-user' });
- * client.searchUserIDs({
- *   cluster: "c1-test",
- *   query: "some-user",
- *   page: 3,
- *   hitsPerPage: 2
- * });
- */
-AlgoliaSearch.prototype.searchUserIDs = function(data, callback) {
-  return this._jsonRequest({
-    method: 'POST',
-    url: '/1/clusters/mapping/search',
-    body: data,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-// environment specific methods
-AlgoliaSearch.prototype.destroy = notImplemented;
-AlgoliaSearch.prototype.enableRateLimitForward = notImplemented;
-AlgoliaSearch.prototype.disableRateLimitForward = notImplemented;
-AlgoliaSearch.prototype.useSecuredAPIKey = notImplemented;
-AlgoliaSearch.prototype.disableSecuredAPIKey = notImplemented;
-AlgoliaSearch.prototype.generateSecuredApiKey = notImplemented;
-
-function notImplemented() {
-  var message = 'Not implemented in this environment.\n' +
-    'If you feel this is a mistake, write to support@algolia.com';
-
-  throw new errors.AlgoliaSearchError(message);
-}
-
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var inherits = __webpack_require__(10);
-var IndexCore = __webpack_require__(23);
-var deprecate = __webpack_require__(14);
-var deprecatedMessage = __webpack_require__(15);
-var exitPromise = __webpack_require__(27);
-var errors = __webpack_require__(7);
-
-var deprecateForwardToSlaves = deprecate(
-  function() {},
-  deprecatedMessage('forwardToSlaves', 'forwardToReplicas')
-);
-
-module.exports = Index;
-
-function Index() {
-  IndexCore.apply(this, arguments);
-}
-
-inherits(Index, IndexCore);
-
-/*
-* Add an object in this index
-*
-* @param content contains the javascript object to add inside the index
-* @param objectID (optional) an objectID you want to attribute to this object
-* (if the attribute already exist the old object will be overwrite)
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that contains 3 elements: createAt, taskId and objectID
-*/
-Index.prototype.addObject = function(content, objectID, callback) {
-  var indexObj = this;
-
-  if (arguments.length === 1 || typeof objectID === 'function') {
-    callback = objectID;
-    objectID = undefined;
-  }
-
-  return this.as._jsonRequest({
-    method: objectID !== undefined ?
-    'PUT' : // update or create
-    'POST', // create (API generates an objectID)
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + // create
-    (objectID !== undefined ? '/' + encodeURIComponent(objectID) : ''), // update or create
-    body: content,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Add several objects
-*
-* @param objects contains an array of objects to add
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that updateAt and taskID
-*/
-Index.prototype.addObjects = function(objects, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: index.addObjects(arrayOfObjects[, callback])';
-
-  if (!isArray(objects)) {
-    throw new Error(usage);
-  }
-
-  var indexObj = this;
-  var postObj = {
-    requests: []
-  };
-  for (var i = 0; i < objects.length; ++i) {
-    var request = {
-      action: 'addObject',
-      body: objects[i]
-    };
-    postObj.requests.push(request);
-  }
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Update partially an object (only update attributes passed in argument)
-*
-* @param partialObject contains the javascript attributes to override, the
-*  object must contains an objectID attribute
-* @param createIfNotExists (optional) if false, avoid an automatic creation of the object
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that contains 3 elements: createAt, taskId and objectID
-*/
-Index.prototype.partialUpdateObject = function(partialObject, createIfNotExists, callback) {
-  if (arguments.length === 1 || typeof createIfNotExists === 'function') {
-    callback = createIfNotExists;
-    createIfNotExists = undefined;
-  }
-
-  var indexObj = this;
-  var url = '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(partialObject.objectID) + '/partial';
-  if (createIfNotExists === false) {
-    url += '?createIfNotExists=false';
-  }
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: url,
-    body: partialObject,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Partially Override the content of several objects
-*
-* @param objects contains an array of objects to update (each object must contains a objectID attribute)
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that updateAt and taskID
-*/
-Index.prototype.partialUpdateObjects = function(objects, createIfNotExists, callback) {
-  if (arguments.length === 1 || typeof createIfNotExists === 'function') {
-    callback = createIfNotExists;
-    createIfNotExists = true;
-  }
-
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: index.partialUpdateObjects(arrayOfObjects[, callback])';
-
-  if (!isArray(objects)) {
-    throw new Error(usage);
-  }
-
-  var indexObj = this;
-  var postObj = {
-    requests: []
-  };
-  for (var i = 0; i < objects.length; ++i) {
-    var request = {
-      action: createIfNotExists === true ? 'partialUpdateObject' : 'partialUpdateObjectNoCreate',
-      objectID: objects[i].objectID,
-      body: objects[i]
-    };
-    postObj.requests.push(request);
-  }
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Override the content of object
-*
-* @param object contains the javascript object to save, the object must contains an objectID attribute
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that updateAt and taskID
-*/
-Index.prototype.saveObject = function(object, callback) {
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'PUT',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(object.objectID),
-    body: object,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Override the content of several objects
-*
-* @param objects contains an array of objects to update (each object must contains a objectID attribute)
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that updateAt and taskID
-*/
-Index.prototype.saveObjects = function(objects, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: index.saveObjects(arrayOfObjects[, callback])';
-
-  if (!isArray(objects)) {
-    throw new Error(usage);
-  }
-
-  var indexObj = this;
-  var postObj = {
-    requests: []
-  };
-  for (var i = 0; i < objects.length; ++i) {
-    var request = {
-      action: 'updateObject',
-      objectID: objects[i].objectID,
-      body: objects[i]
-    };
-    postObj.requests.push(request);
-  }
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Delete an object from the index
-*
-* @param objectID the unique identifier of object to delete
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that contains 3 elements: createAt, taskId and objectID
-*/
-Index.prototype.deleteObject = function(objectID, callback) {
-  if (typeof objectID === 'function' || typeof objectID !== 'string' && typeof objectID !== 'number') {
-    var err = new errors.AlgoliaSearchError('Cannot delete an object without an objectID');
-    callback = objectID;
-    if (typeof callback === 'function') {
-      return callback(err);
-    }
-
-    return this.as._promise.reject(err);
-  }
-
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'DELETE',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(objectID),
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Delete several objects from an index
-*
-* @param objectIDs contains an array of objectID to delete
-* @param callback (optional) the result callback called with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that contains 3 elements: createAt, taskId and objectID
-*/
-Index.prototype.deleteObjects = function(objectIDs, callback) {
-  var isArray = __webpack_require__(1);
-  var map = __webpack_require__(9);
-
-  var usage = 'Usage: index.deleteObjects(arrayOfObjectIDs[, callback])';
-
-  if (!isArray(objectIDs)) {
-    throw new Error(usage);
-  }
-
-  var indexObj = this;
-  var postObj = {
-    requests: map(objectIDs, function prepareRequest(objectID) {
-      return {
-        action: 'deleteObject',
-        objectID: objectID,
-        body: {
-          objectID: objectID
-        }
-      };
-    })
-  };
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Delete all objects matching a query
-*
-* @param query the query string
-* @param params the optional query parameters
-* @param callback (optional) the result callback called with one argument
-*  error: null or Error('message')
-* @deprecated see index.deleteBy
-*/
-Index.prototype.deleteByQuery = deprecate(function(query, params, callback) {
-  var clone = __webpack_require__(5);
-  var map = __webpack_require__(9);
-
-  var indexObj = this;
-  var client = indexObj.as;
-
-  if (arguments.length === 1 || typeof params === 'function') {
-    callback = params;
-    params = {};
-  } else {
-    params = clone(params);
-  }
-
-  params.attributesToRetrieve = 'objectID';
-  params.hitsPerPage = 1000;
-  params.distinct = false;
-
-  // when deleting, we should never use cache to get the
-  // search results
-  this.clearCache();
-
-  // there's a problem in how we use the promise chain,
-  // see how waitTask is done
-  var promise = this
-  .search(query, params)
-  .then(stopOrDelete);
-
-  function stopOrDelete(searchContent) {
-    // stop here
-    if (searchContent.nbHits === 0) {
-      // return indexObj.as._request.resolve();
-      return searchContent;
-    }
-
-    // continue and do a recursive call
-    var objectIDs = map(searchContent.hits, function getObjectID(object) {
-      return object.objectID;
-    });
-
-    return indexObj
-    .deleteObjects(objectIDs)
-    .then(waitTask)
-    .then(doDeleteByQuery);
-  }
-
-  function waitTask(deleteObjectsContent) {
-    return indexObj.waitTask(deleteObjectsContent.taskID);
-  }
-
-  function doDeleteByQuery() {
-    return indexObj.deleteByQuery(query, params);
-  }
-
-  if (!callback) {
-    return promise;
-  }
-
-  promise.then(success, failure);
-
-  function success() {
-    exitPromise(function exit() {
-      callback(null);
-    }, client._setTimeout || setTimeout);
-  }
-
-  function failure(err) {
-    exitPromise(function exit() {
-      callback(err);
-    }, client._setTimeout || setTimeout);
-  }
-}, deprecatedMessage('index.deleteByQuery()', 'index.deleteBy()'));
-
-/**
-* Delete all objects matching a query
-*
-* the query parameters that can be used are:
-* - filters (numeric, facet, tag)
-* - geo
-*
-* you can not send an empty query or filters
-*
-* @param params the optional query parameters
-* @param callback (optional) the result callback called with one argument
-*  error: null or Error('message')
-*/
-Index.prototype.deleteBy = function(params, callback) {
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/deleteByQuery',
-    body: {params: indexObj.as._getSearchParams(params, '')},
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Browse all content from an index using events. Basically this will do
-* .browse() -> .browseFrom -> .browseFrom -> .. until all the results are returned
-*
-* @param {string} query - The full text query
-* @param {Object} [queryParameters] - Any search query parameter
-* @return {EventEmitter}
-* @example
-* var browser = index.browseAll('cool songs', {
-*   tagFilters: 'public,comments',
-*   hitsPerPage: 500
-* });
-*
-* browser.on('result', function resultCallback(content) {
-*   console.log(content.hits);
-* });
-*
-* // if any error occurs, you get it
-* browser.on('error', function(err) {
-*   throw err;
-* });
-*
-* // when you have browsed the whole index, you get this event
-* browser.on('end', function() {
-*   console.log('finished');
-* });
-*
-* // at any point if you want to stop the browsing process, you can stop it manually
-* // otherwise it will go on and on
-* browser.stop();
-*
-* @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
-*/
-Index.prototype.browseAll = function(query, queryParameters) {
-  if (typeof query === 'object') {
-    queryParameters = query;
-    query = undefined;
-  }
-
-  var merge = __webpack_require__(25);
-
-  var IndexBrowser = __webpack_require__(124);
-
-  var browser = new IndexBrowser();
-  var client = this.as;
-  var index = this;
-  var params = client._getSearchParams(
-    merge({}, queryParameters || {}, {
-      query: query
-    }), ''
-  );
-
-  // start browsing
-  browseLoop();
-
-  function browseLoop(cursor) {
-    if (browser._stopped) {
-      return;
-    }
-
-    var body;
-
-    if (cursor !== undefined) {
-      body = {
-        cursor: cursor
-      };
-    } else {
-      body = {
-        params: params
-      };
-    }
-
-    client._jsonRequest({
-      method: 'POST',
-      url: '/1/indexes/' + encodeURIComponent(index.indexName) + '/browse',
-      hostType: 'read',
-      body: body,
-      callback: browseCallback
-    });
-  }
-
-  function browseCallback(err, content) {
-    if (browser._stopped) {
-      return;
-    }
-
-    if (err) {
-      browser._error(err);
-      return;
-    }
-
-    browser._result(content);
-
-    // no cursor means we are finished browsing
-    if (content.cursor === undefined) {
-      browser._end();
-      return;
-    }
-
-    browseLoop(content.cursor);
-  }
-
-  return browser;
-};
-
-/*
-* Get a Typeahead.js adapter
-* @param searchParams contains an object with query parameters (see search for details)
-*/
-Index.prototype.ttAdapter = deprecate(function(params) {
-  var self = this;
-  return function ttAdapter(query, syncCb, asyncCb) {
-    var cb;
-
-    if (typeof asyncCb === 'function') {
-      // typeahead 0.11
-      cb = asyncCb;
-    } else {
-      // pre typeahead 0.11
-      cb = syncCb;
-    }
-
-    self.search(query, params, function searchDone(err, content) {
-      if (err) {
-        cb(err);
-        return;
-      }
-
-      cb(content.hits);
-    });
-  };
-},
-'ttAdapter is not necessary anymore and will be removed in the next version,\n' +
-'have a look at autocomplete.js (https://github.com/algolia/autocomplete.js)');
-
-/*
-* Wait the publication of a task on the server.
-* All server task are asynchronous and you can check with this method that the task is published.
-*
-* @param taskID the id of the task returned by server
-* @param callback the result callback with with two arguments:
-*  error: null or Error('message')
-*  content: the server answer that contains the list of results
-*/
-Index.prototype.waitTask = function(taskID, callback) {
-  // wait minimum 100ms before retrying
-  var baseDelay = 100;
-  // wait maximum 5s before retrying
-  var maxDelay = 5000;
-  var loop = 0;
-
-  // waitTask() must be handled differently from other methods,
-  // it's a recursive method using a timeout
-  var indexObj = this;
-  var client = indexObj.as;
-
-  var promise = retryLoop();
-
-  function retryLoop() {
-    return client._jsonRequest({
-      method: 'GET',
-      hostType: 'read',
-      url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/task/' + taskID
-    }).then(function success(content) {
-      loop++;
-      var delay = baseDelay * loop * loop;
-      if (delay > maxDelay) {
-        delay = maxDelay;
-      }
-
-      if (content.status !== 'published') {
-        return client._promise.delay(delay).then(retryLoop);
-      }
-
-      return content;
-    });
-  }
-
-  if (!callback) {
-    return promise;
-  }
-
-  promise.then(successCb, failureCb);
-
-  function successCb(content) {
-    exitPromise(function exit() {
-      callback(null, content);
-    }, client._setTimeout || setTimeout);
-  }
-
-  function failureCb(err) {
-    exitPromise(function exit() {
-      callback(err);
-    }, client._setTimeout || setTimeout);
-  }
-};
-
-/*
-* This function deletes the index content. Settings and index specific API keys are kept untouched.
-*
-* @param callback (optional) the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the settings object or the error message if a failure occured
-*/
-Index.prototype.clearIndex = function(callback) {
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/clear',
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-/*
-* Get settings of this index
-*
-* @param opts an object of options to add
-* @param opts.advanced get more settings like nbShards (useful for Enterprise)
-* @param callback (optional) the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the settings object or the error message if a failure occurred
-*/
-Index.prototype.getSettings = function(opts, callback) {
-  if (arguments.length === 1 && typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  }
-  opts = opts || {};
-
-  var indexName = encodeURIComponent(this.indexName);
-  return this.as._jsonRequest({
-    method: 'GET',
-    url:
-      '/1/indexes/' +
-      indexName +
-      '/settings?getVersion=2' +
-      (opts.advanced ? '&advanced=' + opts.advanced : ''),
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-Index.prototype.searchSynonyms = function(params, callback) {
-  if (typeof params === 'function') {
-    callback = params;
-    params = {};
-  } else if (params === undefined) {
-    params = {};
-  }
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/search',
-    body: params,
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-function exportData(method, _hitsPerPage, callback) {
-  function search(page, _previous) {
-    var options = {
-      page: page || 0,
-      hitsPerPage: _hitsPerPage || 100
-    };
-    var previous = _previous || [];
-
-    return method(options).then(function(result) {
-      var hits = result.hits;
-      var nbHits = result.nbHits;
-      var current = hits.map(function(s) {
-        delete s._highlightResult;
-        return s;
-      });
-      var synonyms = previous.concat(current);
-      if (synonyms.length < nbHits) {
-        return search(options.page + 1, synonyms);
-      }
-      return synonyms;
-    });
-  }
-  return search().then(function(data) {
-    if (typeof callback === 'function') {
-      callback(data);
-      return undefined;
-    }
-    return data;
-  });
-}
-
-/**
- * Retrieve all the synonyms in an index
- * @param [number=100] hitsPerPage The amount of synonyms to retrieve per batch
- * @param [function] callback will be called after all synonyms are retrieved
- */
-Index.prototype.exportSynonyms = function(hitsPerPage, callback) {
-  return exportData(this.searchSynonyms.bind(this), hitsPerPage, callback);
-};
-
-Index.prototype.saveSynonym = function(synonym, opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
-  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'PUT',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/' + encodeURIComponent(synonym.objectID) +
-      '?forwardToReplicas=' + forwardToReplicas,
-    body: synonym,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-Index.prototype.getSynonym = function(objectID, callback) {
-  return this.as._jsonRequest({
-    method: 'GET',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/' + encodeURIComponent(objectID),
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-Index.prototype.deleteSynonym = function(objectID, opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
-  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'DELETE',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/' + encodeURIComponent(objectID) +
-      '?forwardToReplicas=' + forwardToReplicas,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-Index.prototype.clearSynonyms = function(opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
-  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/clear' +
-      '?forwardToReplicas=' + forwardToReplicas,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-Index.prototype.batchSynonyms = function(synonyms, opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
-  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/batch' +
-      '?forwardToReplicas=' + forwardToReplicas +
-      '&replaceExistingSynonyms=' + (opts.replaceExistingSynonyms ? 'true' : 'false'),
-    hostType: 'write',
-    body: synonyms,
-    callback: callback
-  });
-};
-
-Index.prototype.searchRules = function(params, callback) {
-  if (typeof params === 'function') {
-    callback = params;
-    params = {};
-  } else if (params === undefined) {
-    params = {};
-  }
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/search',
-    body: params,
-    hostType: 'read',
-    callback: callback
-  });
-};
-/**
- * Retrieve all the query rules in an index
- * @param [number=100] hitsPerPage The amount of query rules to retrieve per batch
- * @param [function] callback will be called after all query rules are retrieved
- *  error: null or Error('message')
- */
-Index.prototype.exportRules = function(hitsPerPage, callback) {
-  return exportData(this.searchRules.bind(this), hitsPerPage, callback);
-};
-
-Index.prototype.saveRule = function(rule, opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  if (!rule.objectID) {
-    throw new errors.AlgoliaSearchError('Missing or empty objectID field for rule');
-  }
-
-  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'PUT',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/' + encodeURIComponent(rule.objectID) +
-      '?forwardToReplicas=' + forwardToReplicas,
-    body: rule,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-Index.prototype.getRule = function(objectID, callback) {
-  return this.as._jsonRequest({
-    method: 'GET',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/' + encodeURIComponent(objectID),
-    hostType: 'read',
-    callback: callback
-  });
-};
-
-Index.prototype.deleteRule = function(objectID, opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'DELETE',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/' + encodeURIComponent(objectID) +
-      '?forwardToReplicas=' + forwardToReplicas,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-Index.prototype.clearRules = function(opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/clear' +
-      '?forwardToReplicas=' + forwardToReplicas,
-    hostType: 'write',
-    callback: callback
-  });
-};
-
-Index.prototype.batchRules = function(rules, opts, callback) {
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/batch' +
-      '?forwardToReplicas=' + forwardToReplicas +
-      '&clearExistingRules=' + (opts.clearExistingRules === true ? 'true' : 'false'),
-    hostType: 'write',
-    body: rules,
-    callback: callback
-  });
-};
-
-/*
-* Set settings for this index
-*
-* @param settigns the settings object that can contains :
-* - minWordSizefor1Typo: (integer) the minimum number of characters to accept one typo (default = 3).
-* - minWordSizefor2Typos: (integer) the minimum number of characters to accept two typos (default = 7).
-* - hitsPerPage: (integer) the number of hits per page (default = 10).
-* - attributesToRetrieve: (array of strings) default list of attributes to retrieve in objects.
-*   If set to null, all attributes are retrieved.
-* - attributesToHighlight: (array of strings) default list of attributes to highlight.
-*   If set to null, all indexed attributes are highlighted.
-* - attributesToSnippet**: (array of strings) default list of attributes to snippet alongside the number
-* of words to return (syntax is attributeName:nbWords).
-*   By default no snippet is computed. If set to null, no snippet is computed.
-* - attributesToIndex: (array of strings) the list of fields you want to index.
-*   If set to null, all textual and numerical attributes of your objects are indexed,
-*   but you should update it to get optimal results.
-*   This parameter has two important uses:
-*     - Limit the attributes to index: For example if you store a binary image in base64,
-*     you want to store it and be able to
-*       retrieve it but you don't want to search in the base64 string.
-*     - Control part of the ranking*: (see the ranking parameter for full explanation)
-*     Matches in attributes at the beginning of
-*       the list will be considered more important than matches in attributes further down the list.
-*       In one attribute, matching text at the beginning of the attribute will be
-*       considered more important than text after, you can disable
-*       this behavior if you add your attribute inside `unordered(AttributeName)`,
-*       for example attributesToIndex: ["title", "unordered(text)"].
-* - attributesForFaceting: (array of strings) The list of fields you want to use for faceting.
-*   All strings in the attribute selected for faceting are extracted and added as a facet.
-*   If set to null, no attribute is used for faceting.
-* - attributeForDistinct: (string) The attribute name used for the Distinct feature.
-* This feature is similar to the SQL "distinct" keyword: when enabled
-*   in query with the distinct=1 parameter, all hits containing a duplicate
-*   value for this attribute are removed from results.
-*   For example, if the chosen attribute is show_name and several hits have
-*   the same value for show_name, then only the best one is kept and others are removed.
-* - ranking: (array of strings) controls the way results are sorted.
-*   We have six available criteria:
-*    - typo: sort according to number of typos,
-*    - geo: sort according to decreassing distance when performing a geo-location based search,
-*    - proximity: sort according to the proximity of query words in hits,
-*    - attribute: sort according to the order of attributes defined by attributesToIndex,
-*    - exact:
-*        - if the user query contains one word: sort objects having an attribute
-*        that is exactly the query word before others.
-*          For example if you search for the "V" TV show, you want to find it
-*          with the "V" query and avoid to have all popular TV
-*          show starting by the v letter before it.
-*        - if the user query contains multiple words: sort according to the
-*        number of words that matched exactly (and not as a prefix).
-*    - custom: sort according to a user defined formula set in **customRanking** attribute.
-*   The standard order is ["typo", "geo", "proximity", "attribute", "exact", "custom"]
-* - customRanking: (array of strings) lets you specify part of the ranking.
-*   The syntax of this condition is an array of strings containing attributes
-*   prefixed by asc (ascending order) or desc (descending order) operator.
-*   For example `"customRanking" => ["desc(population)", "asc(name)"]`
-* - queryType: Select how the query words are interpreted, it can be one of the following value:
-*   - prefixAll: all query words are interpreted as prefixes,
-*   - prefixLast: only the last word is interpreted as a prefix (default behavior),
-*   - prefixNone: no query word is interpreted as a prefix. This option is not recommended.
-* - highlightPreTag: (string) Specify the string that is inserted before
-* the highlighted parts in the query result (default to "<em>").
-* - highlightPostTag: (string) Specify the string that is inserted after
-* the highlighted parts in the query result (default to "</em>").
-* - optionalWords: (array of strings) Specify a list of words that should
-* be considered as optional when found in the query.
-* @param callback (optional) the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the server answer or the error message if a failure occured
-*/
-Index.prototype.setSettings = function(settings, opts, callback) {
-  if (arguments.length === 1 || typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  }
-
-  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
-  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
-
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'PUT',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/settings?forwardToReplicas='
-      + forwardToReplicas,
-    hostType: 'write',
-    body: settings,
-    callback: callback
-  });
-};
-
-/*
-* @deprecated see client.listApiKeys()
-*/
-Index.prototype.listUserKeys = deprecate(function(callback) {
-  return this.listApiKeys(callback);
-}, deprecatedMessage('index.listUserKeys()', 'client.listApiKeys()'));
-
-/*
-* List all existing API keys to this index
-*
-* @param callback the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the server answer with API keys belonging to the index
-*
-* @deprecated see client.listApiKeys()
-*/
-Index.prototype.listApiKeys = deprecate(function(callback) {
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'GET',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/keys',
-    hostType: 'read',
-    callback: callback
-  });
-}, deprecatedMessage('index.listApiKeys()', 'client.listApiKeys()'));
-
-/*
-* @deprecated see client.getApiKey()
-*/
-Index.prototype.getUserKeyACL = deprecate(function(key, callback) {
-  return this.getApiKey(key, callback);
-}, deprecatedMessage('index.getUserKeyACL()', 'client.getApiKey()'));
-
-
-/*
-* Get an API key from this index
-*
-* @param key
-* @param callback the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the server answer with the right API key
-*
-* @deprecated see client.getApiKey()
-*/
-Index.prototype.getApiKey = deprecate(function(key, callback) {
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'GET',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/keys/' + key,
-    hostType: 'read',
-    callback: callback
-  });
-}, deprecatedMessage('index.getApiKey()', 'client.getApiKey()'));
-
-/*
-* @deprecated see client.deleteApiKey()
-*/
-Index.prototype.deleteUserKey = deprecate(function(key, callback) {
-  return this.deleteApiKey(key, callback);
-}, deprecatedMessage('index.deleteUserKey()', 'client.deleteApiKey()'));
-
-/*
-* Delete an existing API key associated to this index
-*
-* @param key
-* @param callback the result callback called with two arguments
-*  error: null or Error('message')
-*  content: the server answer with the deletion date
-*
-* @deprecated see client.deleteApiKey()
-*/
-Index.prototype.deleteApiKey = deprecate(function(key, callback) {
-  var indexObj = this;
-  return this.as._jsonRequest({
-    method: 'DELETE',
-    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/keys/' + key,
-    hostType: 'write',
-    callback: callback
-  });
-}, deprecatedMessage('index.deleteApiKey()', 'client.deleteApiKey()'));
-
-/*
-* @deprecated see client.addApiKey()
-*/
-Index.prototype.addUserKey = deprecate(function(acls, params, callback) {
-  return this.addApiKey(acls, params, callback);
-}, deprecatedMessage('index.addUserKey()', 'client.addApiKey()'));
-
-/*
-* Add a new API key to this index
-*
-* @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
-*   can contains the following values:
-*     - search: allow to search (https and http)
-*     - addObject: allows to add/update an object in the index (https only)
-*     - deleteObject : allows to delete an existing object (https only)
-*     - deleteIndex : allows to delete index content (https only)
-*     - settings : allows to get index settings (https only)
-*     - editSettings : allows to change index settings (https only)
-* @param {Object} [params] - Optionnal parameters to set for the key
-* @param {number} params.validity - Number of seconds after which the key will
-* be automatically removed (0 means no time limit for this key)
-* @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
-* @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
-* @param {string} params.description - A description for your key
-* @param {string[]} params.referers - A list of authorized referers
-* @param {Object} params.queryParameters - Force the key to use specific query parameters
-* @param {Function} callback - The result callback called with two arguments
-*   error: null or Error('message')
-*   content: the server answer with the added API key
-* @return {Promise|undefined} Returns a promise if no callback given
-* @example
-* index.addUserKey(['search'], {
-*   validity: 300,
-*   maxQueriesPerIPPerHour: 2000,
-*   maxHitsPerQuery: 3,
-*   description: 'Eat three fruits',
-*   referers: ['*.algolia.com'],
-*   queryParameters: {
-*     tagFilters: ['public'],
-*   }
-* })
-* @see {@link https://www.algolia.com/doc/rest_api#AddIndexKey|Algolia REST API Documentation}
-*
-* @deprecated see client.addApiKey()
-*/
-Index.prototype.addApiKey = deprecate(function(acls, params, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: index.addApiKey(arrayOfAcls[, params, callback])';
-
-  if (!isArray(acls)) {
-    throw new Error(usage);
-  }
-
-  if (arguments.length === 1 || typeof params === 'function') {
-    callback = params;
-    params = null;
-  }
-
-  var postObj = {
-    acl: acls
-  };
-
-  if (params) {
-    postObj.validity = params.validity;
-    postObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
-    postObj.maxHitsPerQuery = params.maxHitsPerQuery;
-    postObj.description = params.description;
-
-    if (params.queryParameters) {
-      postObj.queryParameters = this.as._getSearchParams(params.queryParameters, '');
-    }
-
-    postObj.referers = params.referers;
-  }
-
-  return this.as._jsonRequest({
-    method: 'POST',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/keys',
-    body: postObj,
-    hostType: 'write',
-    callback: callback
-  });
-}, deprecatedMessage('index.addApiKey()', 'client.addApiKey()'));
-
-/**
-* @deprecated use client.addApiKey()
-*/
-Index.prototype.addUserKeyWithValidity = deprecate(function deprecatedAddUserKeyWithValidity(acls, params, callback) {
-  return this.addApiKey(acls, params, callback);
-}, deprecatedMessage('index.addUserKeyWithValidity()', 'client.addApiKey()'));
-
-/*
-* @deprecated see client.updateApiKey()
-*/
-Index.prototype.updateUserKey = deprecate(function(key, acls, params, callback) {
-  return this.updateApiKey(key, acls, params, callback);
-}, deprecatedMessage('index.updateUserKey()', 'client.updateApiKey()'));
-
-/**
-* Update an existing API key of this index
-* @param {string} key - The key to update
-* @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
-*   can contains the following values:
-*     - search: allow to search (https and http)
-*     - addObject: allows to add/update an object in the index (https only)
-*     - deleteObject : allows to delete an existing object (https only)
-*     - deleteIndex : allows to delete index content (https only)
-*     - settings : allows to get index settings (https only)
-*     - editSettings : allows to change index settings (https only)
-* @param {Object} [params] - Optionnal parameters to set for the key
-* @param {number} params.validity - Number of seconds after which the key will
-* be automatically removed (0 means no time limit for this key)
-* @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
-* @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
-* @param {string} params.description - A description for your key
-* @param {string[]} params.referers - A list of authorized referers
-* @param {Object} params.queryParameters - Force the key to use specific query parameters
-* @param {Function} callback - The result callback called with two arguments
-*   error: null or Error('message')
-*   content: the server answer with user keys list
-* @return {Promise|undefined} Returns a promise if no callback given
-* @example
-* index.updateApiKey('APIKEY', ['search'], {
-*   validity: 300,
-*   maxQueriesPerIPPerHour: 2000,
-*   maxHitsPerQuery: 3,
-*   description: 'Eat three fruits',
-*   referers: ['*.algolia.com'],
-*   queryParameters: {
-*     tagFilters: ['public'],
-*   }
-* })
-* @see {@link https://www.algolia.com/doc/rest_api#UpdateIndexKey|Algolia REST API Documentation}
-*
-* @deprecated see client.updateApiKey()
-*/
-Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
-  var isArray = __webpack_require__(1);
-  var usage = 'Usage: index.updateApiKey(key, arrayOfAcls[, params, callback])';
-
-  if (!isArray(acls)) {
-    throw new Error(usage);
-  }
-
-  if (arguments.length === 2 || typeof params === 'function') {
-    callback = params;
-    params = null;
-  }
-
-  var putObj = {
-    acl: acls
-  };
-
-  if (params) {
-    putObj.validity = params.validity;
-    putObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
-    putObj.maxHitsPerQuery = params.maxHitsPerQuery;
-    putObj.description = params.description;
-
-    if (params.queryParameters) {
-      putObj.queryParameters = this.as._getSearchParams(params.queryParameters, '');
-    }
-
-    putObj.referers = params.referers;
-  }
-
-  return this.as._jsonRequest({
-    method: 'PUT',
-    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/keys/' + key,
-    body: putObj,
-    hostType: 'write',
-    callback: callback
-  });
-}, deprecatedMessage('index.updateApiKey()', 'client.updateApiKey()'));
-
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// modified from https://github.com/es-shims/es5-shim
-var has = Object.prototype.hasOwnProperty;
-var toStr = Object.prototype.toString;
-var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(123);
-var isEnumerable = Object.prototype.propertyIsEnumerable;
-var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
-var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
-var dontEnums = [
-	'toString',
-	'toLocaleString',
-	'valueOf',
-	'hasOwnProperty',
-	'isPrototypeOf',
-	'propertyIsEnumerable',
-	'constructor'
-];
-var equalsConstructorPrototype = function (o) {
-	var ctor = o.constructor;
-	return ctor && ctor.prototype === o;
-};
-var excludedKeys = {
-	$console: true,
-	$external: true,
-	$frame: true,
-	$frameElement: true,
-	$frames: true,
-	$innerHeight: true,
-	$innerWidth: true,
-	$outerHeight: true,
-	$outerWidth: true,
-	$pageXOffset: true,
-	$pageYOffset: true,
-	$parent: true,
-	$scrollLeft: true,
-	$scrollTop: true,
-	$scrollX: true,
-	$scrollY: true,
-	$self: true,
-	$webkitIndexedDB: true,
-	$webkitStorageInfo: true,
-	$window: true
-};
-var hasAutomationEqualityBug = (function () {
-	/* global window */
-	if (typeof window === 'undefined') { return false; }
-	for (var k in window) {
-		try {
-			if (!excludedKeys['$' + k] && has.call(window, k) && window[k] !== null && typeof window[k] === 'object') {
-				try {
-					equalsConstructorPrototype(window[k]);
-				} catch (e) {
-					return true;
-				}
-			}
-		} catch (e) {
-			return true;
-		}
-	}
-	return false;
-}());
-var equalsConstructorPrototypeIfNotBuggy = function (o) {
-	/* global window */
-	if (typeof window === 'undefined' || !hasAutomationEqualityBug) {
-		return equalsConstructorPrototype(o);
-	}
-	try {
-		return equalsConstructorPrototype(o);
-	} catch (e) {
-		return false;
-	}
-};
-
-var keysShim = function keys(object) {
-	var isObject = object !== null && typeof object === 'object';
-	var isFunction = toStr.call(object) === '[object Function]';
-	var isArguments = isArgs(object);
-	var isString = isObject && toStr.call(object) === '[object String]';
-	var theKeys = [];
-
-	if (!isObject && !isFunction && !isArguments) {
-		throw new TypeError('Object.keys called on a non-object');
-	}
-
-	var skipProto = hasProtoEnumBug && isFunction;
-	if (isString && object.length > 0 && !has.call(object, 0)) {
-		for (var i = 0; i < object.length; ++i) {
-			theKeys.push(String(i));
-		}
-	}
-
-	if (isArguments && object.length > 0) {
-		for (var j = 0; j < object.length; ++j) {
-			theKeys.push(String(j));
-		}
-	} else {
-		for (var name in object) {
-			if (!(skipProto && name === 'prototype') && has.call(object, name)) {
-				theKeys.push(String(name));
-			}
-		}
-	}
-
-	if (hasDontEnumBug) {
-		var skipConstructor = equalsConstructorPrototypeIfNotBuggy(object);
-
-		for (var k = 0; k < dontEnums.length; ++k) {
-			if (!(skipConstructor && dontEnums[k] === 'constructor') && has.call(object, dontEnums[k])) {
-				theKeys.push(dontEnums[k]);
-			}
-		}
-	}
-	return theKeys;
-};
-
-keysShim.shim = function shimObjectKeys() {
-	if (Object.keys) {
-		var keysWorksWithArguments = (function () {
-			// Safari 5.0 bug
-			return (Object.keys(arguments) || '').length === 2;
-		}(1, 2));
-		if (!keysWorksWithArguments) {
-			var originalKeys = Object.keys;
-			Object.keys = function keys(object) {
-				if (isArgs(object)) {
-					return originalKeys(slice.call(object));
-				} else {
-					return originalKeys(object);
-				}
-			};
-		}
-	} else {
-		Object.keys = keysShim;
-	}
-	return Object.keys || keysShim;
-};
-
-module.exports = keysShim;
-
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var toStr = Object.prototype.toString;
-
-module.exports = function isArguments(value) {
-	var str = toStr.call(value);
-	var isArgs = str === '[object Arguments]';
-	if (!isArgs) {
-		isArgs = str !== '[object Array]' &&
-			value !== null &&
-			typeof value === 'object' &&
-			typeof value.length === 'number' &&
-			value.length >= 0 &&
-			toStr.call(value.callee) === '[object Function]';
-	}
-	return isArgs;
-};
-
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// This is the object returned by the `index.browseAll()` method
-
-module.exports = IndexBrowser;
-
-var inherits = __webpack_require__(10);
-var EventEmitter = __webpack_require__(125).EventEmitter;
-
-function IndexBrowser() {
-}
-
-inherits(IndexBrowser, EventEmitter);
-
-IndexBrowser.prototype.stop = function() {
-  this._stopped = true;
-  this._clean();
-};
-
-IndexBrowser.prototype._end = function() {
-  this.emit('end');
-  this._clean();
-};
-
-IndexBrowser.prototype._error = function(err) {
-  this.emit('error', err);
-  this._clean();
-};
-
-IndexBrowser.prototype._result = function(content) {
-  this.emit('result', content);
-};
-
-IndexBrowser.prototype._clean = function() {
-  this.removeAllListeners('stop');
-  this.removeAllListeners('end');
-  this.removeAllListeners('error');
-  this.removeAllListeners('result');
-};
-
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports) {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-function EventEmitter() {
-  this._events = this._events || {};
-  this._maxListeners = this._maxListeners || undefined;
-}
-module.exports = EventEmitter;
-
-// Backwards-compat with node 0.10.x
-EventEmitter.EventEmitter = EventEmitter;
-
-EventEmitter.prototype._events = undefined;
-EventEmitter.prototype._maxListeners = undefined;
-
-// By default EventEmitters will print a warning if more than 10 listeners are
-// added to it. This is a useful default which helps finding memory leaks.
-EventEmitter.defaultMaxListeners = 10;
-
-// Obviously not all Emitters should be limited to 10. This function allows
-// that to be increased. Set to zero for unlimited.
-EventEmitter.prototype.setMaxListeners = function(n) {
-  if (!isNumber(n) || n < 0 || isNaN(n))
-    throw TypeError('n must be a positive number');
-  this._maxListeners = n;
-  return this;
-};
-
-EventEmitter.prototype.emit = function(type) {
-  var er, handler, len, args, i, listeners;
-
-  if (!this._events)
-    this._events = {};
-
-  // If there is no 'error' event listener then throw.
-  if (type === 'error') {
-    if (!this._events.error ||
-        (isObject(this._events.error) && !this._events.error.length)) {
-      er = arguments[1];
-      if (er instanceof Error) {
-        throw er; // Unhandled 'error' event
-      } else {
-        // At least give some kind of context to the user
-        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
-        err.context = er;
-        throw err;
-      }
-    }
-  }
-
-  handler = this._events[type];
-
-  if (isUndefined(handler))
-    return false;
-
-  if (isFunction(handler)) {
-    switch (arguments.length) {
-      // fast cases
-      case 1:
-        handler.call(this);
-        break;
-      case 2:
-        handler.call(this, arguments[1]);
-        break;
-      case 3:
-        handler.call(this, arguments[1], arguments[2]);
-        break;
-      // slower
-      default:
-        args = Array.prototype.slice.call(arguments, 1);
-        handler.apply(this, args);
-    }
-  } else if (isObject(handler)) {
-    args = Array.prototype.slice.call(arguments, 1);
-    listeners = handler.slice();
-    len = listeners.length;
-    for (i = 0; i < len; i++)
-      listeners[i].apply(this, args);
-  }
-
-  return true;
-};
-
-EventEmitter.prototype.addListener = function(type, listener) {
-  var m;
-
-  if (!isFunction(listener))
-    throw TypeError('listener must be a function');
-
-  if (!this._events)
-    this._events = {};
-
-  // To avoid recursion in the case that type === "newListener"! Before
-  // adding it to the listeners, first emit "newListener".
-  if (this._events.newListener)
-    this.emit('newListener', type,
-              isFunction(listener.listener) ?
-              listener.listener : listener);
-
-  if (!this._events[type])
-    // Optimize the case of one listener. Don't need the extra array object.
-    this._events[type] = listener;
-  else if (isObject(this._events[type]))
-    // If we've already got an array, just append.
-    this._events[type].push(listener);
-  else
-    // Adding the second element, need to change to array.
-    this._events[type] = [this._events[type], listener];
-
-  // Check for listener leak
-  if (isObject(this._events[type]) && !this._events[type].warned) {
-    if (!isUndefined(this._maxListeners)) {
-      m = this._maxListeners;
-    } else {
-      m = EventEmitter.defaultMaxListeners;
-    }
-
-    if (m && m > 0 && this._events[type].length > m) {
-      this._events[type].warned = true;
-      console.error('(node) warning: possible EventEmitter memory ' +
-                    'leak detected. %d listeners added. ' +
-                    'Use emitter.setMaxListeners() to increase limit.',
-                    this._events[type].length);
-      if (typeof console.trace === 'function') {
-        // not supported in IE 10
-        console.trace();
-      }
-    }
-  }
-
-  return this;
-};
-
-EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-
-EventEmitter.prototype.once = function(type, listener) {
-  if (!isFunction(listener))
-    throw TypeError('listener must be a function');
-
-  var fired = false;
-
-  function g() {
-    this.removeListener(type, g);
-
-    if (!fired) {
-      fired = true;
-      listener.apply(this, arguments);
-    }
-  }
-
-  g.listener = listener;
-  this.on(type, g);
-
-  return this;
-};
-
-// emits a 'removeListener' event iff the listener was removed
-EventEmitter.prototype.removeListener = function(type, listener) {
-  var list, position, length, i;
-
-  if (!isFunction(listener))
-    throw TypeError('listener must be a function');
-
-  if (!this._events || !this._events[type])
-    return this;
-
-  list = this._events[type];
-  length = list.length;
-  position = -1;
-
-  if (list === listener ||
-      (isFunction(list.listener) && list.listener === listener)) {
-    delete this._events[type];
-    if (this._events.removeListener)
-      this.emit('removeListener', type, listener);
-
-  } else if (isObject(list)) {
-    for (i = length; i-- > 0;) {
-      if (list[i] === listener ||
-          (list[i].listener && list[i].listener === listener)) {
-        position = i;
-        break;
-      }
-    }
-
-    if (position < 0)
-      return this;
-
-    if (list.length === 1) {
-      list.length = 0;
-      delete this._events[type];
-    } else {
-      list.splice(position, 1);
-    }
-
-    if (this._events.removeListener)
-      this.emit('removeListener', type, listener);
-  }
-
-  return this;
-};
-
-EventEmitter.prototype.removeAllListeners = function(type) {
-  var key, listeners;
-
-  if (!this._events)
-    return this;
-
-  // not listening for removeListener, no need to emit
-  if (!this._events.removeListener) {
-    if (arguments.length === 0)
-      this._events = {};
-    else if (this._events[type])
-      delete this._events[type];
-    return this;
-  }
-
-  // emit removeListener for all listeners on all events
-  if (arguments.length === 0) {
-    for (key in this._events) {
-      if (key === 'removeListener') continue;
-      this.removeAllListeners(key);
-    }
-    this.removeAllListeners('removeListener');
-    this._events = {};
-    return this;
-  }
-
-  listeners = this._events[type];
-
-  if (isFunction(listeners)) {
-    this.removeListener(type, listeners);
-  } else if (listeners) {
-    // LIFO order
-    while (listeners.length)
-      this.removeListener(type, listeners[listeners.length - 1]);
-  }
-  delete this._events[type];
-
-  return this;
-};
-
-EventEmitter.prototype.listeners = function(type) {
-  var ret;
-  if (!this._events || !this._events[type])
-    ret = [];
-  else if (isFunction(this._events[type]))
-    ret = [this._events[type]];
-  else
-    ret = this._events[type].slice();
-  return ret;
-};
-
-EventEmitter.prototype.listenerCount = function(type) {
-  if (this._events) {
-    var evlistener = this._events[type];
-
-    if (isFunction(evlistener))
-      return 1;
-    else if (evlistener)
-      return evlistener.length;
-  }
-  return 0;
-};
-
-EventEmitter.listenerCount = function(emitter, type) {
-  return emitter.listenerCount(type);
-};
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
-}
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = AlgoliaSearchCore;
-
-var errors = __webpack_require__(7);
-var exitPromise = __webpack_require__(27);
-var IndexCore = __webpack_require__(23);
-var store = __webpack_require__(127);
-
-// We will always put the API KEY in the JSON body in case of too long API KEY,
-// to avoid query string being too long and failing in various conditions (our server limit, browser limit,
-// proxies limit)
-var MAX_API_KEY_LENGTH = 500;
-var RESET_APP_DATA_TIMER =
-  Object({"NODE_ENV":"development"}).RESET_APP_DATA_TIMER && parseInt(Object({"NODE_ENV":"development"}).RESET_APP_DATA_TIMER, 10) ||
-  60 * 2 * 1000; // after 2 minutes reset to first host
-
-/*
- * Algolia Search library initialization
- * https://www.algolia.com/
- *
- * @param {string} applicationID - Your applicationID, found in your dashboard
- * @param {string} apiKey - Your API key, found in your dashboard
- * @param {Object} [opts]
- * @param {number} [opts.timeout=2000] - The request timeout set in milliseconds,
- * another request will be issued after this timeout
- * @param {string} [opts.protocol='https:'] - The protocol used to query Algolia Search API.
- *                                        Set to 'http:' to force using http.
- * @param {Object|Array} [opts.hosts={
- *           read: [this.applicationID + '-dsn.algolia.net'].concat([
- *             this.applicationID + '-1.algolianet.com',
- *             this.applicationID + '-2.algolianet.com',
- *             this.applicationID + '-3.algolianet.com']
- *           ]),
- *           write: [this.applicationID + '.algolia.net'].concat([
- *             this.applicationID + '-1.algolianet.com',
- *             this.applicationID + '-2.algolianet.com',
- *             this.applicationID + '-3.algolianet.com']
- *           ]) - The hosts to use for Algolia Search API.
- *           If you provide them, you will less benefit from our HA implementation
- */
-function AlgoliaSearchCore(applicationID, apiKey, opts) {
-  var debug = __webpack_require__(12)('algoliasearch');
-
-  var clone = __webpack_require__(5);
-  var isArray = __webpack_require__(1);
-  var map = __webpack_require__(9);
-
-  var usage = 'Usage: algoliasearch(applicationID, apiKey, opts)';
-
-  if (opts._allowEmptyCredentials !== true && !applicationID) {
-    throw new errors.AlgoliaSearchError('Please provide an application ID. ' + usage);
-  }
-
-  if (opts._allowEmptyCredentials !== true && !apiKey) {
-    throw new errors.AlgoliaSearchError('Please provide an API key. ' + usage);
-  }
-
-  this.applicationID = applicationID;
-  this.apiKey = apiKey;
-
-  this.hosts = {
-    read: [],
-    write: []
-  };
-
-  opts = opts || {};
-
-  this._timeouts = opts.timeouts || {
-    connect: 1 * 1000, // 500ms connect is GPRS latency
-    read: 2 * 1000,
-    write: 30 * 1000
-  };
-
-  // backward compat, if opts.timeout is passed, we use it to configure all timeouts like before
-  if (opts.timeout) {
-    this._timeouts.connect = this._timeouts.read = this._timeouts.write = opts.timeout;
-  }
-
-  var protocol = opts.protocol || 'https:';
-  // while we advocate for colon-at-the-end values: 'http:' for `opts.protocol`
-  // we also accept `http` and `https`. It's a common error.
-  if (!/:$/.test(protocol)) {
-    protocol = protocol + ':';
-  }
-
-  if (protocol !== 'http:' && protocol !== 'https:') {
-    throw new errors.AlgoliaSearchError('protocol must be `http:` or `https:` (was `' + opts.protocol + '`)');
-  }
-
-  this._checkAppIdData();
-
-  if (!opts.hosts) {
-    var defaultHosts = map(this._shuffleResult, function(hostNumber) {
-      return applicationID + '-' + hostNumber + '.algolianet.com';
-    });
-
-    // no hosts given, compute defaults
-    var mainSuffix = (opts.dsn === false ? '' : '-dsn') + '.algolia.net';
-    this.hosts.read = [this.applicationID + mainSuffix].concat(defaultHosts);
-    this.hosts.write = [this.applicationID + '.algolia.net'].concat(defaultHosts);
-  } else if (isArray(opts.hosts)) {
-    // when passing custom hosts, we need to have a different host index if the number
-    // of write/read hosts are different.
-    this.hosts.read = clone(opts.hosts);
-    this.hosts.write = clone(opts.hosts);
-  } else {
-    this.hosts.read = clone(opts.hosts.read);
-    this.hosts.write = clone(opts.hosts.write);
-  }
-
-  // add protocol and lowercase hosts
-  this.hosts.read = map(this.hosts.read, prepareHost(protocol));
-  this.hosts.write = map(this.hosts.write, prepareHost(protocol));
-
-  this.extraHeaders = {};
-
-  // In some situations you might want to warm the cache
-  this.cache = opts._cache || {};
-
-  this._ua = opts._ua;
-  this._useCache = opts._useCache === undefined || opts._cache ? true : opts._useCache;
-  this._useRequestCache = this._useCache && opts._useRequestCache;
-  this._useFallback = opts.useFallback === undefined ? true : opts.useFallback;
-
-  this._setTimeout = opts._setTimeout;
-
-  debug('init done, %j', this);
-}
-
-/*
- * Get the index object initialized
- *
- * @param indexName the name of index
- * @param callback the result callback with one argument (the Index instance)
- */
-AlgoliaSearchCore.prototype.initIndex = function(indexName) {
-  return new IndexCore(this, indexName);
-};
-
-/**
-* Add an extra field to the HTTP request
-*
-* @param name the header field name
-* @param value the header field value
-*/
-AlgoliaSearchCore.prototype.setExtraHeader = function(name, value) {
-  this.extraHeaders[name.toLowerCase()] = value;
-};
-
-/**
-* Get the value of an extra HTTP header
-*
-* @param name the header field name
-*/
-AlgoliaSearchCore.prototype.getExtraHeader = function(name) {
-  return this.extraHeaders[name.toLowerCase()];
-};
-
-/**
-* Remove an extra field from the HTTP request
-*
-* @param name the header field name
-*/
-AlgoliaSearchCore.prototype.unsetExtraHeader = function(name) {
-  delete this.extraHeaders[name.toLowerCase()];
-};
-
-/**
-* Augment sent x-algolia-agent with more data, each agent part
-* is automatically separated from the others by a semicolon;
-*
-* @param algoliaAgent the agent to add
-*/
-AlgoliaSearchCore.prototype.addAlgoliaAgent = function(algoliaAgent) {
-  if (this._ua.indexOf(';' + algoliaAgent) === -1) {
-    this._ua += ';' + algoliaAgent;
-  }
-};
-
-/*
- * Wrapper that try all hosts to maximize the quality of service
- */
-AlgoliaSearchCore.prototype._jsonRequest = function(initialOpts) {
-  this._checkAppIdData();
-
-  var requestDebug = __webpack_require__(12)('algoliasearch:' + initialOpts.url);
-
-
-  var body;
-  var cacheID;
-  var additionalUA = initialOpts.additionalUA || '';
-  var cache = initialOpts.cache;
-  var client = this;
-  var tries = 0;
-  var usingFallback = false;
-  var hasFallback = client._useFallback && client._request.fallback && initialOpts.fallback;
-  var headers;
-
-  if (
-    this.apiKey.length > MAX_API_KEY_LENGTH &&
-    initialOpts.body !== undefined &&
-    (initialOpts.body.params !== undefined || // index.search()
-    initialOpts.body.requests !== undefined) // client.search()
-  ) {
-    initialOpts.body.apiKey = this.apiKey;
-    headers = this._computeRequestHeaders({
-      additionalUA: additionalUA,
-      withApiKey: false,
-      headers: initialOpts.headers
-    });
-  } else {
-    headers = this._computeRequestHeaders({
-      additionalUA: additionalUA,
-      headers: initialOpts.headers
-    });
-  }
-
-  if (initialOpts.body !== undefined) {
-    body = safeJSONStringify(initialOpts.body);
-  }
-
-  requestDebug('request start');
-  var debugData = [];
-
-
-  function doRequest(requester, reqOpts) {
-    client._checkAppIdData();
-
-    var startTime = new Date();
-
-    if (client._useCache && !client._useRequestCache) {
-      cacheID = initialOpts.url;
-    }
-
-    // as we sometime use POST requests to pass parameters (like query='aa'),
-    // the cacheID must also include the body to be different between calls
-    if (client._useCache && !client._useRequestCache && body) {
-      cacheID += '_body_' + reqOpts.body;
-    }
-
-    // handle cache existence
-    if (isCacheValidWithCurrentID(!client._useRequestCache, cache, cacheID)) {
-      requestDebug('serving response from cache');
-
-      var responseText = cache[cacheID];
-
-      // Cache response must match the type of the original one
-      return client._promise.resolve({
-        body: JSON.parse(responseText),
-        responseText: responseText
-      });
-    }
-
-    // if we reached max tries
-    if (tries >= client.hosts[initialOpts.hostType].length) {
-      if (!hasFallback || usingFallback) {
-        requestDebug('could not get any response');
-        // then stop
-        return client._promise.reject(new errors.AlgoliaSearchError(
-          'Cannot connect to the AlgoliaSearch API.' +
-          ' Send an email to support@algolia.com to report and resolve the issue.' +
-          ' Application id was: ' + client.applicationID, {debugData: debugData}
-        ));
-      }
-
-      requestDebug('switching to fallback');
-
-      // let's try the fallback starting from here
-      tries = 0;
-
-      // method, url and body are fallback dependent
-      reqOpts.method = initialOpts.fallback.method;
-      reqOpts.url = initialOpts.fallback.url;
-      reqOpts.jsonBody = initialOpts.fallback.body;
-      if (reqOpts.jsonBody) {
-        reqOpts.body = safeJSONStringify(reqOpts.jsonBody);
-      }
-      // re-compute headers, they could be omitting the API KEY
-      headers = client._computeRequestHeaders({
-        additionalUA: additionalUA,
-        headers: initialOpts.headers
-      });
-
-      reqOpts.timeouts = client._getTimeoutsForRequest(initialOpts.hostType);
-      client._setHostIndexByType(0, initialOpts.hostType);
-      usingFallback = true; // the current request is now using fallback
-      return doRequest(client._request.fallback, reqOpts);
-    }
-
-    var currentHost = client._getHostByType(initialOpts.hostType);
-
-    var url = currentHost + reqOpts.url;
-    var options = {
-      body: reqOpts.body,
-      jsonBody: reqOpts.jsonBody,
-      method: reqOpts.method,
-      headers: headers,
-      timeouts: reqOpts.timeouts,
-      debug: requestDebug,
-      forceAuthHeaders: reqOpts.forceAuthHeaders
-    };
-
-    requestDebug('method: %s, url: %s, headers: %j, timeouts: %d',
-      options.method, url, options.headers, options.timeouts);
-
-    if (requester === client._request.fallback) {
-      requestDebug('using fallback');
-    }
-
-    // `requester` is any of this._request or this._request.fallback
-    // thus it needs to be called using the client as context
-    return requester.call(client, url, options).then(success, tryFallback);
-
-    function success(httpResponse) {
-      // compute the status of the response,
-      //
-      // When in browser mode, using XDR or JSONP, we have no statusCode available
-      // So we rely on our API response `status` property.
-      // But `waitTask` can set a `status` property which is not the statusCode (it's the task status)
-      // So we check if there's a `message` along `status` and it means it's an error
-      //
-      // That's the only case where we have a response.status that's not the http statusCode
-      var status = httpResponse && httpResponse.body && httpResponse.body.message && httpResponse.body.status ||
-
-        // this is important to check the request statusCode AFTER the body eventual
-        // statusCode because some implementations (jQuery XDomainRequest transport) may
-        // send statusCode 200 while we had an error
-        httpResponse.statusCode ||
-
-        // When in browser mode, using XDR or JSONP
-        // we default to success when no error (no response.status && response.message)
-        // If there was a JSON.parse() error then body is null and it fails
-        httpResponse && httpResponse.body && 200;
-
-      requestDebug('received response: statusCode: %s, computed statusCode: %d, headers: %j',
-        httpResponse.statusCode, status, httpResponse.headers);
-
-      var httpResponseOk = Math.floor(status / 100) === 2;
-
-      var endTime = new Date();
-      debugData.push({
-        currentHost: currentHost,
-        headers: removeCredentials(headers),
-        content: body || null,
-        contentLength: body !== undefined ? body.length : null,
-        method: reqOpts.method,
-        timeouts: reqOpts.timeouts,
-        url: reqOpts.url,
-        startTime: startTime,
-        endTime: endTime,
-        duration: endTime - startTime,
-        statusCode: status
-      });
-
-      if (httpResponseOk) {
-        if (client._useCache && !client._useRequestCache && cache) {
-          cache[cacheID] = httpResponse.responseText;
-        }
-
-        return {
-          responseText: httpResponse.responseText,
-          body: httpResponse.body
-        };
-      }
-
-      var shouldRetry = Math.floor(status / 100) !== 4;
-
-      if (shouldRetry) {
-        tries += 1;
-        return retryRequest();
-      }
-
-      requestDebug('unrecoverable error');
-
-      // no success and no retry => fail
-      var unrecoverableError = new errors.AlgoliaSearchError(
-        httpResponse.body && httpResponse.body.message, {debugData: debugData, statusCode: status}
-      );
-
-      return client._promise.reject(unrecoverableError);
-    }
-
-    function tryFallback(err) {
-      // error cases:
-      //  While not in fallback mode:
-      //    - CORS not supported
-      //    - network error
-      //  While in fallback mode:
-      //    - timeout
-      //    - network error
-      //    - badly formatted JSONP (script loaded, did not call our callback)
-      //  In both cases:
-      //    - uncaught exception occurs (TypeError)
-      requestDebug('error: %s, stack: %s', err.message, err.stack);
-
-      var endTime = new Date();
-      debugData.push({
-        currentHost: currentHost,
-        headers: removeCredentials(headers),
-        content: body || null,
-        contentLength: body !== undefined ? body.length : null,
-        method: reqOpts.method,
-        timeouts: reqOpts.timeouts,
-        url: reqOpts.url,
-        startTime: startTime,
-        endTime: endTime,
-        duration: endTime - startTime
-      });
-
-      if (!(err instanceof errors.AlgoliaSearchError)) {
-        err = new errors.Unknown(err && err.message, err);
-      }
-
-      tries += 1;
-
-      // stop the request implementation when:
-      if (
-        // we did not generate this error,
-        // it comes from a throw in some other piece of code
-        err instanceof errors.Unknown ||
-
-        // server sent unparsable JSON
-        err instanceof errors.UnparsableJSON ||
-
-        // max tries and already using fallback or no fallback
-        tries >= client.hosts[initialOpts.hostType].length &&
-        (usingFallback || !hasFallback)) {
-        // stop request implementation for this command
-        err.debugData = debugData;
-        return client._promise.reject(err);
-      }
-
-      // When a timeout occured, retry by raising timeout
-      if (err instanceof errors.RequestTimeout) {
-        return retryRequestWithHigherTimeout();
-      }
-
-      return retryRequest();
-    }
-
-    function retryRequest() {
-      requestDebug('retrying request');
-      client._incrementHostIndex(initialOpts.hostType);
-      return doRequest(requester, reqOpts);
-    }
-
-    function retryRequestWithHigherTimeout() {
-      requestDebug('retrying request with higher timeout');
-      client._incrementHostIndex(initialOpts.hostType);
-      client._incrementTimeoutMultipler();
-      reqOpts.timeouts = client._getTimeoutsForRequest(initialOpts.hostType);
-      return doRequest(requester, reqOpts);
-    }
-  }
-
-  function isCacheValidWithCurrentID(
-    useRequestCache,
-    currentCache,
-    currentCacheID
-  ) {
-    return (
-      client._useCache &&
-      useRequestCache &&
-      currentCache &&
-      currentCache[currentCacheID] !== undefined
-    );
-  }
-
-
-  function interopCallbackReturn(request, callback) {
-    if (isCacheValidWithCurrentID(client._useRequestCache, cache, cacheID)) {
-      request.catch(function() {
-        // Release the cache on error
-        delete cache[cacheID];
-      });
-    }
-
-    if (typeof initialOpts.callback === 'function') {
-      // either we have a callback
-      request.then(function okCb(content) {
-        exitPromise(function() {
-          initialOpts.callback(null, callback(content));
-        }, client._setTimeout || setTimeout);
-      }, function nookCb(err) {
-        exitPromise(function() {
-          initialOpts.callback(err);
-        }, client._setTimeout || setTimeout);
-      });
-    } else {
-      // either we are using promises
-      return request.then(callback);
-    }
-  }
-
-  if (client._useCache && client._useRequestCache) {
-    cacheID = initialOpts.url;
-  }
-
-  // as we sometime use POST requests to pass parameters (like query='aa'),
-  // the cacheID must also include the body to be different between calls
-  if (client._useCache && client._useRequestCache && body) {
-    cacheID += '_body_' + body;
-  }
-
-  if (isCacheValidWithCurrentID(client._useRequestCache, cache, cacheID)) {
-    requestDebug('serving request from cache');
-
-    var maybePromiseForCache = cache[cacheID];
-
-    // In case the cache is warmup with value that is not a promise
-    var promiseForCache = typeof maybePromiseForCache.then !== 'function'
-      ? client._promise.resolve({responseText: maybePromiseForCache})
-      : maybePromiseForCache;
-
-    return interopCallbackReturn(promiseForCache, function(content) {
-      // In case of the cache request, return the original value
-      return JSON.parse(content.responseText);
-    });
-  }
-
-  var request = doRequest(
-    client._request, {
-      url: initialOpts.url,
-      method: initialOpts.method,
-      body: body,
-      jsonBody: initialOpts.body,
-      timeouts: client._getTimeoutsForRequest(initialOpts.hostType),
-      forceAuthHeaders: initialOpts.forceAuthHeaders
-    }
-  );
-
-  if (client._useCache && client._useRequestCache && cache) {
-    cache[cacheID] = request;
-  }
-
-  return interopCallbackReturn(request, function(content) {
-    // In case of the first request, return the JSON value
-    return content.body;
-  });
-};
-
-/*
-* Transform search param object in query string
-* @param {object} args arguments to add to the current query string
-* @param {string} params current query string
-* @return {string} the final query string
-*/
-AlgoliaSearchCore.prototype._getSearchParams = function(args, params) {
-  if (args === undefined || args === null) {
-    return params;
-  }
-  for (var key in args) {
-    if (key !== null && args[key] !== undefined && args.hasOwnProperty(key)) {
-      params += params === '' ? '' : '&';
-      params += key + '=' + encodeURIComponent(Object.prototype.toString.call(args[key]) === '[object Array]' ? safeJSONStringify(args[key]) : args[key]);
-    }
-  }
-  return params;
-};
-
-/**
- * Compute the headers for a request
- *
- * @param [string] options.additionalUA semi-colon separated string with other user agents to add
- * @param [boolean=true] options.withApiKey Send the api key as a header
- * @param [Object] options.headers Extra headers to send
- */
-AlgoliaSearchCore.prototype._computeRequestHeaders = function(options) {
-  var forEach = __webpack_require__(8);
-
-  var ua = options.additionalUA ?
-    this._ua + ';' + options.additionalUA :
-    this._ua;
-
-  var requestHeaders = {
-    'x-algolia-agent': ua,
-    'x-algolia-application-id': this.applicationID
-  };
-
-  // browser will inline headers in the url, node.js will use http headers
-  // but in some situations, the API KEY will be too long (big secured API keys)
-  // so if the request is a POST and the KEY is very long, we will be asked to not put
-  // it into headers but in the JSON body
-  if (options.withApiKey !== false) {
-    requestHeaders['x-algolia-api-key'] = this.apiKey;
-  }
-
-  if (this.userToken) {
-    requestHeaders['x-algolia-usertoken'] = this.userToken;
-  }
-
-  if (this.securityTags) {
-    requestHeaders['x-algolia-tagfilters'] = this.securityTags;
-  }
-
-  forEach(this.extraHeaders, function addToRequestHeaders(value, key) {
-    requestHeaders[key] = value;
-  });
-
-  if (options.headers) {
-    forEach(options.headers, function addToRequestHeaders(value, key) {
-      requestHeaders[key] = value;
-    });
-  }
-
-  return requestHeaders;
-};
-
-/**
- * Search through multiple indices at the same time
- * @param  {Object[]}   queries  An array of queries you want to run.
- * @param {string} queries[].indexName The index name you want to target
- * @param {string} [queries[].query] The query to issue on this index. Can also be passed into `params`
- * @param {Object} queries[].params Any search param like hitsPerPage, ..
- * @param  {Function} callback Callback to be called
- * @return {Promise|undefined} Returns a promise if no callback given
- */
-AlgoliaSearchCore.prototype.search = function(queries, opts, callback) {
-  var isArray = __webpack_require__(1);
-  var map = __webpack_require__(9);
-
-  var usage = 'Usage: client.search(arrayOfQueries[, callback])';
-
-  if (!isArray(queries)) {
-    throw new Error(usage);
-  }
-
-  if (typeof opts === 'function') {
-    callback = opts;
-    opts = {};
-  } else if (opts === undefined) {
-    opts = {};
-  }
-
-  var client = this;
-
-  var postObj = {
-    requests: map(queries, function prepareRequest(query) {
-      var params = '';
-
-      // allow query.query
-      // so we are mimicing the index.search(query, params) method
-      // {indexName:, query:, params:}
-      if (query.query !== undefined) {
-        params += 'query=' + encodeURIComponent(query.query);
-      }
-
-      return {
-        indexName: query.indexName,
-        params: client._getSearchParams(query.params, params)
-      };
-    })
-  };
-
-  var JSONPParams = map(postObj.requests, function prepareJSONPParams(request, requestId) {
-    return requestId + '=' +
-      encodeURIComponent(
-        '/1/indexes/' + encodeURIComponent(request.indexName) + '?' +
-        request.params
-      );
-  }).join('&');
-
-  var url = '/1/indexes/*/queries';
-
-  if (opts.strategy !== undefined) {
-    url += '?strategy=' + opts.strategy;
-  }
-
-  return this._jsonRequest({
-    cache: this.cache,
-    method: 'POST',
-    url: url,
-    body: postObj,
-    hostType: 'read',
-    fallback: {
-      method: 'GET',
-      url: '/1/indexes/*',
-      body: {
-        params: JSONPParams
-      }
-    },
-    callback: callback
-  });
-};
-
-/**
-* Search for facet values
-* https://www.algolia.com/doc/rest-api/search#search-for-facet-values
-* This is the top-level API for SFFV.
-*
-* @param {object[]} queries An array of queries to run.
-* @param {string} queries[].indexName Index name, name of the index to search.
-* @param {object} queries[].params Query parameters.
-* @param {string} queries[].params.facetName Facet name, name of the attribute to search for values in.
-* Must be declared as a facet
-* @param {string} queries[].params.facetQuery Query for the facet search
-* @param {string} [queries[].params.*] Any search parameter of Algolia,
-* see https://www.algolia.com/doc/api-client/javascript/search#search-parameters
-* Pagination is not supported. The page and hitsPerPage parameters will be ignored.
-*/
-AlgoliaSearchCore.prototype.searchForFacetValues = function(queries) {
-  var isArray = __webpack_require__(1);
-  var map = __webpack_require__(9);
-
-  var usage = 'Usage: client.searchForFacetValues([{indexName, params: {facetName, facetQuery, ...params}}, ...queries])'; // eslint-disable-line max-len
-
-  if (!isArray(queries)) {
-    throw new Error(usage);
-  }
-
-  var client = this;
-
-  return client._promise.all(map(queries, function performQuery(query) {
-    if (
-      !query ||
-      query.indexName === undefined ||
-      query.params.facetName === undefined ||
-      query.params.facetQuery === undefined
-    ) {
-      throw new Error(usage);
-    }
-
-    var clone = __webpack_require__(5);
-    var omit = __webpack_require__(26);
-
-    var indexName = query.indexName;
-    var params = query.params;
-
-    var facetName = params.facetName;
-    var filteredParams = omit(clone(params), function(keyName) {
-      return keyName === 'facetName';
-    });
-    var searchParameters = client._getSearchParams(filteredParams, '');
-
-    return client._jsonRequest({
-      cache: client.cache,
-      method: 'POST',
-      url:
-        '/1/indexes/' +
-        encodeURIComponent(indexName) +
-        '/facets/' +
-        encodeURIComponent(facetName) +
-        '/query',
-      hostType: 'read',
-      body: {params: searchParameters}
-    });
-  }));
-};
-
-/**
- * Set the extra security tagFilters header
- * @param {string|array} tags The list of tags defining the current security filters
- */
-AlgoliaSearchCore.prototype.setSecurityTags = function(tags) {
-  if (Object.prototype.toString.call(tags) === '[object Array]') {
-    var strTags = [];
-    for (var i = 0; i < tags.length; ++i) {
-      if (Object.prototype.toString.call(tags[i]) === '[object Array]') {
-        var oredTags = [];
-        for (var j = 0; j < tags[i].length; ++j) {
-          oredTags.push(tags[i][j]);
-        }
-        strTags.push('(' + oredTags.join(',') + ')');
-      } else {
-        strTags.push(tags[i]);
-      }
-    }
-    tags = strTags.join(',');
-  }
-
-  this.securityTags = tags;
-};
-
-/**
- * Set the extra user token header
- * @param {string} userToken The token identifying a uniq user (used to apply rate limits)
- */
-AlgoliaSearchCore.prototype.setUserToken = function(userToken) {
-  this.userToken = userToken;
-};
-
-/**
- * Clear all queries in client's cache
- * @return undefined
- */
-AlgoliaSearchCore.prototype.clearCache = function() {
-  this.cache = {};
-};
-
-/**
-* Set the number of milliseconds a request can take before automatically being terminated.
-* @deprecated
-* @param {Number} milliseconds
-*/
-AlgoliaSearchCore.prototype.setRequestTimeout = function(milliseconds) {
-  if (milliseconds) {
-    this._timeouts.connect = this._timeouts.read = this._timeouts.write = milliseconds;
-  }
-};
-
-/**
-* Set the three different (connect, read, write) timeouts to be used when requesting
-* @param {Object} timeouts
-*/
-AlgoliaSearchCore.prototype.setTimeouts = function(timeouts) {
-  this._timeouts = timeouts;
-};
-
-/**
-* Get the three different (connect, read, write) timeouts to be used when requesting
-* @param {Object} timeouts
-*/
-AlgoliaSearchCore.prototype.getTimeouts = function() {
-  return this._timeouts;
-};
-
-AlgoliaSearchCore.prototype._getAppIdData = function() {
-  var data = store.get(this.applicationID);
-  if (data !== null) this._cacheAppIdData(data);
-  return data;
-};
-
-AlgoliaSearchCore.prototype._setAppIdData = function(data) {
-  data.lastChange = (new Date()).getTime();
-  this._cacheAppIdData(data);
-  return store.set(this.applicationID, data);
-};
-
-AlgoliaSearchCore.prototype._checkAppIdData = function() {
-  var data = this._getAppIdData();
-  var now = (new Date()).getTime();
-  if (data === null || now - data.lastChange > RESET_APP_DATA_TIMER) {
-    return this._resetInitialAppIdData(data);
-  }
-
-  return data;
-};
-
-AlgoliaSearchCore.prototype._resetInitialAppIdData = function(data) {
-  var newData = data || {};
-  newData.hostIndexes = {read: 0, write: 0};
-  newData.timeoutMultiplier = 1;
-  newData.shuffleResult = newData.shuffleResult || shuffle([1, 2, 3]);
-  return this._setAppIdData(newData);
-};
-
-AlgoliaSearchCore.prototype._cacheAppIdData = function(data) {
-  this._hostIndexes = data.hostIndexes;
-  this._timeoutMultiplier = data.timeoutMultiplier;
-  this._shuffleResult = data.shuffleResult;
-};
-
-AlgoliaSearchCore.prototype._partialAppIdDataUpdate = function(newData) {
-  var foreach = __webpack_require__(8);
-  var currentData = this._getAppIdData();
-  foreach(newData, function(value, key) {
-    currentData[key] = value;
-  });
-
-  return this._setAppIdData(currentData);
-};
-
-AlgoliaSearchCore.prototype._getHostByType = function(hostType) {
-  return this.hosts[hostType][this._getHostIndexByType(hostType)];
-};
-
-AlgoliaSearchCore.prototype._getTimeoutMultiplier = function() {
-  return this._timeoutMultiplier;
-};
-
-AlgoliaSearchCore.prototype._getHostIndexByType = function(hostType) {
-  return this._hostIndexes[hostType];
-};
-
-AlgoliaSearchCore.prototype._setHostIndexByType = function(hostIndex, hostType) {
-  var clone = __webpack_require__(5);
-  var newHostIndexes = clone(this._hostIndexes);
-  newHostIndexes[hostType] = hostIndex;
-  this._partialAppIdDataUpdate({hostIndexes: newHostIndexes});
-  return hostIndex;
-};
-
-AlgoliaSearchCore.prototype._incrementHostIndex = function(hostType) {
-  return this._setHostIndexByType(
-    (this._getHostIndexByType(hostType) + 1) % this.hosts[hostType].length, hostType
-  );
-};
-
-AlgoliaSearchCore.prototype._incrementTimeoutMultipler = function() {
-  var timeoutMultiplier = Math.max(this._timeoutMultiplier + 1, 4);
-  return this._partialAppIdDataUpdate({timeoutMultiplier: timeoutMultiplier});
-};
-
-AlgoliaSearchCore.prototype._getTimeoutsForRequest = function(hostType) {
-  return {
-    connect: this._timeouts.connect * this._timeoutMultiplier,
-    complete: this._timeouts[hostType] * this._timeoutMultiplier
-  };
-};
-
-function prepareHost(protocol) {
-  return function prepare(host) {
-    return protocol + '//' + host.toLowerCase();
-  };
-}
-
-// Prototype.js < 1.7, a widely used library, defines a weird
-// Array.prototype.toJSON function that will fail to stringify our content
-// appropriately
-// refs:
-//   - https://groups.google.com/forum/#!topic/prototype-core/E-SAVvV_V9Q
-//   - https://github.com/sstephenson/prototype/commit/038a2985a70593c1a86c230fadbdfe2e4898a48c
-//   - http://stackoverflow.com/a/3148441/147079
-function safeJSONStringify(obj) {
-  /* eslint no-extend-native:0 */
-
-  if (Array.prototype.toJSON === undefined) {
-    return JSON.stringify(obj);
-  }
-
-  var toJSON = Array.prototype.toJSON;
-  delete Array.prototype.toJSON;
-  var out = JSON.stringify(obj);
-  Array.prototype.toJSON = toJSON;
-
-  return out;
-}
-
-function shuffle(array) {
-  var currentIndex = array.length;
-  var temporaryValue;
-  var randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-
-function removeCredentials(headers) {
-  var newHeaders = {};
-
-  for (var headerName in headers) {
-    if (Object.prototype.hasOwnProperty.call(headers, headerName)) {
-      var value;
-
-      if (headerName === 'x-algolia-api-key' || headerName === 'x-algolia-application-id') {
-        value = '**hidden for security purposes**';
-      } else {
-        value = headers[headerName];
-      }
-
-      newHeaders[headerName] = value;
-    }
-  }
-
-  return newHeaders;
-}
-
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(12)('algoliasearch:src/hostIndexState.js');
-var localStorageNamespace = 'algoliasearch-client-js';
-
-var store;
-var moduleStore = {
-  state: {},
-  set: function(key, data) {
-    this.state[key] = data;
-    return this.state[key];
-  },
-  get: function(key) {
-    return this.state[key] || null;
-  }
-};
-
-var localStorageStore = {
-  set: function(key, data) {
-    moduleStore.set(key, data); // always replicate localStorageStore to moduleStore in case of failure
-
-    try {
-      var namespace = JSON.parse(global.localStorage[localStorageNamespace]);
-      namespace[key] = data;
-      global.localStorage[localStorageNamespace] = JSON.stringify(namespace);
-      return namespace[key];
-    } catch (e) {
-      return localStorageFailure(key, e);
-    }
-  },
-  get: function(key) {
-    try {
-      return JSON.parse(global.localStorage[localStorageNamespace])[key] || null;
-    } catch (e) {
-      return localStorageFailure(key, e);
-    }
-  }
-};
-
-function localStorageFailure(key, e) {
-  debug('localStorage failed with', e);
-  cleanup();
-  store = moduleStore;
-  return store.get(key);
-}
-
-store = supportsLocalStorage() ? localStorageStore : moduleStore;
-
-module.exports = {
-  get: getOrSet,
-  set: getOrSet,
-  supportsLocalStorage: supportsLocalStorage
-};
-
-function getOrSet(key, data) {
-  if (arguments.length === 1) {
-    return store.get(key);
-  }
-
-  return store.set(key, data);
-}
-
-function supportsLocalStorage() {
-  try {
-    if ('localStorage' in global &&
-      global.localStorage !== null) {
-      if (!global.localStorage[localStorageNamespace]) {
-        // actual creation of the namespace
-        global.localStorage.setItem(localStorageNamespace, JSON.stringify({}));
-      }
-      return true;
-    }
-
-    return false;
-  } catch (_) {
-    return false;
-  }
-}
-
-// In case of any error on localStorage, we clean our own namespace, this should handle
-// quota errors when a lot of keys + data are used
-function cleanup() {
-  try {
-    global.localStorage.removeItem(localStorageNamespace);
-  } catch (_) {
-    // nothing to do
-  }
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * This is the common logic for both the Node.js and web browser
- * implementations of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
-exports.coerce = coerce;
-exports.disable = disable;
-exports.enable = enable;
-exports.enabled = enabled;
-exports.humanize = __webpack_require__(129);
-
-/**
- * The currently active debug mode names, and names to skip.
- */
-
-exports.names = [];
-exports.skips = [];
-
-/**
- * Map of special "%n" handling functions, for the debug "format" argument.
- *
- * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
- */
-
-exports.formatters = {};
-
-/**
- * Previous log timestamp.
- */
-
-var prevTime;
-
-/**
- * Select a color.
- * @param {String} namespace
- * @return {Number}
- * @api private
- */
-
-function selectColor(namespace) {
-  var hash = 0, i;
-
-  for (i in namespace) {
-    hash  = ((hash << 5) - hash) + namespace.charCodeAt(i);
-    hash |= 0; // Convert to 32bit integer
-  }
-
-  return exports.colors[Math.abs(hash) % exports.colors.length];
-}
-
-/**
- * Create a debugger with the given `namespace`.
- *
- * @param {String} namespace
- * @return {Function}
- * @api public
- */
-
-function createDebug(namespace) {
-
-  function debug() {
-    // disabled?
-    if (!debug.enabled) return;
-
-    var self = debug;
-
-    // set `diff` timestamp
-    var curr = +new Date();
-    var ms = curr - (prevTime || curr);
-    self.diff = ms;
-    self.prev = prevTime;
-    self.curr = curr;
-    prevTime = curr;
-
-    // turn the `arguments` into a proper Array
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-
-    args[0] = exports.coerce(args[0]);
-
-    if ('string' !== typeof args[0]) {
-      // anything else let's inspect with %O
-      args.unshift('%O');
-    }
-
-    // apply any `formatters` transformations
-    var index = 0;
-    args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match, format) {
-      // if we encounter an escaped % then don't increase the array index
-      if (match === '%%') return match;
-      index++;
-      var formatter = exports.formatters[format];
-      if ('function' === typeof formatter) {
-        var val = args[index];
-        match = formatter.call(self, val);
-
-        // now we need to remove `args[index]` since it's inlined in the `format`
-        args.splice(index, 1);
-        index--;
-      }
-      return match;
-    });
-
-    // apply env-specific formatting (colors, etc.)
-    exports.formatArgs.call(self, args);
-
-    var logFn = debug.log || exports.log || console.log.bind(console);
-    logFn.apply(self, args);
-  }
-
-  debug.namespace = namespace;
-  debug.enabled = exports.enabled(namespace);
-  debug.useColors = exports.useColors();
-  debug.color = selectColor(namespace);
-
-  // env-specific initialization logic for debug instances
-  if ('function' === typeof exports.init) {
-    exports.init(debug);
-  }
-
-  return debug;
-}
-
-/**
- * Enables a debug mode by namespaces. This can include modes
- * separated by a colon and wildcards.
- *
- * @param {String} namespaces
- * @api public
- */
-
-function enable(namespaces) {
-  exports.save(namespaces);
-
-  exports.names = [];
-  exports.skips = [];
-
-  var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
-  var len = split.length;
-
-  for (var i = 0; i < len; i++) {
-    if (!split[i]) continue; // ignore empty strings
-    namespaces = split[i].replace(/\*/g, '.*?');
-    if (namespaces[0] === '-') {
-      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
-    } else {
-      exports.names.push(new RegExp('^' + namespaces + '$'));
-    }
-  }
-}
-
-/**
- * Disable debug output.
- *
- * @api public
- */
-
-function disable() {
-  exports.enable('');
-}
-
-/**
- * Returns true if the given mode name is enabled, false otherwise.
- *
- * @param {String} name
- * @return {Boolean}
- * @api public
- */
-
-function enabled(name) {
-  var i, len;
-  for (i = 0, len = exports.skips.length; i < len; i++) {
-    if (exports.skips[i].test(name)) {
-      return false;
-    }
-  }
-  for (i = 0, len = exports.names.length; i < len; i++) {
-    if (exports.names[i].test(name)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * Coerce `val`.
- *
- * @param {Mixed} val
- * @return {Mixed}
- * @api private
- */
-
-function coerce(val) {
-  if (val instanceof Error) return val.stack || val.message;
-  return val;
-}
-
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports) {
-
-/**
- * Helpers.
- */
-
-var s = 1000;
-var m = s * 60;
-var h = m * 60;
-var d = h * 24;
-var y = d * 365.25;
-
-/**
- * Parse or format the given `val`.
- *
- * Options:
- *
- *  - `long` verbose formatting [false]
- *
- * @param {String|Number} val
- * @param {Object} [options]
- * @throws {Error} throw an error if val is not a non-empty string or a number
- * @return {String|Number}
- * @api public
- */
-
-module.exports = function(val, options) {
-  options = options || {};
-  var type = typeof val;
-  if (type === 'string' && val.length > 0) {
-    return parse(val);
-  } else if (type === 'number' && isNaN(val) === false) {
-    return options.long ? fmtLong(val) : fmtShort(val);
-  }
-  throw new Error(
-    'val is not a non-empty string or a valid number. val=' +
-      JSON.stringify(val)
-  );
-};
-
-/**
- * Parse the given `str` and return milliseconds.
- *
- * @param {String} str
- * @return {Number}
- * @api private
- */
-
-function parse(str) {
-  str = String(str);
-  if (str.length > 100) {
-    return;
-  }
-  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
-    str
-  );
-  if (!match) {
-    return;
-  }
-  var n = parseFloat(match[1]);
-  var type = (match[2] || 'ms').toLowerCase();
-  switch (type) {
-    case 'years':
-    case 'year':
-    case 'yrs':
-    case 'yr':
-    case 'y':
-      return n * y;
-    case 'days':
-    case 'day':
-    case 'd':
-      return n * d;
-    case 'hours':
-    case 'hour':
-    case 'hrs':
-    case 'hr':
-    case 'h':
-      return n * h;
-    case 'minutes':
-    case 'minute':
-    case 'mins':
-    case 'min':
-    case 'm':
-      return n * m;
-    case 'seconds':
-    case 'second':
-    case 'secs':
-    case 'sec':
-    case 's':
-      return n * s;
-    case 'milliseconds':
-    case 'millisecond':
-    case 'msecs':
-    case 'msec':
-    case 'ms':
-      return n;
-    default:
-      return undefined;
-  }
-}
-
-/**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function fmtShort(ms) {
-  if (ms >= d) {
-    return Math.round(ms / d) + 'd';
-  }
-  if (ms >= h) {
-    return Math.round(ms / h) + 'h';
-  }
-  if (ms >= m) {
-    return Math.round(ms / m) + 'm';
-  }
-  if (ms >= s) {
-    return Math.round(ms / s) + 's';
-  }
-  return ms + 'ms';
-}
-
-/**
- * Long format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function fmtLong(ms) {
-  return plural(ms, d, 'day') ||
-    plural(ms, h, 'hour') ||
-    plural(ms, m, 'minute') ||
-    plural(ms, s, 'second') ||
-    ms + ' ms';
-}
-
-/**
- * Pluralization helper.
- */
-
-function plural(ms, n, name) {
-  if (ms < n) {
-    return;
-  }
-  if (ms < n * 1.5) {
-    return Math.floor(ms / n) + ' ' + name;
-  }
-  return Math.ceil(ms / n) + ' ' + name + 's';
-}
-
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = createAnalyticsClient;
-
-var algoliasearch = __webpack_require__(22);
-
-function createAnalyticsClient(appId, apiKey, opts) {
-  var analytics = {};
-
-  opts = opts || {};
-  // there need to be 4 hosts, like on the client, since if requests fail,
-  // the counter goes up by 1, so we need to have the same amount of hosts
-  // 4 because: -dsn, -1, -2, -3
-  // This is done because the APPID used for search will be the same for the analytics client created,
-  // and since the state of available hosts is shared by APPID globally for the module, we had issues
-  // where the hostIndex would be 1 while the array was only one entry (you got an empty host)
-  opts.hosts = opts.hosts || [
-    'analytics.algolia.com',
-    'analytics.algolia.com',
-    'analytics.algolia.com',
-    'analytics.algolia.com'
-  ];
-  opts.protocol = opts.protocol || 'https:';
-
-  analytics.as = algoliasearch(appId, apiKey, opts);
-
-  analytics.getABTests = function(_params, callback) {
-    var params = params || {};
-    var offset = params.offset || 0;
-    var limit = params.limit || 10;
-
-    return this.as._jsonRequest({
-      method: 'GET',
-      url: '/2/abtests?offset=' + encodeURIComponent(offset) + '&limit=' + encodeURIComponent(limit),
-      hostType: 'read',
-      forceAuthHeaders: true,
-      callback: callback
-    });
-  };
-
-  analytics.getABTest = function(abTestID, callback) {
-    return this.as._jsonRequest({
-      method: 'GET',
-      url: '/2/abtests/' + encodeURIComponent(abTestID),
-      hostType: 'read',
-      forceAuthHeaders: true,
-      callback: callback
-    });
-  };
-
-  analytics.addABTest = function(abTest, callback) {
-    return this.as._jsonRequest({
-      method: 'POST',
-      url: '/2/abtests',
-      body: abTest,
-      hostType: 'read',
-      forceAuthHeaders: true,
-      callback: callback
-    });
-  };
-
-  analytics.stopABTest = function(abTestID, callback) {
-    return this.as._jsonRequest({
-      method: 'POST',
-      url: '/2/abtests/' + encodeURIComponent(abTestID) + '/stop',
-      hostType: 'read',
-      forceAuthHeaders: true,
-      callback: callback
-    });
-  };
-
-  analytics.deleteABTest = function(abTestID, callback) {
-    return this.as._jsonRequest({
-      method: 'DELETE',
-      url: '/2/abtests/' + encodeURIComponent(abTestID),
-      hostType: 'write',
-      forceAuthHeaders: true,
-      callback: callback
-    });
-  };
-
-  analytics.waitTask = function(indexName, taskID, callback) {
-    return this.as.initIndex(indexName).waitTask(taskID, callback);
-  };
-
-  return analytics;
-}
-
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var global = __webpack_require__(132);
-var Promise = global.Promise || __webpack_require__(133).Promise;
-
-// This is the standalone browser build entry point
-// Browser implementation of the Algolia Search JavaScript client,
-// using XMLHttpRequest, XDomainRequest and JSONP as fallback
-module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
-  var inherits = __webpack_require__(10);
-  var errors = __webpack_require__(7);
-  var inlineHeaders = __webpack_require__(134);
-  var jsonpRequest = __webpack_require__(136);
-  var places = __webpack_require__(137);
-  uaSuffix = uaSuffix || '';
-
-  if (false) {
-    require('debug').enable('algoliasearch*');
-  }
-
-  function algoliasearch(applicationID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(5);
-
-    opts = cloneDeep(opts || {});
-
-    opts._ua = opts._ua || algoliasearch.ua;
-
-    return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
-  }
-
-  algoliasearch.version = __webpack_require__(138);
-  algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
-  algoliasearch.initPlaces = places(algoliasearch);
-
-  // we expose into window no matter how we are used, this will allow
-  // us to easily debug any website running algolia
-  global.__algolia = {
-    debug: __webpack_require__(12),
-    algoliasearch: algoliasearch
-  };
-
-  var support = {
-    hasXMLHttpRequest: 'XMLHttpRequest' in global,
-    hasXDomainRequest: 'XDomainRequest' in global
-  };
-
-  if (support.hasXMLHttpRequest) {
-    support.cors = 'withCredentials' in new XMLHttpRequest();
-  }
-
-  function AlgoliaSearchBrowser() {
-    // call AlgoliaSearch constructor
-    AlgoliaSearch.apply(this, arguments);
-  }
-
-  inherits(AlgoliaSearchBrowser, AlgoliaSearch);
-
-  AlgoliaSearchBrowser.prototype._request = function request(url, opts) {
-    return new Promise(function wrapRequest(resolve, reject) {
-      // no cors or XDomainRequest, no request
-      if (!support.cors && !support.hasXDomainRequest) {
-        // very old browser, not supported
-        reject(new errors.Network('CORS not supported'));
-        return;
-      }
-
-      url = inlineHeaders(url, opts.headers);
-
-      var body = opts.body;
-      var req = support.cors ? new XMLHttpRequest() : new XDomainRequest();
-      var reqTimeout;
-      var timedOut;
-      var connected = false;
-
-      reqTimeout = setTimeout(onTimeout, opts.timeouts.connect);
-      // we set an empty onprogress listener
-      // so that XDomainRequest on IE9 is not aborted
-      // refs:
-      //  - https://github.com/algolia/algoliasearch-client-js/issues/76
-      //  - https://social.msdn.microsoft.com/Forums/ie/en-US/30ef3add-767c-4436-b8a9-f1ca19b4812e/ie9-rtm-xdomainrequest-issued-requests-may-abort-if-all-event-handlers-not-specified?forum=iewebdevelopment
-      req.onprogress = onProgress;
-      if ('onreadystatechange' in req) req.onreadystatechange = onReadyStateChange;
-      req.onload = onLoad;
-      req.onerror = onError;
-
-      // do not rely on default XHR async flag, as some analytics code like hotjar
-      // breaks it and set it to false by default
-      if (req instanceof XMLHttpRequest) {
-        req.open(opts.method, url, true);
-
-        // The Analytics API never accepts Auth headers as query string
-        // this option exists specifically for them.
-        if (opts.forceAuthHeaders) {
-          req.setRequestHeader(
-            'x-algolia-application-id',
-            opts.headers['x-algolia-application-id']
-          );
-          req.setRequestHeader(
-            'x-algolia-api-key',
-            opts.headers['x-algolia-api-key']
-          );
-        }
-      } else {
-        req.open(opts.method, url);
-      }
-
-      // headers are meant to be sent after open
-      if (support.cors) {
-        if (body) {
-          if (opts.method === 'POST') {
-            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests
-            req.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-          } else {
-            req.setRequestHeader('content-type', 'application/json');
-          }
-        }
-        req.setRequestHeader('accept', 'application/json');
-      }
-
-      if (body) {
-        req.send(body);
-      } else {
-        req.send();
-      }
-
-      // event object not received in IE8, at least
-      // but we do not use it, still important to note
-      function onLoad(/* event */) {
-        // When browser does not supports req.timeout, we can
-        // have both a load and timeout event, since handled by a dumb setTimeout
-        if (timedOut) {
-          return;
-        }
-
-        clearTimeout(reqTimeout);
-
-        var out;
-
-        try {
-          out = {
-            body: JSON.parse(req.responseText),
-            responseText: req.responseText,
-            statusCode: req.status,
-            // XDomainRequest does not have any response headers
-            headers: req.getAllResponseHeaders && req.getAllResponseHeaders() || {}
-          };
-        } catch (e) {
-          out = new errors.UnparsableJSON({
-            more: req.responseText
-          });
-        }
-
-        if (out instanceof errors.UnparsableJSON) {
-          reject(out);
-        } else {
-          resolve(out);
-        }
-      }
-
-      function onError(event) {
-        if (timedOut) {
-          return;
-        }
-
-        clearTimeout(reqTimeout);
-
-        // error event is trigerred both with XDR/XHR on:
-        //   - DNS error
-        //   - unallowed cross domain request
-        reject(
-          new errors.Network({
-            more: event
-          })
-        );
-      }
-
-      function onTimeout() {
-        timedOut = true;
-        req.abort();
-
-        reject(new errors.RequestTimeout());
-      }
-
-      function onConnect() {
-        connected = true;
-        clearTimeout(reqTimeout);
-        reqTimeout = setTimeout(onTimeout, opts.timeouts.complete);
-      }
-
-      function onProgress() {
-        if (!connected) onConnect();
-      }
-
-      function onReadyStateChange() {
-        if (!connected && req.readyState > 1) onConnect();
-      }
-    });
-  };
-
-  AlgoliaSearchBrowser.prototype._request.fallback = function requestFallback(url, opts) {
-    url = inlineHeaders(url, opts.headers);
-
-    return new Promise(function wrapJsonpRequest(resolve, reject) {
-      jsonpRequest(url, opts, function jsonpRequestDone(err, content) {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve(content);
-      });
-    });
-  };
-
-  AlgoliaSearchBrowser.prototype._promise = {
-    reject: function rejectPromise(val) {
-      return Promise.reject(val);
-    },
-    resolve: function resolvePromise(val) {
-      return Promise.resolve(val);
-    },
-    delay: function delayPromise(ms) {
-      return new Promise(function resolveOnTimeout(resolve/* , reject*/) {
-        setTimeout(resolve, ms);
-      });
-    },
-    all: function all(promises) {
-      return Promise.all(promises);
-    }
-  };
-
-  return algoliasearch;
-};
-
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var win;
-
-if (typeof window !== "undefined") {
-    win = window;
-} else if (typeof global !== "undefined") {
-    win = global;
-} else if (typeof self !== "undefined"){
-    win = self;
-} else {
-    win = {};
-}
-
-module.exports = win;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process, global) {/*!
- * @overview es6-promise - a tiny implementation of Promises/A+.
- * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
- * @license   Licensed under MIT license
- *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
- * @version   v4.2.4+314e4831
- */
-
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.ES6Promise = factory());
-}(this, (function () { 'use strict';
-
-function objectOrFunction(x) {
-  var type = typeof x;
-  return x !== null && (type === 'object' || type === 'function');
-}
-
-function isFunction(x) {
-  return typeof x === 'function';
-}
-
-
-
-var _isArray = void 0;
-if (Array.isArray) {
-  _isArray = Array.isArray;
-} else {
-  _isArray = function (x) {
-    return Object.prototype.toString.call(x) === '[object Array]';
-  };
-}
-
-var isArray = _isArray;
-
-var len = 0;
-var vertxNext = void 0;
-var customSchedulerFn = void 0;
-
-var asap = function asap(callback, arg) {
-  queue[len] = callback;
-  queue[len + 1] = arg;
-  len += 2;
-  if (len === 2) {
-    // If len is 2, that means that we need to schedule an async flush.
-    // If additional callbacks are queued before the queue is flushed, they
-    // will be processed by this flush that we are scheduling.
-    if (customSchedulerFn) {
-      customSchedulerFn(flush);
-    } else {
-      scheduleFlush();
-    }
-  }
-};
-
-function setScheduler(scheduleFn) {
-  customSchedulerFn = scheduleFn;
-}
-
-function setAsap(asapFn) {
-  asap = asapFn;
-}
-
-var browserWindow = typeof window !== 'undefined' ? window : undefined;
-var browserGlobal = browserWindow || {};
-var BrowserMutationObserver = browserGlobal.MutationObserver || browserGlobal.WebKitMutationObserver;
-var isNode = typeof self === 'undefined' && typeof process !== 'undefined' && {}.toString.call(process) === '[object process]';
-
-// test for web worker but not in IE10
-var isWorker = typeof Uint8ClampedArray !== 'undefined' && typeof importScripts !== 'undefined' && typeof MessageChannel !== 'undefined';
-
-// node
-function useNextTick() {
-  // node version 0.10.x displays a deprecation warning when nextTick is used recursively
-  // see https://github.com/cujojs/when/issues/410 for details
-  return function () {
-    return process.nextTick(flush);
-  };
-}
-
-// vertx
-function useVertxTimer() {
-  if (typeof vertxNext !== 'undefined') {
-    return function () {
-      vertxNext(flush);
-    };
-  }
-
-  return useSetTimeout();
-}
-
-function useMutationObserver() {
-  var iterations = 0;
-  var observer = new BrowserMutationObserver(flush);
-  var node = document.createTextNode('');
-  observer.observe(node, { characterData: true });
-
-  return function () {
-    node.data = iterations = ++iterations % 2;
-  };
-}
-
-// web worker
-function useMessageChannel() {
-  var channel = new MessageChannel();
-  channel.port1.onmessage = flush;
-  return function () {
-    return channel.port2.postMessage(0);
-  };
-}
-
-function useSetTimeout() {
-  // Store setTimeout reference so es6-promise will be unaffected by
-  // other code modifying setTimeout (like sinon.useFakeTimers())
-  var globalSetTimeout = setTimeout;
-  return function () {
-    return globalSetTimeout(flush, 1);
-  };
-}
-
-var queue = new Array(1000);
-function flush() {
-  for (var i = 0; i < len; i += 2) {
-    var callback = queue[i];
-    var arg = queue[i + 1];
-
-    callback(arg);
-
-    queue[i] = undefined;
-    queue[i + 1] = undefined;
-  }
-
-  len = 0;
-}
-
-function attemptVertx() {
-  try {
-    var vertx = Function('return this')().require('vertx');
-    vertxNext = vertx.runOnLoop || vertx.runOnContext;
-    return useVertxTimer();
-  } catch (e) {
-    return useSetTimeout();
-  }
-}
-
-var scheduleFlush = void 0;
-// Decide what async method to use to triggering processing of queued callbacks:
-if (isNode) {
-  scheduleFlush = useNextTick();
-} else if (BrowserMutationObserver) {
-  scheduleFlush = useMutationObserver();
-} else if (isWorker) {
-  scheduleFlush = useMessageChannel();
-} else if (browserWindow === undefined && "function" === 'function') {
-  scheduleFlush = attemptVertx();
-} else {
-  scheduleFlush = useSetTimeout();
-}
-
-function then(onFulfillment, onRejection) {
-  var parent = this;
-
-  var child = new this.constructor(noop);
-
-  if (child[PROMISE_ID] === undefined) {
-    makePromise(child);
-  }
-
-  var _state = parent._state;
-
-
-  if (_state) {
-    var callback = arguments[_state - 1];
-    asap(function () {
-      return invokeCallback(_state, child, callback, parent._result);
-    });
-  } else {
-    subscribe(parent, child, onFulfillment, onRejection);
-  }
-
-  return child;
-}
-
-/**
-  `Promise.resolve` returns a promise that will become resolved with the
-  passed `value`. It is shorthand for the following:
-
-  ```javascript
-  let promise = new Promise(function(resolve, reject){
-    resolve(1);
-  });
-
-  promise.then(function(value){
-    // value === 1
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  let promise = Promise.resolve(1);
-
-  promise.then(function(value){
-    // value === 1
-  });
-  ```
-
-  @method resolve
-  @static
-  @param {Any} value value that the returned promise will be resolved with
-  Useful for tooling.
-  @return {Promise} a promise that will become fulfilled with the given
-  `value`
-*/
-function resolve$1(object) {
-  /*jshint validthis:true */
-  var Constructor = this;
-
-  if (object && typeof object === 'object' && object.constructor === Constructor) {
-    return object;
-  }
-
-  var promise = new Constructor(noop);
-  resolve(promise, object);
-  return promise;
-}
-
-var PROMISE_ID = Math.random().toString(36).substring(2);
-
-function noop() {}
-
-var PENDING = void 0;
-var FULFILLED = 1;
-var REJECTED = 2;
-
-var TRY_CATCH_ERROR = { error: null };
-
-function selfFulfillment() {
-  return new TypeError("You cannot resolve a promise with itself");
-}
-
-function cannotReturnOwn() {
-  return new TypeError('A promises callback cannot return that same promise.');
-}
-
-function getThen(promise) {
-  try {
-    return promise.then;
-  } catch (error) {
-    TRY_CATCH_ERROR.error = error;
-    return TRY_CATCH_ERROR;
-  }
-}
-
-function tryThen(then$$1, value, fulfillmentHandler, rejectionHandler) {
-  try {
-    then$$1.call(value, fulfillmentHandler, rejectionHandler);
-  } catch (e) {
-    return e;
-  }
-}
-
-function handleForeignThenable(promise, thenable, then$$1) {
-  asap(function (promise) {
-    var sealed = false;
-    var error = tryThen(then$$1, thenable, function (value) {
-      if (sealed) {
-        return;
-      }
-      sealed = true;
-      if (thenable !== value) {
-        resolve(promise, value);
-      } else {
-        fulfill(promise, value);
-      }
-    }, function (reason) {
-      if (sealed) {
-        return;
-      }
-      sealed = true;
-
-      reject(promise, reason);
-    }, 'Settle: ' + (promise._label || ' unknown promise'));
-
-    if (!sealed && error) {
-      sealed = true;
-      reject(promise, error);
-    }
-  }, promise);
-}
-
-function handleOwnThenable(promise, thenable) {
-  if (thenable._state === FULFILLED) {
-    fulfill(promise, thenable._result);
-  } else if (thenable._state === REJECTED) {
-    reject(promise, thenable._result);
-  } else {
-    subscribe(thenable, undefined, function (value) {
-      return resolve(promise, value);
-    }, function (reason) {
-      return reject(promise, reason);
-    });
-  }
-}
-
-function handleMaybeThenable(promise, maybeThenable, then$$1) {
-  if (maybeThenable.constructor === promise.constructor && then$$1 === then && maybeThenable.constructor.resolve === resolve$1) {
-    handleOwnThenable(promise, maybeThenable);
-  } else {
-    if (then$$1 === TRY_CATCH_ERROR) {
-      reject(promise, TRY_CATCH_ERROR.error);
-      TRY_CATCH_ERROR.error = null;
-    } else if (then$$1 === undefined) {
-      fulfill(promise, maybeThenable);
-    } else if (isFunction(then$$1)) {
-      handleForeignThenable(promise, maybeThenable, then$$1);
-    } else {
-      fulfill(promise, maybeThenable);
-    }
-  }
-}
-
-function resolve(promise, value) {
-  if (promise === value) {
-    reject(promise, selfFulfillment());
-  } else if (objectOrFunction(value)) {
-    handleMaybeThenable(promise, value, getThen(value));
-  } else {
-    fulfill(promise, value);
-  }
-}
-
-function publishRejection(promise) {
-  if (promise._onerror) {
-    promise._onerror(promise._result);
-  }
-
-  publish(promise);
-}
-
-function fulfill(promise, value) {
-  if (promise._state !== PENDING) {
-    return;
-  }
-
-  promise._result = value;
-  promise._state = FULFILLED;
-
-  if (promise._subscribers.length !== 0) {
-    asap(publish, promise);
-  }
-}
-
-function reject(promise, reason) {
-  if (promise._state !== PENDING) {
-    return;
-  }
-  promise._state = REJECTED;
-  promise._result = reason;
-
-  asap(publishRejection, promise);
-}
-
-function subscribe(parent, child, onFulfillment, onRejection) {
-  var _subscribers = parent._subscribers;
-  var length = _subscribers.length;
-
-
-  parent._onerror = null;
-
-  _subscribers[length] = child;
-  _subscribers[length + FULFILLED] = onFulfillment;
-  _subscribers[length + REJECTED] = onRejection;
-
-  if (length === 0 && parent._state) {
-    asap(publish, parent);
-  }
-}
-
-function publish(promise) {
-  var subscribers = promise._subscribers;
-  var settled = promise._state;
-
-  if (subscribers.length === 0) {
-    return;
-  }
-
-  var child = void 0,
-      callback = void 0,
-      detail = promise._result;
-
-  for (var i = 0; i < subscribers.length; i += 3) {
-    child = subscribers[i];
-    callback = subscribers[i + settled];
-
-    if (child) {
-      invokeCallback(settled, child, callback, detail);
-    } else {
-      callback(detail);
-    }
-  }
-
-  promise._subscribers.length = 0;
-}
-
-function tryCatch(callback, detail) {
-  try {
-    return callback(detail);
-  } catch (e) {
-    TRY_CATCH_ERROR.error = e;
-    return TRY_CATCH_ERROR;
-  }
-}
-
-function invokeCallback(settled, promise, callback, detail) {
-  var hasCallback = isFunction(callback),
-      value = void 0,
-      error = void 0,
-      succeeded = void 0,
-      failed = void 0;
-
-  if (hasCallback) {
-    value = tryCatch(callback, detail);
-
-    if (value === TRY_CATCH_ERROR) {
-      failed = true;
-      error = value.error;
-      value.error = null;
-    } else {
-      succeeded = true;
-    }
-
-    if (promise === value) {
-      reject(promise, cannotReturnOwn());
-      return;
-    }
-  } else {
-    value = detail;
-    succeeded = true;
-  }
-
-  if (promise._state !== PENDING) {
-    // noop
-  } else if (hasCallback && succeeded) {
-    resolve(promise, value);
-  } else if (failed) {
-    reject(promise, error);
-  } else if (settled === FULFILLED) {
-    fulfill(promise, value);
-  } else if (settled === REJECTED) {
-    reject(promise, value);
-  }
-}
-
-function initializePromise(promise, resolver) {
-  try {
-    resolver(function resolvePromise(value) {
-      resolve(promise, value);
-    }, function rejectPromise(reason) {
-      reject(promise, reason);
-    });
-  } catch (e) {
-    reject(promise, e);
-  }
-}
-
-var id = 0;
-function nextId() {
-  return id++;
-}
-
-function makePromise(promise) {
-  promise[PROMISE_ID] = id++;
-  promise._state = undefined;
-  promise._result = undefined;
-  promise._subscribers = [];
-}
-
-function validationError() {
-  return new Error('Array Methods must be provided an Array');
-}
-
-var Enumerator = function () {
-  function Enumerator(Constructor, input) {
-    this._instanceConstructor = Constructor;
-    this.promise = new Constructor(noop);
-
-    if (!this.promise[PROMISE_ID]) {
-      makePromise(this.promise);
-    }
-
-    if (isArray(input)) {
-      this.length = input.length;
-      this._remaining = input.length;
-
-      this._result = new Array(this.length);
-
-      if (this.length === 0) {
-        fulfill(this.promise, this._result);
-      } else {
-        this.length = this.length || 0;
-        this._enumerate(input);
-        if (this._remaining === 0) {
-          fulfill(this.promise, this._result);
-        }
-      }
-    } else {
-      reject(this.promise, validationError());
-    }
-  }
-
-  Enumerator.prototype._enumerate = function _enumerate(input) {
-    for (var i = 0; this._state === PENDING && i < input.length; i++) {
-      this._eachEntry(input[i], i);
-    }
-  };
-
-  Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {
-    var c = this._instanceConstructor;
-    var resolve$$1 = c.resolve;
-
-
-    if (resolve$$1 === resolve$1) {
-      var _then = getThen(entry);
-
-      if (_then === then && entry._state !== PENDING) {
-        this._settledAt(entry._state, i, entry._result);
-      } else if (typeof _then !== 'function') {
-        this._remaining--;
-        this._result[i] = entry;
-      } else if (c === Promise$1) {
-        var promise = new c(noop);
-        handleMaybeThenable(promise, entry, _then);
-        this._willSettleAt(promise, i);
-      } else {
-        this._willSettleAt(new c(function (resolve$$1) {
-          return resolve$$1(entry);
-        }), i);
-      }
-    } else {
-      this._willSettleAt(resolve$$1(entry), i);
-    }
-  };
-
-  Enumerator.prototype._settledAt = function _settledAt(state, i, value) {
-    var promise = this.promise;
-
-
-    if (promise._state === PENDING) {
-      this._remaining--;
-
-      if (state === REJECTED) {
-        reject(promise, value);
-      } else {
-        this._result[i] = value;
-      }
-    }
-
-    if (this._remaining === 0) {
-      fulfill(promise, this._result);
-    }
-  };
-
-  Enumerator.prototype._willSettleAt = function _willSettleAt(promise, i) {
-    var enumerator = this;
-
-    subscribe(promise, undefined, function (value) {
-      return enumerator._settledAt(FULFILLED, i, value);
-    }, function (reason) {
-      return enumerator._settledAt(REJECTED, i, reason);
-    });
-  };
-
-  return Enumerator;
-}();
-
-/**
-  `Promise.all` accepts an array of promises, and returns a new promise which
-  is fulfilled with an array of fulfillment values for the passed promises, or
-  rejected with the reason of the first passed promise to be rejected. It casts all
-  elements of the passed iterable to promises as it runs this algorithm.
-
-  Example:
-
-  ```javascript
-  let promise1 = resolve(1);
-  let promise2 = resolve(2);
-  let promise3 = resolve(3);
-  let promises = [ promise1, promise2, promise3 ];
-
-  Promise.all(promises).then(function(array){
-    // The array here would be [ 1, 2, 3 ];
-  });
-  ```
-
-  If any of the `promises` given to `all` are rejected, the first promise
-  that is rejected will be given as an argument to the returned promises's
-  rejection handler. For example:
-
-  Example:
-
-  ```javascript
-  let promise1 = resolve(1);
-  let promise2 = reject(new Error("2"));
-  let promise3 = reject(new Error("3"));
-  let promises = [ promise1, promise2, promise3 ];
-
-  Promise.all(promises).then(function(array){
-    // Code here never runs because there are rejected promises!
-  }, function(error) {
-    // error.message === "2"
-  });
-  ```
-
-  @method all
-  @static
-  @param {Array} entries array of promises
-  @param {String} label optional string for labeling the promise.
-  Useful for tooling.
-  @return {Promise} promise that is fulfilled when all `promises` have been
-  fulfilled, or rejected if any of them become rejected.
-  @static
-*/
-function all(entries) {
-  return new Enumerator(this, entries).promise;
-}
-
-/**
-  `Promise.race` returns a new promise which is settled in the same way as the
-  first passed promise to settle.
-
-  Example:
-
-  ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 1');
-    }, 200);
-  });
-
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 2');
-    }, 100);
-  });
-
-  Promise.race([promise1, promise2]).then(function(result){
-    // result === 'promise 2' because it was resolved before promise1
-    // was resolved.
-  });
-  ```
-
-  `Promise.race` is deterministic in that only the state of the first
-  settled promise matters. For example, even if other promises given to the
-  `promises` array argument are resolved, but the first settled promise has
-  become rejected before the other promises became fulfilled, the returned
-  promise will become rejected:
-
-  ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 1');
-    }, 200);
-  });
-
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      reject(new Error('promise 2'));
-    }, 100);
-  });
-
-  Promise.race([promise1, promise2]).then(function(result){
-    // Code here never runs
-  }, function(reason){
-    // reason.message === 'promise 2' because promise 2 became rejected before
-    // promise 1 became fulfilled
-  });
-  ```
-
-  An example real-world use case is implementing timeouts:
-
-  ```javascript
-  Promise.race([ajax('foo.json'), timeout(5000)])
-  ```
-
-  @method race
-  @static
-  @param {Array} promises array of promises to observe
-  Useful for tooling.
-  @return {Promise} a promise which settles in the same way as the first passed
-  promise to settle.
-*/
-function race(entries) {
-  /*jshint validthis:true */
-  var Constructor = this;
-
-  if (!isArray(entries)) {
-    return new Constructor(function (_, reject) {
-      return reject(new TypeError('You must pass an array to race.'));
-    });
-  } else {
-    return new Constructor(function (resolve, reject) {
-      var length = entries.length;
-      for (var i = 0; i < length; i++) {
-        Constructor.resolve(entries[i]).then(resolve, reject);
-      }
-    });
-  }
-}
-
-/**
-  `Promise.reject` returns a promise rejected with the passed `reason`.
-  It is shorthand for the following:
-
-  ```javascript
-  let promise = new Promise(function(resolve, reject){
-    reject(new Error('WHOOPS'));
-  });
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  let promise = Promise.reject(new Error('WHOOPS'));
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  @method reject
-  @static
-  @param {Any} reason value that the returned promise will be rejected with.
-  Useful for tooling.
-  @return {Promise} a promise rejected with the given `reason`.
-*/
-function reject$1(reason) {
-  /*jshint validthis:true */
-  var Constructor = this;
-  var promise = new Constructor(noop);
-  reject(promise, reason);
-  return promise;
-}
-
-function needsResolver() {
-  throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
-}
-
-function needsNew() {
-  throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
-}
-
-/**
-  Promise objects represent the eventual result of an asynchronous operation. The
-  primary way of interacting with a promise is through its `then` method, which
-  registers callbacks to receive either a promise's eventual value or the reason
-  why the promise cannot be fulfilled.
-
-  Terminology
-  -----------
-
-  - `promise` is an object or function with a `then` method whose behavior conforms to this specification.
-  - `thenable` is an object or function that defines a `then` method.
-  - `value` is any legal JavaScript value (including undefined, a thenable, or a promise).
-  - `exception` is a value that is thrown using the throw statement.
-  - `reason` is a value that indicates why a promise was rejected.
-  - `settled` the final resting state of a promise, fulfilled or rejected.
-
-  A promise can be in one of three states: pending, fulfilled, or rejected.
-
-  Promises that are fulfilled have a fulfillment value and are in the fulfilled
-  state.  Promises that are rejected have a rejection reason and are in the
-  rejected state.  A fulfillment value is never a thenable.
-
-  Promises can also be said to *resolve* a value.  If this value is also a
-  promise, then the original promise's settled state will match the value's
-  settled state.  So a promise that *resolves* a promise that rejects will
-  itself reject, and a promise that *resolves* a promise that fulfills will
-  itself fulfill.
-
-
-  Basic Usage:
-  ------------
-
-  ```js
-  let promise = new Promise(function(resolve, reject) {
-    // on success
-    resolve(value);
-
-    // on failure
-    reject(reason);
-  });
-
-  promise.then(function(value) {
-    // on fulfillment
-  }, function(reason) {
-    // on rejection
-  });
-  ```
-
-  Advanced Usage:
-  ---------------
-
-  Promises shine when abstracting away asynchronous interactions such as
-  `XMLHttpRequest`s.
-
-  ```js
-  function getJSON(url) {
-    return new Promise(function(resolve, reject){
-      let xhr = new XMLHttpRequest();
-
-      xhr.open('GET', url);
-      xhr.onreadystatechange = handler;
-      xhr.responseType = 'json';
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.send();
-
-      function handler() {
-        if (this.readyState === this.DONE) {
-          if (this.status === 200) {
-            resolve(this.response);
-          } else {
-            reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
-          }
-        }
-      };
-    });
-  }
-
-  getJSON('/posts.json').then(function(json) {
-    // on fulfillment
-  }, function(reason) {
-    // on rejection
-  });
-  ```
-
-  Unlike callbacks, promises are great composable primitives.
-
-  ```js
-  Promise.all([
-    getJSON('/posts'),
-    getJSON('/comments')
-  ]).then(function(values){
-    values[0] // => postsJSON
-    values[1] // => commentsJSON
-
-    return values;
-  });
-  ```
-
-  @class Promise
-  @param {Function} resolver
-  Useful for tooling.
-  @constructor
-*/
-
-var Promise$1 = function () {
-  function Promise(resolver) {
-    this[PROMISE_ID] = nextId();
-    this._result = this._state = undefined;
-    this._subscribers = [];
-
-    if (noop !== resolver) {
-      typeof resolver !== 'function' && needsResolver();
-      this instanceof Promise ? initializePromise(this, resolver) : needsNew();
-    }
-  }
-
-  /**
-  The primary way of interacting with a promise is through its `then` method,
-  which registers callbacks to receive either a promise's eventual value or the
-  reason why the promise cannot be fulfilled.
-   ```js
-  findUser().then(function(user){
-    // user is available
-  }, function(reason){
-    // user is unavailable, and you are given the reason why
-  });
-  ```
-   Chaining
-  --------
-   The return value of `then` is itself a promise.  This second, 'downstream'
-  promise is resolved with the return value of the first promise's fulfillment
-  or rejection handler, or rejected if the handler throws an exception.
-   ```js
-  findUser().then(function (user) {
-    return user.name;
-  }, function (reason) {
-    return 'default name';
-  }).then(function (userName) {
-    // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
-    // will be `'default name'`
-  });
-   findUser().then(function (user) {
-    throw new Error('Found user, but still unhappy');
-  }, function (reason) {
-    throw new Error('`findUser` rejected and we're unhappy');
-  }).then(function (value) {
-    // never reached
-  }, function (reason) {
-    // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
-    // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
-  });
-  ```
-  If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
-   ```js
-  findUser().then(function (user) {
-    throw new PedagogicalException('Upstream error');
-  }).then(function (value) {
-    // never reached
-  }).then(function (value) {
-    // never reached
-  }, function (reason) {
-    // The `PedgagocialException` is propagated all the way down to here
-  });
-  ```
-   Assimilation
-  ------------
-   Sometimes the value you want to propagate to a downstream promise can only be
-  retrieved asynchronously. This can be achieved by returning a promise in the
-  fulfillment or rejection handler. The downstream promise will then be pending
-  until the returned promise is settled. This is called *assimilation*.
-   ```js
-  findUser().then(function (user) {
-    return findCommentsByAuthor(user);
-  }).then(function (comments) {
-    // The user's comments are now available
-  });
-  ```
-   If the assimliated promise rejects, then the downstream promise will also reject.
-   ```js
-  findUser().then(function (user) {
-    return findCommentsByAuthor(user);
-  }).then(function (comments) {
-    // If `findCommentsByAuthor` fulfills, we'll have the value here
-  }, function (reason) {
-    // If `findCommentsByAuthor` rejects, we'll have the reason here
-  });
-  ```
-   Simple Example
-  --------------
-   Synchronous Example
-   ```javascript
-  let result;
-   try {
-    result = findResult();
-    // success
-  } catch(reason) {
-    // failure
-  }
-  ```
-   Errback Example
-   ```js
-  findResult(function(result, err){
-    if (err) {
-      // failure
-    } else {
-      // success
-    }
-  });
-  ```
-   Promise Example;
-   ```javascript
-  findResult().then(function(result){
-    // success
-  }, function(reason){
-    // failure
-  });
-  ```
-   Advanced Example
-  --------------
-   Synchronous Example
-   ```javascript
-  let author, books;
-   try {
-    author = findAuthor();
-    books  = findBooksByAuthor(author);
-    // success
-  } catch(reason) {
-    // failure
-  }
-  ```
-   Errback Example
-   ```js
-   function foundBooks(books) {
-   }
-   function failure(reason) {
-   }
-   findAuthor(function(author, err){
-    if (err) {
-      failure(err);
-      // failure
-    } else {
-      try {
-        findBoooksByAuthor(author, function(books, err) {
-          if (err) {
-            failure(err);
-          } else {
-            try {
-              foundBooks(books);
-            } catch(reason) {
-              failure(reason);
-            }
-          }
-        });
-      } catch(error) {
-        failure(err);
-      }
-      // success
-    }
-  });
-  ```
-   Promise Example;
-   ```javascript
-  findAuthor().
-    then(findBooksByAuthor).
-    then(function(books){
-      // found books
-  }).catch(function(reason){
-    // something went wrong
-  });
-  ```
-   @method then
-  @param {Function} onFulfilled
-  @param {Function} onRejected
-  Useful for tooling.
-  @return {Promise}
-  */
-
-  /**
-  `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
-  as the catch block of a try/catch statement.
-  ```js
-  function findAuthor(){
-  throw new Error('couldn't find that author');
-  }
-  // synchronous
-  try {
-  findAuthor();
-  } catch(reason) {
-  // something went wrong
-  }
-  // async with promises
-  findAuthor().catch(function(reason){
-  // something went wrong
-  });
-  ```
-  @method catch
-  @param {Function} onRejection
-  Useful for tooling.
-  @return {Promise}
-  */
-
-
-  Promise.prototype.catch = function _catch(onRejection) {
-    return this.then(null, onRejection);
-  };
-
-  /**
-    `finally` will be invoked regardless of the promise's fate just as native
-    try/catch/finally behaves
-  
-    Synchronous example:
-  
-    ```js
-    findAuthor() {
-      if (Math.random() > 0.5) {
-        throw new Error();
-      }
-      return new Author();
-    }
-  
-    try {
-      return findAuthor(); // succeed or fail
-    } catch(error) {
-      return findOtherAuther();
-    } finally {
-      // always runs
-      // doesn't affect the return value
-    }
-    ```
-  
-    Asynchronous example:
-  
-    ```js
-    findAuthor().catch(function(reason){
-      return findOtherAuther();
-    }).finally(function(){
-      // author was either found, or not
-    });
-    ```
-  
-    @method finally
-    @param {Function} callback
-    @return {Promise}
-  */
-
-
-  Promise.prototype.finally = function _finally(callback) {
-    var promise = this;
-    var constructor = promise.constructor;
-
-    return promise.then(function (value) {
-      return constructor.resolve(callback()).then(function () {
-        return value;
-      });
-    }, function (reason) {
-      return constructor.resolve(callback()).then(function () {
-        throw reason;
-      });
-    });
-  };
-
-  return Promise;
-}();
-
-Promise$1.prototype.then = then;
-Promise$1.all = all;
-Promise$1.race = race;
-Promise$1.resolve = resolve$1;
-Promise$1.reject = reject$1;
-Promise$1._setScheduler = setScheduler;
-Promise$1._setAsap = setAsap;
-Promise$1._asap = asap;
-
-/*global self*/
-function polyfill() {
-  var local = void 0;
-
-  if (typeof global !== 'undefined') {
-    local = global;
-  } else if (typeof self !== 'undefined') {
-    local = self;
-  } else {
-    try {
-      local = Function('return this')();
-    } catch (e) {
-      throw new Error('polyfill failed because global object is unavailable in this environment');
-    }
-  }
-
-  var P = local.Promise;
-
-  if (P) {
-    var promiseToString = null;
-    try {
-      promiseToString = Object.prototype.toString.call(P.resolve());
-    } catch (e) {
-      // silently ignored
-    }
-
-    if (promiseToString === '[object Promise]' && !P.cast) {
-      return;
-    }
-  }
-
-  local.Promise = Promise$1;
-}
-
-// Strange compat..
-Promise$1.polyfill = polyfill;
-Promise$1.Promise = Promise$1;
-
-return Promise$1;
-
-})));
-
-
-
-//# sourceMappingURL=es6-promise.map
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(6)))
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = inlineHeaders;
-
-var encode = __webpack_require__(135);
-
-function inlineHeaders(url, headers) {
-  if (/\?/.test(url)) {
-    url += '&';
-  } else {
-    url += '?';
-  }
-
-  return url + encode(headers);
-}
-
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-var stringifyPrimitive = function(v) {
-  switch (typeof v) {
-    case 'string':
-      return v;
-
-    case 'boolean':
-      return v ? 'true' : 'false';
-
-    case 'number':
-      return isFinite(v) ? v : '';
-
-    default:
-      return '';
-  }
-};
-
-module.exports = function(obj, sep, eq, name) {
-  sep = sep || '&';
-  eq = eq || '=';
-  if (obj === null) {
-    obj = undefined;
-  }
-
-  if (typeof obj === 'object') {
-    return map(objectKeys(obj), function(k) {
-      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (isArray(obj[k])) {
-        return map(obj[k], function(v) {
-          return ks + encodeURIComponent(stringifyPrimitive(v));
-        }).join(sep);
-      } else {
-        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
-      }
-    }).join(sep);
-
-  }
-
-  if (!name) return '';
-  return encodeURIComponent(stringifyPrimitive(name)) + eq +
-         encodeURIComponent(stringifyPrimitive(obj));
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
-function map (xs, f) {
-  if (xs.map) return xs.map(f);
-  var res = [];
-  for (var i = 0; i < xs.length; i++) {
-    res.push(f(xs[i], i));
-  }
-  return res;
-}
-
-var objectKeys = Object.keys || function (obj) {
-  var res = [];
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
-  }
-  return res;
-};
-
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = jsonpRequest;
-
-var errors = __webpack_require__(7);
-
-var JSONPCounter = 0;
-
-function jsonpRequest(url, opts, cb) {
-  if (opts.method !== 'GET') {
-    cb(new Error('Method ' + opts.method + ' ' + url + ' is not supported by JSONP.'));
-    return;
-  }
-
-  opts.debug('JSONP: start');
-
-  var cbCalled = false;
-  var timedOut = false;
-
-  JSONPCounter += 1;
-  var head = document.getElementsByTagName('head')[0];
-  var script = document.createElement('script');
-  var cbName = 'algoliaJSONP_' + JSONPCounter;
-  var done = false;
-
-  window[cbName] = function(data) {
-    removeGlobals();
-
-    if (timedOut) {
-      opts.debug('JSONP: Late answer, ignoring');
-      return;
-    }
-
-    cbCalled = true;
-
-    clean();
-
-    cb(null, {
-      body: data,
-      responseText: JSON.stringify(data)/* ,
-      // We do not send the statusCode, there's no statusCode in JSONP, it will be
-      // computed using data.status && data.message like with XDR
-      statusCode*/
-    });
-  };
-
-  // add callback by hand
-  url += '&callback=' + cbName;
-
-  // add body params manually
-  if (opts.jsonBody && opts.jsonBody.params) {
-    url += '&' + opts.jsonBody.params;
-  }
-
-  var ontimeout = setTimeout(timeout, opts.timeouts.complete);
-
-  // script onreadystatechange needed only for
-  // <= IE8
-  // https://github.com/angular/angular.js/issues/4523
-  script.onreadystatechange = readystatechange;
-  script.onload = success;
-  script.onerror = error;
-
-  script.async = true;
-  script.defer = true;
-  script.src = url;
-  head.appendChild(script);
-
-  function success() {
-    opts.debug('JSONP: success');
-
-    if (done || timedOut) {
-      return;
-    }
-
-    done = true;
-
-    // script loaded but did not call the fn => script loading error
-    if (!cbCalled) {
-      opts.debug('JSONP: Fail. Script loaded but did not call the callback');
-      clean();
-      cb(new errors.JSONPScriptFail());
-    }
-  }
-
-  function readystatechange() {
-    if (this.readyState === 'loaded' || this.readyState === 'complete') {
-      success();
-    }
-  }
-
-  function clean() {
-    clearTimeout(ontimeout);
-    script.onload = null;
-    script.onreadystatechange = null;
-    script.onerror = null;
-    head.removeChild(script);
-  }
-
-  function removeGlobals() {
-    try {
-      delete window[cbName];
-      delete window[cbName + '_loaded'];
-    } catch (e) {
-      window[cbName] = window[cbName + '_loaded'] = undefined;
-    }
-  }
-
-  function timeout() {
-    opts.debug('JSONP: Script timeout');
-    timedOut = true;
-    clean();
-    cb(new errors.RequestTimeout());
-  }
-
-  function error() {
-    opts.debug('JSONP: Script error');
-
-    if (done || timedOut) {
-      return;
-    }
-
-    clean();
-    cb(new errors.JSONPScriptError());
-  }
-}
-
-
-/***/ }),
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = createPlacesClient;
-
-var buildSearchMethod = __webpack_require__(24);
-
-function createPlacesClient(algoliasearch) {
-  return function places(appID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(5);
-
-    opts = opts && cloneDeep(opts) || {};
-    opts.hosts = opts.hosts || [
-      'places-dsn.algolia.net',
-      'places-1.algolianet.com',
-      'places-2.algolianet.com',
-      'places-3.algolianet.com'
-    ];
-
-    // allow initPlaces() no arguments => community rate limited
-    if (arguments.length === 0 || typeof appID === 'object' || appID === undefined) {
-      appID = '';
-      apiKey = '';
-      opts._allowEmptyCredentials = true;
-    }
-
-    var client = algoliasearch(appID, apiKey, opts);
-    var index = client.initIndex('places');
-    index.search = buildSearchMethod('query', '/1/places/query');
-    index.getObject = function(objectID, callback) {
-      return this.as._jsonRequest({
-        method: 'GET',
-        url: '/1/places/' + encodeURIComponent(objectID),
-        hostType: 'read',
-        callback: callback
-      });
-    };
-    return index;
-  };
-}
-
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = '3.29.0';
-
-
-/***/ }),
-/* 139 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
-
-
-
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
-
-var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
-	state: {
-		new_nots: [],
-		pendingTransactions: [],
-		buyerActiveTransactions: [],
-		sellerActiveTransactions: [],
-		buyerChats: [],
-		sellerChats: []
-
-	},
-
-	getters: {
-		all_pending_transactions: function all_pending_transactions(state) {
-			return state.pendingTransactions;
-		},
-		all_buyer_active_transactions: function all_buyer_active_transactions(state) {
-			return state.buyerActiveTransactions;
-		},
-		all_seller_active_transactions: function all_seller_active_transactions(state) {
-			return state.sellerActiveTransactions;
-		},
-		all_buyer_chats: function all_buyer_chats(state) {
-			return state.buyerChats;
-		},
-		all_seller_chats: function all_seller_chats(state) {
-			return state.sellerChats;
-		},
-		all_nots: function all_nots(state) {
-			return state.all_nots;
-		},
-		all_posts: function all_posts(state) {
-			return state.posts;
-		},
-		all_friends: function all_friends(state) {
-			return state.friends;
-		},
-		all_profile_feed: function all_profile_feed(state) {
-			return state.profile_feeds;
-		},
-		all_uploads: function all_uploads(state) {
-			return state.uploads;
-		},
-		all_new_posts: function all_new_posts(state) {
-			return state.new_posts;
-		}
-	},
-
-	mutations: {
-		add_pending_transactions: function add_pending_transactions(state, transactions) {
-
-			var verify = state.pendingTransactions.find(function (p) {
-				return p.id === transactions.id;
-			});
-			if (!verify) {
-				state.pendingTransactions.push(transactions);
-			}
-		},
-		add_buyer_active_transactions: function add_buyer_active_transactions(state, transactions) {
-
-			var verify = state.buyerActiveTransactions.find(function (p) {
-				return p.id === transactions.id;
-			});
-			if (!verify) {
-				state.buyerActiveTransactions.push(transactions);
-			}
-		},
-		add_seller_active_transactions: function add_seller_active_transactions(state, transactions) {
-
-			var verify = state.sellerActiveTransactions.find(function (p) {
-				return p.id === transactions.id;
-			});
-			if (!verify) {
-				state.sellerActiveTransactions.push(transactions);
-			}
-		},
-		add_buyer_chats: function add_buyer_chats(state, chat) {
-
-			var verify = state.buyerChats.find(function (c) {
-				return c.id === chat.id;
-			});
-			if (!verify) {
-				state.buyerChats.push(chat);
-			}
-		},
-		add_seller_chats: function add_seller_chats(state, chat) {
-
-			var verify = state.sellerChats.find(function (c) {
-				return c.id === chat.id;
-			});
-			if (!verify) {
-				state.sellerChats.push(chat);
-			}
-		},
-		add_all_not: function add_all_not(state, not) {
-
-			var verify = state.all_nots.find(function (n) {
-				return n.id === not.id;
-			});
-			if (!verify) {
-				state.all_nots.push(not);
-			}
-		},
-		clear_not_count: function clear_not_count(state) {
-			state.notscount = [];
-		},
-		add_upload: function add_upload(state, upload) {
-			state.uploads.push(upload);
-		},
-		add_post: function add_post(state, post) {
-
-			var verify = state.posts.find(function (p) {
-				return p.id === post.id;
-			});
-
-			if (!verify) {
-				state.posts.push(post);
-			}
-		},
-		add_friend: function add_friend(state, friend) {
-
-			var verify = state.friends.find(function (f) {
-				return f.id === friend.id;
-			});
-
-			if (!verify) {
-				state.friends.push(friend);
-			}
-		},
-		add_profile_feed: function add_profile_feed(state, feed) {
-
-			var verify = state.profile_feeds.find(function (f) {
-				return f.id === feed.id;
-			});
-
-			if (!verify) {
-				state.profile_feeds.push(feed);
-			}
-		},
-		add_new_post: function add_new_post(state, post) {
-
-			var verify = state.new_posts.find(function (p) {
-				return p.id === post.id;
-			});
-
-			if (!verify) {
-				state.new_posts.push(post);
-			}
-
-			state.uploads = [];
-		},
-		auth_user_data: function auth_user_data(state, user) {
-			state.auth_user = user;
-		},
-		update_post_likes: function update_post_likes(state, payload) {
-			var post = state.posts.find(function (p) {
-				return p.id === payload.id;
-			});
-
-			post.likes.push(payload.like);
-		},
-		update_video_id: function update_video_id(state, payload) {
-			state.videoid = [];
-
-			state.videoid.push(payload.vid);
-		},
-		add_old_post_comment: function add_old_post_comment(state, comment) {
-			var post = state.posts.find(function (p) {
-				return p.id === comment.post_id;
-			});
-
-			post.comments.push(comment);
-		},
-		add_new_post_comment: function add_new_post_comment(state, comment) {
-			var post = state.new_posts.find(function (p) {
-				return p.id === comment.post_id;
-			});
-
-			post.comments.push(comment);
-		},
-		unlike_post: function unlike_post(state, payload) {
-			var post = state.posts.find(function (p) {
-				return p.id === payload.post_id;
-			});
-
-			var like = post.likes.find(function (l) {
-				return l.user_id === payload.user_id;
-			});
-
-			var index = post.likes.indexOf(like);
-
-			post.likes.splice(index, 1);
-		},
-		remove_uploaded: function remove_uploaded(state, payload) {
-			var uploaded = state.uploads.find(function (u) {
-				return u.URL === payload.filelink;
-			});
-			var index = state.uploads.indexOf(uploaded);
-
-			state.uploads.splice(index, 1);
-		}
-	},
-
-	actions: {}
-
-});
-
-/***/ }),
-/* 140 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export Store */
-/* unused harmony export install */
-/* unused harmony export mapState */
-/* unused harmony export mapMutations */
-/* unused harmony export mapGetters */
-/* unused harmony export mapActions */
-/* unused harmony export createNamespacedHelpers */
-/**
- * vuex v3.0.1
- * (c) 2017 Evan You
- * @license MIT
- */
-var applyMixin = function (Vue) {
-  var version = Number(Vue.version.split('.')[0]);
-
-  if (version >= 2) {
-    Vue.mixin({ beforeCreate: vuexInit });
-  } else {
-    // override init and inject vuex init procedure
-    // for 1.x backwards compatibility.
-    var _init = Vue.prototype._init;
-    Vue.prototype._init = function (options) {
-      if ( options === void 0 ) options = {};
-
-      options.init = options.init
-        ? [vuexInit].concat(options.init)
-        : vuexInit;
-      _init.call(this, options);
-    };
-  }
-
-  /**
-   * Vuex init hook, injected into each instances init hooks list.
-   */
-
-  function vuexInit () {
-    var options = this.$options;
-    // store injection
-    if (options.store) {
-      this.$store = typeof options.store === 'function'
-        ? options.store()
-        : options.store;
-    } else if (options.parent && options.parent.$store) {
-      this.$store = options.parent.$store;
-    }
-  }
-};
-
-var devtoolHook =
-  typeof window !== 'undefined' &&
-  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
-
-function devtoolPlugin (store) {
-  if (!devtoolHook) { return }
-
-  store._devtoolHook = devtoolHook;
-
-  devtoolHook.emit('vuex:init', store);
-
-  devtoolHook.on('vuex:travel-to-state', function (targetState) {
-    store.replaceState(targetState);
-  });
-
-  store.subscribe(function (mutation, state) {
-    devtoolHook.emit('vuex:mutation', mutation, state);
-  });
-}
-
-/**
- * Get the first item that pass the test
- * by second argument function
- *
- * @param {Array} list
- * @param {Function} f
- * @return {*}
- */
-/**
- * Deep copy the given object considering circular structure.
- * This function caches all nested objects and its copies.
- * If it detects circular structure, use cached copy to avoid infinite loop.
- *
- * @param {*} obj
- * @param {Array<Object>} cache
- * @return {*}
- */
-
-
-/**
- * forEach for object
- */
-function forEachValue (obj, fn) {
-  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
-}
-
-function isObject (obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-function isPromise (val) {
-  return val && typeof val.then === 'function'
-}
-
-function assert (condition, msg) {
-  if (!condition) { throw new Error(("[vuex] " + msg)) }
-}
-
-var Module = function Module (rawModule, runtime) {
-  this.runtime = runtime;
-  this._children = Object.create(null);
-  this._rawModule = rawModule;
-  var rawState = rawModule.state;
-  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
-};
-
-var prototypeAccessors$1 = { namespaced: { configurable: true } };
-
-prototypeAccessors$1.namespaced.get = function () {
-  return !!this._rawModule.namespaced
-};
-
-Module.prototype.addChild = function addChild (key, module) {
-  this._children[key] = module;
-};
-
-Module.prototype.removeChild = function removeChild (key) {
-  delete this._children[key];
-};
-
-Module.prototype.getChild = function getChild (key) {
-  return this._children[key]
-};
-
-Module.prototype.update = function update (rawModule) {
-  this._rawModule.namespaced = rawModule.namespaced;
-  if (rawModule.actions) {
-    this._rawModule.actions = rawModule.actions;
-  }
-  if (rawModule.mutations) {
-    this._rawModule.mutations = rawModule.mutations;
-  }
-  if (rawModule.getters) {
-    this._rawModule.getters = rawModule.getters;
-  }
-};
-
-Module.prototype.forEachChild = function forEachChild (fn) {
-  forEachValue(this._children, fn);
-};
-
-Module.prototype.forEachGetter = function forEachGetter (fn) {
-  if (this._rawModule.getters) {
-    forEachValue(this._rawModule.getters, fn);
-  }
-};
-
-Module.prototype.forEachAction = function forEachAction (fn) {
-  if (this._rawModule.actions) {
-    forEachValue(this._rawModule.actions, fn);
-  }
-};
-
-Module.prototype.forEachMutation = function forEachMutation (fn) {
-  if (this._rawModule.mutations) {
-    forEachValue(this._rawModule.mutations, fn);
-  }
-};
-
-Object.defineProperties( Module.prototype, prototypeAccessors$1 );
-
-var ModuleCollection = function ModuleCollection (rawRootModule) {
-  // register root module (Vuex.Store options)
-  this.register([], rawRootModule, false);
-};
-
-ModuleCollection.prototype.get = function get (path) {
-  return path.reduce(function (module, key) {
-    return module.getChild(key)
-  }, this.root)
-};
-
-ModuleCollection.prototype.getNamespace = function getNamespace (path) {
-  var module = this.root;
-  return path.reduce(function (namespace, key) {
-    module = module.getChild(key);
-    return namespace + (module.namespaced ? key + '/' : '')
-  }, '')
-};
-
-ModuleCollection.prototype.update = function update$1 (rawRootModule) {
-  update([], this.root, rawRootModule);
-};
-
-ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
-    var this$1 = this;
-    if ( runtime === void 0 ) runtime = true;
-
-  if (true) {
-    assertRawModule(path, rawModule);
-  }
-
-  var newModule = new Module(rawModule, runtime);
-  if (path.length === 0) {
-    this.root = newModule;
-  } else {
-    var parent = this.get(path.slice(0, -1));
-    parent.addChild(path[path.length - 1], newModule);
-  }
-
-  // register nested modules
-  if (rawModule.modules) {
-    forEachValue(rawModule.modules, function (rawChildModule, key) {
-      this$1.register(path.concat(key), rawChildModule, runtime);
-    });
-  }
-};
-
-ModuleCollection.prototype.unregister = function unregister (path) {
-  var parent = this.get(path.slice(0, -1));
-  var key = path[path.length - 1];
-  if (!parent.getChild(key).runtime) { return }
-
-  parent.removeChild(key);
-};
-
-function update (path, targetModule, newModule) {
-  if (true) {
-    assertRawModule(path, newModule);
-  }
-
-  // update target module
-  targetModule.update(newModule);
-
-  // update nested modules
-  if (newModule.modules) {
-    for (var key in newModule.modules) {
-      if (!targetModule.getChild(key)) {
-        if (true) {
-          console.warn(
-            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
-            'manual reload is needed'
-          );
-        }
-        return
-      }
-      update(
-        path.concat(key),
-        targetModule.getChild(key),
-        newModule.modules[key]
-      );
-    }
-  }
-}
-
-var functionAssert = {
-  assert: function (value) { return typeof value === 'function'; },
-  expected: 'function'
-};
-
-var objectAssert = {
-  assert: function (value) { return typeof value === 'function' ||
-    (typeof value === 'object' && typeof value.handler === 'function'); },
-  expected: 'function or object with "handler" function'
-};
-
-var assertTypes = {
-  getters: functionAssert,
-  mutations: functionAssert,
-  actions: objectAssert
-};
-
-function assertRawModule (path, rawModule) {
-  Object.keys(assertTypes).forEach(function (key) {
-    if (!rawModule[key]) { return }
-
-    var assertOptions = assertTypes[key];
-
-    forEachValue(rawModule[key], function (value, type) {
-      assert(
-        assertOptions.assert(value),
-        makeAssertionMessage(path, key, type, value, assertOptions.expected)
-      );
-    });
-  });
-}
-
-function makeAssertionMessage (path, key, type, value, expected) {
-  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
-  if (path.length > 0) {
-    buf += " in module \"" + (path.join('.')) + "\"";
-  }
-  buf += " is " + (JSON.stringify(value)) + ".";
-  return buf
-}
-
-var Vue; // bind on install
-
-var Store = function Store (options) {
-  var this$1 = this;
-  if ( options === void 0 ) options = {};
-
-  // Auto install if it is not done yet and `window` has `Vue`.
-  // To allow users to avoid auto-installation in some cases,
-  // this code should be placed here. See #731
-  if (!Vue && typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue);
-  }
-
-  if (true) {
-    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
-    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
-    assert(this instanceof Store, "Store must be called with the new operator.");
-  }
-
-  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
-  var strict = options.strict; if ( strict === void 0 ) strict = false;
-
-  var state = options.state; if ( state === void 0 ) state = {};
-  if (typeof state === 'function') {
-    state = state() || {};
-  }
-
-  // store internal state
-  this._committing = false;
-  this._actions = Object.create(null);
-  this._actionSubscribers = [];
-  this._mutations = Object.create(null);
-  this._wrappedGetters = Object.create(null);
-  this._modules = new ModuleCollection(options);
-  this._modulesNamespaceMap = Object.create(null);
-  this._subscribers = [];
-  this._watcherVM = new Vue();
-
-  // bind commit and dispatch to self
-  var store = this;
-  var ref = this;
-  var dispatch = ref.dispatch;
-  var commit = ref.commit;
-  this.dispatch = function boundDispatch (type, payload) {
-    return dispatch.call(store, type, payload)
-  };
-  this.commit = function boundCommit (type, payload, options) {
-    return commit.call(store, type, payload, options)
-  };
-
-  // strict mode
-  this.strict = strict;
-
-  // init root module.
-  // this also recursively registers all sub-modules
-  // and collects all module getters inside this._wrappedGetters
-  installModule(this, state, [], this._modules.root);
-
-  // initialize the store vm, which is responsible for the reactivity
-  // (also registers _wrappedGetters as computed properties)
-  resetStoreVM(this, state);
-
-  // apply plugins
-  plugins.forEach(function (plugin) { return plugin(this$1); });
-
-  if (Vue.config.devtools) {
-    devtoolPlugin(this);
-  }
-};
-
-var prototypeAccessors = { state: { configurable: true } };
-
-prototypeAccessors.state.get = function () {
-  return this._vm._data.$$state
-};
-
-prototypeAccessors.state.set = function (v) {
-  if (true) {
-    assert(false, "Use store.replaceState() to explicit replace store state.");
-  }
-};
-
-Store.prototype.commit = function commit (_type, _payload, _options) {
-    var this$1 = this;
-
-  // check object-style commit
-  var ref = unifyObjectStyle(_type, _payload, _options);
-    var type = ref.type;
-    var payload = ref.payload;
-    var options = ref.options;
-
-  var mutation = { type: type, payload: payload };
-  var entry = this._mutations[type];
-  if (!entry) {
-    if (true) {
-      console.error(("[vuex] unknown mutation type: " + type));
-    }
-    return
-  }
-  this._withCommit(function () {
-    entry.forEach(function commitIterator (handler) {
-      handler(payload);
-    });
-  });
-  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
-
-  if (
-    "development" !== 'production' &&
-    options && options.silent
-  ) {
-    console.warn(
-      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
-      'Use the filter functionality in the vue-devtools'
-    );
-  }
-};
-
-Store.prototype.dispatch = function dispatch (_type, _payload) {
-    var this$1 = this;
-
-  // check object-style dispatch
-  var ref = unifyObjectStyle(_type, _payload);
-    var type = ref.type;
-    var payload = ref.payload;
-
-  var action = { type: type, payload: payload };
-  var entry = this._actions[type];
-  if (!entry) {
-    if (true) {
-      console.error(("[vuex] unknown action type: " + type));
-    }
-    return
-  }
-
-  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
-
-  return entry.length > 1
-    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-    : entry[0](payload)
-};
-
-Store.prototype.subscribe = function subscribe (fn) {
-  return genericSubscribe(fn, this._subscribers)
-};
-
-Store.prototype.subscribeAction = function subscribeAction (fn) {
-  return genericSubscribe(fn, this._actionSubscribers)
-};
-
-Store.prototype.watch = function watch (getter, cb, options) {
-    var this$1 = this;
-
-  if (true) {
-    assert(typeof getter === 'function', "store.watch only accepts a function.");
-  }
-  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
-};
-
-Store.prototype.replaceState = function replaceState (state) {
-    var this$1 = this;
-
-  this._withCommit(function () {
-    this$1._vm._data.$$state = state;
-  });
-};
-
-Store.prototype.registerModule = function registerModule (path, rawModule, options) {
-    if ( options === void 0 ) options = {};
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if (true) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-    assert(path.length > 0, 'cannot register the root module by using registerModule.');
-  }
-
-  this._modules.register(path, rawModule);
-  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
-  // reset store to update getters...
-  resetStoreVM(this, this.state);
-};
-
-Store.prototype.unregisterModule = function unregisterModule (path) {
-    var this$1 = this;
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if (true) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-  }
-
-  this._modules.unregister(path);
-  this._withCommit(function () {
-    var parentState = getNestedState(this$1.state, path.slice(0, -1));
-    Vue.delete(parentState, path[path.length - 1]);
-  });
-  resetStore(this);
-};
-
-Store.prototype.hotUpdate = function hotUpdate (newOptions) {
-  this._modules.update(newOptions);
-  resetStore(this, true);
-};
-
-Store.prototype._withCommit = function _withCommit (fn) {
-  var committing = this._committing;
-  this._committing = true;
-  fn();
-  this._committing = committing;
-};
-
-Object.defineProperties( Store.prototype, prototypeAccessors );
-
-function genericSubscribe (fn, subs) {
-  if (subs.indexOf(fn) < 0) {
-    subs.push(fn);
-  }
-  return function () {
-    var i = subs.indexOf(fn);
-    if (i > -1) {
-      subs.splice(i, 1);
-    }
-  }
-}
-
-function resetStore (store, hot) {
-  store._actions = Object.create(null);
-  store._mutations = Object.create(null);
-  store._wrappedGetters = Object.create(null);
-  store._modulesNamespaceMap = Object.create(null);
-  var state = store.state;
-  // init all modules
-  installModule(store, state, [], store._modules.root, true);
-  // reset vm
-  resetStoreVM(store, state, hot);
-}
-
-function resetStoreVM (store, state, hot) {
-  var oldVm = store._vm;
-
-  // bind store public getters
-  store.getters = {};
-  var wrappedGetters = store._wrappedGetters;
-  var computed = {};
-  forEachValue(wrappedGetters, function (fn, key) {
-    // use computed to leverage its lazy-caching mechanism
-    computed[key] = function () { return fn(store); };
-    Object.defineProperty(store.getters, key, {
-      get: function () { return store._vm[key]; },
-      enumerable: true // for local getters
-    });
-  });
-
-  // use a Vue instance to store the state tree
-  // suppress warnings just in case the user has added
-  // some funky global mixins
-  var silent = Vue.config.silent;
-  Vue.config.silent = true;
-  store._vm = new Vue({
-    data: {
-      $$state: state
-    },
-    computed: computed
-  });
-  Vue.config.silent = silent;
-
-  // enable strict mode for new vm
-  if (store.strict) {
-    enableStrictMode(store);
-  }
-
-  if (oldVm) {
-    if (hot) {
-      // dispatch changes in all subscribed watchers
-      // to force getter re-evaluation for hot reloading.
-      store._withCommit(function () {
-        oldVm._data.$$state = null;
-      });
-    }
-    Vue.nextTick(function () { return oldVm.$destroy(); });
-  }
-}
-
-function installModule (store, rootState, path, module, hot) {
-  var isRoot = !path.length;
-  var namespace = store._modules.getNamespace(path);
-
-  // register in namespace map
-  if (module.namespaced) {
-    store._modulesNamespaceMap[namespace] = module;
-  }
-
-  // set state
-  if (!isRoot && !hot) {
-    var parentState = getNestedState(rootState, path.slice(0, -1));
-    var moduleName = path[path.length - 1];
-    store._withCommit(function () {
-      Vue.set(parentState, moduleName, module.state);
-    });
-  }
-
-  var local = module.context = makeLocalContext(store, namespace, path);
-
-  module.forEachMutation(function (mutation, key) {
-    var namespacedType = namespace + key;
-    registerMutation(store, namespacedType, mutation, local);
-  });
-
-  module.forEachAction(function (action, key) {
-    var type = action.root ? key : namespace + key;
-    var handler = action.handler || action;
-    registerAction(store, type, handler, local);
-  });
-
-  module.forEachGetter(function (getter, key) {
-    var namespacedType = namespace + key;
-    registerGetter(store, namespacedType, getter, local);
-  });
-
-  module.forEachChild(function (child, key) {
-    installModule(store, rootState, path.concat(key), child, hot);
-  });
-}
-
-/**
- * make localized dispatch, commit, getters and state
- * if there is no namespace, just use root ones
- */
-function makeLocalContext (store, namespace, path) {
-  var noNamespace = namespace === '';
-
-  var local = {
-    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if ("development" !== 'production' && !store._actions[type]) {
-          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      return store.dispatch(type, payload)
-    },
-
-    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if ("development" !== 'production' && !store._mutations[type]) {
-          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      store.commit(type, payload, options);
-    }
-  };
-
-  // getters and state object must be gotten lazily
-  // because they will be changed by vm update
-  Object.defineProperties(local, {
-    getters: {
-      get: noNamespace
-        ? function () { return store.getters; }
-        : function () { return makeLocalGetters(store, namespace); }
-    },
-    state: {
-      get: function () { return getNestedState(store.state, path); }
-    }
-  });
-
-  return local
-}
-
-function makeLocalGetters (store, namespace) {
-  var gettersProxy = {};
-
-  var splitPos = namespace.length;
-  Object.keys(store.getters).forEach(function (type) {
-    // skip if the target getter is not match this namespace
-    if (type.slice(0, splitPos) !== namespace) { return }
-
-    // extract local getter type
-    var localType = type.slice(splitPos);
-
-    // Add a port to the getters proxy.
-    // Define as getter property because
-    // we do not want to evaluate the getters in this time.
-    Object.defineProperty(gettersProxy, localType, {
-      get: function () { return store.getters[type]; },
-      enumerable: true
-    });
-  });
-
-  return gettersProxy
-}
-
-function registerMutation (store, type, handler, local) {
-  var entry = store._mutations[type] || (store._mutations[type] = []);
-  entry.push(function wrappedMutationHandler (payload) {
-    handler.call(store, local.state, payload);
-  });
-}
-
-function registerAction (store, type, handler, local) {
-  var entry = store._actions[type] || (store._actions[type] = []);
-  entry.push(function wrappedActionHandler (payload, cb) {
-    var res = handler.call(store, {
-      dispatch: local.dispatch,
-      commit: local.commit,
-      getters: local.getters,
-      state: local.state,
-      rootGetters: store.getters,
-      rootState: store.state
-    }, payload, cb);
-    if (!isPromise(res)) {
-      res = Promise.resolve(res);
-    }
-    if (store._devtoolHook) {
-      return res.catch(function (err) {
-        store._devtoolHook.emit('vuex:error', err);
-        throw err
-      })
-    } else {
-      return res
-    }
-  });
-}
-
-function registerGetter (store, type, rawGetter, local) {
-  if (store._wrappedGetters[type]) {
-    if (true) {
-      console.error(("[vuex] duplicate getter key: " + type));
-    }
-    return
-  }
-  store._wrappedGetters[type] = function wrappedGetter (store) {
-    return rawGetter(
-      local.state, // local state
-      local.getters, // local getters
-      store.state, // root state
-      store.getters // root getters
-    )
-  };
-}
-
-function enableStrictMode (store) {
-  store._vm.$watch(function () { return this._data.$$state }, function () {
-    if (true) {
-      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
-    }
-  }, { deep: true, sync: true });
-}
-
-function getNestedState (state, path) {
-  return path.length
-    ? path.reduce(function (state, key) { return state[key]; }, state)
-    : state
-}
-
-function unifyObjectStyle (type, payload, options) {
-  if (isObject(type) && type.type) {
-    options = payload;
-    payload = type;
-    type = type.type;
-  }
-
-  if (true) {
-    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
-  }
-
-  return { type: type, payload: payload, options: options }
-}
-
-function install (_Vue) {
-  if (Vue && _Vue === Vue) {
-    if (true) {
-      console.error(
-        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
-      );
-    }
-    return
-  }
-  Vue = _Vue;
-  applyMixin(Vue);
-}
-
-var mapState = normalizeNamespace(function (namespace, states) {
-  var res = {};
-  normalizeMap(states).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedState () {
-      var state = this.$store.state;
-      var getters = this.$store.getters;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
-        if (!module) {
-          return
-        }
-        state = module.context.state;
-        getters = module.context.getters;
-      }
-      return typeof val === 'function'
-        ? val.call(this, state, getters)
-        : state[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-var mapMutations = normalizeNamespace(function (namespace, mutations) {
-  var res = {};
-  normalizeMap(mutations).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedMutation () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      var commit = this.$store.commit;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
-        if (!module) {
-          return
-        }
-        commit = module.context.commit;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [commit].concat(args))
-        : commit.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-var mapGetters = normalizeNamespace(function (namespace, getters) {
-  var res = {};
-  normalizeMap(getters).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    val = namespace + val;
-    res[key] = function mappedGetter () {
-      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
-        return
-      }
-      if ("development" !== 'production' && !(val in this.$store.getters)) {
-        console.error(("[vuex] unknown getter: " + val));
-        return
-      }
-      return this.$store.getters[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-var mapActions = normalizeNamespace(function (namespace, actions) {
-  var res = {};
-  normalizeMap(actions).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedAction () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      var dispatch = this.$store.dispatch;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
-        if (!module) {
-          return
-        }
-        dispatch = module.context.dispatch;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [dispatch].concat(args))
-        : dispatch.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-var createNamespacedHelpers = function (namespace) { return ({
-  mapState: mapState.bind(null, namespace),
-  mapGetters: mapGetters.bind(null, namespace),
-  mapMutations: mapMutations.bind(null, namespace),
-  mapActions: mapActions.bind(null, namespace)
-}); };
-
-function normalizeMap (map) {
-  return Array.isArray(map)
-    ? map.map(function (key) { return ({ key: key, val: key }); })
-    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
-}
-
-function normalizeNamespace (fn) {
-  return function (namespace, map) {
-    if (typeof namespace !== 'string') {
-      map = namespace;
-      namespace = '';
-    } else if (namespace.charAt(namespace.length - 1) !== '/') {
-      namespace += '/';
-    }
-    return fn(namespace, map)
-  }
-}
-
-function getModuleByNamespace (store, helper, namespace) {
-  var module = store._modulesNamespaceMap[namespace];
-  if ("development" !== 'production' && !module) {
-    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
-  }
-  return module
-}
-
-var index_esm = {
-  Store: Store,
-  install: install,
-  version: '3.0.1',
-  mapState: mapState,
-  mapMutations: mapMutations,
-  mapGetters: mapGetters,
-  mapActions: mapActions,
-  createNamespacedHelpers: createNamespacedHelpers
-};
-
-
-/* harmony default export */ __webpack_exports__["a"] = (index_esm);
-
-
-/***/ }),
-/* 141 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */
 /***/ (function(module, exports) {
 
 var asyncGenerator = function () {
@@ -58891,7 +46186,7 @@ var Echo = function () {
 module.exports = Echo;
 
 /***/ }),
-/* 152 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -63079,15 +50374,5298 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 
 /***/ }),
-/* 153 */
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(window, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(57);
+// On some exotic environments, it's not clear which object `setimmeidate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
+                       (typeof global !== "undefined" && global.setImmediate) ||
+                       (this && this.setImmediate);
+exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
+                         (typeof global !== "undefined" && global.clearImmediate) ||
+                         (this && this.clearImmediate);
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
+    "use strict";
+
+    if (global.setImmediate) {
+        return;
+    }
+
+    var nextHandle = 1; // Spec says greater than zero
+    var tasksByHandle = {};
+    var currentlyRunningATask = false;
+    var doc = global.document;
+    var registerImmediate;
+
+    function setImmediate(callback) {
+      // Callback can either be a function or a string
+      if (typeof callback !== "function") {
+        callback = new Function("" + callback);
+      }
+      // Copy function arguments
+      var args = new Array(arguments.length - 1);
+      for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i + 1];
+      }
+      // Store and register the task
+      var task = { callback: callback, args: args };
+      tasksByHandle[nextHandle] = task;
+      registerImmediate(nextHandle);
+      return nextHandle++;
+    }
+
+    function clearImmediate(handle) {
+        delete tasksByHandle[handle];
+    }
+
+    function run(task) {
+        var callback = task.callback;
+        var args = task.args;
+        switch (args.length) {
+        case 0:
+            callback();
+            break;
+        case 1:
+            callback(args[0]);
+            break;
+        case 2:
+            callback(args[0], args[1]);
+            break;
+        case 3:
+            callback(args[0], args[1], args[2]);
+            break;
+        default:
+            callback.apply(undefined, args);
+            break;
+        }
+    }
+
+    function runIfPresent(handle) {
+        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+        // So if we're currently running a task, we'll need to delay this invocation.
+        if (currentlyRunningATask) {
+            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+            // "too much recursion" error.
+            setTimeout(runIfPresent, 0, handle);
+        } else {
+            var task = tasksByHandle[handle];
+            if (task) {
+                currentlyRunningATask = true;
+                try {
+                    run(task);
+                } finally {
+                    clearImmediate(handle);
+                    currentlyRunningATask = false;
+                }
+            }
+        }
+    }
+
+    function installNextTickImplementation() {
+        registerImmediate = function(handle) {
+            process.nextTick(function () { runIfPresent(handle); });
+        };
+    }
+
+    function canUsePostMessage() {
+        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+        // where `global.postMessage` means something completely different and can't be used for this purpose.
+        if (global.postMessage && !global.importScripts) {
+            var postMessageIsAsynchronous = true;
+            var oldOnMessage = global.onmessage;
+            global.onmessage = function() {
+                postMessageIsAsynchronous = false;
+            };
+            global.postMessage("", "*");
+            global.onmessage = oldOnMessage;
+            return postMessageIsAsynchronous;
+        }
+    }
+
+    function installPostMessageImplementation() {
+        // Installs an event handler on `global` for the `message` event: see
+        // * https://developer.mozilla.org/en/DOM/window.postMessage
+        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+
+        var messagePrefix = "setImmediate$" + Math.random() + "$";
+        var onGlobalMessage = function(event) {
+            if (event.source === global &&
+                typeof event.data === "string" &&
+                event.data.indexOf(messagePrefix) === 0) {
+                runIfPresent(+event.data.slice(messagePrefix.length));
+            }
+        };
+
+        if (global.addEventListener) {
+            global.addEventListener("message", onGlobalMessage, false);
+        } else {
+            global.attachEvent("onmessage", onGlobalMessage);
+        }
+
+        registerImmediate = function(handle) {
+            global.postMessage(messagePrefix + handle, "*");
+        };
+    }
+
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        registerImmediate = function(handle) {
+            channel.port2.postMessage(handle);
+        };
+    }
+
+    function installReadyStateChangeImplementation() {
+        var html = doc.documentElement;
+        registerImmediate = function(handle) {
+            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+            var script = doc.createElement("script");
+            script.onreadystatechange = function () {
+                runIfPresent(handle);
+                script.onreadystatechange = null;
+                html.removeChild(script);
+                script = null;
+            };
+            html.appendChild(script);
+        };
+    }
+
+    function installSetTimeoutImplementation() {
+        registerImmediate = function(handle) {
+            setTimeout(runIfPresent, 0, handle);
+        };
+    }
+
+    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+
+    // Don't get fooled by e.g. browserify environments.
+    if ({}.toString.call(global.process) === "[object process]") {
+        // For Node.js before 0.9
+        installNextTickImplementation();
+
+    } else if (canUsePostMessage()) {
+        // For non-IE10 modern browsers
+        installPostMessageImplementation();
+
+    } else if (global.MessageChannel) {
+        // For web workers, where supported
+        installMessageChannelImplementation();
+
+    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+        // For IE 6–8
+        installReadyStateChangeImplementation();
+
+    } else {
+        // For older browsers
+        installSetTimeoutImplementation();
+    }
+
+    attachTo.setImmediate = setImmediate;
+    attachTo.clearImmediate = clearImmediate;
+}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(11)))
+
+/***/ }),
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(154)
+var __vue_script__ = __webpack_require__(59)
 /* template */
-var __vue_template__ = __webpack_require__(155)
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Example.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b6ebd97a", Component.options)
+  } else {
+    hotAPI.reload("data-v-b6ebd97a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _vm._v("Example Component")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel-body" }, [
+              _vm._v(
+                "\n                    I'm an example component!\n                "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b6ebd97a", module.exports)
+  }
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(62)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Welcome.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-181ee13b", Component.options)
+  } else {
+    hotAPI.reload("data-v-181ee13b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-181ee13b", module.exports)
+  }
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(64)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(67)
+/* template */
+var __vue_template__ = __webpack_require__(68)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\FrontOffice.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b219cbc4", Component.options)
+  } else {
+    hotAPI.reload("data-v-b219cbc4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(65);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("355d265f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b219cbc4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FrontOffice.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b219cbc4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FrontOffice.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\n.items-wrapper {\r\nborder: 2px solid transparent;\r\nwidth: 80%;\r\nheight: 500px;\r\noverflow-y:auto;\r\nmargin: 20px;\n}\n.items-modal{\r\n\r\nposition: fixed;\r\ntop: 0px;\r\nleft:0px;\r\nwidth: 100%;\r\nheight: 100%;\r\nbackground: rgba(0,0,0,.8);\r\nz-index:20;\n}\n.items-close {\r\n\r\nposition:fixed;\r\nright:20px;\r\ntop:20px;\r\ncolor:#fff;\r\ncursor:pointer;\r\nfont-family: arial;\n}\n.items-close:hover {\r\n\r\ncolor:rgba(255,255,255,0.5);\n}\n.items-container {\r\n\r\nbackground: #fff;\r\nheight: 400px;\r\nwidth: 300px;\r\noverflow-y:auto;\r\nmargin: 100px 0px 0px 100px;\n}\n.item-name {\r\n\r\nfont-weight:bold;\r\nmargin-top: -100px;\r\nmargin-left: 130px;\n}\n.item-details{\r\n\r\nheight: 125px;\r\noverflow-y: auto;\n}\r\n\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'location', 'status', 'online', 'owner', 'name'],
+
+	data: function data() {
+
+		return {
+
+			showShop: false,
+
+			shopOwner: [],
+			shopLocation: [],
+			shopItems: [],
+			transactionTracker: []
+
+		};
+	},
+	mounted: function mounted() {
+
+		this.getShopOwner();
+		this.getShopLocation();
+		this.getItems();
+	},
+
+
+	methods: {
+		checkAuth: function checkAuth() {
+			var _this = this;
+
+			axios.get('/check/auth').then(function (response) {
+
+				if (response.data == 0) {
+					window.location = '/login';
+					return;
+				} else {
+					_this.createTracker();
+				}
+			});
+		},
+		createTracker: function createTracker() {
+			var _this2 = this;
+
+			if (this.transactionTracker.length > 0 && this.transactionTracker.status) {
+
+				return;
+			}
+
+			axios.get('/create/transaction/tracker/' + this.id + '/' + this.owner).then(function (response) {
+
+				_this2.transactionTracker.push(response.data);
+			});
+		},
+		getItems: function getItems() {
+			var _this3 = this;
+
+			axios.get('/get/shop/items/' + this.id).then(function (response) {
+
+				response.data.forEach(function (item) {
+
+					if (_this3.shopItems.length == 0) {
+
+						_this3.shopItems.push(item);
+						return 1;
+					}
+
+					var verify = _this3.shopItems.find(function (i) {
+						return i.id === item.id;
+					});
+
+					if (!verify) {
+						_this3.shopItems.push(item);
+					}
+				});
+			});
+		},
+		getShopLocation: function getShopLocation() {
+			var _this4 = this;
+
+			axios.get('/get/shop/location/' + this.location).then(function (response) {
+
+				_this4.shopLocation.push(response.data);
+			});
+		},
+		getShopOwner: function getShopOwner() {
+			var _this5 = this;
+
+			axios.get('/get/shop/owner/' + this.owner).then(function (response) {
+
+				_this5.shopOwner.push(response.data);
+			});
+		},
+		displayShop: function displayShop() {
+			var bodyScroll = document.getElementsByTagName("body")[0].style.overflow = "hidden";
+			this.showShop = true;
+			this.checkAuth();
+		},
+		hideShop: function hideShop() {
+			var bodyScroll = document.getElementsByTagName("body")[0].style.overflow = "auto";
+			this.showShop = false;
+		}
+	}
+
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "shops" },
+    [
+      _vm.shopOwner.length > 0
+        ? _c("div", { staticStyle: { height: "93px", "overflow-y": "auto" } }, [
+            this.online == 1 && this.status == 1
+              ? _c("div", { staticClass: "big-online" })
+              : _c("div", { staticClass: "big-offline" }),
+            _vm._v(" "),
+            _c("img", {
+              staticClass: "owner-avatar",
+              staticStyle: { "border-radius": "50%", margin: "10px" },
+              attrs: {
+                width: "50px",
+                height: "50px",
+                src: _vm.shopOwner[0].avatar
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
+              [
+                _c("span", { staticClass: "user-name" }, [
+                  _vm._v(
+                    _vm._s(_vm.shopOwner[0].fname) +
+                      " " +
+                      _vm._s(_vm.shopOwner[0].lname)
+                  )
+                ]),
+                _vm._v(" is Owner")
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "hr" }),
+      _vm._v(" "),
+      _vm.shopOwner.length > 0 && _vm.shopLocation.length > 0
+        ? _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v(
+                _vm._s(this.name) +
+                  ", " +
+                  _vm._s(_vm.shopLocation[0].location) +
+                  ", " +
+                  _vm._s(_vm.shopOwner[0].phone) +
+                  " "
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      this.online == 1 && this.status == 1
+        ? _c(
+            "div",
+            { staticStyle: { height: "200px", "overflow-y": "auto" } },
+            _vm._l(_vm.shopItems, function(item) {
+              return _c("span", [
+                item.status == 1
+                  ? _c("div", { staticClass: "small-online" })
+                  : _c("div", { staticClass: "small-offline" }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: { width: "50px", height: "50px", src: item.image }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "pending-product-name" }, [
+                  _vm._v(_vm._s(item.name))
+                ]),
+                _c("br")
+              ])
+            })
+          )
+        : _c(
+            "div",
+            { staticStyle: { height: "200px", "overflow-y": "auto" } },
+            _vm._l(_vm.shopItems, function(item) {
+              return _c("span", [
+                _c("div", { staticClass: "small-offline" }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: { width: "50px", height: "50px", src: item.image }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "pending-product-name" }, [
+                  _vm._v(_vm._s(item.name))
+                ]),
+                _c("br")
+              ])
+            })
+          ),
+      _vm._v(" "),
+      _c("div", { staticClass: "hr" }),
+      _vm._v(" "),
+      _c("center", [
+        this.online == 1 && this.status == 1 && this.shopItems.length > 0
+          ? _c(
+              "button",
+              {
+                staticStyle: {
+                  background: "green",
+                  color: "#fff",
+                  "border-radius": "10px",
+                  border: "none",
+                  "margin-top": "10px",
+                  padding: "10px",
+                  "font-weight": "bold",
+                  cursor: "pointer"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.displayShop()
+                  }
+                }
+              },
+              [_vm._v("Enter Store")]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _vm.showShop && this.online == 1 && this.status == 1
+        ? _c(
+            "div",
+            {
+              staticClass: "items-modal",
+              on: {
+                click: function($event) {
+                  _vm.hideShop()
+                }
+              }
+            },
+            [
+              _c("span", { staticClass: "items-close" }, [_vm._v("X")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "items-wrapper",
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                    }
+                  }
+                },
+                _vm._l(_vm.shopItems, function(item) {
+                  return _c("span", [
+                    item.status == 1
+                      ? _c(
+                          "span",
+                          [
+                            _c("items", {
+                              attrs: {
+                                online: item.status,
+                                image: item.image,
+                                name: item.name,
+                                store: item.store_id,
+                                id: item.id
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ])
+                })
+              )
+            ]
+          )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b219cbc4", module.exports)
+  }
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Office.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-69cb12f3", Component.options)
+  } else {
+    hotAPI.reload("data-v-69cb12f3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'name', 'root', 'online'],
+
+	mounted: function mounted() {
+		if (this.online == 0) {
+
+			this.storeOn = false;
+		}
+		this.getAuthDetails();
+		this.getStoreProducts();
+	},
+	data: function data() {
+
+		return {
+
+			authDetails: [],
+			products: [],
+			storeOn: true
+
+		};
+	},
+
+
+	methods: {
+		onStore: function onStore() {
+
+			this.storeOn = true;
+
+			axios.get(this.root + '/on/store/' + this.id).then(function (response) {});
+		},
+		offStore: function offStore() {
+
+			this.storeOn = false;
+
+			axios.get(this.root + '/off/store/' + this.id).then(function (response) {});
+		},
+		getAuthDetails: function getAuthDetails() {
+			var _this = this;
+
+			axios.get(this.root + '/auth/details').then(function (response) {
+
+				_this.authDetails.push(response.data);
+			});
+		},
+		getStoreProducts: function getStoreProducts() {
+			var _this2 = this;
+
+			axios.get(this.root + '/products/store/' + this.id).then(function (response) {
+				response.data.forEach(function (product) {
+					_this2.products.push(product);
+				});
+			});
+		},
+		showProductPrice: function showProductPrice() {
+
+			var product = document.getElementById('product-price');
+
+			product.classList.remove('hidden');
+		},
+		hideProductPrice: function hideProductPrice() {
+
+			var product = document.getElementById('product-price');
+
+			product.classList.add('hidden');
+		}
+	}
+
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        { staticClass: "office" },
+        [
+          _c("center", [
+            _c(
+              "div",
+              {
+                staticStyle: {
+                  height: "80px",
+                  width: "250px",
+                  "overflow-y": "auto"
+                }
+              },
+              [
+                _c("h4", [
+                  _vm._v(
+                    "Office, " +
+                      _vm._s("#" + this.id) +
+                      ", " +
+                      _vm._s(this.name)
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            !_vm.storeOn
+              ? _c("span", { attrs: { id: "onStore" } }, [
+                  _c(
+                    "span",
+                    { staticStyle: { color: "#ddd", margin: "7px" } },
+                    [_vm._v("Offline")]
+                  ),
+                  _c(
+                    "button",
+                    {
+                      staticStyle: { background: "green" },
+                      on: {
+                        click: function($event) {
+                          _vm.onStore()
+                        }
+                      }
+                    },
+                    [_vm._v("Go Online")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.storeOn
+              ? _c("span", { attrs: { id: "offStore" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticStyle: { background: "red", color: "#fff" },
+                      on: {
+                        click: function($event) {
+                          _vm.offStore()
+                        }
+                      }
+                    },
+                    [_vm._v("Go Offline")]
+                  ),
+                  _c(
+                    "span",
+                    { staticStyle: { color: "#ddd", margin: "7px" } },
+                    [_vm._v("online")]
+                  )
+                ])
+              : _vm._e()
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._l(this.products, function(product) {
+        return _c(
+          "div",
+          [
+            _c("product", {
+              attrs: {
+                id: product.id,
+                name: product.name,
+                description: product.description,
+                status: product.status,
+                store: this.id,
+                category: product.category_id,
+                image: product.image
+              }
+            })
+          ],
+          1
+        )
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-69cb12f3", module.exports)
+  }
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(73)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(75)
+/* template */
+var __vue_template__ = __webpack_require__(76)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BuyerActive.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d1fe472", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d1fe472", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(74);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("5d396683", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7d1fe472\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerActive.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7d1fe472\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerActive.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'seller', 'shop', 'delivery'],
+
+	mounted: function mounted() {
+
+		this.getShopDetails();
+		this.getTrackedTransactions();
+	},
+	data: function data() {
+
+		return {
+
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			cancelled: false,
+			accepted: false
+
+		};
+	},
+
+
+	methods: {
+		cancelTransaction: function cancelTransaction() {
+			this.cancelled = true;
+
+			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
+		},
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/buyer/accept/transaction/' + this.id + '/' + this.seller).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this.trackedTransactions.push(tracked);
+						_this.total = _this.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this.total == 0) {
+
+					_this.cancelTransaction();
+				}
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this2 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this2.cancelTransaction();
+				}
+				_this2.shopDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shopDetails.length > 0
+    ? _c("div", { staticClass: "inactive-transactions" }, [
+        _c("div", { staticClass: "seller-details" }, [
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("img", {
+              staticClass: "owner-avatar",
+              staticStyle: { "border-radius": "50%", margin: "10px" },
+              attrs: {
+                width: "50px",
+                height: "50px",
+                src: _vm.shopDetails[0].seller.avatar
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
+              [
+                _c("span", { staticClass: "user-name" }, [
+                  _vm._v(
+                    _vm._s(
+                      _vm.shopDetails[0].seller.fname +
+                        " " +
+                        _vm.shopDetails[0].seller.lname
+                    )
+                  )
+                ]),
+                _vm._v(" as Seller")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v(
+                _vm._s(
+                  _vm.shopDetails[0].name +
+                    ", " +
+                    _vm.shopDetails[0].location.location +
+                    ", " +
+                    _vm.shopDetails[0].seller.phone
+                )
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
+            _vm._l(_vm.trackedTransactions, function(transaction) {
+              return _c("span", [
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: transaction.price.product.image
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      width: "180px",
+                      position: "relative",
+                      top: "-25px",
+                      left: "70px"
+                    }
+                  },
+                  [
+                    transaction.quantity == 1
+                      ? _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit
+                                ) +
+                                ") "
+                            )
+                          ]),
+                          _c("br")
+                        ])
+                      : _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit +
+                                    "s"
+                                ) +
+                                ") "
+                            )
+                          ]),
+                          _c("br")
+                        ])
+                  ]
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "100px", "overflow-y": "auto" } },
+            [
+              _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                _vm._v(
+                  "Total= N " +
+                    _vm._s(_vm.total) +
+                    " Delivery= N " +
+                    _vm._s(this.delivery) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(
+                  "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
+                )
+              ]),
+              _vm._v(" "),
+              _vm.cancelled == false && _vm.accepted == false
+                ? _c("span", [
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "green",
+                          "font-weight": "bold"
+                        },
+                        on: { click: _vm.acceptRequest }
+                      },
+                      [_vm._v("Accept")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#000",
+                          background: "yellow",
+                          "font-weight": "bold"
+                        }
+                      },
+                      [_vm._v("Finish")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "red",
+                          "font-weight": "bold"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.cancelTransaction()
+                          }
+                        }
+                      },
+                      [_vm._v("Decline")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "black",
+                          "font-weight": "bold"
+                        }
+                      },
+                      [_vm._v("Report")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.cancelled
+                ? _c(
+                    "span",
+                    { staticStyle: { color: "red", "margin-left": "10px" } },
+                    [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.accepted
+                ? _c(
+                    "span",
+                    { staticStyle: { color: "green", "margin-left": "10px" } },
+                    [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Available at the moment")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7d1fe472", module.exports)
+  }
+}
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(78)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(80)
+/* template */
+var __vue_template__ = __webpack_require__(81)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SellerRequest.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6c6ee829", Component.options)
+  } else {
+    hotAPI.reload("data-v-6c6ee829", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(79);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("3187e48d", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c6ee829\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SellerRequest.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'buyer', 'shop'],
+
+	data: function data() {
+
+		return {
+
+			buyerDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			cancelled: false,
+			accepted: false,
+			delivery: 0,
+			totalAndDelivery: 0
+
+		};
+	},
+	mounted: function mounted() {
+
+		this.getbuyerDetails();
+		this.getTrackedTransactions();
+	},
+
+
+	watch: {
+		delivery: function delivery() {
+
+			this.totalAndDelivery = +this.total + +this.delivery;
+		}
+	},
+
+	methods: {
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/accept/transaction/' + this.id + '/' + this.delivery + '/' + this.buyer).then(function (response) {});
+		},
+		getbuyerDetails: function getbuyerDetails() {
+			var _this = this;
+
+			axios.get('/get/user/details/' + this.buyer).then(function (response) {
+
+				_this.buyerDetails.push(response.data);
+			});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this2 = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this2.trackedTransactions.push(tracked);
+						_this2.total = _this2.total + tracked.price.price * tracked.quantity;
+					}
+				});
+				_this2.totalAndDelivery = _this2.total;
+				if (_this2.total == 0) {
+
+					_this2.cancelTransaction();
+				}
+			});
+		},
+		cancelTransaction: function cancelTransaction() {
+			this.cancelled = true;
+			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
+		},
+		delTransaction: function delTransaction(id, amount) {
+
+			var transaction = this.trackedTransactions.find(function (t) {
+				return t.id === id;
+			});
+
+			var index = this.trackedTransactions.indexOf(transaction);
+
+			this.trackedTransactions.splice(index, 1);
+
+			if (this.total > 0) {
+				this.total = this.total - amount;
+			}
+
+			if (this.total == 0) {
+
+				this.cancelTransaction();
+			}
+
+			axios.get('/delete/transaction/' + id).then(function (response) {});
+		}
+	}
+});
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.buyerDetails.length > 0 && _vm.trackedTransactions.length > 0
+    ? _c("div", { staticClass: "transactions" }, [
+        _c("div", { staticClass: "seller-details" }, [
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("img", {
+              staticClass: "owner-avatar",
+              staticStyle: { "border-radius": "50%", margin: "10px" },
+              attrs: {
+                width: "50px",
+                height: "50px",
+                src: _vm.buyerDetails[0].avatar
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
+              [
+                _c("span", { staticClass: "user-name" }, [
+                  _vm._v(
+                    _vm._s(_vm.buyerDetails[0].fname) +
+                      " " +
+                      _vm._s(_vm.buyerDetails[0].lname)
+                  )
+                ]),
+                _vm._v(" as Buyer ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v(
+                " Location: " +
+                  _vm._s(_vm.trackedTransactions[0].tracker.location)
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
+            _vm._l(_vm.trackedTransactions, function(transaction) {
+              return _c("span", [
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: transaction.price.product.image
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      width: "180px",
+                      position: "relative",
+                      top: "-25px",
+                      left: "70px"
+                    }
+                  },
+                  [
+                    transaction.quantity == 1
+                      ? _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.accepted == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                      : _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit +
+                                    "s"
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.accepted == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                  ]
+                )
+              ])
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "hr" }),
+        _vm._v(" "),
+        _c("div", { staticStyle: { height: "150px", "overflow-y": "auto" } }, [
+          _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+            _vm._v("Total = N " + _vm._s(_vm.total) + " "),
+            _c("br"),
+            _vm._v(" Delivery Fee(N): "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.delivery,
+                  expression: "delivery"
+                }
+              ],
+              staticStyle: { width: "80px" },
+              attrs: { type: "number", value: "0" },
+              domProps: { value: _vm.delivery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.delivery = $event.target.value
+                }
+              }
+            }),
+            _c("br"),
+            _vm._v("Total + Delivery = N " + _vm._s(_vm.totalAndDelivery))
+          ]),
+          _vm._v(" "),
+          _vm.cancelled == false && _vm.accepted == false
+            ? _c("span", [
+                _c(
+                  "button",
+                  {
+                    staticStyle: {
+                      "margin-left": "10px",
+                      border: "none",
+                      color: "#fff",
+                      background: "green",
+                      "font-weight": "bold"
+                    },
+                    on: { click: _vm.acceptRequest }
+                  },
+                  [_vm._v("Accept")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticStyle: {
+                      "margin-left": "10px",
+                      border: "none",
+                      color: "#fff",
+                      background: "red",
+                      "font-weight": "bold"
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.cancelTransaction()
+                      }
+                    }
+                  },
+                  [_vm._v("Decline")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticStyle: {
+                      "margin-left": "10px",
+                      border: "none",
+                      color: "#fff",
+                      background: "black",
+                      "font-weight": "bold"
+                    }
+                  },
+                  [_vm._v("Report")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.cancelled
+            ? _c(
+                "span",
+                { staticStyle: { color: "red", "margin-left": "10px" } },
+                [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.accepted
+            ? _c(
+                "span",
+                { staticStyle: { color: "green", "margin-left": "10px" } },
+                [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+              )
+            : _vm._e()
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Modify Request")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6c6ee829", module.exports)
+  }
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(83)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(85)
+/* template */
+var __vue_template__ = __webpack_require__(86)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Items.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2c642a4e", Component.options)
+  } else {
+    hotAPI.reload("data-v-2c642a4e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(84);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("2cf0d474", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2c642a4e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Items.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2c642a4e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Items.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.items-container {\r\ndisplay: inline-block;\r\nbackground: #fff;\r\nheight: 400px;\r\nwidth: 300px;\r\noverflow-y:auto;\r\nmargin: 10px;\n}\n.item-name {\r\n\r\nfont-weight:bold;\r\nmargin-top: -100px;\r\nmargin-left: 130px;\n}\n.item-details{\r\n\r\nheight: 125px;\r\noverflow-y: auto;\n}\n.item-price-menu{\r\n\r\nborder-top: 2px solid red;\r\nmargin-top: 5px;\r\nheight: 220px;\n}\n.item-price-menu td {\r\n\r\npadding: 5px;\n}\n.item-price-menu button{\r\n\r\nbackground: green;\r\ncolor: #fff;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['image', 'id', 'name', 'store', 'online'],
+
+	data: function data() {
+
+		return {
+
+			itemPrices: [],
+			shopOwner: []
+
+		};
+	},
+	mounted: function mounted() {
+		this.getShopOwner();
+		this.getItemPrices();
+	},
+
+
+	methods: {
+		getShopOwner: function getShopOwner() {
+			var _this = this;
+
+			axios.get('/get/item/owner/' + this.store).then(function (response) {
+
+				_this.shopOwner.push(response.data);
+			});
+		},
+		getItemPrices: function getItemPrices() {
+			var _this2 = this;
+
+			axios.get('/get/item/Prices/' + this.id).then(function (response) {
+
+				response.data.forEach(function (price) {
+
+					_this2.itemPrices.push(price);
+				});
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "items-container" }, [
+    _c("div", { staticClass: "shop-items" }, [
+      _c("div", { staticClass: "item-details" }, [
+        _c("img", {
+          staticClass: "product-avatar",
+          staticStyle: { "border-radius": "5px", margin: "10px" },
+          attrs: { width: "100px", height: "100px", src: this.image }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "item-name" }, [
+          _c("span", [_vm._v(_vm._s(this.name))])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "item-price-menu" }, [
+        this.online == 0
+          ? _c("span", { staticStyle: { margin: "20px", color: "red" } }, [
+              _vm._v("This item is offline")
+            ])
+          : _c("span", [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticStyle: { position: "relative", top: "-50px" } },
+                _vm._l(_vm.itemPrices, function(price) {
+                  return _c(
+                    "span",
+                    [
+                      _c("buy-item", {
+                        attrs: {
+                          price: price.price,
+                          id: price.id,
+                          product: price.product_id,
+                          unit: price.unit
+                        }
+                      })
+                    ],
+                    1
+                  )
+                })
+              )
+            ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", [
+      _c("tr", [
+        _c("td", [_c("b", [_vm._v("Price(N)")])]),
+        _vm._v(" "),
+        _c("td", [_c("b", [_vm._v("Unit")])]),
+        _vm._v(" "),
+        _c("td", [_c("b", [_vm._v("Quantity")])]),
+        _c("td", [_c("b", [_vm._v("Request")])])
+      ]),
+      _vm._v(" "),
+      _c("tr", { staticClass: "invisible" }, [
+        _c("td"),
+        _vm._v(" "),
+        _c("td"),
+        _vm._v(" "),
+        _c("td", [
+          _c("input", {
+            staticStyle: { width: "50px" },
+            attrs: { type: "number" }
+          })
+        ]),
+        _c("td", [_c("button", [_vm._v("Add")])])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2c642a4e", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(88)
+/* template */
+var __vue_template__ = __webpack_require__(89)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Loader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-90dafe6c", Component.options)
+  } else {
+    hotAPI.reload("data-v-90dafe6c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+
+    this.reload();
+
+    this.removeLoader();
+  },
+
+
+  methods: {
+    reload: function reload() {
+      setInterval(refresh, 1800000);
+      function refresh() {
+        window.location = "/login/seller/login";
+      }
+    },
+    removeLoader: function removeLoader() {
+
+      setTimeout(remove, 4000);
+
+      function remove() {
+        var loader = document.getElementById('loader');
+        loader.classList.add('hidden');
+      }
+    }
+  }
+
+});
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("audio", {
+        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-90dafe6c", module.exports)
+  }
+}
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(91)
+/* template */
+var __vue_template__ = __webpack_require__(92)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Product.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8120f770", Component.options)
+  } else {
+    hotAPI.reload("data-v-8120f770", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'name', 'storeName', 'category', 'description', 'image', 'status', 'store'],
+
+	mounted: function mounted() {
+		if (this.status == 0) {
+
+			this.available = false;
+		}
+		this.getPrices();
+		this.getAuthDetails();
+		this.getStoreProducts();
+	},
+	data: function data() {
+
+		return {
+
+			authDetails: [],
+			products: [],
+			showPrice: false,
+			available: true,
+			root: 'http://jokesterbox.com',
+			pprice: '',
+			punit: '',
+			prices: []
+
+		};
+	},
+
+
+	methods: {
+		removePrice: function removePrice(pid) {
+			var _this = this;
+
+			var price = this.prices.find(function (p) {
+				return p.id === pid;
+			});
+
+			var index = this.prices.indexOf(price);
+
+			this.prices.splice(index, 1);
+
+			axios.get(this.root + '/remove/prices/' + pid).then(function (response) {
+
+				_this.getPrices();
+			});
+		},
+		sendPrice: function sendPrice() {
+			var _this2 = this;
+
+			var data = JSON.stringify({
+				price: this.pprice,
+				unit: this.punit,
+				product_id: this.id
+
+			});
+
+			axios.post(this.root + '/send/price', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this2.pprice = '';
+				_this2.punit = '';
+
+				_this2.getPrices();
+			});
+		},
+		getPrices: function getPrices() {
+			var _this3 = this;
+
+			axios.get(this.root + '/get/prices/' + this.id).then(function (response) {
+
+				_this3.prices = [];
+				response.data.forEach(function (price) {
+					_this3.prices.push(price);
+				});
+			});
+		},
+		getAuthDetails: function getAuthDetails() {
+			var _this4 = this;
+
+			axios.get(this.root + '/auth/details').then(function (response) {
+
+				_this4.authDetails.push(response.data);
+			});
+		},
+		getStoreProducts: function getStoreProducts() {},
+		showProductPrice: function showProductPrice() {
+
+			this.showPrice = true;
+		},
+		hideProductPrice: function hideProductPrice() {
+
+			this.showPrice = false;
+		},
+		onProduct: function onProduct() {
+
+			this.available = true;
+
+			axios.get(this.root + '/on/product/' + this.id).then(function (response) {});
+		},
+		offProduct: function offProduct() {
+
+			this.available = false;
+
+			axios.get(this.root + '/off/product/' + this.id).then(function (response) {});
+		}
+	}
+
+});
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "products" }, [
+      _c("div", { staticClass: "seller-products" }, [
+        this.image
+          ? _c("img", {
+              attrs: {
+                src: this.image,
+                height: "150px",
+                width: "200px",
+                alt: ""
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(this.name))]),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(this.description))]),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "grey-button",
+            on: {
+              click: function($event) {
+                _vm.showProductPrice()
+              }
+            }
+          },
+          [_vm._v("Price Menu")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "product-details" }, [
+          !_vm.available
+            ? _c("span", { attrs: { id: "onproduct" } }, [
+                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
+                  _vm._v("off")
+                ]),
+                _c(
+                  "button",
+                  {
+                    staticStyle: { background: "green" },
+                    on: {
+                      click: function($event) {
+                        _vm.onProduct()
+                      }
+                    }
+                  },
+                  [_vm._v("On")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.available
+            ? _c("span", { attrs: { id: "offproduct" } }, [
+                _c(
+                  "button",
+                  {
+                    staticStyle: { background: "red" },
+                    on: {
+                      click: function($event) {
+                        _vm.offProduct()
+                      }
+                    }
+                  },
+                  [_vm._v("Off")]
+                ),
+                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
+                  _vm._v("on")
+                ])
+              ])
+            : _vm._e()
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.showPrice
+      ? _c(
+          "div",
+          { staticClass: "product-price", attrs: { id: "product-price" } },
+          [
+            _c("div", { staticClass: "price-menu" }, [
+              _c("div", { staticClass: "hide-price" }, [
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.hideProductPrice()
+                      }
+                    }
+                  },
+                  [_vm._v("x")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [_c("b", [_vm._v(_vm._s(this.name))])]),
+              _vm._v(" "),
+              _c("p"),
+              _vm._v(" "),
+              _c(
+                "table",
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.pprice,
+                            expression: "pprice"
+                          }
+                        ],
+                        staticStyle: { width: "60px" },
+                        attrs: { type: "number", placeholder: "price" },
+                        domProps: { value: _vm.pprice },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.pprice = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.punit,
+                            expression: "punit"
+                          }
+                        ],
+                        staticStyle: { width: "60px" },
+                        attrs: { type: "text", placeholder: "unit" },
+                        domProps: { value: _vm.punit },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.punit = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticStyle: {
+                            color: "#fff",
+                            background: "green",
+                            padding: "5px",
+                            "border-radius": "10px"
+                          },
+                          on: { click: _vm.sendPrice }
+                        },
+                        [_vm._v("Add")]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.prices, function(price) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(price.price))]),
+                      _c("td", [_vm._v(_vm._s(price.unit))]),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticStyle: { color: "red" },
+                            on: {
+                              click: function($event) {
+                                _vm.removePrice(price.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Remove")]
+                        )
+                      ])
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_c("b", [_vm._v("Price(N)")])]),
+      _c("td", [_c("b", [_vm._v("Unit")])]),
+      _c("td", [_c("b", [_vm._v("Action")])])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8120f770", module.exports)
+  }
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(94)
+/* template */
+var __vue_template__ = __webpack_require__(95)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BuyItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1bd77d12", Component.options)
+  } else {
+    hotAPI.reload("data-v-1bd77d12", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+
+		return {
+
+			shopOwner: [],
+
+			quantity: 1
+
+		};
+	},
+	mounted: function mounted() {
+
+		this.getShopOwner();
+	},
+
+
+	props: ['product', 'unit', 'price', 'id'],
+
+	methods: {
+		getPendingTransactions: function getPendingTransactions() {
+			var _this = this;
+
+			axios.get('/get/pending/transactions').then(function (response) {
+
+				response.data.forEach(function (transactions) {
+					_this.$store.commit('add_pending_transactions', transactions);
+				});
+			});
+		},
+		getShopOwner: function getShopOwner() {
+			var _this2 = this;
+
+			axios.get('/get/product/owner/' + this.product).then(function (response) {
+
+				_this2.shopOwner.push(response.data);
+			});
+		},
+		addToCart: function addToCart() {
+			var _this3 = this;
+
+			if (this.quantity < 1) {
+
+				return;
+			}
+
+			axios.get('/add/to/cart/' + this.product + '/' + this.id + '/' + this.quantity).then(function (response) {
+
+				_this3.getPendingTransactions();
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("tr", [
+      _c("td", [_vm._v(_vm._s(this.price))]),
+      _vm._v(" "),
+      _c("td", [_vm._v(_vm._s(this.unit))]),
+      _vm._v(" "),
+      _c("td", [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.quantity,
+              expression: "quantity"
+            }
+          ],
+          staticStyle: { width: "50px" },
+          attrs: { type: "number" },
+          domProps: { value: _vm.quantity },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.quantity = $event.target.value
+            }
+          }
+        })
+      ]),
+      _c("td", [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.addToCart()
+              }
+            }
+          },
+          [_vm._v("Add")]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "invisible" }, [
+      _c("td", [_c("b", [_vm._v("Price(N)")])]),
+      _vm._v(" "),
+      _c("td", [_c("b", [_vm._v("Unit")])]),
+      _vm._v(" "),
+      _c("td", [_c("b", [_vm._v("Quantity")])]),
+      _c("td", [_c("b", [_vm._v("Request")])])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1bd77d12", module.exports)
+  }
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(97)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(99)
+/* template */
+var __vue_template__ = __webpack_require__(100)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\seller-chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-599c605f", Component.options)
+  } else {
+    hotAPI.reload("data-v-599c605f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(98);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("b6f28920", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-599c605f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./seller-chat.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-599c605f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./seller-chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'seller', 'auth', 'buyer', 'shop', 'delivery'],
+
+	mounted: function mounted() {
+		this.getbuyerDetails();
+		this.getShopDetails();
+		this.getTrackedTransactions();
+		this.listen();
+	},
+	data: function data() {
+
+		return {
+			buyerDetails: [],
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			finished: false,
+			accepted: false,
+			showChat: false,
+			chat: "",
+			message: "",
+			trackedChat: []
+
+		};
+	},
+
+
+	methods: {
+		tr: function tr() {
+
+			this.getTrackedTransactions();
+			this.chatScroller();
+		},
+		listen: function listen() {
+			var _this = this;
+
+			Echo.private('App.User.' + this.auth).notification(function (notification) {
+
+				if (notification.ntype == 4 && notification.status == 1) {
+
+					_this.getTrackedTransactions();
+					_this.chatScroller();
+				}
+
+				document.getElementById('noty_audio').play();
+				_this.chatScroller();
+			});
+		},
+		sendMessage: function sendMessage() {
+			var _this2 = this;
+
+			if (this.message.length == 0) {
+
+				return;
+			}
+
+			this.chat = this.message;
+			this.message = "";
+
+			this.showFakeMessage();
+			this.chatScroller();
+
+			var data = JSON.stringify({
+				body: this.chat,
+				sender: this.seller,
+				receiver: this.buyer,
+				tracker: this.id
+			});
+
+			axios.post('/send/seller/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this2.getRecentChat();
+			});
+		},
+		getRecentChat: function getRecentChat() {
+			var _this3 = this;
+
+			axios.get('/get/recent/seller/chat/' + this.buyer + '/' + this.id).then(function (response) {
+
+				_this3.trackedChat.push(response.data);
+				_this3.hideFakeMessage();
+			});
+		},
+		showFakeMessage: function showFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.remove("hidden");
+		},
+		hideFakeMessage: function hideFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.add("hidden");
+		},
+		displayChat: function displayChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.remove("hidden");
+			if (this.showChat = true) this.chatScroller();
+		},
+		getbuyerDetails: function getbuyerDetails() {
+			var _this4 = this;
+
+			axios.get('/get/user/details/' + this.buyer).then(function (response) {
+
+				_this4.buyerDetails.push(response.data);
+			});
+		},
+		chatScroller: function chatScroller() {
+
+			var chat = document.getElementById('chat-message' + this.id);
+			chat.scrollTop = 5000;
+		},
+		hideChat: function hideChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.add("hidden");
+			this.showChat = false;
+		},
+		finishTransaction: function finishTransaction() {
+			this.finished = true;
+
+			axios.get('/finish/transaction/' + this.id).then(function (response) {});
+		},
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/buyer/accept/transaction/' + this.id).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this5 = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+
+					_this5.trackedTransactions = [];
+					_this5.total = 0;
+
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this5.trackedTransactions.push(tracked);
+						_this5.total = _this5.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this5.total == 0) {
+
+					_this5.cancelTransaction();
+				}
+
+				_this5.trackedChat = _this5.trackedTransactions[0].tracker.chats;
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this6 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this6.cancelTransaction();
+				}
+				_this6.shopDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.buyerDetails.length > 0 && _vm.trackedTransactions.length > 0
+    ? _c(
+        "div",
+        {
+          staticClass: "inactive-transactions",
+          staticStyle: { height: "520px", overflow: "hidden" }
+        },
+        [
+          _c("div", { staticClass: "seller-details" }, [
+            _c(
+              "div",
+              { staticStyle: { height: "80px", "overflow-y": "auto" } },
+              [
+                _c("img", {
+                  staticClass: "owner-avatar",
+                  staticStyle: { "border-radius": "50%", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: _vm.buyerDetails[0].avatar
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      "margin-top": "-50px",
+                      "margin-left": "80px"
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "user-name" }, [
+                      _vm._v(
+                        _vm._s(_vm.buyerDetails[0].fname) +
+                          " " +
+                          _vm._s(_vm.buyerDetails[0].lname)
+                      )
+                    ]),
+                    _vm._v(" as Buyer "),
+                    !_vm.showChat
+                      ? _c("span", { on: { click: _vm.displayChat } }, [
+                          _c("span", { staticClass: "unread-chat hidden" }, [
+                            _vm._v("10")
+                          ]),
+                          _vm.finished == false && _vm.accepted == false
+                            ? _c("div", { staticClass: "chat-button" }, [
+                                _vm._v("Chat")
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm.showChat
+                      ? _c("span", { on: { click: _vm.hideChat } }, [
+                          _c("div", { staticClass: "details-button" }, [
+                            _vm._v("Show items")
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr" }),
+            _vm._v(" "),
+            !_vm.showChat
+              ? _c("span", [
+                  _c(
+                    "div",
+                    { staticStyle: { height: "80px", "overflow-y": "auto" } },
+                    [
+                      _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                        _vm._v(
+                          " Location: " +
+                            _vm._s(_vm.trackedTransactions[0].tracker.location)
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "hr" }),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticStyle: { height: "150px", "overflow-y": "auto" } },
+                    _vm._l(_vm.trackedTransactions, function(transaction) {
+                      return _c("span", [
+                        _c("img", {
+                          staticClass: "product-avatar",
+                          staticStyle: {
+                            "border-radius": "5px",
+                            margin: "10px"
+                          },
+                          attrs: {
+                            width: "50px",
+                            height: "50px",
+                            src: transaction.price.product.image
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticStyle: {
+                              width: "180px",
+                              position: "relative",
+                              top: "-25px",
+                              left: "70px"
+                            }
+                          },
+                          [
+                            transaction.quantity == 1
+                              ? _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit
+                                          ) +
+                                          ")"
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                              : _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit +
+                                              "s"
+                                          ) +
+                                          ") "
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                          ]
+                        )
+                      ])
+                    })
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.finished == false && _vm.accepted == false
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "hidden",
+                    attrs: { id: "chat-container" + this.id }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "chat-content ",
+                        attrs: { id: "chat-message" + this.id }
+                      },
+                      [
+                        _vm._l(_vm.trackedChat, function(chat) {
+                          return _c("span", [
+                            chat.status == 1
+                              ? _c("p", { staticClass: "authChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                              : _c("p", { staticClass: "userChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "authChat hidden",
+                            attrs: { id: "fake-message" + this.id }
+                          },
+                          [_vm._v(_vm._s(_vm.chat))]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" }),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "chat-input" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.message,
+                            expression: "message"
+                          }
+                        ],
+                        attrs: {
+                          type: "text",
+                          placeholder: "Type your message"
+                        },
+                        domProps: { value: _vm.message },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !("button" in $event) &&
+                              _vm._k($event.keyCode, "enter", 13, $event.key)
+                            ) {
+                              return null
+                            }
+                            _vm.sendMessage($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.message = $event.target.value
+                          }
+                        }
+                      }),
+                      _c("span", { staticClass: "send-chat-icon" }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/storage/icons/right-arrow.png",
+                            width: "20px",
+                            height: "auto"
+                          },
+                          on: { click: _vm.sendMessage }
+                        })
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr", staticStyle: { border: "none" } }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { height: "100px", "overflow-y": "auto" } },
+              [
+                _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                  _vm._v(
+                    "Total= N " +
+                      _vm._s(_vm.total) +
+                      " Delivery= N " +
+                      _vm._s(this.delivery) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.finished == false && _vm.accepted == false
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            cursor: "default",
+                            border: "none",
+                            color: "green",
+                            background: "#fff",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Accepted")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "1px solid #ddd",
+                            color: "#000",
+                            background: "yellow",
+                            "font-weight": "bold"
+                          },
+                          on: { click: _vm.finishTransaction }
+                        },
+                        [_vm._v("Delivered")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "none",
+                            color: "#fff",
+                            background: "black",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Report")]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.finished
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tTransaction Completed\r\n\t\t")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.accepted
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Available at the moment")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-599c605f", module.exports)
+  }
+}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(102)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(105)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\buyer-chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f907e6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f907e6e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(103);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("e124900c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f907e6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buyer-chat.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f907e6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buyer-chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'seller', 'buyer', 'auth', 'shop', 'delivery'],
+
+	mounted: function mounted() {
+		this.getShopDetails();
+		this.getTrackedTransactions();
+		this.listen();
+	},
+	data: function data() {
+
+		return {
+
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			finished: false,
+			accepted: false,
+			showChat: false,
+			message: "",
+			chat: "",
+			trackedChat: []
+
+		};
+	},
+
+
+	methods: {
+		listen: function listen() {
+			var _this = this;
+
+			Echo.private('App.User.' + this.auth).notification(function (notification) {
+
+				if (notification.ntype == 4 && notification.status == 0) {
+
+					_this.getTrackedTransactions();
+				}
+				document.getElementById('noty_audio').play();
+				_this.chatScroller();
+			});
+		},
+		sendMessage: function sendMessage() {
+			var _this2 = this;
+
+			if (this.message.length == 0) {
+
+				return;
+			}
+
+			this.chat = this.message;
+			this.message = "";
+
+			this.showFakeMessage();
+			this.chatScroller();
+
+			var data = JSON.stringify({
+				body: this.chat,
+				sender: this.buyer,
+				receiver: this.buyer,
+				tracker: this.id
+			});
+
+			axios.post('/send/buyer/chat', data, {
+				headers: {
+					'Content-Type': 'application/json'
+
+				}
+
+			}).then(function (response) {
+
+				_this2.getRecentChat();
+			});
+		},
+		getRecentChat: function getRecentChat() {
+			var _this3 = this;
+
+			axios.get('/get/recent/buyer/chat/' + this.buyer + '/' + this.id).then(function (response) {
+
+				_this3.trackedChat.push(response.data);
+				_this3.hideFakeMessage();
+			});
+		},
+		showFakeMessage: function showFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.remove("hidden");
+		},
+		hideFakeMessage: function hideFakeMessage() {
+
+			var fake = document.getElementById('fake-message' + this.id);
+			fake.classList.add("hidden");
+		},
+		displayChat: function displayChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.remove("hidden");
+			if (this.showChat = true) this.chatScroller();
+		},
+		chatScroller: function chatScroller() {
+
+			var chat = document.getElementById('chat-message' + this.id);
+			chat.scrollTop = 5000;
+		},
+		hideChat: function hideChat() {
+			var chat = document.getElementById('chat-container' + this.id);
+			chat.classList.add("hidden");
+			this.showChat = false;
+		},
+		finishTransaction: function finishTransaction() {
+			this.finished = true;
+
+			axios.get('/finish/transaction/' + this.id).then(function (response) {});
+		},
+		acceptRequest: function acceptRequest() {
+			this.accepted = true;
+			axios.get('/buyer/accept/transaction/' + this.id).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this4 = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+
+					_this4.trackedTransactions = [];
+					_this4.total = 0;
+
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this4.trackedTransactions.push(tracked);
+						_this4.total = _this4.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this4.total == 0) {
+
+					_this4.cancelTransaction();
+				}
+
+				_this4.trackedChat = _this4.trackedTransactions[0].tracker.chats;
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this5 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this5.cancelTransaction();
+				}
+				_this5.shopDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shopDetails.length > 0
+    ? _c(
+        "div",
+        {
+          staticClass: "inactive-transactions",
+          staticStyle: { height: "520px", overflow: "hidden" }
+        },
+        [
+          _c("div", { staticClass: "seller-details" }, [
+            _c(
+              "div",
+              { staticStyle: { height: "80px", "overflow-y": "auto" } },
+              [
+                _c("img", {
+                  staticClass: "owner-avatar",
+                  staticStyle: { "border-radius": "50%", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: _vm.shopDetails[0].seller.avatar
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      "margin-top": "-50px",
+                      "margin-left": "80px"
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "user-name" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.shopDetails[0].seller.fname +
+                            " " +
+                            _vm.shopDetails[0].seller.lname
+                        )
+                      )
+                    ]),
+                    _vm._v(" as Seller "),
+                    !_vm.showChat
+                      ? _c("span", { on: { click: _vm.displayChat } }, [
+                          _c("span", { staticClass: "unread-chat hidden" }, [
+                            _vm._v("10")
+                          ]),
+                          _vm.finished == false && _vm.accepted == false
+                            ? _c("div", { staticClass: "chat-button" }, [
+                                _vm._v("Chat")
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm.showChat
+                      ? _c("span", { on: { click: _vm.hideChat } }, [
+                          _c("div", { staticClass: "details-button" }, [
+                            _vm._v("Show items")
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr" }),
+            _vm._v(" "),
+            !_vm.showChat
+              ? _c("span", [
+                  _c(
+                    "div",
+                    { staticStyle: { height: "80px", "overflow-y": "auto" } },
+                    [
+                      _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.shopDetails[0].name +
+                              ", " +
+                              _vm.shopDetails[0].location.location +
+                              ", " +
+                              _vm.shopDetails[0].seller.phone
+                          )
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "hr" }),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticStyle: { height: "150px", "overflow-y": "auto" } },
+                    _vm._l(_vm.trackedTransactions, function(transaction) {
+                      return _c("span", [
+                        _c("img", {
+                          staticClass: "product-avatar",
+                          staticStyle: {
+                            "border-radius": "5px",
+                            margin: "10px"
+                          },
+                          attrs: {
+                            width: "50px",
+                            height: "50px",
+                            src: transaction.price.product.image
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticStyle: {
+                              width: "180px",
+                              position: "relative",
+                              top: "-25px",
+                              left: "70px"
+                            }
+                          },
+                          [
+                            transaction.quantity == 1
+                              ? _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit
+                                          ) +
+                                          ")"
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                              : _c("span", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "pending-product-name" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(transaction.price.product.name) +
+                                          "(" +
+                                          _vm._s(
+                                            "N" +
+                                              transaction.price.price +
+                                              "x" +
+                                              transaction.quantity +
+                                              transaction.price.unit +
+                                              "s"
+                                          ) +
+                                          ") "
+                                      )
+                                    ]
+                                  ),
+                                  _c("br")
+                                ])
+                          ]
+                        )
+                      ])
+                    })
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.finished == false && _vm.accepted == false
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "hidden",
+                    attrs: { id: "chat-container" + this.id }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "chat-content ",
+                        attrs: { id: "chat-message" + this.id }
+                      },
+                      [
+                        _vm._l(_vm.trackedChat, function(chat) {
+                          return _c("span", [
+                            chat.status == 0
+                              ? _c("p", { staticClass: "authChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                              : _c("p", { staticClass: "userChat" }, [
+                                  _vm._v(_vm._s(chat.body))
+                                ])
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "authChat hidden",
+                            attrs: { id: "fake-message" + this.id }
+                          },
+                          [_vm._v(_vm._s(_vm.chat))]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" }),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "false-paragraph" })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "chat-input" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.message,
+                            expression: "message"
+                          }
+                        ],
+                        attrs: {
+                          type: "text",
+                          placeholder: "Type your message"
+                        },
+                        domProps: { value: _vm.message },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !("button" in $event) &&
+                              _vm._k($event.keyCode, "enter", 13, $event.key)
+                            ) {
+                              return null
+                            }
+                            _vm.sendMessage($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.message = $event.target.value
+                          }
+                        }
+                      }),
+                      _c("span", { staticClass: "send-chat-icon" }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/storage/icons/right-arrow.png",
+                            width: "20px",
+                            height: "auto"
+                          },
+                          on: { click: _vm.sendMessage }
+                        })
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "hr", staticStyle: { border: "none" } }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { height: "100px", "overflow-y": "auto" } },
+              [
+                _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                  _vm._v(
+                    "Total= N " +
+                      _vm._s(_vm.total) +
+                      " Delivery= N " +
+                      _vm._s(this.delivery) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "Total + Delivery = N " + _vm._s(_vm.total + this.delivery)
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.finished == false && _vm.accepted == false
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            cursor: "default",
+                            border: "none",
+                            color: "green",
+                            background: "#fff",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Accepted")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "1px solid #ddd",
+                            color: "#000",
+                            background: "yellow",
+                            "font-weight": "bold"
+                          },
+                          on: { click: _vm.finishTransaction }
+                        },
+                        [_vm._v("Delivered")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            "margin-left": "10px",
+                            border: "none",
+                            color: "#fff",
+                            background: "black",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_vm._v("Report")]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.finished
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tTransaction Completed\r\n\t\t")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.accepted
+                  ? _c(
+                      "span",
+                      {
+                        staticStyle: { color: "green", "margin-left": "10px" }
+                      },
+                      [_vm._v("\r\n\t\tRequest accepted\r\n\t\t")]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Available at the moment")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f907e6e", module.exports)
+  }
+}
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(107)
+/* template */
+var __vue_template__ = __webpack_require__(108)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SellButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4fe7d44a", Component.options)
+  } else {
+    hotAPI.reload("data-v-4fe7d44a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 107 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['pid', 'pname', 'cid', 'type'],
+
+	mounted: function mounted() {
+
+		this.authStore();
+		this.checkStore();
+	},
+	data: function data() {
+
+		return {
+
+			hide: false,
+			similar: [],
+			store: []
+
+		};
+	},
+
+
+	methods: {
+		checkStore: function checkStore() {
+			var _this = this;
+
+			axios.get('/check/store/' + this.pid).then(function (response) {
+
+				if (response.data == 1) {
+
+					_this.hide = true;
+				} else {
+
+					_this.hide = false;
+				}
+			});
+		},
+		authStore: function authStore() {
+			var _this2 = this;
+
+			axios.get('/auth/store').then(function (response) {
+				_this2.store = [];
+
+				response.data.forEach(function (item) {
+
+					_this2.store.push(item);
+				});
+			});
+		},
+		iSellProduct: function iSellProduct() {
+			var _this3 = this;
+
+			this.hide = true;
+			axios.get('/sell/products/' + this.cid + '/' + this.pid).then(function (response) {
+
+				_this3.similar = [];
+
+				response.data.forEach(function (similar) {
+
+					_this3.similar.push(similar);
+				});
+
+				_this3.authStore();
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", [
+    !_vm.hide && this.cid != 3 && this.type !== "remove"
+      ? _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.iSellProduct()
+              }
+            }
+          },
+          [_vm._v("I Sell " + _vm._s(this.pname) + " Nearby")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.hide && this.cid == 3 && this.type !== "remove"
+      ? _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.iSellProduct()
+              }
+            }
+          },
+          [_vm._v("I render this service")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.hide && _vm.type != "remove"
+      ? _c("p", [_vm._v(" Already in your store")])
+      : _vm._e(),
+    _vm._v(" "),
+    this.type == "remove"
+      ? _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.removeProduct()
+              }
+            }
+          },
+          [_vm._v("Remove " + _vm._s(this.pid))]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4fe7d44a", module.exports)
+  }
+}
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(110)
+/* template */
+var __vue_template__ = __webpack_require__(111)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ActiveProduct.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08578ebc", Component.options)
+  } else {
+    hotAPI.reload("data-v-08578ebc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 110 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+
+			activeProduct: []
+
+		};
+	}
+});
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-08578ebc", module.exports)
+  }
+}
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(113)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(115)
+/* template */
+var __vue_template__ = __webpack_require__(116)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ChatBody.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d91e42de", Component.options)
+  } else {
+    hotAPI.reload("data-v-d91e42de", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(114);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("4062d149", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d91e42de\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChatBody.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d91e42de\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ChatBody.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.hidden {\r\ndisplay:none;\n}\r\n\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+
+		return {
+
+			authDetails: []
+
+		};
+	},
+
+
+	props: ['body', 'id', 'status'],
+
+	mounted: function mounted() {
+
+		this.getAuthDetails();
+	},
+
+
+	methods: {
+		getAuthDetails: function getAuthDetails() {
+			var _this = this;
+
+			axios.get('/auth/details').then(function (response) {
+
+				_this.authDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    this.authDetails.length > 0
+      ? _c("span", [
+          (this.authDetails[0].id = this.id && this.status == 1)
+            ? _c("span", [
+                _c("p", { staticClass: "authChat" }, [
+                  _vm._v(_vm._s(this.body))
+                ])
+              ])
+            : _c("span", [
+                _c("p", { staticClass: "userChat" }, [
+                  _vm._v(_vm._s(this.body))
+                ])
+              ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d91e42de", module.exports)
+  }
+}
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(118)
+/* template */
+var __vue_template__ = __webpack_require__(119)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63126,7 +55704,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 154 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63224,7 +55802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 155 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63244,139 +55822,15 @@ if (false) {
 }
 
 /***/ }),
-/* 156 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(157)
+var __vue_script__ = __webpack_require__(121)
 /* template */
-var __vue_template__ = __webpack_require__(158)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\BuyerLoader.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-14fc46ff", Component.options)
-  } else {
-    hotAPI.reload("data-v-14fc46ff", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 157 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-
-    this.reload();
-
-    this.removeLoader();
-  },
-
-
-  methods: {
-    reload: function reload() {
-      setInterval(refresh, 1800000);
-      function refresh() {
-        window.location = "/";
-      }
-    },
-    removeLoader: function removeLoader() {
-
-      setTimeout(remove, 4000);
-
-      function remove() {
-        var loader = document.getElementById('loader');
-        loader.classList.add('hidden');
-      }
-    }
-  }
-
-});
-
-/***/ }),
-/* 158 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("audio", {
-        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
-      })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-14fc46ff", module.exports)
-  }
-}
-
-/***/ }),
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(160)
-/* template */
-var __vue_template__ = __webpack_require__(161)
+var __vue_template__ = __webpack_require__(122)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63415,7 +55869,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 160 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63511,7 +55965,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 161 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63529,6 +55983,7588 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-5988cb0c", module.exports)
   }
 }
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(124)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(126)
+/* template */
+var __vue_template__ = __webpack_require__(127)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BuyerPending.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aafaa54a", Component.options)
+  } else {
+    hotAPI.reload("data-v-aafaa54a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(125);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("8b60091e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aafaa54a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerPending.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aafaa54a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BuyerPending.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pending-product-name {\r\nposition: relative;\r\ntop: -30px;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 126 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['id', 'seller', 'shop'],
+
+	mounted: function mounted() {
+
+		this.getShopDetails();
+		this.getTrackedTransactions();
+	},
+	data: function data() {
+
+		return {
+
+			shopDetails: [],
+			trackedTransactions: [],
+			total: 0,
+			cancelled: false,
+			requested: false,
+			location: ''
+
+		};
+	},
+
+
+	methods: {
+		sendRequest: function sendRequest() {
+			this.requested = true;
+
+			if (this.location.length == 0) {
+				this.location = 'n.a';
+			}
+
+			axios.get('/request/transaction/' + this.id + '/' + this.location + '/' + this.seller).then(function (response) {});
+		},
+		delTransaction: function delTransaction(id, amount) {
+
+			var transaction = this.trackedTransactions.find(function (t) {
+				return t.id === id;
+			});
+
+			var index = this.trackedTransactions.indexOf(transaction);
+
+			this.trackedTransactions.splice(index, 1);
+
+			if (this.total > 0) {
+				this.total = this.total - amount;
+			}
+
+			if (this.total == 0) {
+
+				this.cancelTransaction();
+			}
+
+			axios.get('/delete/transaction/' + id).then(function (response) {});
+		},
+		cancelTransaction: function cancelTransaction() {
+			this.cancelled = true;
+
+			axios.get('/cancel/transaction/' + this.id).then(function (response) {});
+		},
+		getTrackedTransactions: function getTrackedTransactions() {
+			var _this = this;
+
+			axios.get('/get/tracked/transactions/' + this.id).then(function (response) {
+				response.data.forEach(function (tracked) {
+					if (tracked.price && tracked.price.product && tracked.price.product.status == 1) {
+						_this.trackedTransactions.push(tracked);
+						_this.total = _this.total + tracked.price.price * tracked.quantity;
+					}
+				});
+
+				if (_this.total == 0) {
+
+					_this.cancelTransaction();
+				}
+			});
+		},
+		getShopDetails: function getShopDetails() {
+			var _this2 = this;
+
+			axios.get('/get/shop/details/' + this.shop).then(function (response) {
+
+				if (response.data.online == 0 || response.data.seller.online == 0) {
+
+					_this2.cancelTransaction();
+				}
+				_this2.shopDetails.push(response.data);
+			});
+		}
+	}
+
+});
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shopDetails.length > 0
+    ? _c("div", { staticClass: "inactive-transactions" }, [
+        _c("div", { staticClass: "seller-details" }, [
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("img", {
+              staticClass: "owner-avatar",
+              staticStyle: { "border-radius": "50%", margin: "10px" },
+              attrs: {
+                width: "50px",
+                height: "50px",
+                src: _vm.shopDetails[0].seller.avatar
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { "margin-top": "-50px", "margin-left": "80px" } },
+              [
+                _c("span", { staticClass: "user-name" }, [
+                  _vm._v(
+                    _vm._s(
+                      _vm.shopDetails[0].seller.fname +
+                        " " +
+                        _vm.shopDetails[0].seller.lname
+                    )
+                  )
+                ]),
+                _vm._v(" as Seller "),
+                _vm.cancelled == false && _vm.requested == false
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "start-chat-button",
+                        staticStyle: { width: "100px" },
+                        on: {
+                          click: function($event) {
+                            _vm.sendRequest()
+                          }
+                        }
+                      },
+                      [_vm._v("Send Request")]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { height: "80px", "overflow-y": "auto" } }, [
+            _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v(
+                _vm._s(
+                  _vm.shopDetails[0].name +
+                    ", " +
+                    _vm.shopDetails[0].location.location +
+                    ", " +
+                    _vm.shopDetails[0].seller.phone
+                )
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
+            _vm._l(_vm.trackedTransactions, function(transaction) {
+              return _c("span", [
+                _c("img", {
+                  staticClass: "product-avatar",
+                  staticStyle: { "border-radius": "5px", margin: "10px" },
+                  attrs: {
+                    width: "50px",
+                    height: "50px",
+                    src: transaction.price.product.image
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      width: "180px",
+                      position: "relative",
+                      top: "-25px",
+                      left: "70px"
+                    }
+                  },
+                  [
+                    transaction.quantity == 1
+                      ? _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.requested == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                      : _c("span", [
+                          _c("span", { staticClass: "pending-product-name" }, [
+                            _vm._v(
+                              _vm._s(transaction.price.product.name) +
+                                "(" +
+                                _vm._s(
+                                  "N" +
+                                    transaction.price.price +
+                                    "x" +
+                                    transaction.quantity +
+                                    transaction.price.unit +
+                                    "s"
+                                ) +
+                                ") "
+                            ),
+                            _vm.cancelled == false && _vm.requested == false
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.delTransaction(
+                                          transaction.id,
+                                          transaction.price.price *
+                                            transaction.quantity
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" remove")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _c("br")
+                        ])
+                  ]
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { height: "150px", "overflow-y": "auto" } },
+            [
+              _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+                _vm._v("Total= N" + _vm._s(_vm.total) + " Delivery Fee: TBD "),
+                _c("br"),
+                _vm._v(" Your Location: "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.location,
+                      expression: "location"
+                    }
+                  ],
+                  staticStyle: { width: "150px" },
+                  attrs: { type: "text", value: "0" },
+                  domProps: { value: _vm.location },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.location = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.cancelled == false && _vm.requested == false
+                ? _c("span", [
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "green",
+                          "font-weight": "bold"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.sendRequest()
+                          }
+                        }
+                      },
+                      [_vm._v("Request")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "margin-left": "10px",
+                          border: "none",
+                          color: "#fff",
+                          background: "red",
+                          "font-weight": "bold"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.cancelTransaction()
+                          }
+                        }
+                      },
+                      [_vm._v("Cancel")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.cancelled
+                ? _c(
+                    "span",
+                    { staticStyle: { color: "red", "margin-left": "10px" } },
+                    [_vm._v("\r\n\t\tTransaction Cancelled\r\n\t\t")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.requested
+                ? _c(
+                    "span",
+                    { staticStyle: { color: "green", "margin-left": "10px" } },
+                    [_vm._v("\r\n\t\tRequest Sent\r\n\t\t")]
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { height: "80px", "overflow-y": "auto" } },
+      [
+        _c("h4", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Your Requests")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aafaa54a", module.exports)
+  }
+}
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(129)
+/* template */
+var __vue_template__ = __webpack_require__(130)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BuyerLoader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-14fc46ff", Component.options)
+  } else {
+    hotAPI.reload("data-v-14fc46ff", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 129 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+
+    this.reload();
+
+    this.removeLoader();
+  },
+
+
+  methods: {
+    reload: function reload() {
+      setInterval(refresh, 1800000);
+      function refresh() {
+        window.location = "/";
+      }
+    },
+    removeLoader: function removeLoader() {
+
+      setTimeout(remove, 4000);
+
+      function remove() {
+        var loader = document.getElementById('loader');
+        loader.classList.add('hidden');
+      }
+    }
+  }
+
+});
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("audio", {
+        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-14fc46ff", module.exports)
+  }
+}
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = AlgoliaSearch;
+
+var Index = __webpack_require__(132);
+var deprecate = __webpack_require__(14);
+var deprecatedMessage = __webpack_require__(15);
+var AlgoliaSearchCore = __webpack_require__(137);
+var inherits = __webpack_require__(10);
+var errors = __webpack_require__(7);
+
+function AlgoliaSearch() {
+  AlgoliaSearchCore.apply(this, arguments);
+}
+
+inherits(AlgoliaSearch, AlgoliaSearchCore);
+
+/*
+ * Delete an index
+ *
+ * @param indexName the name of index to delete
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer that contains the task ID
+ */
+AlgoliaSearch.prototype.deleteIndex = function(indexName, callback) {
+  return this._jsonRequest({
+    method: 'DELETE',
+    url: '/1/indexes/' + encodeURIComponent(indexName),
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/**
+ * Move an existing index.
+ * @param srcIndexName the name of index to copy.
+ * @param dstIndexName the new index name that will contains a copy of
+ * srcIndexName (destination will be overriten if it already exist).
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer that contains the task ID
+ */
+AlgoliaSearch.prototype.moveIndex = function(srcIndexName, dstIndexName, callback) {
+  var postObj = {
+    operation: 'move', destination: dstIndexName
+  };
+  return this._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(srcIndexName) + '/operation',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/**
+ * Copy an existing index.
+ * @param srcIndexName the name of index to copy.
+ * @param dstIndexName the new index name that will contains a copy
+ * of srcIndexName (destination will be overriten if it already exist).
+ * @param scope an array of scopes to copy: ['settings', 'synonyms', 'rules']
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer that contains the task ID
+ */
+AlgoliaSearch.prototype.copyIndex = function(srcIndexName, dstIndexName, scopeOrCallback, _callback) {
+  var postObj = {
+    operation: 'copy',
+    destination: dstIndexName
+  };
+  var callback = _callback;
+  if (typeof scopeOrCallback === 'function') {
+    // oops, old behaviour of third argument being a function
+    callback = scopeOrCallback;
+  } else if (Array.isArray(scopeOrCallback) && scopeOrCallback.length > 0) {
+    postObj.scope = scopeOrCallback;
+  } else if (typeof scopeOrCallback !== 'undefined') {
+    throw new Error('the scope given to `copyIndex` was not an array with settings, synonyms or rules');
+  }
+  return this._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(srcIndexName) + '/operation',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/**
+ * Return last log entries.
+ * @param offset Specify the first entry to retrieve (0-based, 0 is the most recent log entry).
+ * @param length Specify the maximum number of entries to retrieve starting
+ * at offset. Maximum allowed value: 1000.
+ * @param type Specify the maximum number of entries to retrieve starting
+ * at offset. Maximum allowed value: 1000.
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer that contains the task ID
+ */
+AlgoliaSearch.prototype.getLogs = function(offset, length, callback) {
+  var clone = __webpack_require__(5);
+  var params = {};
+  if (typeof offset === 'object') {
+    // getLogs(params)
+    params = clone(offset);
+    callback = length;
+  } else if (arguments.length === 0 || typeof offset === 'function') {
+    // getLogs([cb])
+    callback = offset;
+  } else if (arguments.length === 1 || typeof length === 'function') {
+    // getLogs(1, [cb)]
+    callback = length;
+    params.offset = offset;
+  } else {
+    // getLogs(1, 2, [cb])
+    params.offset = offset;
+    params.length = length;
+  }
+
+  if (params.offset === undefined) params.offset = 0;
+  if (params.length === undefined) params.length = 10;
+
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/logs?' + this._getSearchParams(params, ''),
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+ * List all existing indexes (paginated)
+ *
+ * @param page The page to retrieve, starting at 0.
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer with index list
+ */
+AlgoliaSearch.prototype.listIndexes = function(page, callback) {
+  var params = '';
+
+  if (page === undefined || typeof page === 'function') {
+    callback = page;
+  } else {
+    params = '?page=' + page;
+  }
+
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/indexes' + params,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+ * Get the index object initialized
+ *
+ * @param indexName the name of index
+ * @param callback the result callback with one argument (the Index instance)
+ */
+AlgoliaSearch.prototype.initIndex = function(indexName) {
+  return new Index(this, indexName);
+};
+
+AlgoliaSearch.prototype.initAnalytics = function(opts) {
+  // the actual require must be inside the function, when put outside then you have a cyclic dependency
+  // not well resolved that ends up making the main "./index.js" (main module, the agloliasearch function)
+  // export an object instead of a function
+  // Other workarounds:
+  // - rewrite the lib in ES6, cyclic dependencies may be better supported
+  // - move initAnalytics to a property on the main module (algoliasearch.initAnalytics),
+  // same as places.
+  // The current API was made mostly to mimic the one made in PHP
+  var createAnalyticsClient = __webpack_require__(141);
+  return createAnalyticsClient(this.applicationID, this.apiKey, opts);
+};
+
+/*
+ * @deprecated use client.listApiKeys
+ */
+AlgoliaSearch.prototype.listUserKeys = deprecate(function(callback) {
+  return this.listApiKeys(callback);
+}, deprecatedMessage('client.listUserKeys()', 'client.listApiKeys()'));
+
+/*
+ * List all existing api keys with their associated ACLs
+ *
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer with api keys list
+ */
+AlgoliaSearch.prototype.listApiKeys = function(callback) {
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/keys',
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+ * @deprecated see client.getApiKey
+ */
+AlgoliaSearch.prototype.getUserKeyACL = deprecate(function(key, callback) {
+  return this.getApiKey(key, callback);
+}, deprecatedMessage('client.getUserKeyACL()', 'client.getApiKey()'));
+
+/*
+ * Get an API key
+ *
+ * @param key
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer with the right API key
+ */
+AlgoliaSearch.prototype.getApiKey = function(key, callback) {
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/keys/' + key,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/*
+ * @deprecated see client.deleteApiKey
+ */
+AlgoliaSearch.prototype.deleteUserKey = deprecate(function(key, callback) {
+  return this.deleteApiKey(key, callback);
+}, deprecatedMessage('client.deleteUserKey()', 'client.deleteApiKey()'));
+
+/*
+ * Delete an existing API key
+ * @param key
+ * @param callback the result callback called with two arguments
+ *  error: null or Error('message')
+ *  content: the server answer with the date of deletion
+ */
+AlgoliaSearch.prototype.deleteApiKey = function(key, callback) {
+  return this._jsonRequest({
+    method: 'DELETE',
+    url: '/1/keys/' + key,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+ @deprecated see client.addApiKey
+ */
+AlgoliaSearch.prototype.addUserKey = deprecate(function(acls, params, callback) {
+  return this.addApiKey(acls, params, callback);
+}, deprecatedMessage('client.addUserKey()', 'client.addApiKey()'));
+
+/*
+ * Add a new global API key
+ *
+ * @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
+ *   can contains the following values:
+ *     - search: allow to search (https and http)
+ *     - addObject: allows to add/update an object in the index (https only)
+ *     - deleteObject : allows to delete an existing object (https only)
+ *     - deleteIndex : allows to delete index content (https only)
+ *     - settings : allows to get index settings (https only)
+ *     - editSettings : allows to change index settings (https only)
+ * @param {Object} [params] - Optionnal parameters to set for the key
+ * @param {number} params.validity - Number of seconds after which the key will be automatically removed (0 means no time limit for this key)
+ * @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
+ * @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
+ * @param {string[]} params.indexes - Allowed targeted indexes for this key
+ * @param {string} params.description - A description for your key
+ * @param {string[]} params.referers - A list of authorized referers
+ * @param {Object} params.queryParameters - Force the key to use specific query parameters
+ * @param {Function} callback - The result callback called with two arguments
+ *   error: null or Error('message')
+ *   content: the server answer with the added API key
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.addApiKey(['search'], {
+ *   validity: 300,
+ *   maxQueriesPerIPPerHour: 2000,
+ *   maxHitsPerQuery: 3,
+ *   indexes: ['fruits'],
+ *   description: 'Eat three fruits',
+ *   referers: ['*.algolia.com'],
+ *   queryParameters: {
+ *     tagFilters: ['public'],
+ *   }
+ * })
+ * @see {@link https://www.algolia.com/doc/rest_api#AddKey|Algolia REST API Documentation}
+ */
+AlgoliaSearch.prototype.addApiKey = function(acls, params, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: client.addApiKey(arrayOfAcls[, params, callback])';
+
+  if (!isArray(acls)) {
+    throw new Error(usage);
+  }
+
+  if (arguments.length === 1 || typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
+
+  var postObj = {
+    acl: acls
+  };
+
+  if (params) {
+    postObj.validity = params.validity;
+    postObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
+    postObj.maxHitsPerQuery = params.maxHitsPerQuery;
+    postObj.indexes = params.indexes;
+    postObj.description = params.description;
+
+    if (params.queryParameters) {
+      postObj.queryParameters = this._getSearchParams(params.queryParameters, '');
+    }
+
+    postObj.referers = params.referers;
+  }
+
+  return this._jsonRequest({
+    method: 'POST',
+    url: '/1/keys',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/**
+ * @deprecated Please use client.addApiKey()
+ */
+AlgoliaSearch.prototype.addUserKeyWithValidity = deprecate(function(acls, params, callback) {
+  return this.addApiKey(acls, params, callback);
+}, deprecatedMessage('client.addUserKeyWithValidity()', 'client.addApiKey()'));
+
+/**
+ * @deprecated Please use client.updateApiKey()
+ */
+AlgoliaSearch.prototype.updateUserKey = deprecate(function(key, acls, params, callback) {
+  return this.updateApiKey(key, acls, params, callback);
+}, deprecatedMessage('client.updateUserKey()', 'client.updateApiKey()'));
+
+/**
+ * Update an existing API key
+ * @param {string} key - The key to update
+ * @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
+ *   can contains the following values:
+ *     - search: allow to search (https and http)
+ *     - addObject: allows to add/update an object in the index (https only)
+ *     - deleteObject : allows to delete an existing object (https only)
+ *     - deleteIndex : allows to delete index content (https only)
+ *     - settings : allows to get index settings (https only)
+ *     - editSettings : allows to change index settings (https only)
+ * @param {Object} [params] - Optionnal parameters to set for the key
+ * @param {number} params.validity - Number of seconds after which the key will be automatically removed (0 means no time limit for this key)
+ * @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
+ * @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
+ * @param {string[]} params.indexes - Allowed targeted indexes for this key
+ * @param {string} params.description - A description for your key
+ * @param {string[]} params.referers - A list of authorized referers
+ * @param {Object} params.queryParameters - Force the key to use specific query parameters
+ * @param {Function} callback - The result callback called with two arguments
+ *   error: null or Error('message')
+ *   content: the server answer with the modified API key
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.updateApiKey('APIKEY', ['search'], {
+ *   validity: 300,
+ *   maxQueriesPerIPPerHour: 2000,
+ *   maxHitsPerQuery: 3,
+ *   indexes: ['fruits'],
+ *   description: 'Eat three fruits',
+ *   referers: ['*.algolia.com'],
+ *   queryParameters: {
+ *     tagFilters: ['public'],
+ *   }
+ * })
+ * @see {@link https://www.algolia.com/doc/rest_api#UpdateIndexKey|Algolia REST API Documentation}
+ */
+AlgoliaSearch.prototype.updateApiKey = function(key, acls, params, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: client.updateApiKey(key, arrayOfAcls[, params, callback])';
+
+  if (!isArray(acls)) {
+    throw new Error(usage);
+  }
+
+  if (arguments.length === 2 || typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
+
+  var putObj = {
+    acl: acls
+  };
+
+  if (params) {
+    putObj.validity = params.validity;
+    putObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
+    putObj.maxHitsPerQuery = params.maxHitsPerQuery;
+    putObj.indexes = params.indexes;
+    putObj.description = params.description;
+
+    if (params.queryParameters) {
+      putObj.queryParameters = this._getSearchParams(params.queryParameters, '');
+    }
+
+    putObj.referers = params.referers;
+  }
+
+  return this._jsonRequest({
+    method: 'PUT',
+    url: '/1/keys/' + key,
+    body: putObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/**
+ * Initialize a new batch of search queries
+ * @deprecated use client.search()
+ */
+AlgoliaSearch.prototype.startQueriesBatch = deprecate(function startQueriesBatchDeprecated() {
+  this._batch = [];
+}, deprecatedMessage('client.startQueriesBatch()', 'client.search()'));
+
+/**
+ * Add a search query in the batch
+ * @deprecated use client.search()
+ */
+AlgoliaSearch.prototype.addQueryInBatch = deprecate(function addQueryInBatchDeprecated(indexName, query, args) {
+  this._batch.push({
+    indexName: indexName,
+    query: query,
+    params: args
+  });
+}, deprecatedMessage('client.addQueryInBatch()', 'client.search()'));
+
+/**
+ * Launch the batch of queries using XMLHttpRequest.
+ * @deprecated use client.search()
+ */
+AlgoliaSearch.prototype.sendQueriesBatch = deprecate(function sendQueriesBatchDeprecated(callback) {
+  return this.search(this._batch, callback);
+}, deprecatedMessage('client.sendQueriesBatch()', 'client.search()'));
+
+/**
+ * Perform write operations accross multiple indexes.
+ *
+ * To reduce the amount of time spent on network round trips,
+ * you can create, update, or delete several objects in one call,
+ * using the batch endpoint (all operations are done in the given order).
+ *
+ * Available actions:
+ *   - addObject
+ *   - updateObject
+ *   - partialUpdateObject
+ *   - partialUpdateObjectNoCreate
+ *   - deleteObject
+ *
+ * https://www.algolia.com/doc/rest_api#Indexes
+ * @param  {Object[]} operations An array of operations to perform
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.batch([{
+ *   action: 'addObject',
+ *   indexName: 'clients',
+ *   body: {
+ *     name: 'Bill'
+ *   }
+ * }, {
+ *   action: 'udpateObject',
+ *   indexName: 'fruits',
+ *   body: {
+ *     objectID: '29138',
+ *     name: 'banana'
+ *   }
+ * }], cb)
+ */
+AlgoliaSearch.prototype.batch = function(operations, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: client.batch(operations[, callback])';
+
+  if (!isArray(operations)) {
+    throw new Error(usage);
+  }
+
+  return this._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/*/batch',
+    body: {
+      requests: operations
+    },
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/**
+ * Assign or Move a userID to a cluster
+ *
+ * @param {string} data.userID The userID to assign to a new cluster
+ * @param {string} data.cluster The cluster to assign the user to
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.assignUserID({ cluster: 'c1-test', userID: 'some-user' });
+ */
+AlgoliaSearch.prototype.assignUserID = function(data, callback) {
+  if (!data.userID || !data.cluster) {
+    throw new errors.AlgoliaSearchError('You have to provide both a userID and cluster', data);
+  }
+  return this._jsonRequest({
+    method: 'POST',
+    url: '/1/clusters/mapping',
+    hostType: 'write',
+    body: {cluster: data.cluster},
+    callback: callback,
+    headers: {
+      'x-algolia-user-id': data.userID
+    }
+  });
+};
+
+/**
+ * Get the top userIDs
+ *
+ * (the callback is the second argument)
+ *
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.getTopUserID();
+ */
+AlgoliaSearch.prototype.getTopUserID = function(callback) {
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/clusters/mapping/top',
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/**
+ * Get userID
+ *
+ * @param {string} data.userID The userID to get info about
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.getUserID({ userID: 'some-user' });
+ */
+AlgoliaSearch.prototype.getUserID = function(data, callback) {
+  if (!data.userID) {
+    throw new errors.AlgoliaSearchError('You have to provide a userID', {debugData: data});
+  }
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/clusters/mapping/' + data.userID,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/**
+ * List all the clusters
+ *
+ * (the callback is the second argument)
+ *
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.listClusters();
+ */
+AlgoliaSearch.prototype.listClusters = function(callback) {
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/clusters',
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/**
+ * List the userIDs
+ *
+ * (the callback is the second argument)
+ *
+ * @param {string} data.hitsPerPage How many hits on every page
+ * @param {string} data.page The page to retrieve
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.listClusters();
+ * client.listClusters({ page: 3, hitsPerPage: 30});
+ */
+AlgoliaSearch.prototype.listUserIDs = function(data, callback) {
+  return this._jsonRequest({
+    method: 'GET',
+    url: '/1/clusters/mapping',
+    body: data,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+/**
+ * Remove an userID
+ *
+ * @param {string} data.userID The userID to assign to a new cluster
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.removeUserID({ userID: 'some-user' });
+ */
+AlgoliaSearch.prototype.removeUserID = function(data, callback) {
+  if (!data.userID) {
+    throw new errors.AlgoliaSearchError('You have to provide a userID', {debugData: data});
+  }
+  return this._jsonRequest({
+    method: 'DELETE',
+    url: '/1/clusters/mapping',
+    hostType: 'write',
+    callback: callback,
+    headers: {
+      'x-algolia-user-id': data.userID
+    }
+  });
+};
+
+/**
+ * Search for userIDs
+ *
+ * @param {string} data.cluster The cluster to target
+ * @param {string} data.query The query to execute
+ * @param {string} data.hitsPerPage How many hits on every page
+ * @param {string} data.page The page to retrieve
+ * @return {Promise|undefined} Returns a promise if no callback given
+ * @example
+ * client.searchUserIDs({ cluster: 'c1-test', query: 'some-user' });
+ * client.searchUserIDs({
+ *   cluster: "c1-test",
+ *   query: "some-user",
+ *   page: 3,
+ *   hitsPerPage: 2
+ * });
+ */
+AlgoliaSearch.prototype.searchUserIDs = function(data, callback) {
+  return this._jsonRequest({
+    method: 'POST',
+    url: '/1/clusters/mapping/search',
+    body: data,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+// environment specific methods
+AlgoliaSearch.prototype.destroy = notImplemented;
+AlgoliaSearch.prototype.enableRateLimitForward = notImplemented;
+AlgoliaSearch.prototype.disableRateLimitForward = notImplemented;
+AlgoliaSearch.prototype.useSecuredAPIKey = notImplemented;
+AlgoliaSearch.prototype.disableSecuredAPIKey = notImplemented;
+AlgoliaSearch.prototype.generateSecuredApiKey = notImplemented;
+
+function notImplemented() {
+  var message = 'Not implemented in this environment.\n' +
+    'If you feel this is a mistake, write to support@algolia.com';
+
+  throw new errors.AlgoliaSearchError(message);
+}
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var inherits = __webpack_require__(10);
+var IndexCore = __webpack_require__(23);
+var deprecate = __webpack_require__(14);
+var deprecatedMessage = __webpack_require__(15);
+var exitPromise = __webpack_require__(27);
+var errors = __webpack_require__(7);
+
+var deprecateForwardToSlaves = deprecate(
+  function() {},
+  deprecatedMessage('forwardToSlaves', 'forwardToReplicas')
+);
+
+module.exports = Index;
+
+function Index() {
+  IndexCore.apply(this, arguments);
+}
+
+inherits(Index, IndexCore);
+
+/*
+* Add an object in this index
+*
+* @param content contains the javascript object to add inside the index
+* @param objectID (optional) an objectID you want to attribute to this object
+* (if the attribute already exist the old object will be overwrite)
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that contains 3 elements: createAt, taskId and objectID
+*/
+Index.prototype.addObject = function(content, objectID, callback) {
+  var indexObj = this;
+
+  if (arguments.length === 1 || typeof objectID === 'function') {
+    callback = objectID;
+    objectID = undefined;
+  }
+
+  return this.as._jsonRequest({
+    method: objectID !== undefined ?
+    'PUT' : // update or create
+    'POST', // create (API generates an objectID)
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + // create
+    (objectID !== undefined ? '/' + encodeURIComponent(objectID) : ''), // update or create
+    body: content,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Add several objects
+*
+* @param objects contains an array of objects to add
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that updateAt and taskID
+*/
+Index.prototype.addObjects = function(objects, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: index.addObjects(arrayOfObjects[, callback])';
+
+  if (!isArray(objects)) {
+    throw new Error(usage);
+  }
+
+  var indexObj = this;
+  var postObj = {
+    requests: []
+  };
+  for (var i = 0; i < objects.length; ++i) {
+    var request = {
+      action: 'addObject',
+      body: objects[i]
+    };
+    postObj.requests.push(request);
+  }
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Update partially an object (only update attributes passed in argument)
+*
+* @param partialObject contains the javascript attributes to override, the
+*  object must contains an objectID attribute
+* @param createIfNotExists (optional) if false, avoid an automatic creation of the object
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that contains 3 elements: createAt, taskId and objectID
+*/
+Index.prototype.partialUpdateObject = function(partialObject, createIfNotExists, callback) {
+  if (arguments.length === 1 || typeof createIfNotExists === 'function') {
+    callback = createIfNotExists;
+    createIfNotExists = undefined;
+  }
+
+  var indexObj = this;
+  var url = '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(partialObject.objectID) + '/partial';
+  if (createIfNotExists === false) {
+    url += '?createIfNotExists=false';
+  }
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: url,
+    body: partialObject,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Partially Override the content of several objects
+*
+* @param objects contains an array of objects to update (each object must contains a objectID attribute)
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that updateAt and taskID
+*/
+Index.prototype.partialUpdateObjects = function(objects, createIfNotExists, callback) {
+  if (arguments.length === 1 || typeof createIfNotExists === 'function') {
+    callback = createIfNotExists;
+    createIfNotExists = true;
+  }
+
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: index.partialUpdateObjects(arrayOfObjects[, callback])';
+
+  if (!isArray(objects)) {
+    throw new Error(usage);
+  }
+
+  var indexObj = this;
+  var postObj = {
+    requests: []
+  };
+  for (var i = 0; i < objects.length; ++i) {
+    var request = {
+      action: createIfNotExists === true ? 'partialUpdateObject' : 'partialUpdateObjectNoCreate',
+      objectID: objects[i].objectID,
+      body: objects[i]
+    };
+    postObj.requests.push(request);
+  }
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Override the content of object
+*
+* @param object contains the javascript object to save, the object must contains an objectID attribute
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that updateAt and taskID
+*/
+Index.prototype.saveObject = function(object, callback) {
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'PUT',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(object.objectID),
+    body: object,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Override the content of several objects
+*
+* @param objects contains an array of objects to update (each object must contains a objectID attribute)
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that updateAt and taskID
+*/
+Index.prototype.saveObjects = function(objects, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: index.saveObjects(arrayOfObjects[, callback])';
+
+  if (!isArray(objects)) {
+    throw new Error(usage);
+  }
+
+  var indexObj = this;
+  var postObj = {
+    requests: []
+  };
+  for (var i = 0; i < objects.length; ++i) {
+    var request = {
+      action: 'updateObject',
+      objectID: objects[i].objectID,
+      body: objects[i]
+    };
+    postObj.requests.push(request);
+  }
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Delete an object from the index
+*
+* @param objectID the unique identifier of object to delete
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that contains 3 elements: createAt, taskId and objectID
+*/
+Index.prototype.deleteObject = function(objectID, callback) {
+  if (typeof objectID === 'function' || typeof objectID !== 'string' && typeof objectID !== 'number') {
+    var err = new errors.AlgoliaSearchError('Cannot delete an object without an objectID');
+    callback = objectID;
+    if (typeof callback === 'function') {
+      return callback(err);
+    }
+
+    return this.as._promise.reject(err);
+  }
+
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'DELETE',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/' + encodeURIComponent(objectID),
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Delete several objects from an index
+*
+* @param objectIDs contains an array of objectID to delete
+* @param callback (optional) the result callback called with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that contains 3 elements: createAt, taskId and objectID
+*/
+Index.prototype.deleteObjects = function(objectIDs, callback) {
+  var isArray = __webpack_require__(1);
+  var map = __webpack_require__(9);
+
+  var usage = 'Usage: index.deleteObjects(arrayOfObjectIDs[, callback])';
+
+  if (!isArray(objectIDs)) {
+    throw new Error(usage);
+  }
+
+  var indexObj = this;
+  var postObj = {
+    requests: map(objectIDs, function prepareRequest(objectID) {
+      return {
+        action: 'deleteObject',
+        objectID: objectID,
+        body: {
+          objectID: objectID
+        }
+      };
+    })
+  };
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/batch',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Delete all objects matching a query
+*
+* @param query the query string
+* @param params the optional query parameters
+* @param callback (optional) the result callback called with one argument
+*  error: null or Error('message')
+* @deprecated see index.deleteBy
+*/
+Index.prototype.deleteByQuery = deprecate(function(query, params, callback) {
+  var clone = __webpack_require__(5);
+  var map = __webpack_require__(9);
+
+  var indexObj = this;
+  var client = indexObj.as;
+
+  if (arguments.length === 1 || typeof params === 'function') {
+    callback = params;
+    params = {};
+  } else {
+    params = clone(params);
+  }
+
+  params.attributesToRetrieve = 'objectID';
+  params.hitsPerPage = 1000;
+  params.distinct = false;
+
+  // when deleting, we should never use cache to get the
+  // search results
+  this.clearCache();
+
+  // there's a problem in how we use the promise chain,
+  // see how waitTask is done
+  var promise = this
+  .search(query, params)
+  .then(stopOrDelete);
+
+  function stopOrDelete(searchContent) {
+    // stop here
+    if (searchContent.nbHits === 0) {
+      // return indexObj.as._request.resolve();
+      return searchContent;
+    }
+
+    // continue and do a recursive call
+    var objectIDs = map(searchContent.hits, function getObjectID(object) {
+      return object.objectID;
+    });
+
+    return indexObj
+    .deleteObjects(objectIDs)
+    .then(waitTask)
+    .then(doDeleteByQuery);
+  }
+
+  function waitTask(deleteObjectsContent) {
+    return indexObj.waitTask(deleteObjectsContent.taskID);
+  }
+
+  function doDeleteByQuery() {
+    return indexObj.deleteByQuery(query, params);
+  }
+
+  if (!callback) {
+    return promise;
+  }
+
+  promise.then(success, failure);
+
+  function success() {
+    exitPromise(function exit() {
+      callback(null);
+    }, client._setTimeout || setTimeout);
+  }
+
+  function failure(err) {
+    exitPromise(function exit() {
+      callback(err);
+    }, client._setTimeout || setTimeout);
+  }
+}, deprecatedMessage('index.deleteByQuery()', 'index.deleteBy()'));
+
+/**
+* Delete all objects matching a query
+*
+* the query parameters that can be used are:
+* - filters (numeric, facet, tag)
+* - geo
+*
+* you can not send an empty query or filters
+*
+* @param params the optional query parameters
+* @param callback (optional) the result callback called with one argument
+*  error: null or Error('message')
+*/
+Index.prototype.deleteBy = function(params, callback) {
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/deleteByQuery',
+    body: {params: indexObj.as._getSearchParams(params, '')},
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Browse all content from an index using events. Basically this will do
+* .browse() -> .browseFrom -> .browseFrom -> .. until all the results are returned
+*
+* @param {string} query - The full text query
+* @param {Object} [queryParameters] - Any search query parameter
+* @return {EventEmitter}
+* @example
+* var browser = index.browseAll('cool songs', {
+*   tagFilters: 'public,comments',
+*   hitsPerPage: 500
+* });
+*
+* browser.on('result', function resultCallback(content) {
+*   console.log(content.hits);
+* });
+*
+* // if any error occurs, you get it
+* browser.on('error', function(err) {
+*   throw err;
+* });
+*
+* // when you have browsed the whole index, you get this event
+* browser.on('end', function() {
+*   console.log('finished');
+* });
+*
+* // at any point if you want to stop the browsing process, you can stop it manually
+* // otherwise it will go on and on
+* browser.stop();
+*
+* @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
+*/
+Index.prototype.browseAll = function(query, queryParameters) {
+  if (typeof query === 'object') {
+    queryParameters = query;
+    query = undefined;
+  }
+
+  var merge = __webpack_require__(25);
+
+  var IndexBrowser = __webpack_require__(135);
+
+  var browser = new IndexBrowser();
+  var client = this.as;
+  var index = this;
+  var params = client._getSearchParams(
+    merge({}, queryParameters || {}, {
+      query: query
+    }), ''
+  );
+
+  // start browsing
+  browseLoop();
+
+  function browseLoop(cursor) {
+    if (browser._stopped) {
+      return;
+    }
+
+    var body;
+
+    if (cursor !== undefined) {
+      body = {
+        cursor: cursor
+      };
+    } else {
+      body = {
+        params: params
+      };
+    }
+
+    client._jsonRequest({
+      method: 'POST',
+      url: '/1/indexes/' + encodeURIComponent(index.indexName) + '/browse',
+      hostType: 'read',
+      body: body,
+      callback: browseCallback
+    });
+  }
+
+  function browseCallback(err, content) {
+    if (browser._stopped) {
+      return;
+    }
+
+    if (err) {
+      browser._error(err);
+      return;
+    }
+
+    browser._result(content);
+
+    // no cursor means we are finished browsing
+    if (content.cursor === undefined) {
+      browser._end();
+      return;
+    }
+
+    browseLoop(content.cursor);
+  }
+
+  return browser;
+};
+
+/*
+* Get a Typeahead.js adapter
+* @param searchParams contains an object with query parameters (see search for details)
+*/
+Index.prototype.ttAdapter = deprecate(function(params) {
+  var self = this;
+  return function ttAdapter(query, syncCb, asyncCb) {
+    var cb;
+
+    if (typeof asyncCb === 'function') {
+      // typeahead 0.11
+      cb = asyncCb;
+    } else {
+      // pre typeahead 0.11
+      cb = syncCb;
+    }
+
+    self.search(query, params, function searchDone(err, content) {
+      if (err) {
+        cb(err);
+        return;
+      }
+
+      cb(content.hits);
+    });
+  };
+},
+'ttAdapter is not necessary anymore and will be removed in the next version,\n' +
+'have a look at autocomplete.js (https://github.com/algolia/autocomplete.js)');
+
+/*
+* Wait the publication of a task on the server.
+* All server task are asynchronous and you can check with this method that the task is published.
+*
+* @param taskID the id of the task returned by server
+* @param callback the result callback with with two arguments:
+*  error: null or Error('message')
+*  content: the server answer that contains the list of results
+*/
+Index.prototype.waitTask = function(taskID, callback) {
+  // wait minimum 100ms before retrying
+  var baseDelay = 100;
+  // wait maximum 5s before retrying
+  var maxDelay = 5000;
+  var loop = 0;
+
+  // waitTask() must be handled differently from other methods,
+  // it's a recursive method using a timeout
+  var indexObj = this;
+  var client = indexObj.as;
+
+  var promise = retryLoop();
+
+  function retryLoop() {
+    return client._jsonRequest({
+      method: 'GET',
+      hostType: 'read',
+      url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/task/' + taskID
+    }).then(function success(content) {
+      loop++;
+      var delay = baseDelay * loop * loop;
+      if (delay > maxDelay) {
+        delay = maxDelay;
+      }
+
+      if (content.status !== 'published') {
+        return client._promise.delay(delay).then(retryLoop);
+      }
+
+      return content;
+    });
+  }
+
+  if (!callback) {
+    return promise;
+  }
+
+  promise.then(successCb, failureCb);
+
+  function successCb(content) {
+    exitPromise(function exit() {
+      callback(null, content);
+    }, client._setTimeout || setTimeout);
+  }
+
+  function failureCb(err) {
+    exitPromise(function exit() {
+      callback(err);
+    }, client._setTimeout || setTimeout);
+  }
+};
+
+/*
+* This function deletes the index content. Settings and index specific API keys are kept untouched.
+*
+* @param callback (optional) the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the settings object or the error message if a failure occured
+*/
+Index.prototype.clearIndex = function(callback) {
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/clear',
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+/*
+* Get settings of this index
+*
+* @param opts an object of options to add
+* @param opts.advanced get more settings like nbShards (useful for Enterprise)
+* @param callback (optional) the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the settings object or the error message if a failure occurred
+*/
+Index.prototype.getSettings = function(opts, callback) {
+  if (arguments.length === 1 && typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  }
+  opts = opts || {};
+
+  var indexName = encodeURIComponent(this.indexName);
+  return this.as._jsonRequest({
+    method: 'GET',
+    url:
+      '/1/indexes/' +
+      indexName +
+      '/settings?getVersion=2' +
+      (opts.advanced ? '&advanced=' + opts.advanced : ''),
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+Index.prototype.searchSynonyms = function(params, callback) {
+  if (typeof params === 'function') {
+    callback = params;
+    params = {};
+  } else if (params === undefined) {
+    params = {};
+  }
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/search',
+    body: params,
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+function exportData(method, _hitsPerPage, callback) {
+  function search(page, _previous) {
+    var options = {
+      page: page || 0,
+      hitsPerPage: _hitsPerPage || 100
+    };
+    var previous = _previous || [];
+
+    return method(options).then(function(result) {
+      var hits = result.hits;
+      var nbHits = result.nbHits;
+      var current = hits.map(function(s) {
+        delete s._highlightResult;
+        return s;
+      });
+      var synonyms = previous.concat(current);
+      if (synonyms.length < nbHits) {
+        return search(options.page + 1, synonyms);
+      }
+      return synonyms;
+    });
+  }
+  return search().then(function(data) {
+    if (typeof callback === 'function') {
+      callback(data);
+      return undefined;
+    }
+    return data;
+  });
+}
+
+/**
+ * Retrieve all the synonyms in an index
+ * @param [number=100] hitsPerPage The amount of synonyms to retrieve per batch
+ * @param [function] callback will be called after all synonyms are retrieved
+ */
+Index.prototype.exportSynonyms = function(hitsPerPage, callback) {
+  return exportData(this.searchSynonyms.bind(this), hitsPerPage, callback);
+};
+
+Index.prototype.saveSynonym = function(synonym, opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
+  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'PUT',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/' + encodeURIComponent(synonym.objectID) +
+      '?forwardToReplicas=' + forwardToReplicas,
+    body: synonym,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+Index.prototype.getSynonym = function(objectID, callback) {
+  return this.as._jsonRequest({
+    method: 'GET',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/' + encodeURIComponent(objectID),
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+Index.prototype.deleteSynonym = function(objectID, opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
+  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'DELETE',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/' + encodeURIComponent(objectID) +
+      '?forwardToReplicas=' + forwardToReplicas,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+Index.prototype.clearSynonyms = function(opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
+  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/clear' +
+      '?forwardToReplicas=' + forwardToReplicas,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+Index.prototype.batchSynonyms = function(synonyms, opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
+  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/synonyms/batch' +
+      '?forwardToReplicas=' + forwardToReplicas +
+      '&replaceExistingSynonyms=' + (opts.replaceExistingSynonyms ? 'true' : 'false'),
+    hostType: 'write',
+    body: synonyms,
+    callback: callback
+  });
+};
+
+Index.prototype.searchRules = function(params, callback) {
+  if (typeof params === 'function') {
+    callback = params;
+    params = {};
+  } else if (params === undefined) {
+    params = {};
+  }
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/search',
+    body: params,
+    hostType: 'read',
+    callback: callback
+  });
+};
+/**
+ * Retrieve all the query rules in an index
+ * @param [number=100] hitsPerPage The amount of query rules to retrieve per batch
+ * @param [function] callback will be called after all query rules are retrieved
+ *  error: null or Error('message')
+ */
+Index.prototype.exportRules = function(hitsPerPage, callback) {
+  return exportData(this.searchRules.bind(this), hitsPerPage, callback);
+};
+
+Index.prototype.saveRule = function(rule, opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  if (!rule.objectID) {
+    throw new errors.AlgoliaSearchError('Missing or empty objectID field for rule');
+  }
+
+  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'PUT',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/' + encodeURIComponent(rule.objectID) +
+      '?forwardToReplicas=' + forwardToReplicas,
+    body: rule,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+Index.prototype.getRule = function(objectID, callback) {
+  return this.as._jsonRequest({
+    method: 'GET',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/' + encodeURIComponent(objectID),
+    hostType: 'read',
+    callback: callback
+  });
+};
+
+Index.prototype.deleteRule = function(objectID, opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'DELETE',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/' + encodeURIComponent(objectID) +
+      '?forwardToReplicas=' + forwardToReplicas,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+Index.prototype.clearRules = function(opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/clear' +
+      '?forwardToReplicas=' + forwardToReplicas,
+    hostType: 'write',
+    callback: callback
+  });
+};
+
+Index.prototype.batchRules = function(rules, opts, callback) {
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  var forwardToReplicas = opts.forwardToReplicas === true ? 'true' : 'false';
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/rules/batch' +
+      '?forwardToReplicas=' + forwardToReplicas +
+      '&clearExistingRules=' + (opts.clearExistingRules === true ? 'true' : 'false'),
+    hostType: 'write',
+    body: rules,
+    callback: callback
+  });
+};
+
+/*
+* Set settings for this index
+*
+* @param settigns the settings object that can contains :
+* - minWordSizefor1Typo: (integer) the minimum number of characters to accept one typo (default = 3).
+* - minWordSizefor2Typos: (integer) the minimum number of characters to accept two typos (default = 7).
+* - hitsPerPage: (integer) the number of hits per page (default = 10).
+* - attributesToRetrieve: (array of strings) default list of attributes to retrieve in objects.
+*   If set to null, all attributes are retrieved.
+* - attributesToHighlight: (array of strings) default list of attributes to highlight.
+*   If set to null, all indexed attributes are highlighted.
+* - attributesToSnippet**: (array of strings) default list of attributes to snippet alongside the number
+* of words to return (syntax is attributeName:nbWords).
+*   By default no snippet is computed. If set to null, no snippet is computed.
+* - attributesToIndex: (array of strings) the list of fields you want to index.
+*   If set to null, all textual and numerical attributes of your objects are indexed,
+*   but you should update it to get optimal results.
+*   This parameter has two important uses:
+*     - Limit the attributes to index: For example if you store a binary image in base64,
+*     you want to store it and be able to
+*       retrieve it but you don't want to search in the base64 string.
+*     - Control part of the ranking*: (see the ranking parameter for full explanation)
+*     Matches in attributes at the beginning of
+*       the list will be considered more important than matches in attributes further down the list.
+*       In one attribute, matching text at the beginning of the attribute will be
+*       considered more important than text after, you can disable
+*       this behavior if you add your attribute inside `unordered(AttributeName)`,
+*       for example attributesToIndex: ["title", "unordered(text)"].
+* - attributesForFaceting: (array of strings) The list of fields you want to use for faceting.
+*   All strings in the attribute selected for faceting are extracted and added as a facet.
+*   If set to null, no attribute is used for faceting.
+* - attributeForDistinct: (string) The attribute name used for the Distinct feature.
+* This feature is similar to the SQL "distinct" keyword: when enabled
+*   in query with the distinct=1 parameter, all hits containing a duplicate
+*   value for this attribute are removed from results.
+*   For example, if the chosen attribute is show_name and several hits have
+*   the same value for show_name, then only the best one is kept and others are removed.
+* - ranking: (array of strings) controls the way results are sorted.
+*   We have six available criteria:
+*    - typo: sort according to number of typos,
+*    - geo: sort according to decreassing distance when performing a geo-location based search,
+*    - proximity: sort according to the proximity of query words in hits,
+*    - attribute: sort according to the order of attributes defined by attributesToIndex,
+*    - exact:
+*        - if the user query contains one word: sort objects having an attribute
+*        that is exactly the query word before others.
+*          For example if you search for the "V" TV show, you want to find it
+*          with the "V" query and avoid to have all popular TV
+*          show starting by the v letter before it.
+*        - if the user query contains multiple words: sort according to the
+*        number of words that matched exactly (and not as a prefix).
+*    - custom: sort according to a user defined formula set in **customRanking** attribute.
+*   The standard order is ["typo", "geo", "proximity", "attribute", "exact", "custom"]
+* - customRanking: (array of strings) lets you specify part of the ranking.
+*   The syntax of this condition is an array of strings containing attributes
+*   prefixed by asc (ascending order) or desc (descending order) operator.
+*   For example `"customRanking" => ["desc(population)", "asc(name)"]`
+* - queryType: Select how the query words are interpreted, it can be one of the following value:
+*   - prefixAll: all query words are interpreted as prefixes,
+*   - prefixLast: only the last word is interpreted as a prefix (default behavior),
+*   - prefixNone: no query word is interpreted as a prefix. This option is not recommended.
+* - highlightPreTag: (string) Specify the string that is inserted before
+* the highlighted parts in the query result (default to "<em>").
+* - highlightPostTag: (string) Specify the string that is inserted after
+* the highlighted parts in the query result (default to "</em>").
+* - optionalWords: (array of strings) Specify a list of words that should
+* be considered as optional when found in the query.
+* @param callback (optional) the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the server answer or the error message if a failure occured
+*/
+Index.prototype.setSettings = function(settings, opts, callback) {
+  if (arguments.length === 1 || typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  }
+
+  if (opts.forwardToSlaves !== undefined) deprecateForwardToSlaves();
+  var forwardToReplicas = (opts.forwardToSlaves || opts.forwardToReplicas) ? 'true' : 'false';
+
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'PUT',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/settings?forwardToReplicas='
+      + forwardToReplicas,
+    hostType: 'write',
+    body: settings,
+    callback: callback
+  });
+};
+
+/*
+* @deprecated see client.listApiKeys()
+*/
+Index.prototype.listUserKeys = deprecate(function(callback) {
+  return this.listApiKeys(callback);
+}, deprecatedMessage('index.listUserKeys()', 'client.listApiKeys()'));
+
+/*
+* List all existing API keys to this index
+*
+* @param callback the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the server answer with API keys belonging to the index
+*
+* @deprecated see client.listApiKeys()
+*/
+Index.prototype.listApiKeys = deprecate(function(callback) {
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'GET',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/keys',
+    hostType: 'read',
+    callback: callback
+  });
+}, deprecatedMessage('index.listApiKeys()', 'client.listApiKeys()'));
+
+/*
+* @deprecated see client.getApiKey()
+*/
+Index.prototype.getUserKeyACL = deprecate(function(key, callback) {
+  return this.getApiKey(key, callback);
+}, deprecatedMessage('index.getUserKeyACL()', 'client.getApiKey()'));
+
+
+/*
+* Get an API key from this index
+*
+* @param key
+* @param callback the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the server answer with the right API key
+*
+* @deprecated see client.getApiKey()
+*/
+Index.prototype.getApiKey = deprecate(function(key, callback) {
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'GET',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/keys/' + key,
+    hostType: 'read',
+    callback: callback
+  });
+}, deprecatedMessage('index.getApiKey()', 'client.getApiKey()'));
+
+/*
+* @deprecated see client.deleteApiKey()
+*/
+Index.prototype.deleteUserKey = deprecate(function(key, callback) {
+  return this.deleteApiKey(key, callback);
+}, deprecatedMessage('index.deleteUserKey()', 'client.deleteApiKey()'));
+
+/*
+* Delete an existing API key associated to this index
+*
+* @param key
+* @param callback the result callback called with two arguments
+*  error: null or Error('message')
+*  content: the server answer with the deletion date
+*
+* @deprecated see client.deleteApiKey()
+*/
+Index.prototype.deleteApiKey = deprecate(function(key, callback) {
+  var indexObj = this;
+  return this.as._jsonRequest({
+    method: 'DELETE',
+    url: '/1/indexes/' + encodeURIComponent(indexObj.indexName) + '/keys/' + key,
+    hostType: 'write',
+    callback: callback
+  });
+}, deprecatedMessage('index.deleteApiKey()', 'client.deleteApiKey()'));
+
+/*
+* @deprecated see client.addApiKey()
+*/
+Index.prototype.addUserKey = deprecate(function(acls, params, callback) {
+  return this.addApiKey(acls, params, callback);
+}, deprecatedMessage('index.addUserKey()', 'client.addApiKey()'));
+
+/*
+* Add a new API key to this index
+*
+* @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
+*   can contains the following values:
+*     - search: allow to search (https and http)
+*     - addObject: allows to add/update an object in the index (https only)
+*     - deleteObject : allows to delete an existing object (https only)
+*     - deleteIndex : allows to delete index content (https only)
+*     - settings : allows to get index settings (https only)
+*     - editSettings : allows to change index settings (https only)
+* @param {Object} [params] - Optionnal parameters to set for the key
+* @param {number} params.validity - Number of seconds after which the key will
+* be automatically removed (0 means no time limit for this key)
+* @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
+* @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
+* @param {string} params.description - A description for your key
+* @param {string[]} params.referers - A list of authorized referers
+* @param {Object} params.queryParameters - Force the key to use specific query parameters
+* @param {Function} callback - The result callback called with two arguments
+*   error: null or Error('message')
+*   content: the server answer with the added API key
+* @return {Promise|undefined} Returns a promise if no callback given
+* @example
+* index.addUserKey(['search'], {
+*   validity: 300,
+*   maxQueriesPerIPPerHour: 2000,
+*   maxHitsPerQuery: 3,
+*   description: 'Eat three fruits',
+*   referers: ['*.algolia.com'],
+*   queryParameters: {
+*     tagFilters: ['public'],
+*   }
+* })
+* @see {@link https://www.algolia.com/doc/rest_api#AddIndexKey|Algolia REST API Documentation}
+*
+* @deprecated see client.addApiKey()
+*/
+Index.prototype.addApiKey = deprecate(function(acls, params, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: index.addApiKey(arrayOfAcls[, params, callback])';
+
+  if (!isArray(acls)) {
+    throw new Error(usage);
+  }
+
+  if (arguments.length === 1 || typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
+
+  var postObj = {
+    acl: acls
+  };
+
+  if (params) {
+    postObj.validity = params.validity;
+    postObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
+    postObj.maxHitsPerQuery = params.maxHitsPerQuery;
+    postObj.description = params.description;
+
+    if (params.queryParameters) {
+      postObj.queryParameters = this.as._getSearchParams(params.queryParameters, '');
+    }
+
+    postObj.referers = params.referers;
+  }
+
+  return this.as._jsonRequest({
+    method: 'POST',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/keys',
+    body: postObj,
+    hostType: 'write',
+    callback: callback
+  });
+}, deprecatedMessage('index.addApiKey()', 'client.addApiKey()'));
+
+/**
+* @deprecated use client.addApiKey()
+*/
+Index.prototype.addUserKeyWithValidity = deprecate(function deprecatedAddUserKeyWithValidity(acls, params, callback) {
+  return this.addApiKey(acls, params, callback);
+}, deprecatedMessage('index.addUserKeyWithValidity()', 'client.addApiKey()'));
+
+/*
+* @deprecated see client.updateApiKey()
+*/
+Index.prototype.updateUserKey = deprecate(function(key, acls, params, callback) {
+  return this.updateApiKey(key, acls, params, callback);
+}, deprecatedMessage('index.updateUserKey()', 'client.updateApiKey()'));
+
+/**
+* Update an existing API key of this index
+* @param {string} key - The key to update
+* @param {string[]} acls - The list of ACL for this key. Defined by an array of strings that
+*   can contains the following values:
+*     - search: allow to search (https and http)
+*     - addObject: allows to add/update an object in the index (https only)
+*     - deleteObject : allows to delete an existing object (https only)
+*     - deleteIndex : allows to delete index content (https only)
+*     - settings : allows to get index settings (https only)
+*     - editSettings : allows to change index settings (https only)
+* @param {Object} [params] - Optionnal parameters to set for the key
+* @param {number} params.validity - Number of seconds after which the key will
+* be automatically removed (0 means no time limit for this key)
+* @param {number} params.maxQueriesPerIPPerHour - Number of API calls allowed from an IP address per hour
+* @param {number} params.maxHitsPerQuery - Number of hits this API key can retrieve in one call
+* @param {string} params.description - A description for your key
+* @param {string[]} params.referers - A list of authorized referers
+* @param {Object} params.queryParameters - Force the key to use specific query parameters
+* @param {Function} callback - The result callback called with two arguments
+*   error: null or Error('message')
+*   content: the server answer with user keys list
+* @return {Promise|undefined} Returns a promise if no callback given
+* @example
+* index.updateApiKey('APIKEY', ['search'], {
+*   validity: 300,
+*   maxQueriesPerIPPerHour: 2000,
+*   maxHitsPerQuery: 3,
+*   description: 'Eat three fruits',
+*   referers: ['*.algolia.com'],
+*   queryParameters: {
+*     tagFilters: ['public'],
+*   }
+* })
+* @see {@link https://www.algolia.com/doc/rest_api#UpdateIndexKey|Algolia REST API Documentation}
+*
+* @deprecated see client.updateApiKey()
+*/
+Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
+  var isArray = __webpack_require__(1);
+  var usage = 'Usage: index.updateApiKey(key, arrayOfAcls[, params, callback])';
+
+  if (!isArray(acls)) {
+    throw new Error(usage);
+  }
+
+  if (arguments.length === 2 || typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
+
+  var putObj = {
+    acl: acls
+  };
+
+  if (params) {
+    putObj.validity = params.validity;
+    putObj.maxQueriesPerIPPerHour = params.maxQueriesPerIPPerHour;
+    putObj.maxHitsPerQuery = params.maxHitsPerQuery;
+    putObj.description = params.description;
+
+    if (params.queryParameters) {
+      putObj.queryParameters = this.as._getSearchParams(params.queryParameters, '');
+    }
+
+    putObj.referers = params.referers;
+  }
+
+  return this.as._jsonRequest({
+    method: 'PUT',
+    url: '/1/indexes/' + encodeURIComponent(this.indexName) + '/keys/' + key,
+    body: putObj,
+    hostType: 'write',
+    callback: callback
+  });
+}, deprecatedMessage('index.updateApiKey()', 'client.updateApiKey()'));
+
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// modified from https://github.com/es-shims/es5-shim
+var has = Object.prototype.hasOwnProperty;
+var toStr = Object.prototype.toString;
+var slice = Array.prototype.slice;
+var isArgs = __webpack_require__(134);
+var isEnumerable = Object.prototype.propertyIsEnumerable;
+var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
+var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
+var dontEnums = [
+	'toString',
+	'toLocaleString',
+	'valueOf',
+	'hasOwnProperty',
+	'isPrototypeOf',
+	'propertyIsEnumerable',
+	'constructor'
+];
+var equalsConstructorPrototype = function (o) {
+	var ctor = o.constructor;
+	return ctor && ctor.prototype === o;
+};
+var excludedKeys = {
+	$console: true,
+	$external: true,
+	$frame: true,
+	$frameElement: true,
+	$frames: true,
+	$innerHeight: true,
+	$innerWidth: true,
+	$outerHeight: true,
+	$outerWidth: true,
+	$pageXOffset: true,
+	$pageYOffset: true,
+	$parent: true,
+	$scrollLeft: true,
+	$scrollTop: true,
+	$scrollX: true,
+	$scrollY: true,
+	$self: true,
+	$webkitIndexedDB: true,
+	$webkitStorageInfo: true,
+	$window: true
+};
+var hasAutomationEqualityBug = (function () {
+	/* global window */
+	if (typeof window === 'undefined') { return false; }
+	for (var k in window) {
+		try {
+			if (!excludedKeys['$' + k] && has.call(window, k) && window[k] !== null && typeof window[k] === 'object') {
+				try {
+					equalsConstructorPrototype(window[k]);
+				} catch (e) {
+					return true;
+				}
+			}
+		} catch (e) {
+			return true;
+		}
+	}
+	return false;
+}());
+var equalsConstructorPrototypeIfNotBuggy = function (o) {
+	/* global window */
+	if (typeof window === 'undefined' || !hasAutomationEqualityBug) {
+		return equalsConstructorPrototype(o);
+	}
+	try {
+		return equalsConstructorPrototype(o);
+	} catch (e) {
+		return false;
+	}
+};
+
+var keysShim = function keys(object) {
+	var isObject = object !== null && typeof object === 'object';
+	var isFunction = toStr.call(object) === '[object Function]';
+	var isArguments = isArgs(object);
+	var isString = isObject && toStr.call(object) === '[object String]';
+	var theKeys = [];
+
+	if (!isObject && !isFunction && !isArguments) {
+		throw new TypeError('Object.keys called on a non-object');
+	}
+
+	var skipProto = hasProtoEnumBug && isFunction;
+	if (isString && object.length > 0 && !has.call(object, 0)) {
+		for (var i = 0; i < object.length; ++i) {
+			theKeys.push(String(i));
+		}
+	}
+
+	if (isArguments && object.length > 0) {
+		for (var j = 0; j < object.length; ++j) {
+			theKeys.push(String(j));
+		}
+	} else {
+		for (var name in object) {
+			if (!(skipProto && name === 'prototype') && has.call(object, name)) {
+				theKeys.push(String(name));
+			}
+		}
+	}
+
+	if (hasDontEnumBug) {
+		var skipConstructor = equalsConstructorPrototypeIfNotBuggy(object);
+
+		for (var k = 0; k < dontEnums.length; ++k) {
+			if (!(skipConstructor && dontEnums[k] === 'constructor') && has.call(object, dontEnums[k])) {
+				theKeys.push(dontEnums[k]);
+			}
+		}
+	}
+	return theKeys;
+};
+
+keysShim.shim = function shimObjectKeys() {
+	if (Object.keys) {
+		var keysWorksWithArguments = (function () {
+			// Safari 5.0 bug
+			return (Object.keys(arguments) || '').length === 2;
+		}(1, 2));
+		if (!keysWorksWithArguments) {
+			var originalKeys = Object.keys;
+			Object.keys = function keys(object) {
+				if (isArgs(object)) {
+					return originalKeys(slice.call(object));
+				} else {
+					return originalKeys(object);
+				}
+			};
+		}
+	} else {
+		Object.keys = keysShim;
+	}
+	return Object.keys || keysShim;
+};
+
+module.exports = keysShim;
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var toStr = Object.prototype.toString;
+
+module.exports = function isArguments(value) {
+	var str = toStr.call(value);
+	var isArgs = str === '[object Arguments]';
+	if (!isArgs) {
+		isArgs = str !== '[object Array]' &&
+			value !== null &&
+			typeof value === 'object' &&
+			typeof value.length === 'number' &&
+			value.length >= 0 &&
+			toStr.call(value.callee) === '[object Function]';
+	}
+	return isArgs;
+};
+
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// This is the object returned by the `index.browseAll()` method
+
+module.exports = IndexBrowser;
+
+var inherits = __webpack_require__(10);
+var EventEmitter = __webpack_require__(136).EventEmitter;
+
+function IndexBrowser() {
+}
+
+inherits(IndexBrowser, EventEmitter);
+
+IndexBrowser.prototype.stop = function() {
+  this._stopped = true;
+  this._clean();
+};
+
+IndexBrowser.prototype._end = function() {
+  this.emit('end');
+  this._clean();
+};
+
+IndexBrowser.prototype._error = function(err) {
+  this.emit('error', err);
+  this._clean();
+};
+
+IndexBrowser.prototype._result = function(content) {
+  this.emit('result', content);
+};
+
+IndexBrowser.prototype._clean = function() {
+  this.removeAllListeners('stop');
+  this.removeAllListeners('end');
+  this.removeAllListeners('error');
+  this.removeAllListeners('result');
+};
+
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports) {
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      } else {
+        // At least give some kind of context to the user
+        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+        err.context = er;
+        throw err;
+      }
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        args = Array.prototype.slice.call(arguments, 1);
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    args = Array.prototype.slice.call(arguments, 1);
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else if (listeners) {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.prototype.listenerCount = function(type) {
+  if (this._events) {
+    var evlistener = this._events[type];
+
+    if (isFunction(evlistener))
+      return 1;
+    else if (evlistener)
+      return evlistener.length;
+  }
+  return 0;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  return emitter.listenerCount(type);
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = AlgoliaSearchCore;
+
+var errors = __webpack_require__(7);
+var exitPromise = __webpack_require__(27);
+var IndexCore = __webpack_require__(23);
+var store = __webpack_require__(138);
+
+// We will always put the API KEY in the JSON body in case of too long API KEY,
+// to avoid query string being too long and failing in various conditions (our server limit, browser limit,
+// proxies limit)
+var MAX_API_KEY_LENGTH = 500;
+var RESET_APP_DATA_TIMER =
+  Object({"NODE_ENV":"development"}).RESET_APP_DATA_TIMER && parseInt(Object({"NODE_ENV":"development"}).RESET_APP_DATA_TIMER, 10) ||
+  60 * 2 * 1000; // after 2 minutes reset to first host
+
+/*
+ * Algolia Search library initialization
+ * https://www.algolia.com/
+ *
+ * @param {string} applicationID - Your applicationID, found in your dashboard
+ * @param {string} apiKey - Your API key, found in your dashboard
+ * @param {Object} [opts]
+ * @param {number} [opts.timeout=2000] - The request timeout set in milliseconds,
+ * another request will be issued after this timeout
+ * @param {string} [opts.protocol='https:'] - The protocol used to query Algolia Search API.
+ *                                        Set to 'http:' to force using http.
+ * @param {Object|Array} [opts.hosts={
+ *           read: [this.applicationID + '-dsn.algolia.net'].concat([
+ *             this.applicationID + '-1.algolianet.com',
+ *             this.applicationID + '-2.algolianet.com',
+ *             this.applicationID + '-3.algolianet.com']
+ *           ]),
+ *           write: [this.applicationID + '.algolia.net'].concat([
+ *             this.applicationID + '-1.algolianet.com',
+ *             this.applicationID + '-2.algolianet.com',
+ *             this.applicationID + '-3.algolianet.com']
+ *           ]) - The hosts to use for Algolia Search API.
+ *           If you provide them, you will less benefit from our HA implementation
+ */
+function AlgoliaSearchCore(applicationID, apiKey, opts) {
+  var debug = __webpack_require__(12)('algoliasearch');
+
+  var clone = __webpack_require__(5);
+  var isArray = __webpack_require__(1);
+  var map = __webpack_require__(9);
+
+  var usage = 'Usage: algoliasearch(applicationID, apiKey, opts)';
+
+  if (opts._allowEmptyCredentials !== true && !applicationID) {
+    throw new errors.AlgoliaSearchError('Please provide an application ID. ' + usage);
+  }
+
+  if (opts._allowEmptyCredentials !== true && !apiKey) {
+    throw new errors.AlgoliaSearchError('Please provide an API key. ' + usage);
+  }
+
+  this.applicationID = applicationID;
+  this.apiKey = apiKey;
+
+  this.hosts = {
+    read: [],
+    write: []
+  };
+
+  opts = opts || {};
+
+  this._timeouts = opts.timeouts || {
+    connect: 1 * 1000, // 500ms connect is GPRS latency
+    read: 2 * 1000,
+    write: 30 * 1000
+  };
+
+  // backward compat, if opts.timeout is passed, we use it to configure all timeouts like before
+  if (opts.timeout) {
+    this._timeouts.connect = this._timeouts.read = this._timeouts.write = opts.timeout;
+  }
+
+  var protocol = opts.protocol || 'https:';
+  // while we advocate for colon-at-the-end values: 'http:' for `opts.protocol`
+  // we also accept `http` and `https`. It's a common error.
+  if (!/:$/.test(protocol)) {
+    protocol = protocol + ':';
+  }
+
+  if (protocol !== 'http:' && protocol !== 'https:') {
+    throw new errors.AlgoliaSearchError('protocol must be `http:` or `https:` (was `' + opts.protocol + '`)');
+  }
+
+  this._checkAppIdData();
+
+  if (!opts.hosts) {
+    var defaultHosts = map(this._shuffleResult, function(hostNumber) {
+      return applicationID + '-' + hostNumber + '.algolianet.com';
+    });
+
+    // no hosts given, compute defaults
+    var mainSuffix = (opts.dsn === false ? '' : '-dsn') + '.algolia.net';
+    this.hosts.read = [this.applicationID + mainSuffix].concat(defaultHosts);
+    this.hosts.write = [this.applicationID + '.algolia.net'].concat(defaultHosts);
+  } else if (isArray(opts.hosts)) {
+    // when passing custom hosts, we need to have a different host index if the number
+    // of write/read hosts are different.
+    this.hosts.read = clone(opts.hosts);
+    this.hosts.write = clone(opts.hosts);
+  } else {
+    this.hosts.read = clone(opts.hosts.read);
+    this.hosts.write = clone(opts.hosts.write);
+  }
+
+  // add protocol and lowercase hosts
+  this.hosts.read = map(this.hosts.read, prepareHost(protocol));
+  this.hosts.write = map(this.hosts.write, prepareHost(protocol));
+
+  this.extraHeaders = {};
+
+  // In some situations you might want to warm the cache
+  this.cache = opts._cache || {};
+
+  this._ua = opts._ua;
+  this._useCache = opts._useCache === undefined || opts._cache ? true : opts._useCache;
+  this._useRequestCache = this._useCache && opts._useRequestCache;
+  this._useFallback = opts.useFallback === undefined ? true : opts.useFallback;
+
+  this._setTimeout = opts._setTimeout;
+
+  debug('init done, %j', this);
+}
+
+/*
+ * Get the index object initialized
+ *
+ * @param indexName the name of index
+ * @param callback the result callback with one argument (the Index instance)
+ */
+AlgoliaSearchCore.prototype.initIndex = function(indexName) {
+  return new IndexCore(this, indexName);
+};
+
+/**
+* Add an extra field to the HTTP request
+*
+* @param name the header field name
+* @param value the header field value
+*/
+AlgoliaSearchCore.prototype.setExtraHeader = function(name, value) {
+  this.extraHeaders[name.toLowerCase()] = value;
+};
+
+/**
+* Get the value of an extra HTTP header
+*
+* @param name the header field name
+*/
+AlgoliaSearchCore.prototype.getExtraHeader = function(name) {
+  return this.extraHeaders[name.toLowerCase()];
+};
+
+/**
+* Remove an extra field from the HTTP request
+*
+* @param name the header field name
+*/
+AlgoliaSearchCore.prototype.unsetExtraHeader = function(name) {
+  delete this.extraHeaders[name.toLowerCase()];
+};
+
+/**
+* Augment sent x-algolia-agent with more data, each agent part
+* is automatically separated from the others by a semicolon;
+*
+* @param algoliaAgent the agent to add
+*/
+AlgoliaSearchCore.prototype.addAlgoliaAgent = function(algoliaAgent) {
+  if (this._ua.indexOf(';' + algoliaAgent) === -1) {
+    this._ua += ';' + algoliaAgent;
+  }
+};
+
+/*
+ * Wrapper that try all hosts to maximize the quality of service
+ */
+AlgoliaSearchCore.prototype._jsonRequest = function(initialOpts) {
+  this._checkAppIdData();
+
+  var requestDebug = __webpack_require__(12)('algoliasearch:' + initialOpts.url);
+
+
+  var body;
+  var cacheID;
+  var additionalUA = initialOpts.additionalUA || '';
+  var cache = initialOpts.cache;
+  var client = this;
+  var tries = 0;
+  var usingFallback = false;
+  var hasFallback = client._useFallback && client._request.fallback && initialOpts.fallback;
+  var headers;
+
+  if (
+    this.apiKey.length > MAX_API_KEY_LENGTH &&
+    initialOpts.body !== undefined &&
+    (initialOpts.body.params !== undefined || // index.search()
+    initialOpts.body.requests !== undefined) // client.search()
+  ) {
+    initialOpts.body.apiKey = this.apiKey;
+    headers = this._computeRequestHeaders({
+      additionalUA: additionalUA,
+      withApiKey: false,
+      headers: initialOpts.headers
+    });
+  } else {
+    headers = this._computeRequestHeaders({
+      additionalUA: additionalUA,
+      headers: initialOpts.headers
+    });
+  }
+
+  if (initialOpts.body !== undefined) {
+    body = safeJSONStringify(initialOpts.body);
+  }
+
+  requestDebug('request start');
+  var debugData = [];
+
+
+  function doRequest(requester, reqOpts) {
+    client._checkAppIdData();
+
+    var startTime = new Date();
+
+    if (client._useCache && !client._useRequestCache) {
+      cacheID = initialOpts.url;
+    }
+
+    // as we sometime use POST requests to pass parameters (like query='aa'),
+    // the cacheID must also include the body to be different between calls
+    if (client._useCache && !client._useRequestCache && body) {
+      cacheID += '_body_' + reqOpts.body;
+    }
+
+    // handle cache existence
+    if (isCacheValidWithCurrentID(!client._useRequestCache, cache, cacheID)) {
+      requestDebug('serving response from cache');
+
+      var responseText = cache[cacheID];
+
+      // Cache response must match the type of the original one
+      return client._promise.resolve({
+        body: JSON.parse(responseText),
+        responseText: responseText
+      });
+    }
+
+    // if we reached max tries
+    if (tries >= client.hosts[initialOpts.hostType].length) {
+      if (!hasFallback || usingFallback) {
+        requestDebug('could not get any response');
+        // then stop
+        return client._promise.reject(new errors.AlgoliaSearchError(
+          'Cannot connect to the AlgoliaSearch API.' +
+          ' Send an email to support@algolia.com to report and resolve the issue.' +
+          ' Application id was: ' + client.applicationID, {debugData: debugData}
+        ));
+      }
+
+      requestDebug('switching to fallback');
+
+      // let's try the fallback starting from here
+      tries = 0;
+
+      // method, url and body are fallback dependent
+      reqOpts.method = initialOpts.fallback.method;
+      reqOpts.url = initialOpts.fallback.url;
+      reqOpts.jsonBody = initialOpts.fallback.body;
+      if (reqOpts.jsonBody) {
+        reqOpts.body = safeJSONStringify(reqOpts.jsonBody);
+      }
+      // re-compute headers, they could be omitting the API KEY
+      headers = client._computeRequestHeaders({
+        additionalUA: additionalUA,
+        headers: initialOpts.headers
+      });
+
+      reqOpts.timeouts = client._getTimeoutsForRequest(initialOpts.hostType);
+      client._setHostIndexByType(0, initialOpts.hostType);
+      usingFallback = true; // the current request is now using fallback
+      return doRequest(client._request.fallback, reqOpts);
+    }
+
+    var currentHost = client._getHostByType(initialOpts.hostType);
+
+    var url = currentHost + reqOpts.url;
+    var options = {
+      body: reqOpts.body,
+      jsonBody: reqOpts.jsonBody,
+      method: reqOpts.method,
+      headers: headers,
+      timeouts: reqOpts.timeouts,
+      debug: requestDebug,
+      forceAuthHeaders: reqOpts.forceAuthHeaders
+    };
+
+    requestDebug('method: %s, url: %s, headers: %j, timeouts: %d',
+      options.method, url, options.headers, options.timeouts);
+
+    if (requester === client._request.fallback) {
+      requestDebug('using fallback');
+    }
+
+    // `requester` is any of this._request or this._request.fallback
+    // thus it needs to be called using the client as context
+    return requester.call(client, url, options).then(success, tryFallback);
+
+    function success(httpResponse) {
+      // compute the status of the response,
+      //
+      // When in browser mode, using XDR or JSONP, we have no statusCode available
+      // So we rely on our API response `status` property.
+      // But `waitTask` can set a `status` property which is not the statusCode (it's the task status)
+      // So we check if there's a `message` along `status` and it means it's an error
+      //
+      // That's the only case where we have a response.status that's not the http statusCode
+      var status = httpResponse && httpResponse.body && httpResponse.body.message && httpResponse.body.status ||
+
+        // this is important to check the request statusCode AFTER the body eventual
+        // statusCode because some implementations (jQuery XDomainRequest transport) may
+        // send statusCode 200 while we had an error
+        httpResponse.statusCode ||
+
+        // When in browser mode, using XDR or JSONP
+        // we default to success when no error (no response.status && response.message)
+        // If there was a JSON.parse() error then body is null and it fails
+        httpResponse && httpResponse.body && 200;
+
+      requestDebug('received response: statusCode: %s, computed statusCode: %d, headers: %j',
+        httpResponse.statusCode, status, httpResponse.headers);
+
+      var httpResponseOk = Math.floor(status / 100) === 2;
+
+      var endTime = new Date();
+      debugData.push({
+        currentHost: currentHost,
+        headers: removeCredentials(headers),
+        content: body || null,
+        contentLength: body !== undefined ? body.length : null,
+        method: reqOpts.method,
+        timeouts: reqOpts.timeouts,
+        url: reqOpts.url,
+        startTime: startTime,
+        endTime: endTime,
+        duration: endTime - startTime,
+        statusCode: status
+      });
+
+      if (httpResponseOk) {
+        if (client._useCache && !client._useRequestCache && cache) {
+          cache[cacheID] = httpResponse.responseText;
+        }
+
+        return {
+          responseText: httpResponse.responseText,
+          body: httpResponse.body
+        };
+      }
+
+      var shouldRetry = Math.floor(status / 100) !== 4;
+
+      if (shouldRetry) {
+        tries += 1;
+        return retryRequest();
+      }
+
+      requestDebug('unrecoverable error');
+
+      // no success and no retry => fail
+      var unrecoverableError = new errors.AlgoliaSearchError(
+        httpResponse.body && httpResponse.body.message, {debugData: debugData, statusCode: status}
+      );
+
+      return client._promise.reject(unrecoverableError);
+    }
+
+    function tryFallback(err) {
+      // error cases:
+      //  While not in fallback mode:
+      //    - CORS not supported
+      //    - network error
+      //  While in fallback mode:
+      //    - timeout
+      //    - network error
+      //    - badly formatted JSONP (script loaded, did not call our callback)
+      //  In both cases:
+      //    - uncaught exception occurs (TypeError)
+      requestDebug('error: %s, stack: %s', err.message, err.stack);
+
+      var endTime = new Date();
+      debugData.push({
+        currentHost: currentHost,
+        headers: removeCredentials(headers),
+        content: body || null,
+        contentLength: body !== undefined ? body.length : null,
+        method: reqOpts.method,
+        timeouts: reqOpts.timeouts,
+        url: reqOpts.url,
+        startTime: startTime,
+        endTime: endTime,
+        duration: endTime - startTime
+      });
+
+      if (!(err instanceof errors.AlgoliaSearchError)) {
+        err = new errors.Unknown(err && err.message, err);
+      }
+
+      tries += 1;
+
+      // stop the request implementation when:
+      if (
+        // we did not generate this error,
+        // it comes from a throw in some other piece of code
+        err instanceof errors.Unknown ||
+
+        // server sent unparsable JSON
+        err instanceof errors.UnparsableJSON ||
+
+        // max tries and already using fallback or no fallback
+        tries >= client.hosts[initialOpts.hostType].length &&
+        (usingFallback || !hasFallback)) {
+        // stop request implementation for this command
+        err.debugData = debugData;
+        return client._promise.reject(err);
+      }
+
+      // When a timeout occured, retry by raising timeout
+      if (err instanceof errors.RequestTimeout) {
+        return retryRequestWithHigherTimeout();
+      }
+
+      return retryRequest();
+    }
+
+    function retryRequest() {
+      requestDebug('retrying request');
+      client._incrementHostIndex(initialOpts.hostType);
+      return doRequest(requester, reqOpts);
+    }
+
+    function retryRequestWithHigherTimeout() {
+      requestDebug('retrying request with higher timeout');
+      client._incrementHostIndex(initialOpts.hostType);
+      client._incrementTimeoutMultipler();
+      reqOpts.timeouts = client._getTimeoutsForRequest(initialOpts.hostType);
+      return doRequest(requester, reqOpts);
+    }
+  }
+
+  function isCacheValidWithCurrentID(
+    useRequestCache,
+    currentCache,
+    currentCacheID
+  ) {
+    return (
+      client._useCache &&
+      useRequestCache &&
+      currentCache &&
+      currentCache[currentCacheID] !== undefined
+    );
+  }
+
+
+  function interopCallbackReturn(request, callback) {
+    if (isCacheValidWithCurrentID(client._useRequestCache, cache, cacheID)) {
+      request.catch(function() {
+        // Release the cache on error
+        delete cache[cacheID];
+      });
+    }
+
+    if (typeof initialOpts.callback === 'function') {
+      // either we have a callback
+      request.then(function okCb(content) {
+        exitPromise(function() {
+          initialOpts.callback(null, callback(content));
+        }, client._setTimeout || setTimeout);
+      }, function nookCb(err) {
+        exitPromise(function() {
+          initialOpts.callback(err);
+        }, client._setTimeout || setTimeout);
+      });
+    } else {
+      // either we are using promises
+      return request.then(callback);
+    }
+  }
+
+  if (client._useCache && client._useRequestCache) {
+    cacheID = initialOpts.url;
+  }
+
+  // as we sometime use POST requests to pass parameters (like query='aa'),
+  // the cacheID must also include the body to be different between calls
+  if (client._useCache && client._useRequestCache && body) {
+    cacheID += '_body_' + body;
+  }
+
+  if (isCacheValidWithCurrentID(client._useRequestCache, cache, cacheID)) {
+    requestDebug('serving request from cache');
+
+    var maybePromiseForCache = cache[cacheID];
+
+    // In case the cache is warmup with value that is not a promise
+    var promiseForCache = typeof maybePromiseForCache.then !== 'function'
+      ? client._promise.resolve({responseText: maybePromiseForCache})
+      : maybePromiseForCache;
+
+    return interopCallbackReturn(promiseForCache, function(content) {
+      // In case of the cache request, return the original value
+      return JSON.parse(content.responseText);
+    });
+  }
+
+  var request = doRequest(
+    client._request, {
+      url: initialOpts.url,
+      method: initialOpts.method,
+      body: body,
+      jsonBody: initialOpts.body,
+      timeouts: client._getTimeoutsForRequest(initialOpts.hostType),
+      forceAuthHeaders: initialOpts.forceAuthHeaders
+    }
+  );
+
+  if (client._useCache && client._useRequestCache && cache) {
+    cache[cacheID] = request;
+  }
+
+  return interopCallbackReturn(request, function(content) {
+    // In case of the first request, return the JSON value
+    return content.body;
+  });
+};
+
+/*
+* Transform search param object in query string
+* @param {object} args arguments to add to the current query string
+* @param {string} params current query string
+* @return {string} the final query string
+*/
+AlgoliaSearchCore.prototype._getSearchParams = function(args, params) {
+  if (args === undefined || args === null) {
+    return params;
+  }
+  for (var key in args) {
+    if (key !== null && args[key] !== undefined && args.hasOwnProperty(key)) {
+      params += params === '' ? '' : '&';
+      params += key + '=' + encodeURIComponent(Object.prototype.toString.call(args[key]) === '[object Array]' ? safeJSONStringify(args[key]) : args[key]);
+    }
+  }
+  return params;
+};
+
+/**
+ * Compute the headers for a request
+ *
+ * @param [string] options.additionalUA semi-colon separated string with other user agents to add
+ * @param [boolean=true] options.withApiKey Send the api key as a header
+ * @param [Object] options.headers Extra headers to send
+ */
+AlgoliaSearchCore.prototype._computeRequestHeaders = function(options) {
+  var forEach = __webpack_require__(8);
+
+  var ua = options.additionalUA ?
+    this._ua + ';' + options.additionalUA :
+    this._ua;
+
+  var requestHeaders = {
+    'x-algolia-agent': ua,
+    'x-algolia-application-id': this.applicationID
+  };
+
+  // browser will inline headers in the url, node.js will use http headers
+  // but in some situations, the API KEY will be too long (big secured API keys)
+  // so if the request is a POST and the KEY is very long, we will be asked to not put
+  // it into headers but in the JSON body
+  if (options.withApiKey !== false) {
+    requestHeaders['x-algolia-api-key'] = this.apiKey;
+  }
+
+  if (this.userToken) {
+    requestHeaders['x-algolia-usertoken'] = this.userToken;
+  }
+
+  if (this.securityTags) {
+    requestHeaders['x-algolia-tagfilters'] = this.securityTags;
+  }
+
+  forEach(this.extraHeaders, function addToRequestHeaders(value, key) {
+    requestHeaders[key] = value;
+  });
+
+  if (options.headers) {
+    forEach(options.headers, function addToRequestHeaders(value, key) {
+      requestHeaders[key] = value;
+    });
+  }
+
+  return requestHeaders;
+};
+
+/**
+ * Search through multiple indices at the same time
+ * @param  {Object[]}   queries  An array of queries you want to run.
+ * @param {string} queries[].indexName The index name you want to target
+ * @param {string} [queries[].query] The query to issue on this index. Can also be passed into `params`
+ * @param {Object} queries[].params Any search param like hitsPerPage, ..
+ * @param  {Function} callback Callback to be called
+ * @return {Promise|undefined} Returns a promise if no callback given
+ */
+AlgoliaSearchCore.prototype.search = function(queries, opts, callback) {
+  var isArray = __webpack_require__(1);
+  var map = __webpack_require__(9);
+
+  var usage = 'Usage: client.search(arrayOfQueries[, callback])';
+
+  if (!isArray(queries)) {
+    throw new Error(usage);
+  }
+
+  if (typeof opts === 'function') {
+    callback = opts;
+    opts = {};
+  } else if (opts === undefined) {
+    opts = {};
+  }
+
+  var client = this;
+
+  var postObj = {
+    requests: map(queries, function prepareRequest(query) {
+      var params = '';
+
+      // allow query.query
+      // so we are mimicing the index.search(query, params) method
+      // {indexName:, query:, params:}
+      if (query.query !== undefined) {
+        params += 'query=' + encodeURIComponent(query.query);
+      }
+
+      return {
+        indexName: query.indexName,
+        params: client._getSearchParams(query.params, params)
+      };
+    })
+  };
+
+  var JSONPParams = map(postObj.requests, function prepareJSONPParams(request, requestId) {
+    return requestId + '=' +
+      encodeURIComponent(
+        '/1/indexes/' + encodeURIComponent(request.indexName) + '?' +
+        request.params
+      );
+  }).join('&');
+
+  var url = '/1/indexes/*/queries';
+
+  if (opts.strategy !== undefined) {
+    url += '?strategy=' + opts.strategy;
+  }
+
+  return this._jsonRequest({
+    cache: this.cache,
+    method: 'POST',
+    url: url,
+    body: postObj,
+    hostType: 'read',
+    fallback: {
+      method: 'GET',
+      url: '/1/indexes/*',
+      body: {
+        params: JSONPParams
+      }
+    },
+    callback: callback
+  });
+};
+
+/**
+* Search for facet values
+* https://www.algolia.com/doc/rest-api/search#search-for-facet-values
+* This is the top-level API for SFFV.
+*
+* @param {object[]} queries An array of queries to run.
+* @param {string} queries[].indexName Index name, name of the index to search.
+* @param {object} queries[].params Query parameters.
+* @param {string} queries[].params.facetName Facet name, name of the attribute to search for values in.
+* Must be declared as a facet
+* @param {string} queries[].params.facetQuery Query for the facet search
+* @param {string} [queries[].params.*] Any search parameter of Algolia,
+* see https://www.algolia.com/doc/api-client/javascript/search#search-parameters
+* Pagination is not supported. The page and hitsPerPage parameters will be ignored.
+*/
+AlgoliaSearchCore.prototype.searchForFacetValues = function(queries) {
+  var isArray = __webpack_require__(1);
+  var map = __webpack_require__(9);
+
+  var usage = 'Usage: client.searchForFacetValues([{indexName, params: {facetName, facetQuery, ...params}}, ...queries])'; // eslint-disable-line max-len
+
+  if (!isArray(queries)) {
+    throw new Error(usage);
+  }
+
+  var client = this;
+
+  return client._promise.all(map(queries, function performQuery(query) {
+    if (
+      !query ||
+      query.indexName === undefined ||
+      query.params.facetName === undefined ||
+      query.params.facetQuery === undefined
+    ) {
+      throw new Error(usage);
+    }
+
+    var clone = __webpack_require__(5);
+    var omit = __webpack_require__(26);
+
+    var indexName = query.indexName;
+    var params = query.params;
+
+    var facetName = params.facetName;
+    var filteredParams = omit(clone(params), function(keyName) {
+      return keyName === 'facetName';
+    });
+    var searchParameters = client._getSearchParams(filteredParams, '');
+
+    return client._jsonRequest({
+      cache: client.cache,
+      method: 'POST',
+      url:
+        '/1/indexes/' +
+        encodeURIComponent(indexName) +
+        '/facets/' +
+        encodeURIComponent(facetName) +
+        '/query',
+      hostType: 'read',
+      body: {params: searchParameters}
+    });
+  }));
+};
+
+/**
+ * Set the extra security tagFilters header
+ * @param {string|array} tags The list of tags defining the current security filters
+ */
+AlgoliaSearchCore.prototype.setSecurityTags = function(tags) {
+  if (Object.prototype.toString.call(tags) === '[object Array]') {
+    var strTags = [];
+    for (var i = 0; i < tags.length; ++i) {
+      if (Object.prototype.toString.call(tags[i]) === '[object Array]') {
+        var oredTags = [];
+        for (var j = 0; j < tags[i].length; ++j) {
+          oredTags.push(tags[i][j]);
+        }
+        strTags.push('(' + oredTags.join(',') + ')');
+      } else {
+        strTags.push(tags[i]);
+      }
+    }
+    tags = strTags.join(',');
+  }
+
+  this.securityTags = tags;
+};
+
+/**
+ * Set the extra user token header
+ * @param {string} userToken The token identifying a uniq user (used to apply rate limits)
+ */
+AlgoliaSearchCore.prototype.setUserToken = function(userToken) {
+  this.userToken = userToken;
+};
+
+/**
+ * Clear all queries in client's cache
+ * @return undefined
+ */
+AlgoliaSearchCore.prototype.clearCache = function() {
+  this.cache = {};
+};
+
+/**
+* Set the number of milliseconds a request can take before automatically being terminated.
+* @deprecated
+* @param {Number} milliseconds
+*/
+AlgoliaSearchCore.prototype.setRequestTimeout = function(milliseconds) {
+  if (milliseconds) {
+    this._timeouts.connect = this._timeouts.read = this._timeouts.write = milliseconds;
+  }
+};
+
+/**
+* Set the three different (connect, read, write) timeouts to be used when requesting
+* @param {Object} timeouts
+*/
+AlgoliaSearchCore.prototype.setTimeouts = function(timeouts) {
+  this._timeouts = timeouts;
+};
+
+/**
+* Get the three different (connect, read, write) timeouts to be used when requesting
+* @param {Object} timeouts
+*/
+AlgoliaSearchCore.prototype.getTimeouts = function() {
+  return this._timeouts;
+};
+
+AlgoliaSearchCore.prototype._getAppIdData = function() {
+  var data = store.get(this.applicationID);
+  if (data !== null) this._cacheAppIdData(data);
+  return data;
+};
+
+AlgoliaSearchCore.prototype._setAppIdData = function(data) {
+  data.lastChange = (new Date()).getTime();
+  this._cacheAppIdData(data);
+  return store.set(this.applicationID, data);
+};
+
+AlgoliaSearchCore.prototype._checkAppIdData = function() {
+  var data = this._getAppIdData();
+  var now = (new Date()).getTime();
+  if (data === null || now - data.lastChange > RESET_APP_DATA_TIMER) {
+    return this._resetInitialAppIdData(data);
+  }
+
+  return data;
+};
+
+AlgoliaSearchCore.prototype._resetInitialAppIdData = function(data) {
+  var newData = data || {};
+  newData.hostIndexes = {read: 0, write: 0};
+  newData.timeoutMultiplier = 1;
+  newData.shuffleResult = newData.shuffleResult || shuffle([1, 2, 3]);
+  return this._setAppIdData(newData);
+};
+
+AlgoliaSearchCore.prototype._cacheAppIdData = function(data) {
+  this._hostIndexes = data.hostIndexes;
+  this._timeoutMultiplier = data.timeoutMultiplier;
+  this._shuffleResult = data.shuffleResult;
+};
+
+AlgoliaSearchCore.prototype._partialAppIdDataUpdate = function(newData) {
+  var foreach = __webpack_require__(8);
+  var currentData = this._getAppIdData();
+  foreach(newData, function(value, key) {
+    currentData[key] = value;
+  });
+
+  return this._setAppIdData(currentData);
+};
+
+AlgoliaSearchCore.prototype._getHostByType = function(hostType) {
+  return this.hosts[hostType][this._getHostIndexByType(hostType)];
+};
+
+AlgoliaSearchCore.prototype._getTimeoutMultiplier = function() {
+  return this._timeoutMultiplier;
+};
+
+AlgoliaSearchCore.prototype._getHostIndexByType = function(hostType) {
+  return this._hostIndexes[hostType];
+};
+
+AlgoliaSearchCore.prototype._setHostIndexByType = function(hostIndex, hostType) {
+  var clone = __webpack_require__(5);
+  var newHostIndexes = clone(this._hostIndexes);
+  newHostIndexes[hostType] = hostIndex;
+  this._partialAppIdDataUpdate({hostIndexes: newHostIndexes});
+  return hostIndex;
+};
+
+AlgoliaSearchCore.prototype._incrementHostIndex = function(hostType) {
+  return this._setHostIndexByType(
+    (this._getHostIndexByType(hostType) + 1) % this.hosts[hostType].length, hostType
+  );
+};
+
+AlgoliaSearchCore.prototype._incrementTimeoutMultipler = function() {
+  var timeoutMultiplier = Math.max(this._timeoutMultiplier + 1, 4);
+  return this._partialAppIdDataUpdate({timeoutMultiplier: timeoutMultiplier});
+};
+
+AlgoliaSearchCore.prototype._getTimeoutsForRequest = function(hostType) {
+  return {
+    connect: this._timeouts.connect * this._timeoutMultiplier,
+    complete: this._timeouts[hostType] * this._timeoutMultiplier
+  };
+};
+
+function prepareHost(protocol) {
+  return function prepare(host) {
+    return protocol + '//' + host.toLowerCase();
+  };
+}
+
+// Prototype.js < 1.7, a widely used library, defines a weird
+// Array.prototype.toJSON function that will fail to stringify our content
+// appropriately
+// refs:
+//   - https://groups.google.com/forum/#!topic/prototype-core/E-SAVvV_V9Q
+//   - https://github.com/sstephenson/prototype/commit/038a2985a70593c1a86c230fadbdfe2e4898a48c
+//   - http://stackoverflow.com/a/3148441/147079
+function safeJSONStringify(obj) {
+  /* eslint no-extend-native:0 */
+
+  if (Array.prototype.toJSON === undefined) {
+    return JSON.stringify(obj);
+  }
+
+  var toJSON = Array.prototype.toJSON;
+  delete Array.prototype.toJSON;
+  var out = JSON.stringify(obj);
+  Array.prototype.toJSON = toJSON;
+
+  return out;
+}
+
+function shuffle(array) {
+  var currentIndex = array.length;
+  var temporaryValue;
+  var randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+function removeCredentials(headers) {
+  var newHeaders = {};
+
+  for (var headerName in headers) {
+    if (Object.prototype.hasOwnProperty.call(headers, headerName)) {
+      var value;
+
+      if (headerName === 'x-algolia-api-key' || headerName === 'x-algolia-application-id') {
+        value = '**hidden for security purposes**';
+      } else {
+        value = headers[headerName];
+      }
+
+      newHeaders[headerName] = value;
+    }
+  }
+
+  return newHeaders;
+}
+
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(12)('algoliasearch:src/hostIndexState.js');
+var localStorageNamespace = 'algoliasearch-client-js';
+
+var store;
+var moduleStore = {
+  state: {},
+  set: function(key, data) {
+    this.state[key] = data;
+    return this.state[key];
+  },
+  get: function(key) {
+    return this.state[key] || null;
+  }
+};
+
+var localStorageStore = {
+  set: function(key, data) {
+    moduleStore.set(key, data); // always replicate localStorageStore to moduleStore in case of failure
+
+    try {
+      var namespace = JSON.parse(global.localStorage[localStorageNamespace]);
+      namespace[key] = data;
+      global.localStorage[localStorageNamespace] = JSON.stringify(namespace);
+      return namespace[key];
+    } catch (e) {
+      return localStorageFailure(key, e);
+    }
+  },
+  get: function(key) {
+    try {
+      return JSON.parse(global.localStorage[localStorageNamespace])[key] || null;
+    } catch (e) {
+      return localStorageFailure(key, e);
+    }
+  }
+};
+
+function localStorageFailure(key, e) {
+  debug('localStorage failed with', e);
+  cleanup();
+  store = moduleStore;
+  return store.get(key);
+}
+
+store = supportsLocalStorage() ? localStorageStore : moduleStore;
+
+module.exports = {
+  get: getOrSet,
+  set: getOrSet,
+  supportsLocalStorage: supportsLocalStorage
+};
+
+function getOrSet(key, data) {
+  if (arguments.length === 1) {
+    return store.get(key);
+  }
+
+  return store.set(key, data);
+}
+
+function supportsLocalStorage() {
+  try {
+    if ('localStorage' in global &&
+      global.localStorage !== null) {
+      if (!global.localStorage[localStorageNamespace]) {
+        // actual creation of the namespace
+        global.localStorage.setItem(localStorageNamespace, JSON.stringify({}));
+      }
+      return true;
+    }
+
+    return false;
+  } catch (_) {
+    return false;
+  }
+}
+
+// In case of any error on localStorage, we clean our own namespace, this should handle
+// quota errors when a lot of keys + data are used
+function cleanup() {
+  try {
+    global.localStorage.removeItem(localStorageNamespace);
+  } catch (_) {
+    // nothing to do
+  }
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
+exports.coerce = coerce;
+exports.disable = disable;
+exports.enable = enable;
+exports.enabled = enabled;
+exports.humanize = __webpack_require__(140);
+
+/**
+ * The currently active debug mode names, and names to skip.
+ */
+
+exports.names = [];
+exports.skips = [];
+
+/**
+ * Map of special "%n" handling functions, for the debug "format" argument.
+ *
+ * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+ */
+
+exports.formatters = {};
+
+/**
+ * Previous log timestamp.
+ */
+
+var prevTime;
+
+/**
+ * Select a color.
+ * @param {String} namespace
+ * @return {Number}
+ * @api private
+ */
+
+function selectColor(namespace) {
+  var hash = 0, i;
+
+  for (i in namespace) {
+    hash  = ((hash << 5) - hash) + namespace.charCodeAt(i);
+    hash |= 0; // Convert to 32bit integer
+  }
+
+  return exports.colors[Math.abs(hash) % exports.colors.length];
+}
+
+/**
+ * Create a debugger with the given `namespace`.
+ *
+ * @param {String} namespace
+ * @return {Function}
+ * @api public
+ */
+
+function createDebug(namespace) {
+
+  function debug() {
+    // disabled?
+    if (!debug.enabled) return;
+
+    var self = debug;
+
+    // set `diff` timestamp
+    var curr = +new Date();
+    var ms = curr - (prevTime || curr);
+    self.diff = ms;
+    self.prev = prevTime;
+    self.curr = curr;
+    prevTime = curr;
+
+    // turn the `arguments` into a proper Array
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+
+    args[0] = exports.coerce(args[0]);
+
+    if ('string' !== typeof args[0]) {
+      // anything else let's inspect with %O
+      args.unshift('%O');
+    }
+
+    // apply any `formatters` transformations
+    var index = 0;
+    args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match, format) {
+      // if we encounter an escaped % then don't increase the array index
+      if (match === '%%') return match;
+      index++;
+      var formatter = exports.formatters[format];
+      if ('function' === typeof formatter) {
+        var val = args[index];
+        match = formatter.call(self, val);
+
+        // now we need to remove `args[index]` since it's inlined in the `format`
+        args.splice(index, 1);
+        index--;
+      }
+      return match;
+    });
+
+    // apply env-specific formatting (colors, etc.)
+    exports.formatArgs.call(self, args);
+
+    var logFn = debug.log || exports.log || console.log.bind(console);
+    logFn.apply(self, args);
+  }
+
+  debug.namespace = namespace;
+  debug.enabled = exports.enabled(namespace);
+  debug.useColors = exports.useColors();
+  debug.color = selectColor(namespace);
+
+  // env-specific initialization logic for debug instances
+  if ('function' === typeof exports.init) {
+    exports.init(debug);
+  }
+
+  return debug;
+}
+
+/**
+ * Enables a debug mode by namespaces. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} namespaces
+ * @api public
+ */
+
+function enable(namespaces) {
+  exports.save(namespaces);
+
+  exports.names = [];
+  exports.skips = [];
+
+  var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
+  var len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    if (!split[i]) continue; // ignore empty strings
+    namespaces = split[i].replace(/\*/g, '.*?');
+    if (namespaces[0] === '-') {
+      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    } else {
+      exports.names.push(new RegExp('^' + namespaces + '$'));
+    }
+  }
+}
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+function disable() {
+  exports.enable('');
+}
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+function enabled(name) {
+  var i, len;
+  for (i = 0, len = exports.skips.length; i < len; i++) {
+    if (exports.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (i = 0, len = exports.names.length; i < len; i++) {
+    if (exports.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Coerce `val`.
+ *
+ * @param {Mixed} val
+ * @return {Mixed}
+ * @api private
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports) {
+
+/**
+ * Helpers.
+ */
+
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var y = d * 365.25;
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} [options]
+ * @throws {Error} throw an error if val is not a non-empty string or a number
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function(val, options) {
+  options = options || {};
+  var type = typeof val;
+  if (type === 'string' && val.length > 0) {
+    return parse(val);
+  } else if (type === 'number' && isNaN(val) === false) {
+    return options.long ? fmtLong(val) : fmtShort(val);
+  }
+  throw new Error(
+    'val is not a non-empty string or a valid number. val=' +
+      JSON.stringify(val)
+  );
+};
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+function parse(str) {
+  str = String(str);
+  if (str.length > 100) {
+    return;
+  }
+  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
+    str
+  );
+  if (!match) {
+    return;
+  }
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'yrs':
+    case 'yr':
+    case 'y':
+      return n * y;
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d;
+    case 'hours':
+    case 'hour':
+    case 'hrs':
+    case 'hr':
+    case 'h':
+      return n * h;
+    case 'minutes':
+    case 'minute':
+    case 'mins':
+    case 'min':
+    case 'm':
+      return n * m;
+    case 'seconds':
+    case 'second':
+    case 'secs':
+    case 'sec':
+    case 's':
+      return n * s;
+    case 'milliseconds':
+    case 'millisecond':
+    case 'msecs':
+    case 'msec':
+    case 'ms':
+      return n;
+    default:
+      return undefined;
+  }
+}
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtShort(ms) {
+  if (ms >= d) {
+    return Math.round(ms / d) + 'd';
+  }
+  if (ms >= h) {
+    return Math.round(ms / h) + 'h';
+  }
+  if (ms >= m) {
+    return Math.round(ms / m) + 'm';
+  }
+  if (ms >= s) {
+    return Math.round(ms / s) + 's';
+  }
+  return ms + 'ms';
+}
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtLong(ms) {
+  return plural(ms, d, 'day') ||
+    plural(ms, h, 'hour') ||
+    plural(ms, m, 'minute') ||
+    plural(ms, s, 'second') ||
+    ms + ' ms';
+}
+
+/**
+ * Pluralization helper.
+ */
+
+function plural(ms, n, name) {
+  if (ms < n) {
+    return;
+  }
+  if (ms < n * 1.5) {
+    return Math.floor(ms / n) + ' ' + name;
+  }
+  return Math.ceil(ms / n) + ' ' + name + 's';
+}
+
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = createAnalyticsClient;
+
+var algoliasearch = __webpack_require__(22);
+
+function createAnalyticsClient(appId, apiKey, opts) {
+  var analytics = {};
+
+  opts = opts || {};
+  // there need to be 4 hosts, like on the client, since if requests fail,
+  // the counter goes up by 1, so we need to have the same amount of hosts
+  // 4 because: -dsn, -1, -2, -3
+  // This is done because the APPID used for search will be the same for the analytics client created,
+  // and since the state of available hosts is shared by APPID globally for the module, we had issues
+  // where the hostIndex would be 1 while the array was only one entry (you got an empty host)
+  opts.hosts = opts.hosts || [
+    'analytics.algolia.com',
+    'analytics.algolia.com',
+    'analytics.algolia.com',
+    'analytics.algolia.com'
+  ];
+  opts.protocol = opts.protocol || 'https:';
+
+  analytics.as = algoliasearch(appId, apiKey, opts);
+
+  analytics.getABTests = function(_params, callback) {
+    var params = params || {};
+    var offset = params.offset || 0;
+    var limit = params.limit || 10;
+
+    return this.as._jsonRequest({
+      method: 'GET',
+      url: '/2/abtests?offset=' + encodeURIComponent(offset) + '&limit=' + encodeURIComponent(limit),
+      hostType: 'read',
+      forceAuthHeaders: true,
+      callback: callback
+    });
+  };
+
+  analytics.getABTest = function(abTestID, callback) {
+    return this.as._jsonRequest({
+      method: 'GET',
+      url: '/2/abtests/' + encodeURIComponent(abTestID),
+      hostType: 'read',
+      forceAuthHeaders: true,
+      callback: callback
+    });
+  };
+
+  analytics.addABTest = function(abTest, callback) {
+    return this.as._jsonRequest({
+      method: 'POST',
+      url: '/2/abtests',
+      body: abTest,
+      hostType: 'read',
+      forceAuthHeaders: true,
+      callback: callback
+    });
+  };
+
+  analytics.stopABTest = function(abTestID, callback) {
+    return this.as._jsonRequest({
+      method: 'POST',
+      url: '/2/abtests/' + encodeURIComponent(abTestID) + '/stop',
+      hostType: 'read',
+      forceAuthHeaders: true,
+      callback: callback
+    });
+  };
+
+  analytics.deleteABTest = function(abTestID, callback) {
+    return this.as._jsonRequest({
+      method: 'DELETE',
+      url: '/2/abtests/' + encodeURIComponent(abTestID),
+      hostType: 'write',
+      forceAuthHeaders: true,
+      callback: callback
+    });
+  };
+
+  analytics.waitTask = function(indexName, taskID, callback) {
+    return this.as.initIndex(indexName).waitTask(taskID, callback);
+  };
+
+  return analytics;
+}
+
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var global = __webpack_require__(143);
+var Promise = global.Promise || __webpack_require__(144).Promise;
+
+// This is the standalone browser build entry point
+// Browser implementation of the Algolia Search JavaScript client,
+// using XMLHttpRequest, XDomainRequest and JSONP as fallback
+module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
+  var inherits = __webpack_require__(10);
+  var errors = __webpack_require__(7);
+  var inlineHeaders = __webpack_require__(145);
+  var jsonpRequest = __webpack_require__(147);
+  var places = __webpack_require__(148);
+  uaSuffix = uaSuffix || '';
+
+  if (false) {
+    require('debug').enable('algoliasearch*');
+  }
+
+  function algoliasearch(applicationID, apiKey, opts) {
+    var cloneDeep = __webpack_require__(5);
+
+    opts = cloneDeep(opts || {});
+
+    opts._ua = opts._ua || algoliasearch.ua;
+
+    return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
+  }
+
+  algoliasearch.version = __webpack_require__(149);
+  algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
+  algoliasearch.initPlaces = places(algoliasearch);
+
+  // we expose into window no matter how we are used, this will allow
+  // us to easily debug any website running algolia
+  global.__algolia = {
+    debug: __webpack_require__(12),
+    algoliasearch: algoliasearch
+  };
+
+  var support = {
+    hasXMLHttpRequest: 'XMLHttpRequest' in global,
+    hasXDomainRequest: 'XDomainRequest' in global
+  };
+
+  if (support.hasXMLHttpRequest) {
+    support.cors = 'withCredentials' in new XMLHttpRequest();
+  }
+
+  function AlgoliaSearchBrowser() {
+    // call AlgoliaSearch constructor
+    AlgoliaSearch.apply(this, arguments);
+  }
+
+  inherits(AlgoliaSearchBrowser, AlgoliaSearch);
+
+  AlgoliaSearchBrowser.prototype._request = function request(url, opts) {
+    return new Promise(function wrapRequest(resolve, reject) {
+      // no cors or XDomainRequest, no request
+      if (!support.cors && !support.hasXDomainRequest) {
+        // very old browser, not supported
+        reject(new errors.Network('CORS not supported'));
+        return;
+      }
+
+      url = inlineHeaders(url, opts.headers);
+
+      var body = opts.body;
+      var req = support.cors ? new XMLHttpRequest() : new XDomainRequest();
+      var reqTimeout;
+      var timedOut;
+      var connected = false;
+
+      reqTimeout = setTimeout(onTimeout, opts.timeouts.connect);
+      // we set an empty onprogress listener
+      // so that XDomainRequest on IE9 is not aborted
+      // refs:
+      //  - https://github.com/algolia/algoliasearch-client-js/issues/76
+      //  - https://social.msdn.microsoft.com/Forums/ie/en-US/30ef3add-767c-4436-b8a9-f1ca19b4812e/ie9-rtm-xdomainrequest-issued-requests-may-abort-if-all-event-handlers-not-specified?forum=iewebdevelopment
+      req.onprogress = onProgress;
+      if ('onreadystatechange' in req) req.onreadystatechange = onReadyStateChange;
+      req.onload = onLoad;
+      req.onerror = onError;
+
+      // do not rely on default XHR async flag, as some analytics code like hotjar
+      // breaks it and set it to false by default
+      if (req instanceof XMLHttpRequest) {
+        req.open(opts.method, url, true);
+
+        // The Analytics API never accepts Auth headers as query string
+        // this option exists specifically for them.
+        if (opts.forceAuthHeaders) {
+          req.setRequestHeader(
+            'x-algolia-application-id',
+            opts.headers['x-algolia-application-id']
+          );
+          req.setRequestHeader(
+            'x-algolia-api-key',
+            opts.headers['x-algolia-api-key']
+          );
+        }
+      } else {
+        req.open(opts.method, url);
+      }
+
+      // headers are meant to be sent after open
+      if (support.cors) {
+        if (body) {
+          if (opts.method === 'POST') {
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests
+            req.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+          } else {
+            req.setRequestHeader('content-type', 'application/json');
+          }
+        }
+        req.setRequestHeader('accept', 'application/json');
+      }
+
+      if (body) {
+        req.send(body);
+      } else {
+        req.send();
+      }
+
+      // event object not received in IE8, at least
+      // but we do not use it, still important to note
+      function onLoad(/* event */) {
+        // When browser does not supports req.timeout, we can
+        // have both a load and timeout event, since handled by a dumb setTimeout
+        if (timedOut) {
+          return;
+        }
+
+        clearTimeout(reqTimeout);
+
+        var out;
+
+        try {
+          out = {
+            body: JSON.parse(req.responseText),
+            responseText: req.responseText,
+            statusCode: req.status,
+            // XDomainRequest does not have any response headers
+            headers: req.getAllResponseHeaders && req.getAllResponseHeaders() || {}
+          };
+        } catch (e) {
+          out = new errors.UnparsableJSON({
+            more: req.responseText
+          });
+        }
+
+        if (out instanceof errors.UnparsableJSON) {
+          reject(out);
+        } else {
+          resolve(out);
+        }
+      }
+
+      function onError(event) {
+        if (timedOut) {
+          return;
+        }
+
+        clearTimeout(reqTimeout);
+
+        // error event is trigerred both with XDR/XHR on:
+        //   - DNS error
+        //   - unallowed cross domain request
+        reject(
+          new errors.Network({
+            more: event
+          })
+        );
+      }
+
+      function onTimeout() {
+        timedOut = true;
+        req.abort();
+
+        reject(new errors.RequestTimeout());
+      }
+
+      function onConnect() {
+        connected = true;
+        clearTimeout(reqTimeout);
+        reqTimeout = setTimeout(onTimeout, opts.timeouts.complete);
+      }
+
+      function onProgress() {
+        if (!connected) onConnect();
+      }
+
+      function onReadyStateChange() {
+        if (!connected && req.readyState > 1) onConnect();
+      }
+    });
+  };
+
+  AlgoliaSearchBrowser.prototype._request.fallback = function requestFallback(url, opts) {
+    url = inlineHeaders(url, opts.headers);
+
+    return new Promise(function wrapJsonpRequest(resolve, reject) {
+      jsonpRequest(url, opts, function jsonpRequestDone(err, content) {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(content);
+      });
+    });
+  };
+
+  AlgoliaSearchBrowser.prototype._promise = {
+    reject: function rejectPromise(val) {
+      return Promise.reject(val);
+    },
+    resolve: function resolvePromise(val) {
+      return Promise.resolve(val);
+    },
+    delay: function delayPromise(ms) {
+      return new Promise(function resolveOnTimeout(resolve/* , reject*/) {
+        setTimeout(resolve, ms);
+      });
+    },
+    all: function all(promises) {
+      return Promise.all(promises);
+    }
+  };
+
+  return algoliasearch;
+};
+
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var win;
+
+if (typeof window !== "undefined") {
+    win = window;
+} else if (typeof global !== "undefined") {
+    win = global;
+} else if (typeof self !== "undefined"){
+    win = self;
+} else {
+    win = {};
+}
+
+module.exports = win;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process, global) {/*!
+ * @overview es6-promise - a tiny implementation of Promises/A+.
+ * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
+ * @license   Licensed under MIT license
+ *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
+ * @version   v4.2.4+314e4831
+ */
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.ES6Promise = factory());
+}(this, (function () { 'use strict';
+
+function objectOrFunction(x) {
+  var type = typeof x;
+  return x !== null && (type === 'object' || type === 'function');
+}
+
+function isFunction(x) {
+  return typeof x === 'function';
+}
+
+
+
+var _isArray = void 0;
+if (Array.isArray) {
+  _isArray = Array.isArray;
+} else {
+  _isArray = function (x) {
+    return Object.prototype.toString.call(x) === '[object Array]';
+  };
+}
+
+var isArray = _isArray;
+
+var len = 0;
+var vertxNext = void 0;
+var customSchedulerFn = void 0;
+
+var asap = function asap(callback, arg) {
+  queue[len] = callback;
+  queue[len + 1] = arg;
+  len += 2;
+  if (len === 2) {
+    // If len is 2, that means that we need to schedule an async flush.
+    // If additional callbacks are queued before the queue is flushed, they
+    // will be processed by this flush that we are scheduling.
+    if (customSchedulerFn) {
+      customSchedulerFn(flush);
+    } else {
+      scheduleFlush();
+    }
+  }
+};
+
+function setScheduler(scheduleFn) {
+  customSchedulerFn = scheduleFn;
+}
+
+function setAsap(asapFn) {
+  asap = asapFn;
+}
+
+var browserWindow = typeof window !== 'undefined' ? window : undefined;
+var browserGlobal = browserWindow || {};
+var BrowserMutationObserver = browserGlobal.MutationObserver || browserGlobal.WebKitMutationObserver;
+var isNode = typeof self === 'undefined' && typeof process !== 'undefined' && {}.toString.call(process) === '[object process]';
+
+// test for web worker but not in IE10
+var isWorker = typeof Uint8ClampedArray !== 'undefined' && typeof importScripts !== 'undefined' && typeof MessageChannel !== 'undefined';
+
+// node
+function useNextTick() {
+  // node version 0.10.x displays a deprecation warning when nextTick is used recursively
+  // see https://github.com/cujojs/when/issues/410 for details
+  return function () {
+    return process.nextTick(flush);
+  };
+}
+
+// vertx
+function useVertxTimer() {
+  if (typeof vertxNext !== 'undefined') {
+    return function () {
+      vertxNext(flush);
+    };
+  }
+
+  return useSetTimeout();
+}
+
+function useMutationObserver() {
+  var iterations = 0;
+  var observer = new BrowserMutationObserver(flush);
+  var node = document.createTextNode('');
+  observer.observe(node, { characterData: true });
+
+  return function () {
+    node.data = iterations = ++iterations % 2;
+  };
+}
+
+// web worker
+function useMessageChannel() {
+  var channel = new MessageChannel();
+  channel.port1.onmessage = flush;
+  return function () {
+    return channel.port2.postMessage(0);
+  };
+}
+
+function useSetTimeout() {
+  // Store setTimeout reference so es6-promise will be unaffected by
+  // other code modifying setTimeout (like sinon.useFakeTimers())
+  var globalSetTimeout = setTimeout;
+  return function () {
+    return globalSetTimeout(flush, 1);
+  };
+}
+
+var queue = new Array(1000);
+function flush() {
+  for (var i = 0; i < len; i += 2) {
+    var callback = queue[i];
+    var arg = queue[i + 1];
+
+    callback(arg);
+
+    queue[i] = undefined;
+    queue[i + 1] = undefined;
+  }
+
+  len = 0;
+}
+
+function attemptVertx() {
+  try {
+    var vertx = Function('return this')().require('vertx');
+    vertxNext = vertx.runOnLoop || vertx.runOnContext;
+    return useVertxTimer();
+  } catch (e) {
+    return useSetTimeout();
+  }
+}
+
+var scheduleFlush = void 0;
+// Decide what async method to use to triggering processing of queued callbacks:
+if (isNode) {
+  scheduleFlush = useNextTick();
+} else if (BrowserMutationObserver) {
+  scheduleFlush = useMutationObserver();
+} else if (isWorker) {
+  scheduleFlush = useMessageChannel();
+} else if (browserWindow === undefined && "function" === 'function') {
+  scheduleFlush = attemptVertx();
+} else {
+  scheduleFlush = useSetTimeout();
+}
+
+function then(onFulfillment, onRejection) {
+  var parent = this;
+
+  var child = new this.constructor(noop);
+
+  if (child[PROMISE_ID] === undefined) {
+    makePromise(child);
+  }
+
+  var _state = parent._state;
+
+
+  if (_state) {
+    var callback = arguments[_state - 1];
+    asap(function () {
+      return invokeCallback(_state, child, callback, parent._result);
+    });
+  } else {
+    subscribe(parent, child, onFulfillment, onRejection);
+  }
+
+  return child;
+}
+
+/**
+  `Promise.resolve` returns a promise that will become resolved with the
+  passed `value`. It is shorthand for the following:
+
+  ```javascript
+  let promise = new Promise(function(resolve, reject){
+    resolve(1);
+  });
+
+  promise.then(function(value){
+    // value === 1
+  });
+  ```
+
+  Instead of writing the above, your code now simply becomes the following:
+
+  ```javascript
+  let promise = Promise.resolve(1);
+
+  promise.then(function(value){
+    // value === 1
+  });
+  ```
+
+  @method resolve
+  @static
+  @param {Any} value value that the returned promise will be resolved with
+  Useful for tooling.
+  @return {Promise} a promise that will become fulfilled with the given
+  `value`
+*/
+function resolve$1(object) {
+  /*jshint validthis:true */
+  var Constructor = this;
+
+  if (object && typeof object === 'object' && object.constructor === Constructor) {
+    return object;
+  }
+
+  var promise = new Constructor(noop);
+  resolve(promise, object);
+  return promise;
+}
+
+var PROMISE_ID = Math.random().toString(36).substring(2);
+
+function noop() {}
+
+var PENDING = void 0;
+var FULFILLED = 1;
+var REJECTED = 2;
+
+var TRY_CATCH_ERROR = { error: null };
+
+function selfFulfillment() {
+  return new TypeError("You cannot resolve a promise with itself");
+}
+
+function cannotReturnOwn() {
+  return new TypeError('A promises callback cannot return that same promise.');
+}
+
+function getThen(promise) {
+  try {
+    return promise.then;
+  } catch (error) {
+    TRY_CATCH_ERROR.error = error;
+    return TRY_CATCH_ERROR;
+  }
+}
+
+function tryThen(then$$1, value, fulfillmentHandler, rejectionHandler) {
+  try {
+    then$$1.call(value, fulfillmentHandler, rejectionHandler);
+  } catch (e) {
+    return e;
+  }
+}
+
+function handleForeignThenable(promise, thenable, then$$1) {
+  asap(function (promise) {
+    var sealed = false;
+    var error = tryThen(then$$1, thenable, function (value) {
+      if (sealed) {
+        return;
+      }
+      sealed = true;
+      if (thenable !== value) {
+        resolve(promise, value);
+      } else {
+        fulfill(promise, value);
+      }
+    }, function (reason) {
+      if (sealed) {
+        return;
+      }
+      sealed = true;
+
+      reject(promise, reason);
+    }, 'Settle: ' + (promise._label || ' unknown promise'));
+
+    if (!sealed && error) {
+      sealed = true;
+      reject(promise, error);
+    }
+  }, promise);
+}
+
+function handleOwnThenable(promise, thenable) {
+  if (thenable._state === FULFILLED) {
+    fulfill(promise, thenable._result);
+  } else if (thenable._state === REJECTED) {
+    reject(promise, thenable._result);
+  } else {
+    subscribe(thenable, undefined, function (value) {
+      return resolve(promise, value);
+    }, function (reason) {
+      return reject(promise, reason);
+    });
+  }
+}
+
+function handleMaybeThenable(promise, maybeThenable, then$$1) {
+  if (maybeThenable.constructor === promise.constructor && then$$1 === then && maybeThenable.constructor.resolve === resolve$1) {
+    handleOwnThenable(promise, maybeThenable);
+  } else {
+    if (then$$1 === TRY_CATCH_ERROR) {
+      reject(promise, TRY_CATCH_ERROR.error);
+      TRY_CATCH_ERROR.error = null;
+    } else if (then$$1 === undefined) {
+      fulfill(promise, maybeThenable);
+    } else if (isFunction(then$$1)) {
+      handleForeignThenable(promise, maybeThenable, then$$1);
+    } else {
+      fulfill(promise, maybeThenable);
+    }
+  }
+}
+
+function resolve(promise, value) {
+  if (promise === value) {
+    reject(promise, selfFulfillment());
+  } else if (objectOrFunction(value)) {
+    handleMaybeThenable(promise, value, getThen(value));
+  } else {
+    fulfill(promise, value);
+  }
+}
+
+function publishRejection(promise) {
+  if (promise._onerror) {
+    promise._onerror(promise._result);
+  }
+
+  publish(promise);
+}
+
+function fulfill(promise, value) {
+  if (promise._state !== PENDING) {
+    return;
+  }
+
+  promise._result = value;
+  promise._state = FULFILLED;
+
+  if (promise._subscribers.length !== 0) {
+    asap(publish, promise);
+  }
+}
+
+function reject(promise, reason) {
+  if (promise._state !== PENDING) {
+    return;
+  }
+  promise._state = REJECTED;
+  promise._result = reason;
+
+  asap(publishRejection, promise);
+}
+
+function subscribe(parent, child, onFulfillment, onRejection) {
+  var _subscribers = parent._subscribers;
+  var length = _subscribers.length;
+
+
+  parent._onerror = null;
+
+  _subscribers[length] = child;
+  _subscribers[length + FULFILLED] = onFulfillment;
+  _subscribers[length + REJECTED] = onRejection;
+
+  if (length === 0 && parent._state) {
+    asap(publish, parent);
+  }
+}
+
+function publish(promise) {
+  var subscribers = promise._subscribers;
+  var settled = promise._state;
+
+  if (subscribers.length === 0) {
+    return;
+  }
+
+  var child = void 0,
+      callback = void 0,
+      detail = promise._result;
+
+  for (var i = 0; i < subscribers.length; i += 3) {
+    child = subscribers[i];
+    callback = subscribers[i + settled];
+
+    if (child) {
+      invokeCallback(settled, child, callback, detail);
+    } else {
+      callback(detail);
+    }
+  }
+
+  promise._subscribers.length = 0;
+}
+
+function tryCatch(callback, detail) {
+  try {
+    return callback(detail);
+  } catch (e) {
+    TRY_CATCH_ERROR.error = e;
+    return TRY_CATCH_ERROR;
+  }
+}
+
+function invokeCallback(settled, promise, callback, detail) {
+  var hasCallback = isFunction(callback),
+      value = void 0,
+      error = void 0,
+      succeeded = void 0,
+      failed = void 0;
+
+  if (hasCallback) {
+    value = tryCatch(callback, detail);
+
+    if (value === TRY_CATCH_ERROR) {
+      failed = true;
+      error = value.error;
+      value.error = null;
+    } else {
+      succeeded = true;
+    }
+
+    if (promise === value) {
+      reject(promise, cannotReturnOwn());
+      return;
+    }
+  } else {
+    value = detail;
+    succeeded = true;
+  }
+
+  if (promise._state !== PENDING) {
+    // noop
+  } else if (hasCallback && succeeded) {
+    resolve(promise, value);
+  } else if (failed) {
+    reject(promise, error);
+  } else if (settled === FULFILLED) {
+    fulfill(promise, value);
+  } else if (settled === REJECTED) {
+    reject(promise, value);
+  }
+}
+
+function initializePromise(promise, resolver) {
+  try {
+    resolver(function resolvePromise(value) {
+      resolve(promise, value);
+    }, function rejectPromise(reason) {
+      reject(promise, reason);
+    });
+  } catch (e) {
+    reject(promise, e);
+  }
+}
+
+var id = 0;
+function nextId() {
+  return id++;
+}
+
+function makePromise(promise) {
+  promise[PROMISE_ID] = id++;
+  promise._state = undefined;
+  promise._result = undefined;
+  promise._subscribers = [];
+}
+
+function validationError() {
+  return new Error('Array Methods must be provided an Array');
+}
+
+var Enumerator = function () {
+  function Enumerator(Constructor, input) {
+    this._instanceConstructor = Constructor;
+    this.promise = new Constructor(noop);
+
+    if (!this.promise[PROMISE_ID]) {
+      makePromise(this.promise);
+    }
+
+    if (isArray(input)) {
+      this.length = input.length;
+      this._remaining = input.length;
+
+      this._result = new Array(this.length);
+
+      if (this.length === 0) {
+        fulfill(this.promise, this._result);
+      } else {
+        this.length = this.length || 0;
+        this._enumerate(input);
+        if (this._remaining === 0) {
+          fulfill(this.promise, this._result);
+        }
+      }
+    } else {
+      reject(this.promise, validationError());
+    }
+  }
+
+  Enumerator.prototype._enumerate = function _enumerate(input) {
+    for (var i = 0; this._state === PENDING && i < input.length; i++) {
+      this._eachEntry(input[i], i);
+    }
+  };
+
+  Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {
+    var c = this._instanceConstructor;
+    var resolve$$1 = c.resolve;
+
+
+    if (resolve$$1 === resolve$1) {
+      var _then = getThen(entry);
+
+      if (_then === then && entry._state !== PENDING) {
+        this._settledAt(entry._state, i, entry._result);
+      } else if (typeof _then !== 'function') {
+        this._remaining--;
+        this._result[i] = entry;
+      } else if (c === Promise$1) {
+        var promise = new c(noop);
+        handleMaybeThenable(promise, entry, _then);
+        this._willSettleAt(promise, i);
+      } else {
+        this._willSettleAt(new c(function (resolve$$1) {
+          return resolve$$1(entry);
+        }), i);
+      }
+    } else {
+      this._willSettleAt(resolve$$1(entry), i);
+    }
+  };
+
+  Enumerator.prototype._settledAt = function _settledAt(state, i, value) {
+    var promise = this.promise;
+
+
+    if (promise._state === PENDING) {
+      this._remaining--;
+
+      if (state === REJECTED) {
+        reject(promise, value);
+      } else {
+        this._result[i] = value;
+      }
+    }
+
+    if (this._remaining === 0) {
+      fulfill(promise, this._result);
+    }
+  };
+
+  Enumerator.prototype._willSettleAt = function _willSettleAt(promise, i) {
+    var enumerator = this;
+
+    subscribe(promise, undefined, function (value) {
+      return enumerator._settledAt(FULFILLED, i, value);
+    }, function (reason) {
+      return enumerator._settledAt(REJECTED, i, reason);
+    });
+  };
+
+  return Enumerator;
+}();
+
+/**
+  `Promise.all` accepts an array of promises, and returns a new promise which
+  is fulfilled with an array of fulfillment values for the passed promises, or
+  rejected with the reason of the first passed promise to be rejected. It casts all
+  elements of the passed iterable to promises as it runs this algorithm.
+
+  Example:
+
+  ```javascript
+  let promise1 = resolve(1);
+  let promise2 = resolve(2);
+  let promise3 = resolve(3);
+  let promises = [ promise1, promise2, promise3 ];
+
+  Promise.all(promises).then(function(array){
+    // The array here would be [ 1, 2, 3 ];
+  });
+  ```
+
+  If any of the `promises` given to `all` are rejected, the first promise
+  that is rejected will be given as an argument to the returned promises's
+  rejection handler. For example:
+
+  Example:
+
+  ```javascript
+  let promise1 = resolve(1);
+  let promise2 = reject(new Error("2"));
+  let promise3 = reject(new Error("3"));
+  let promises = [ promise1, promise2, promise3 ];
+
+  Promise.all(promises).then(function(array){
+    // Code here never runs because there are rejected promises!
+  }, function(error) {
+    // error.message === "2"
+  });
+  ```
+
+  @method all
+  @static
+  @param {Array} entries array of promises
+  @param {String} label optional string for labeling the promise.
+  Useful for tooling.
+  @return {Promise} promise that is fulfilled when all `promises` have been
+  fulfilled, or rejected if any of them become rejected.
+  @static
+*/
+function all(entries) {
+  return new Enumerator(this, entries).promise;
+}
+
+/**
+  `Promise.race` returns a new promise which is settled in the same way as the
+  first passed promise to settle.
+
+  Example:
+
+  ```javascript
+  let promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 1');
+    }, 200);
+  });
+
+  let promise2 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 2');
+    }, 100);
+  });
+
+  Promise.race([promise1, promise2]).then(function(result){
+    // result === 'promise 2' because it was resolved before promise1
+    // was resolved.
+  });
+  ```
+
+  `Promise.race` is deterministic in that only the state of the first
+  settled promise matters. For example, even if other promises given to the
+  `promises` array argument are resolved, but the first settled promise has
+  become rejected before the other promises became fulfilled, the returned
+  promise will become rejected:
+
+  ```javascript
+  let promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 1');
+    }, 200);
+  });
+
+  let promise2 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      reject(new Error('promise 2'));
+    }, 100);
+  });
+
+  Promise.race([promise1, promise2]).then(function(result){
+    // Code here never runs
+  }, function(reason){
+    // reason.message === 'promise 2' because promise 2 became rejected before
+    // promise 1 became fulfilled
+  });
+  ```
+
+  An example real-world use case is implementing timeouts:
+
+  ```javascript
+  Promise.race([ajax('foo.json'), timeout(5000)])
+  ```
+
+  @method race
+  @static
+  @param {Array} promises array of promises to observe
+  Useful for tooling.
+  @return {Promise} a promise which settles in the same way as the first passed
+  promise to settle.
+*/
+function race(entries) {
+  /*jshint validthis:true */
+  var Constructor = this;
+
+  if (!isArray(entries)) {
+    return new Constructor(function (_, reject) {
+      return reject(new TypeError('You must pass an array to race.'));
+    });
+  } else {
+    return new Constructor(function (resolve, reject) {
+      var length = entries.length;
+      for (var i = 0; i < length; i++) {
+        Constructor.resolve(entries[i]).then(resolve, reject);
+      }
+    });
+  }
+}
+
+/**
+  `Promise.reject` returns a promise rejected with the passed `reason`.
+  It is shorthand for the following:
+
+  ```javascript
+  let promise = new Promise(function(resolve, reject){
+    reject(new Error('WHOOPS'));
+  });
+
+  promise.then(function(value){
+    // Code here doesn't run because the promise is rejected!
+  }, function(reason){
+    // reason.message === 'WHOOPS'
+  });
+  ```
+
+  Instead of writing the above, your code now simply becomes the following:
+
+  ```javascript
+  let promise = Promise.reject(new Error('WHOOPS'));
+
+  promise.then(function(value){
+    // Code here doesn't run because the promise is rejected!
+  }, function(reason){
+    // reason.message === 'WHOOPS'
+  });
+  ```
+
+  @method reject
+  @static
+  @param {Any} reason value that the returned promise will be rejected with.
+  Useful for tooling.
+  @return {Promise} a promise rejected with the given `reason`.
+*/
+function reject$1(reason) {
+  /*jshint validthis:true */
+  var Constructor = this;
+  var promise = new Constructor(noop);
+  reject(promise, reason);
+  return promise;
+}
+
+function needsResolver() {
+  throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
+}
+
+function needsNew() {
+  throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
+}
+
+/**
+  Promise objects represent the eventual result of an asynchronous operation. The
+  primary way of interacting with a promise is through its `then` method, which
+  registers callbacks to receive either a promise's eventual value or the reason
+  why the promise cannot be fulfilled.
+
+  Terminology
+  -----------
+
+  - `promise` is an object or function with a `then` method whose behavior conforms to this specification.
+  - `thenable` is an object or function that defines a `then` method.
+  - `value` is any legal JavaScript value (including undefined, a thenable, or a promise).
+  - `exception` is a value that is thrown using the throw statement.
+  - `reason` is a value that indicates why a promise was rejected.
+  - `settled` the final resting state of a promise, fulfilled or rejected.
+
+  A promise can be in one of three states: pending, fulfilled, or rejected.
+
+  Promises that are fulfilled have a fulfillment value and are in the fulfilled
+  state.  Promises that are rejected have a rejection reason and are in the
+  rejected state.  A fulfillment value is never a thenable.
+
+  Promises can also be said to *resolve* a value.  If this value is also a
+  promise, then the original promise's settled state will match the value's
+  settled state.  So a promise that *resolves* a promise that rejects will
+  itself reject, and a promise that *resolves* a promise that fulfills will
+  itself fulfill.
+
+
+  Basic Usage:
+  ------------
+
+  ```js
+  let promise = new Promise(function(resolve, reject) {
+    // on success
+    resolve(value);
+
+    // on failure
+    reject(reason);
+  });
+
+  promise.then(function(value) {
+    // on fulfillment
+  }, function(reason) {
+    // on rejection
+  });
+  ```
+
+  Advanced Usage:
+  ---------------
+
+  Promises shine when abstracting away asynchronous interactions such as
+  `XMLHttpRequest`s.
+
+  ```js
+  function getJSON(url) {
+    return new Promise(function(resolve, reject){
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', url);
+      xhr.onreadystatechange = handler;
+      xhr.responseType = 'json';
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.send();
+
+      function handler() {
+        if (this.readyState === this.DONE) {
+          if (this.status === 200) {
+            resolve(this.response);
+          } else {
+            reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
+          }
+        }
+      };
+    });
+  }
+
+  getJSON('/posts.json').then(function(json) {
+    // on fulfillment
+  }, function(reason) {
+    // on rejection
+  });
+  ```
+
+  Unlike callbacks, promises are great composable primitives.
+
+  ```js
+  Promise.all([
+    getJSON('/posts'),
+    getJSON('/comments')
+  ]).then(function(values){
+    values[0] // => postsJSON
+    values[1] // => commentsJSON
+
+    return values;
+  });
+  ```
+
+  @class Promise
+  @param {Function} resolver
+  Useful for tooling.
+  @constructor
+*/
+
+var Promise$1 = function () {
+  function Promise(resolver) {
+    this[PROMISE_ID] = nextId();
+    this._result = this._state = undefined;
+    this._subscribers = [];
+
+    if (noop !== resolver) {
+      typeof resolver !== 'function' && needsResolver();
+      this instanceof Promise ? initializePromise(this, resolver) : needsNew();
+    }
+  }
+
+  /**
+  The primary way of interacting with a promise is through its `then` method,
+  which registers callbacks to receive either a promise's eventual value or the
+  reason why the promise cannot be fulfilled.
+   ```js
+  findUser().then(function(user){
+    // user is available
+  }, function(reason){
+    // user is unavailable, and you are given the reason why
+  });
+  ```
+   Chaining
+  --------
+   The return value of `then` is itself a promise.  This second, 'downstream'
+  promise is resolved with the return value of the first promise's fulfillment
+  or rejection handler, or rejected if the handler throws an exception.
+   ```js
+  findUser().then(function (user) {
+    return user.name;
+  }, function (reason) {
+    return 'default name';
+  }).then(function (userName) {
+    // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
+    // will be `'default name'`
+  });
+   findUser().then(function (user) {
+    throw new Error('Found user, but still unhappy');
+  }, function (reason) {
+    throw new Error('`findUser` rejected and we're unhappy');
+  }).then(function (value) {
+    // never reached
+  }, function (reason) {
+    // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
+    // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
+  });
+  ```
+  If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
+   ```js
+  findUser().then(function (user) {
+    throw new PedagogicalException('Upstream error');
+  }).then(function (value) {
+    // never reached
+  }).then(function (value) {
+    // never reached
+  }, function (reason) {
+    // The `PedgagocialException` is propagated all the way down to here
+  });
+  ```
+   Assimilation
+  ------------
+   Sometimes the value you want to propagate to a downstream promise can only be
+  retrieved asynchronously. This can be achieved by returning a promise in the
+  fulfillment or rejection handler. The downstream promise will then be pending
+  until the returned promise is settled. This is called *assimilation*.
+   ```js
+  findUser().then(function (user) {
+    return findCommentsByAuthor(user);
+  }).then(function (comments) {
+    // The user's comments are now available
+  });
+  ```
+   If the assimliated promise rejects, then the downstream promise will also reject.
+   ```js
+  findUser().then(function (user) {
+    return findCommentsByAuthor(user);
+  }).then(function (comments) {
+    // If `findCommentsByAuthor` fulfills, we'll have the value here
+  }, function (reason) {
+    // If `findCommentsByAuthor` rejects, we'll have the reason here
+  });
+  ```
+   Simple Example
+  --------------
+   Synchronous Example
+   ```javascript
+  let result;
+   try {
+    result = findResult();
+    // success
+  } catch(reason) {
+    // failure
+  }
+  ```
+   Errback Example
+   ```js
+  findResult(function(result, err){
+    if (err) {
+      // failure
+    } else {
+      // success
+    }
+  });
+  ```
+   Promise Example;
+   ```javascript
+  findResult().then(function(result){
+    // success
+  }, function(reason){
+    // failure
+  });
+  ```
+   Advanced Example
+  --------------
+   Synchronous Example
+   ```javascript
+  let author, books;
+   try {
+    author = findAuthor();
+    books  = findBooksByAuthor(author);
+    // success
+  } catch(reason) {
+    // failure
+  }
+  ```
+   Errback Example
+   ```js
+   function foundBooks(books) {
+   }
+   function failure(reason) {
+   }
+   findAuthor(function(author, err){
+    if (err) {
+      failure(err);
+      // failure
+    } else {
+      try {
+        findBoooksByAuthor(author, function(books, err) {
+          if (err) {
+            failure(err);
+          } else {
+            try {
+              foundBooks(books);
+            } catch(reason) {
+              failure(reason);
+            }
+          }
+        });
+      } catch(error) {
+        failure(err);
+      }
+      // success
+    }
+  });
+  ```
+   Promise Example;
+   ```javascript
+  findAuthor().
+    then(findBooksByAuthor).
+    then(function(books){
+      // found books
+  }).catch(function(reason){
+    // something went wrong
+  });
+  ```
+   @method then
+  @param {Function} onFulfilled
+  @param {Function} onRejected
+  Useful for tooling.
+  @return {Promise}
+  */
+
+  /**
+  `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
+  as the catch block of a try/catch statement.
+  ```js
+  function findAuthor(){
+  throw new Error('couldn't find that author');
+  }
+  // synchronous
+  try {
+  findAuthor();
+  } catch(reason) {
+  // something went wrong
+  }
+  // async with promises
+  findAuthor().catch(function(reason){
+  // something went wrong
+  });
+  ```
+  @method catch
+  @param {Function} onRejection
+  Useful for tooling.
+  @return {Promise}
+  */
+
+
+  Promise.prototype.catch = function _catch(onRejection) {
+    return this.then(null, onRejection);
+  };
+
+  /**
+    `finally` will be invoked regardless of the promise's fate just as native
+    try/catch/finally behaves
+  
+    Synchronous example:
+  
+    ```js
+    findAuthor() {
+      if (Math.random() > 0.5) {
+        throw new Error();
+      }
+      return new Author();
+    }
+  
+    try {
+      return findAuthor(); // succeed or fail
+    } catch(error) {
+      return findOtherAuther();
+    } finally {
+      // always runs
+      // doesn't affect the return value
+    }
+    ```
+  
+    Asynchronous example:
+  
+    ```js
+    findAuthor().catch(function(reason){
+      return findOtherAuther();
+    }).finally(function(){
+      // author was either found, or not
+    });
+    ```
+  
+    @method finally
+    @param {Function} callback
+    @return {Promise}
+  */
+
+
+  Promise.prototype.finally = function _finally(callback) {
+    var promise = this;
+    var constructor = promise.constructor;
+
+    return promise.then(function (value) {
+      return constructor.resolve(callback()).then(function () {
+        return value;
+      });
+    }, function (reason) {
+      return constructor.resolve(callback()).then(function () {
+        throw reason;
+      });
+    });
+  };
+
+  return Promise;
+}();
+
+Promise$1.prototype.then = then;
+Promise$1.all = all;
+Promise$1.race = race;
+Promise$1.resolve = resolve$1;
+Promise$1.reject = reject$1;
+Promise$1._setScheduler = setScheduler;
+Promise$1._setAsap = setAsap;
+Promise$1._asap = asap;
+
+/*global self*/
+function polyfill() {
+  var local = void 0;
+
+  if (typeof global !== 'undefined') {
+    local = global;
+  } else if (typeof self !== 'undefined') {
+    local = self;
+  } else {
+    try {
+      local = Function('return this')();
+    } catch (e) {
+      throw new Error('polyfill failed because global object is unavailable in this environment');
+    }
+  }
+
+  var P = local.Promise;
+
+  if (P) {
+    var promiseToString = null;
+    try {
+      promiseToString = Object.prototype.toString.call(P.resolve());
+    } catch (e) {
+      // silently ignored
+    }
+
+    if (promiseToString === '[object Promise]' && !P.cast) {
+      return;
+    }
+  }
+
+  local.Promise = Promise$1;
+}
+
+// Strange compat..
+Promise$1.polyfill = polyfill;
+Promise$1.Promise = Promise$1;
+
+return Promise$1;
+
+})));
+
+
+
+//# sourceMappingURL=es6-promise.map
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(6)))
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = inlineHeaders;
+
+var encode = __webpack_require__(146);
+
+function inlineHeaders(url, headers) {
+  if (/\?/.test(url)) {
+    url += '&';
+  } else {
+    url += '?';
+  }
+
+  return url + encode(headers);
+}
+
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+var stringifyPrimitive = function(v) {
+  switch (typeof v) {
+    case 'string':
+      return v;
+
+    case 'boolean':
+      return v ? 'true' : 'false';
+
+    case 'number':
+      return isFinite(v) ? v : '';
+
+    default:
+      return '';
+  }
+};
+
+module.exports = function(obj, sep, eq, name) {
+  sep = sep || '&';
+  eq = eq || '=';
+  if (obj === null) {
+    obj = undefined;
+  }
+
+  if (typeof obj === 'object') {
+    return map(objectKeys(obj), function(k) {
+      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+      if (isArray(obj[k])) {
+        return map(obj[k], function(v) {
+          return ks + encodeURIComponent(stringifyPrimitive(v));
+        }).join(sep);
+      } else {
+        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+      }
+    }).join(sep);
+
+  }
+
+  if (!name) return '';
+  return encodeURIComponent(stringifyPrimitive(name)) + eq +
+         encodeURIComponent(stringifyPrimitive(obj));
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+function map (xs, f) {
+  if (xs.map) return xs.map(f);
+  var res = [];
+  for (var i = 0; i < xs.length; i++) {
+    res.push(f(xs[i], i));
+  }
+  return res;
+}
+
+var objectKeys = Object.keys || function (obj) {
+  var res = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
+  }
+  return res;
+};
+
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = jsonpRequest;
+
+var errors = __webpack_require__(7);
+
+var JSONPCounter = 0;
+
+function jsonpRequest(url, opts, cb) {
+  if (opts.method !== 'GET') {
+    cb(new Error('Method ' + opts.method + ' ' + url + ' is not supported by JSONP.'));
+    return;
+  }
+
+  opts.debug('JSONP: start');
+
+  var cbCalled = false;
+  var timedOut = false;
+
+  JSONPCounter += 1;
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  var cbName = 'algoliaJSONP_' + JSONPCounter;
+  var done = false;
+
+  window[cbName] = function(data) {
+    removeGlobals();
+
+    if (timedOut) {
+      opts.debug('JSONP: Late answer, ignoring');
+      return;
+    }
+
+    cbCalled = true;
+
+    clean();
+
+    cb(null, {
+      body: data,
+      responseText: JSON.stringify(data)/* ,
+      // We do not send the statusCode, there's no statusCode in JSONP, it will be
+      // computed using data.status && data.message like with XDR
+      statusCode*/
+    });
+  };
+
+  // add callback by hand
+  url += '&callback=' + cbName;
+
+  // add body params manually
+  if (opts.jsonBody && opts.jsonBody.params) {
+    url += '&' + opts.jsonBody.params;
+  }
+
+  var ontimeout = setTimeout(timeout, opts.timeouts.complete);
+
+  // script onreadystatechange needed only for
+  // <= IE8
+  // https://github.com/angular/angular.js/issues/4523
+  script.onreadystatechange = readystatechange;
+  script.onload = success;
+  script.onerror = error;
+
+  script.async = true;
+  script.defer = true;
+  script.src = url;
+  head.appendChild(script);
+
+  function success() {
+    opts.debug('JSONP: success');
+
+    if (done || timedOut) {
+      return;
+    }
+
+    done = true;
+
+    // script loaded but did not call the fn => script loading error
+    if (!cbCalled) {
+      opts.debug('JSONP: Fail. Script loaded but did not call the callback');
+      clean();
+      cb(new errors.JSONPScriptFail());
+    }
+  }
+
+  function readystatechange() {
+    if (this.readyState === 'loaded' || this.readyState === 'complete') {
+      success();
+    }
+  }
+
+  function clean() {
+    clearTimeout(ontimeout);
+    script.onload = null;
+    script.onreadystatechange = null;
+    script.onerror = null;
+    head.removeChild(script);
+  }
+
+  function removeGlobals() {
+    try {
+      delete window[cbName];
+      delete window[cbName + '_loaded'];
+    } catch (e) {
+      window[cbName] = window[cbName + '_loaded'] = undefined;
+    }
+  }
+
+  function timeout() {
+    opts.debug('JSONP: Script timeout');
+    timedOut = true;
+    clean();
+    cb(new errors.RequestTimeout());
+  }
+
+  function error() {
+    opts.debug('JSONP: Script error');
+
+    if (done || timedOut) {
+      return;
+    }
+
+    clean();
+    cb(new errors.JSONPScriptError());
+  }
+}
+
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = createPlacesClient;
+
+var buildSearchMethod = __webpack_require__(24);
+
+function createPlacesClient(algoliasearch) {
+  return function places(appID, apiKey, opts) {
+    var cloneDeep = __webpack_require__(5);
+
+    opts = opts && cloneDeep(opts) || {};
+    opts.hosts = opts.hosts || [
+      'places-dsn.algolia.net',
+      'places-1.algolianet.com',
+      'places-2.algolianet.com',
+      'places-3.algolianet.com'
+    ];
+
+    // allow initPlaces() no arguments => community rate limited
+    if (arguments.length === 0 || typeof appID === 'object' || appID === undefined) {
+      appID = '';
+      apiKey = '';
+      opts._allowEmptyCredentials = true;
+    }
+
+    var client = algoliasearch(appID, apiKey, opts);
+    var index = client.initIndex('places');
+    index.search = buildSearchMethod('query', '/1/places/query');
+    index.getObject = function(objectID, callback) {
+      return this.as._jsonRequest({
+        method: 'GET',
+        url: '/1/places/' + encodeURIComponent(objectID),
+        hostType: 'read',
+        callback: callback
+      });
+    };
+    return index;
+  };
+}
+
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = '3.29.0';
+
+
+/***/ }),
+/* 150 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
+
+
+
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
+
+var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
+	state: {
+		new_nots: [],
+		pendingTransactions: [],
+		buyerActiveTransactions: [],
+		sellerActiveTransactions: [],
+		buyerChats: [],
+		sellerChats: []
+
+	},
+
+	getters: {
+		all_pending_transactions: function all_pending_transactions(state) {
+			return state.pendingTransactions;
+		},
+		all_buyer_active_transactions: function all_buyer_active_transactions(state) {
+			return state.buyerActiveTransactions;
+		},
+		all_seller_active_transactions: function all_seller_active_transactions(state) {
+			return state.sellerActiveTransactions;
+		},
+		all_buyer_chats: function all_buyer_chats(state) {
+			return state.buyerChats;
+		},
+		all_seller_chats: function all_seller_chats(state) {
+			return state.sellerChats;
+		},
+		all_nots: function all_nots(state) {
+			return state.all_nots;
+		},
+		all_posts: function all_posts(state) {
+			return state.posts;
+		},
+		all_friends: function all_friends(state) {
+			return state.friends;
+		},
+		all_profile_feed: function all_profile_feed(state) {
+			return state.profile_feeds;
+		},
+		all_uploads: function all_uploads(state) {
+			return state.uploads;
+		},
+		all_new_posts: function all_new_posts(state) {
+			return state.new_posts;
+		}
+	},
+
+	mutations: {
+		add_pending_transactions: function add_pending_transactions(state, transactions) {
+
+			var verify = state.pendingTransactions.find(function (p) {
+				return p.id === transactions.id;
+			});
+			if (!verify) {
+				state.pendingTransactions.push(transactions);
+			}
+		},
+		add_buyer_active_transactions: function add_buyer_active_transactions(state, transactions) {
+
+			var verify = state.buyerActiveTransactions.find(function (p) {
+				return p.id === transactions.id;
+			});
+			if (!verify) {
+				state.buyerActiveTransactions.push(transactions);
+			}
+		},
+		add_seller_active_transactions: function add_seller_active_transactions(state, transactions) {
+
+			var verify = state.sellerActiveTransactions.find(function (p) {
+				return p.id === transactions.id;
+			});
+			if (!verify) {
+				state.sellerActiveTransactions.push(transactions);
+			}
+		},
+		add_buyer_chats: function add_buyer_chats(state, chat) {
+
+			var verify = state.buyerChats.find(function (c) {
+				return c.id === chat.id;
+			});
+			if (!verify) {
+				state.buyerChats.push(chat);
+			}
+		},
+		add_seller_chats: function add_seller_chats(state, chat) {
+
+			var verify = state.sellerChats.find(function (c) {
+				return c.id === chat.id;
+			});
+			if (!verify) {
+				state.sellerChats.push(chat);
+			}
+		},
+		add_all_not: function add_all_not(state, not) {
+
+			var verify = state.all_nots.find(function (n) {
+				return n.id === not.id;
+			});
+			if (!verify) {
+				state.all_nots.push(not);
+			}
+		},
+		clear_not_count: function clear_not_count(state) {
+			state.notscount = [];
+		},
+		add_upload: function add_upload(state, upload) {
+			state.uploads.push(upload);
+		},
+		add_post: function add_post(state, post) {
+
+			var verify = state.posts.find(function (p) {
+				return p.id === post.id;
+			});
+
+			if (!verify) {
+				state.posts.push(post);
+			}
+		},
+		add_friend: function add_friend(state, friend) {
+
+			var verify = state.friends.find(function (f) {
+				return f.id === friend.id;
+			});
+
+			if (!verify) {
+				state.friends.push(friend);
+			}
+		},
+		add_profile_feed: function add_profile_feed(state, feed) {
+
+			var verify = state.profile_feeds.find(function (f) {
+				return f.id === feed.id;
+			});
+
+			if (!verify) {
+				state.profile_feeds.push(feed);
+			}
+		},
+		add_new_post: function add_new_post(state, post) {
+
+			var verify = state.new_posts.find(function (p) {
+				return p.id === post.id;
+			});
+
+			if (!verify) {
+				state.new_posts.push(post);
+			}
+
+			state.uploads = [];
+		},
+		auth_user_data: function auth_user_data(state, user) {
+			state.auth_user = user;
+		},
+		update_post_likes: function update_post_likes(state, payload) {
+			var post = state.posts.find(function (p) {
+				return p.id === payload.id;
+			});
+
+			post.likes.push(payload.like);
+		},
+		update_video_id: function update_video_id(state, payload) {
+			state.videoid = [];
+
+			state.videoid.push(payload.vid);
+		},
+		add_old_post_comment: function add_old_post_comment(state, comment) {
+			var post = state.posts.find(function (p) {
+				return p.id === comment.post_id;
+			});
+
+			post.comments.push(comment);
+		},
+		add_new_post_comment: function add_new_post_comment(state, comment) {
+			var post = state.new_posts.find(function (p) {
+				return p.id === comment.post_id;
+			});
+
+			post.comments.push(comment);
+		},
+		unlike_post: function unlike_post(state, payload) {
+			var post = state.posts.find(function (p) {
+				return p.id === payload.post_id;
+			});
+
+			var like = post.likes.find(function (l) {
+				return l.user_id === payload.user_id;
+			});
+
+			var index = post.likes.indexOf(like);
+
+			post.likes.splice(index, 1);
+		},
+		remove_uploaded: function remove_uploaded(state, payload) {
+			var uploaded = state.uploads.find(function (u) {
+				return u.URL === payload.filelink;
+			});
+			var index = state.uploads.indexOf(uploaded);
+
+			state.uploads.splice(index, 1);
+		}
+	},
+
+	actions: {}
+
+});
+
+/***/ }),
+/* 151 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export Store */
+/* unused harmony export install */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* unused harmony export mapGetters */
+/* unused harmony export mapActions */
+/* unused harmony export createNamespacedHelpers */
+/**
+ * vuex v3.0.1
+ * (c) 2017 Evan You
+ * @license MIT
+ */
+var applyMixin = function (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+};
+
+var devtoolHook =
+  typeof window !== 'undefined' &&
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  this._children = Object.create(null);
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors$1 = { namespaced: { configurable: true } };
+
+prototypeAccessors$1.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "Store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  var state = options.state; if ( state === void 0 ) state = {};
+  if (typeof state === 'function') {
+    state = state() || {};
+  }
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  if (Vue.config.devtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors = { state: { configurable: true } };
+
+prototypeAccessors.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors.state.set = function (v) {
+  if (true) {
+    assert(false, "Use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+    "development" !== 'production' &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
+
+  return entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload)
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  return genericSubscribe(fn, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    computed[key] = function () { return fn(store); };
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ("development" !== 'production' && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ("development" !== 'production' && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {};
+
+  var splitPos = namespace.length;
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos);
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
+    });
+  });
+
+  return gettersProxy
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload, cb) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload, cb);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ("development" !== 'production' && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+function normalizeMap (map) {
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ("development" !== 'production' && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.0.1',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+
+
+/***/ }),
+/* 152 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

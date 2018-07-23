@@ -172,7 +172,7 @@
 		
 		<div class="suggestions">
 		<span v-for="shop in storesFound" >
-		<store  :id="shop.id" :location="shop.location_id" :name="shop.name" :owner="shop.seller.id"></store>
+		<store  :id="store.id" :status="store.seller.online" :online="store.online" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
 		</span>
 		</div>
 		</span>
@@ -189,12 +189,12 @@
 		<div class="suggestions">
 		<span v-if="onlineShops.length==0 || place=='Everywhere'">
 		<span v-for="store in allShops" >
-		<store  :id="store.id" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
+		<store  :id="store.id" :status="store.seller.online" :online="store.online" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
 		</span>
 		</span>
 		<span  v-else>
 		<span v-for="store in onlineShops" >
-		<store  :id="store.id" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
+		<store  :id="store.id" :status="store.seller.online" :online="store.online" :location="store.location_id" :name="store.name" :owner="store.seller.id"></store>
 		</span>
 		</span>
 		</div>
