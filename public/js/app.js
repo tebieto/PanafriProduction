@@ -51120,6 +51120,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this5 = this;
 
 			axios.get('/get/shop/owner/' + this.owner).then(function (response) {
+
+				/* I am making shop owner online status my status
+    Status from algolia is unreliable */
 				_this5.status = response.data.online;
 				_this5.shopOwner.push(response.data);
 			});
