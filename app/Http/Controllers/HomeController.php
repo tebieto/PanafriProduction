@@ -232,8 +232,6 @@ class HomeController extends Controller
 		
 		]);
 		
-		$app->online->searchable();
-		
 	}
 	
 	
