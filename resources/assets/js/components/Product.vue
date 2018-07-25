@@ -106,7 +106,7 @@ authDetails: [],
 products: [],
 showPrice:false,
 available: true,
-root:'http://jokesterbox.com',
+root:'https://jokesterbox.com',
 pprice:'',
 punit:'',
 prices: []

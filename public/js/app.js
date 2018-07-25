@@ -13297,7 +13297,7 @@ var app = new Vue({
 			}
 
 			var location;
-			if (this.place == "Everywhere") {
+			if (this.place == "Everywhere" || this.place == "No result, showing everywhere") {
 				var location = ' ';
 			} else {
 				location = this.place;
@@ -13317,6 +13317,10 @@ var app = new Vue({
 						}
 					}
 				});
+
+				if (_this.onlineShops.length == 0) {
+					_this.place = 'No result, showing everywhere';
+				}
 			});
 
 			var everywhere = document.getElementById('everyWhere');
@@ -13328,7 +13332,7 @@ var app = new Vue({
 			}
 		},
 		changeLocation: function changeLocation() {
-
+			this.place = "Everywhere";
 			var everywhere = document.getElementById('everyWhere');
 			var input = document.getElementById('enterLocation');
 
@@ -13337,6 +13341,8 @@ var app = new Vue({
 		},
 		clearSearch: function clearSearch() {
 			this.storesFound = [];
+			this.productsFound = [];
+			this.sampleStores = [];
 			this.again = 0;
 			this.noResult = false;
 		},
@@ -13361,90 +13367,107 @@ var app = new Vue({
 
 			productIndex.search(this.productAndStoreQuery, function (err, product) {
 
-				_this2.productsFound = [];
-				product.hits.forEach(function (product) {
+				if (product.hits.length > 0) {
+					product.hits.forEach(function (product) {
 
-					var verify = _this2.productsFound.find(function (p) {
-						return p.id === product.id;
+						var verify = _this2.productsFound.find(function (p) {
+							return p.id === product.id;
+						});
+
+						if (!verify) {
+							_this2.productsFound.push(product);
+						}
 					});
-
-					if (!verify) {
-						_this2.productsFound.push(product);
-					}
-				});
+				}
 			});
 
 			storeIndex.search(this.productAndStoreQuery, function (err, store) {
-				_this2.sampleStores = [];
-				store.hits.forEach(function (store) {
 
-					var verify = _this2.sampleStores.find(function (s) {
-						return s.id === store.id;
+				if (store.hits.length > 0) {
+
+					store.hits.forEach(function (store) {
+
+						var verify = _this2.sampleStores.find(function (s) {
+							return s.id === store.id;
+						});
+
+						if (!verify) {
+
+							_this2.sampleStores.push(store);
+						}
+					});
+				}
+			});
+
+			if (this.productsFound.length > 0 || this.sampleStores.length > 0) {
+				storeIndex.search(searchLocation, function (err, store) {
+
+					store.hits.forEach(function (store) {
+
+						/* I am about to match products and stores I pushed
+      to sampleStore and productsFound array to stores in user specified 
+      location*/
+
+						/* For every stores in the specified location I am checking to see 
+       if they have products I pushed to productsFound array if there is a match
+       I will push them to storesFound array which will display to users */
+						if (_this2.productsFound.length > 0) {
+							_this2.productsFound.forEach(function (product) {
+
+								if (product.store_id == store.id) {
+
+									var verify = _this2.storesFound.find(function (s) {
+										return s.id === store.id;
+									});
+
+									if (!verify) {
+										_this2.storesFound.push(store);
+									}
+								}
+							});
+						}
+
+						/* For every stores in the specified location I am checking to see 
+       if they maatch any store I pushed to sampleStore array, if there is a match
+       I will push them to storesFound array which will display to users */
+						if (_this2.sampleStores.length > 0) {
+							_this2.sampleStores.forEach(function (sample) {
+
+								if (sample.id == store.id) {
+
+									var verify = _this2.storesFound.find(function (s) {
+										return s.id === store.id;
+									});
+
+									if (!verify) {
+										_this2.storesFound.push(store);
+									}
+								}
+							});
+						}
 					});
 
-					if (!verify) {
-						_this2.sampleStores.push(store);
+					if (_this2.storesFound.length == 0) {
+						if (_this2.again == 1) {
+							_this2.noResult = true;
+						}
+					} else {
+
+						_this2.noResult = false;
 					}
 				});
-			});
-
-			storeIndex.search(searchLocation, function (err, store) {
-
-				_this2.storesFound = [];
-				store.hits.forEach(function (store) {
-
-					/* I am about to match products and stores I pushed
-     to sampleStore and productsFound array to stores in user specified 
-     location*/
-
-					/* For every stores in the specified location I am checking to see 
-      if they have products I pushed to productsFound array if there is a match
-      I will push them to storesFound array which will display to users */
-
-					_this2.productsFound.forEach(function (product) {
-
-						if (product.store_id == store.id) {
-
-							var verify = _this2.storesFound.find(function (s) {
-								return s.id === store.id;
-							});
-
-							if (!verify) {
-								_this2.storesFound.push(store);
-							}
-						}
-					});
-
-					/* For every stores in the specified location I am checking to see 
-      if they maatch any store I pushed to sampleStore array, if there is a match
-      I will push them to storesFound array which will display to users */
-
-					_this2.sampleStores.forEach(function (sample) {
-
-						if (sample.id == store.id) {
-
-							var verify = _this2.storesFound.find(function (s) {
-								return s.id === store.id;
-							});
-
-							if (!verify) {
-								_this2.storesFound.push(store);
-							}
-						}
-					});
-				});
-			});
-
-			if (this.storesFound.length == 0) {
-
-				if (this.again == 0) {
-					this.again = 1;
-					this.getSearchQuery();
-				}
-				this.noResult = true;
 			} else {
 
-				this.noResult = false;
+				if (this.again == 1) {
+					this.noResult = true;
+				}
+			}
+
+			if (this.again == 0) {
+
+				setTimeout(this.getSearchQuery, 1050);
+
+				this.again = 1;
 			}
 		},
 		getSellerRequests: function getSellerRequests() {},
@@ -13786,7 +13809,7 @@ var app = new Vue({
 		var _this23 = this;
 
 		axios.get('/all/categories').then(function (response) {
-			console.log(response.data);
+
 			_this23.categories = [];
 			response.data.forEach(function (category) {
 
@@ -14222,8 +14245,6 @@ var app = new Vue({
 		this.productImage = [];
 	}), _defineProperty(_methods, 'imageChange', function imageChange(e) {
 		var _this38 = this;
-
-		console.log('hi');
 
 		var selected = e.target.files[0];
 
@@ -53189,7 +53210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			products: [],
 			showPrice: false,
 			available: true,
-			root: 'http://jokesterbox.com',
+			root: 'https://jokesterbox.com',
 			pprice: '',
 			punit: '',
 			prices: []
