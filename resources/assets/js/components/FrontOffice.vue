@@ -62,7 +62,7 @@
 
 export default {
 
-props: ['id', 'location', 'status', 'online', 'owner', 'name'],
+props: ['id', 'location', 'online', 'owner', 'name'],
 
 data() {
 
@@ -74,6 +74,7 @@ shopOwner: [],
 shopLocation: [],
 shopItems: [],
 transactionTracker: [],
+status:"",
 
 }
 
@@ -172,7 +173,7 @@ getShopLocation(){
 getShopOwner(){
 	
 	axios.get('/get/shop/owner/' + this.owner).then(response=>{
-		
+		this.status=response.data.online
 		this.shopOwner.push(response.data)
 		 
 	})

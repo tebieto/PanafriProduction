@@ -13465,7 +13465,7 @@ var app = new Vue({
 
 			if (this.again == 0) {
 
-				setTimeout(this.getSearchQuery, 1050);
+				setTimeout(this.getSearchQuery, 1100);
 
 				this.again = 1;
 			}
@@ -51034,7 +51034,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ['id', 'location', 'status', 'online', 'owner', 'name'],
+	props: ['id', 'location', 'online', 'owner', 'name'],
 
 	data: function data() {
 
@@ -51045,7 +51045,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			shopOwner: [],
 			shopLocation: [],
 			shopItems: [],
-			transactionTracker: []
+			transactionTracker: [],
+			status: ""
 
 		};
 	},
@@ -51119,7 +51120,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this5 = this;
 
 			axios.get('/get/shop/owner/' + this.owner).then(function (response) {
-
+				_this5.status = response.data.online;
 				_this5.shopOwner.push(response.data);
 			});
 		},

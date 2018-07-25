@@ -362,7 +362,7 @@ storeIndex.search(searchLocation, (err, store) => {
 
 if(this.again==0) {
 
-setTimeout(this.getSearchQuery, 1050)
+setTimeout(this.getSearchQuery, 1100)
 
 this.again= 1
 }

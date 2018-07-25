@@ -212,6 +212,8 @@ class HomeController extends Controller
 		
 		]);
 		
+		
+		
 	}
 	
 	public function offApp()
@@ -229,6 +231,8 @@ class HomeController extends Controller
 			'online' => 0,
 		
 		]);
+		
+		$app->online->searchable();
 		
 	}
 	
