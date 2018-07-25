@@ -152,7 +152,7 @@ this.place= "Everywhere"
 }
 	
 var location
-if(this.place== "Everywhere") {
+if(this.place== "Everywhere" || this.place == "No result, showing everywhere") {
 	var location= ' ' 	
 } else {
 	location= this.place;	
@@ -174,7 +174,12 @@ storeIndex.search(location, (err, store) => {
 		
 		}
 	
-	})
+	});
+	
+	if(this.onlineShops.length==0) {
+		this.place = 'No result, showing everywhere';
+	}
+	
 	
 });	
 
@@ -191,7 +196,7 @@ input.classList.add("hidden")
 },
 	
 changeLocation(){
-
+this.place = "Everywhere"
 var everywhere = document.getElementById('everyWhere')
 var input = document.getElementById('enterLocation')
 
@@ -201,12 +206,13 @@ input.classList.remove("hidden")
 
 clearSearch() {
 this.storesFound=[]
+this.productsFound=[]
+this.sampleStores=[]
 this.again= 0
 this.noResult= false
 },	
 	
 getSearchQuery() {
-
 
 var noresult = document.getElementById('noResult')
 var result = document.getElementById('searchResult')
@@ -225,7 +231,7 @@ if (this.locationQuery.length>0) {
 
 productIndex.search(this.productAndStoreQuery, (err, product) => {
 	
-	this.productsFound=[]
+	if(product.hits.length>0) {
 	product.hits.forEach((product) => {
 	
 	var verify = this.productsFound.find ( p => {
@@ -240,11 +246,15 @@ productIndex.search(this.productAndStoreQuery, (err, product) => {
 	
 	})
 	
+	}
+	
 });
 
 
 storeIndex.search(this.productAndStoreQuery, (err, store) => {
-	this.sampleStores=[]
+	
+	if(store.hits.length>0) {
+		
 	store.hits.forEach((store) => {
 	
 	var verify = this.sampleStores.find ( s => {
@@ -252,18 +262,22 @@ storeIndex.search(this.productAndStoreQuery, (err, store) => {
 				
 			})
 
-		if(!verify) {	
+		if(!verify) {
+			
 		this.sampleStores.push (store)
 		
 		}
 	
 	})
 	
+	}
+	
 });	
 
+
+if (this.productsFound.length>0 || this.sampleStores.length>0){
 storeIndex.search(searchLocation, (err, store) => {
 	
-	this.storesFound=[]
 	store.hits.forEach((store)=> {
 		
 		/* I am about to match products and stores I pushed
@@ -273,7 +287,7 @@ storeIndex.search(searchLocation, (err, store) => {
 		/* For every stores in the specified location I am checking to see 
 		 if they have products I pushed to productsFound array if there is a match
 		 I will push them to storesFound array which will display to users */
-		
+		if (this.productsFound.length>0) {
 		this.productsFound.forEach((product)=> {
 			
 		if (product.store_id==store.id) {
@@ -292,12 +306,13 @@ storeIndex.search(searchLocation, (err, store) => {
 		}		
 			
 		})
+		}
 		
 		
 		/* For every stores in the specified location I am checking to see 
 		 if they maatch any store I pushed to sampleStore array, if there is a match
 		 I will push them to storesFound array which will display to users */
-		
+		if(this.sampleStores.length>0) {
 		this.sampleStores.forEach((sample)=> {
 			
 		if (sample.id==store.id) {
@@ -316,21 +331,17 @@ storeIndex.search(searchLocation, (err, store) => {
 		}		
 			
 		})
+		
+		}
 	 	
 		
 	})
 	
 	
-});	
-	
-
-if (this.storesFound.length==0) {
-		
-		if(this.again==0) {
-		 this.again= 1
-         this.getSearchQuery()	
-		}
+	if (this.storesFound.length==0) {
+		if(this.again==1) {
 		this.noResult=true;
+		}
 		
 	} else {
 		
@@ -338,12 +349,30 @@ if (this.storesFound.length==0) {
 		
 	}
 	
+});	
+
+} else {
+	
+	if(this.again==1) {
+		this.noResult=true;
+		}
+	
+}
+
+
+if(this.again==0) {
+
+setTimeout(this.getSearchQuery, 1050)
+
+this.again= 1
+}
+
+
 },
 	
 getSellerRequests() {
 
 
-	
 	
 },
 
@@ -353,6 +382,8 @@ var fake= document.getElementById("fake-search")
 var original= document.getElementById("main-search")
 fake.classList.add('hidden')
 original.classList.remove('hidden')	
+
+
 	
 },
 	
@@ -860,7 +891,7 @@ axios.get('guest/all/products').then(response=>{
 allCategories() {
 
 axios.get('/all/categories').then(response=>{
-		console.log(response.data);
+		
 		this.categories = []
 		response.data.forEach((category)=> {
 			
@@ -1538,10 +1569,6 @@ removeUploaded() {
 },
 		
 imageChange(e) {
-	
-	
-	
-	console.log ('hi')
 		
 		let selected=e.target.files[0];
 		

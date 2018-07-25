@@ -108,7 +108,7 @@
 			<center>
 			<div id="main-search"  class="panafri-main-search hidden">
 			
-			<input  type="text" @keyup="clearSearch" placeholder="Product or Store" autofocus v-model="productAndStoreQuery"><input type="text" placeholder="Location" @keyup="clearSearch" v-model="locationQuery">
+			<input  type="text" @keyup="clearSearch" @keyup.enter="getSearchQuery" placeholder="Product or Store" autofocus v-model="productAndStoreQuery"><input type="text" placeholder="Location" @keyup="clearSearch" @keyup.enter="getSearchQuery" v-model="locationQuery">
 			
 			<img @click="getSearchQuery" class="search-icon"  width="20px" height="auto" src="{{Storage::url('public/icons/search-icon.png')}}" alt="Search Icon">
 			
@@ -155,7 +155,7 @@
 				
 		<span v-if="storesFound.length==0">
 		<div class="category-title">
-		<h3> Online Shops . <span id="everyWhere">@{{place}} <a class="learn-more" style="color:green;" @click="changeLocation">Change</a></span>  <span id="enterLocation" class="hidden"><input type="text" placeholder="Enter location" style="border:none; font-weight:bold; padding:5px;" v-model="place" autofocus ><button style="background:green; color:#fff; border:none; border-radius: 2px; margin:5px; " @click="queryLocation">Ok</button></span> </h3>		
+		<h3> Online Shops . <span id="everyWhere">@{{place}} <a class="learn-more" style="color:green;" @click="changeLocation">Change</a></span>  <span id="enterLocation" class="hidden"><input type="text" placeholder="Enter location" style="border:none; font-weight:bold; padding:5px;" @keyup.enter="queryLocation" v-model="place" autofocus ><button style="background:green; color:#fff; border:none; border-radius: 2px; margin:5px; " @click="queryLocation">Ok</button></span> </h3>		
 		</div>
 		
 		<div class="suggestions">

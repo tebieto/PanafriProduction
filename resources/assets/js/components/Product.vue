@@ -108,6 +108,7 @@ showPrice:false,
 available: true,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 root:'http://localhost',
 =======
 root:'https://jokesterbox.com',
@@ -115,6 +116,9 @@ root:'https://jokesterbox.com',
 =======
 root:'http://jokesterbox.com',
 >>>>>>> 2ca84d3aa0ee2839f863542aed349abb84212903
+=======
+root:'https://jokesterbox.com',
+>>>>>>> e1e392baa3ffc85d2861e73812220121d32df375
 pprice:'',
 punit:'',
 prices: []
