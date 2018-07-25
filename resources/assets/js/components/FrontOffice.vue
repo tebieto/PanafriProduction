@@ -173,6 +173,9 @@ getShopLocation(){
 getShopOwner(){
 	
 	axios.get('/get/shop/owner/' + this.owner).then(response=>{
+		
+		/* I am making shop owner online status my status
+		Status from algolia is unreliable */
 		this.status=response.data.online
 		this.shopOwner.push(response.data)
 		 
