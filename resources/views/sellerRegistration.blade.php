@@ -18,7 +18,7 @@
 <div id="loader" class="loader">
 
 			
-	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
+	 <img @click="sellerHomeUrl()" class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
 	 
 	 <loader></loader>
 	
@@ -33,7 +33,7 @@
 	
 	<div class="logo">
 			
-		<a >  <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"></a>
+		<a >  <img @click="sellerHomeUrl()" class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"></a>
 	 </div>
 	
 	<div class="hidden" id="uploadedContainer" v-if="productImage.length>0 || uploadDelay.length>0">
@@ -59,7 +59,7 @@
 	 <table>
 	 
 	 <tr>
-	 <td>First Name</td>
+	 <td>FIRST NAME</td>
 	 </tr>
 	 
 	 <tr>
@@ -72,13 +72,13 @@
      </tr>
      @endif
 	 
-	 <tr>
-	 <td>Middle Name</td>
+	 <tr style="display:none">
+	 <td>MIDDLE NAME</td>
 	 </tr>
 	 
-	 <tr>
+	 <tr style="display:none">
 	 
-	 <td><input type="text" name="mname"  value="{{ old('mname') }}" placeholder="Middle Name" /></td>
+	 <td><input type="text" name="mname"  value="N.A" placeholder="Middle Name" /></td>
 	 </tr>
 	 @if ($errors->has('mname'))
      <tr>
@@ -87,7 +87,7 @@
      @endif
 	 
 	  <tr>
-	  <td>Last Name</td>
+	  <td>LAST NAME</td>
 	 </tr>
 	 
 	 <tr>
@@ -101,7 +101,7 @@
      @endif
 	 
 	<tr>
-	  <td>Avatar</td>
+	  <td>AVATAR</td>
 	 </tr>
 	 
 	 @if ($errors->has('avatar'))
@@ -123,7 +123,7 @@
 	 </div>
 	 
 	 <tr>
-	  <td>Email</td>
+	  <td>EMAIL</td>
 	 </tr>
 	 
 	 <tr>
@@ -137,7 +137,7 @@
      @endif
 	 
 	 <tr>
-	  <td>Phone Number</td>
+	  <td>PHONE NUMBER</td>
 	 </tr>
 	 
 	 <tr>
@@ -151,7 +151,7 @@
      @endif
 	 
 	 <tr>
-	  <td>Password</td>
+	  <td>PASSWORD</td>
 	 </tr>
 	 
 	
@@ -166,7 +166,7 @@
      @endif
 	 
 	 <tr>
-	  <td>Confrirm Password </td>
+	  <td>CONFIRM PASSWORD </td>
 	 </tr>
 	 
 	  <tr>
@@ -185,7 +185,7 @@
 	 </tr>
 	 <tr>
 	 
-	 <td><button type="submit">Register</button><a href="/login/seller/login" class="learn-more">Already have an account?</a></td>
+	 <td><button type="submit">SUBMIT</button><a href="/login/seller/login" class="learn-more">Already have an account?</a></td>
 	 </tr>
 	 
 	 

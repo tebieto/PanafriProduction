@@ -39,7 +39,7 @@
 	
 	 <div class="logo">
 			
-		<a >  <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"></a>
+		<a >  <img @click="homeUrl()" class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"></a>
 	 </div>
 
 	  <form class="welcome-login-form" method="POST" action="{{ route('login') }}">
@@ -48,12 +48,12 @@
 	 <table>
 	
 	 <tr>
-	  <td>Email</td>
+	  <td>EMAIL</td>
 	 </tr>
 	 
 	 <tr>
 	
-	 <td><input type="email" name="email"  value="{{ old('email') }}" required /></td>
+	 <td><input type="email" name="email"  value="{{ old('email') }}" placeholder="john.doe@example.com" required /></td>
 	 </tr>
 	 @if ($errors->has('email'))
      <tr>
@@ -68,7 +68,7 @@
      @endif
 	 
 	  <tr>
-	  <td>Password</td>
+	  <td>PASSWORD</td>
 	 </tr>
 	 
 	 <tr>
@@ -89,7 +89,7 @@
 	 
 	 <tr>
 	
-	 <td><button type="submit">Login</button><a href="/register" class="learn-more">Register new account</a></td>
+	 <td><button type="submit">LOGIN</button><a href="/register" class="learn-more">Register new account</a></td>
 	 </tr>
 	 
 	 
