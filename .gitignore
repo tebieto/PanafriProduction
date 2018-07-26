@@ -3,3 +3,7 @@
 /storage/log
 
 /storage/app/public/images
+
+*.rar
+
+*.zip
