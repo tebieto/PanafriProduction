@@ -13165,6 +13165,13 @@ window.Vue = __webpack_require__(21);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+/**
+* Uncomment below when compiling to production
+*/
+Vue.config.devtools = false;
+Vue.config.debug = false;
+Vue.config.silent = true;
+
 Vue.component('example', __webpack_require__(58));
 Vue.component('welcome', __webpack_require__(61));
 Vue.component('store', __webpack_require__(63));

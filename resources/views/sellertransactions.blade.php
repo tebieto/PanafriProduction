@@ -104,13 +104,15 @@
 				<li @click="welcomeLoginModal()">
 				<a id="login-link" >Login</a>
 				</li>
-				-->
+				
 				<li >
 				<form method="post" action="/logout">
 				{{ csrf_field() }}
 				<button>Logout</button>
 				</form>
 				</li>
+				
+				-->
 			</div>
 			
 			

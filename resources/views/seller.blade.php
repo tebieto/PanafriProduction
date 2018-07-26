@@ -351,10 +351,10 @@
 	 <div class="form">
 	 <table >
 	 
-	 <h3>Add Products</h3>
+	 <h3>ADD PRODUCTS</h3>
 	 
 	 <tr>
-	 <td>Your Office</td>
+	 <td>YOUR OFFICE</td>
 	 </tr>
 	 
 	<tr>
@@ -383,7 +383,7 @@
 	 
 	 
 	  <tr>
-	 <td>Product Name</td>
+	 <td>PRODUCT NAME</td>
 	 </tr>
 	 
 	 <tr>
@@ -402,7 +402,7 @@
 	 
 	 
 	 <tr>
-	  <td>Choose Category</td>
+	  <td>CHOOSE CATEGORY</td>
 	 </tr>
 	
 	 <tr>
@@ -416,7 +416,7 @@
 	 
 	  
 	 <tr v-if="addNewCategory">
-	  <td>Add New Category</td>
+	  <td>ADD NEW CATEGORY</td>
 	 </tr>
 	 
 	  <tr v-if="addNewCategory">
@@ -447,7 +447,7 @@
 				 
 	 
 	<tr>
-	  <td>Product Image</td>
+	  <td>PRODUCT IMAGE</td>
 	 </tr>
 	
 	 <tr>
@@ -460,7 +460,7 @@
 	  <!-- End Adding image upload -->
 	 <tr>
 	
-	 <td><button v-if="!show_post_spinner" class="addProductButton post_button" type="submit" @click="submitProduct()" :disabled="pdisabled">Add</button>
+	 <td><button v-if="!show_post_spinner" id="addProduct" class="addProductButton post_button" type="submit" @click="submitProduct()" :disabled="pdisabled">Add</button>
 	<div class="post_spinner_wrapper" v-if="show_post_spinner">
 	 <div class="post_spinner"></div>
 	</div>
