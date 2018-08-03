@@ -13770,7 +13770,7 @@ var app = new Vue({
 			if (status == google.maps.GeocoderStatus.OK) {
 				console.log(results);
 				if (results[0]) {
-					address = results[6].address_component[0].long_name + ',' + results[6].address_component[1].long_name;
+					address = results[6].address_components[0].long_name + ',' + results[6].address_components[1].long_name;
 					if (_this19.place = address) {
 
 						_this19.queryLocation();
