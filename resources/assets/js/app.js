@@ -822,7 +822,9 @@ showPosition(position) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
         address = results[1].formatted_address;
-        console.log(results[1] + 'it works');
+        if(this.place = address) {
+			this.queryLocation()
+			}
         // Render Stuff
       }else{
         error("Unable to reverse Geocode");
