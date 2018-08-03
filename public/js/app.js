@@ -13759,6 +13759,7 @@ var app = new Vue({
 				break;
 		}
 	}), _defineProperty(_methods, 'showPosition', function showPosition(position) {
+		var _this19 = this;
 
 		var latlng;
 		var address;
@@ -13769,13 +13770,15 @@ var app = new Vue({
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[1]) {
 					address = results[1].formatted_address;
-					this.place = address;
+					if (_this19.place = address) {
+
+						_this19.queryLocation();
+					}
 				} else {
 					error("Unable to reverse Geocode");
 				}
 			}
 		});
-		this.queryLocation();
 	}), _defineProperty(_methods, 'getLocation', function getLocation() {
 
 		if (navigator.geolocation) {
@@ -13784,37 +13787,26 @@ var app = new Vue({
 			this.queryLocation();
 		}
 	}), _defineProperty(_methods, 'searchProducts', function searchProducts() {
-		var _this19 = this;
+		var _this20 = this;
 
 		if (!this.query.length) {
 			return;
 		}
 		index.search(this.query, function (err, content) {
 
-			_this19.results = content.hits;
+			_this20.results = content.hits;
 		});
 	}), _defineProperty(_methods, 'removeProduct', function removeProduct(pid) {
-		var _this20 = this;
+		var _this21 = this;
 
 		axios.get('/remove/product/' + pid).then(function (response) {
 
-			_this20.authStore();
+			_this21.authStore();
 		});
 	}), _defineProperty(_methods, 'allProducts', function allProducts() {
-		var _this21 = this;
-
-		axios.get('/all/products').then(function (response) {
-
-			_this21.products = [];
-			response.data.forEach(function (product) {
-
-				_this21.products.push(product);
-			});
-		});
-	}), _defineProperty(_methods, 'guestProducts', function guestProducts() {
 		var _this22 = this;
 
-		axios.get('guest/all/products').then(function (response) {
+		axios.get('/all/products').then(function (response) {
 
 			_this22.products = [];
 			response.data.forEach(function (product) {
@@ -13822,19 +13814,30 @@ var app = new Vue({
 				_this22.products.push(product);
 			});
 		});
-	}), _defineProperty(_methods, 'allCategories', function allCategories() {
+	}), _defineProperty(_methods, 'guestProducts', function guestProducts() {
 		var _this23 = this;
+
+		axios.get('guest/all/products').then(function (response) {
+
+			_this23.products = [];
+			response.data.forEach(function (product) {
+
+				_this23.products.push(product);
+			});
+		});
+	}), _defineProperty(_methods, 'allCategories', function allCategories() {
+		var _this24 = this;
 
 		axios.get('/all/categories').then(function (response) {
 
-			_this23.categories = [];
+			_this24.categories = [];
 			response.data.forEach(function (category) {
 
-				_this23.categories.push(category);
+				_this24.categories.push(category);
 			});
 		});
 	}), _defineProperty(_methods, 'sendCategory', function sendCategory() {
-		var _this24 = this;
+		var _this25 = this;
 
 		if (this.ncategory.length == 0) {
 			return;
@@ -13842,16 +13845,16 @@ var app = new Vue({
 
 		axios.get('/save/category/' + this.ncategory).then(function (response) {
 
-			_this24.categories = [];
+			_this25.categories = [];
 			response.data.forEach(function (category) {
 
-				_this24.categories.push(category);
+				_this25.categories.push(category);
 			});
 
-			_this24.ncategory = '';
+			_this25.ncategory = '';
 		});
 	}), _defineProperty(_methods, 'submitProduct', function submitProduct() {
-		var _this25 = this;
+		var _this26 = this;
 
 		if (this.productImage.length > 0 && this.ocategory > 0 && this.ncategory.length == 0 && this.shopName.length == 0 && this.shopLocation.length == 0 && this.productName.length > 0 && this.pdescription.length > 0 && this.activeShop > 0) {
 
@@ -13880,57 +13883,57 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this25.productImage = [];
-			_this25.productName = '';
-			_this25.pdescription = '';
-			_this25.show_post_spinner = false;
+			_this26.productImage = [];
+			_this26.productName = '';
+			_this26.pdescription = '';
+			_this26.show_post_spinner = false;
 
-			_this25.allProducts();
+			_this26.allProducts();
 			window.location = "/login/seller/login";
 		});
 	}), _defineProperty(_methods, 'findSeller', function findSeller(pid, cid) {
-		var _this26 = this;
+		var _this27 = this;
 
 		this.getActiveProduct(pid);
 		this.activeProductId = pid;
 		this.activeCategoryId = cid;
 
 		axios.get('/find/sellers/' + pid + '/' + cid).then(function (response) {
-			_this26.activeSellers = [];
+			_this27.activeSellers = [];
 			response.data.forEach(function (seller) {
 
-				_this26.activeSellers.push(seller);
+				_this27.activeSellers.push(seller);
 			});
 		});
 
 		this.showActivePage();
 	}), _defineProperty(_methods, 'getOpenTransactions', function getOpenTransactions() {
-		var _this27 = this;
+		var _this28 = this;
 
 		this.showOpentansaction = false;
 		this.openTransactions = [];
 		axios.get('/open/transactions/').then(function (response) {
 
-			_this27.openTransactions = [];
+			_this28.openTransactions = [];
 			response.data.reverse().forEach(function (transaction) {
 
-				_this27.openTransactions.push(transaction);
+				_this28.openTransactions.push(transaction);
 			});
-			_this27.showOpenTransactions = true;
+			_this28.showOpenTransactions = true;
 		});
 	}), _defineProperty(_methods, 'getClosedTransactions', function getClosedTransactions() {
-		var _this28 = this;
+		var _this29 = this;
 
 		axios.get('/closed/transactions/').then(function (response) {
-			_this28.closedTransactions = [];
+			_this29.closedTransactions = [];
 
 			response.data.forEach(function (transaction) {
 
-				_this28.closedTransactions.push(transaction);
+				_this29.closedTransactions.push(transaction);
 			});
 		});
 	}), _defineProperty(_methods, 'hireSeller', function hireSeller(sid) {
-		var _this29 = this;
+		var _this30 = this;
 
 		var cid;
 		if (this.activeCategoryId == 3) {
@@ -13942,17 +13945,17 @@ var app = new Vue({
 
 		axios.get('/create/transaction/' + sid + '/' + this.activeProductId + '/' + cid).then(function (response) {
 
-			_this29.activeTransaction = [];
-			_this29.activeTransaction.push(response.data);
-			_this29.sendChat1(response.data.id, sid);
-			_this29.getOpenTransactions();
+			_this30.activeTransaction = [];
+			_this30.activeTransaction.push(response.data);
+			_this30.sendChat1(response.data.id, sid);
+			_this30.getOpenTransactions();
 		});
 
 		this.hideActivePage();
 		this.showChatBox();
 		this.activeSellerId = sid;
 	}), _defineProperty(_methods, 'sendChat1', function sendChat1(tid, sid) {
-		var _this30 = this;
+		var _this31 = this;
 
 		var body = 'Hello there, trust you are doing great';
 		var data = JSON.stringify({
@@ -13970,12 +13973,12 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this30.getChat(tid);
+			_this31.getChat(tid);
 
-			_this30.sendChat2(tid, sid);
+			_this31.sendChat2(tid, sid);
 		});
 	}), _defineProperty(_methods, 'sendChat2', function sendChat2(tid, sid) {
-		var _this31 = this;
+		var _this32 = this;
 
 		if (this.activeCategoryId == 3) {
 
@@ -14000,11 +14003,11 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this31.getChat(tid);
-			_this31.sendChat3(tid, sid);
+			_this32.getChat(tid);
+			_this32.sendChat3(tid, sid);
 		});
 	}), _defineProperty(_methods, 'sendChat3', function sendChat3(tid, sid) {
-		var _this32 = this;
+		var _this33 = this;
 
 		if (this.activeCategoryId == 3) {
 
@@ -14029,40 +14032,40 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this32.getChat(tid);
+			_this33.getChat(tid);
 		});
 	}), _defineProperty(_methods, 'declineTransaction', function declineTransaction(tid) {
-		var _this33 = this;
+		var _this34 = this;
 
 		axios.get('/decline/transaction/' + tid).then(function (response) {
 
-			_this33.getOpenTransactions();
+			_this34.getOpenTransactions();
 		});
 	}), _defineProperty(_methods, 'getChat', function getChat(tid) {
-		var _this34 = this;
+		var _this35 = this;
 
 		var container = document.getElementById('chatBody');
 		container.scrollTop = container.scrollHeight;
 		this.showChatBox();
 		axios.get('/get/chat/' + tid).then(function (response) {
-			_this34.activeChat = [];
+			_this35.activeChat = [];
 
 			response.data.forEach(function (message) {
-				_this34.activeChat.push(message);
+				_this35.activeChat.push(message);
 
 				container.scrollTop = container.scrollHeight;
 			});
 		});
 	}), _defineProperty(_methods, 'getActiveProduct', function getActiveProduct(pid) {
-		var _this35 = this;
+		var _this36 = this;
 
 		axios.get('/active/product/' + pid).then(function (response) {
 
-			_this35.activeProduct = [];
-			_this35.activeProduct.push(response.data);
+			_this36.activeProduct = [];
+			_this36.activeProduct.push(response.data);
 		});
 	}), _defineProperty(_methods, 'submitSeller', function submitSeller() {
-		var _this36 = this;
+		var _this37 = this;
 
 		if (this.sellerEmail.length > 0 && this.sellerImage.length > 0 && this.adminEmail.length > 0) {
 
@@ -14089,10 +14092,10 @@ var app = new Vue({
 
 		}).then(function (response) {
 
-			_this36.sellerImage = [];
-			_this36.sellerEmail = '';
-			_this36.adminEmail = '';
-			_this36.show_post_spinner = false;
+			_this37.sellerImage = [];
+			_this37.sellerEmail = '';
+			_this37.adminEmail = '';
+			_this37.show_post_spinner = false;
 		});
 	}), _defineProperty(_methods, 'showMenu', function showMenu() {
 
@@ -14242,14 +14245,14 @@ var app = new Vue({
 		var adminSeller = document.getElementById('admin-seller');
 		adminSeller.classList.add('hidden');
 	}), _defineProperty(_methods, 'authStore', function authStore() {
-		var _this37 = this;
+		var _this38 = this;
 
 		axios.get('/auth/store').then(function (response) {
-			_this37.store = [];
+			_this38.store = [];
 
 			response.data.forEach(function (item) {
 
-				_this37.store.push(item);
+				_this38.store.push(item);
 			});
 		});
 	}), _defineProperty(_methods, 'showImagePicker', function showImagePicker() {
@@ -14261,41 +14264,6 @@ var app = new Vue({
 	}), _defineProperty(_methods, 'removeUploaded', function removeUploaded() {
 		this.productImage = [];
 	}), _defineProperty(_methods, 'imageChange', function imageChange(e) {
-		var _this38 = this;
-
-		var selected = e.target.files[0];
-
-		if (!selected) {
-			return 0;
-		}
-
-		this.uploadDelay.push('File');
-
-		var selectedFile = e.target.files[0];
-
-		this.attachment = selectedFile;
-		this.form.append('img', this.attachment);
-		var config = { headers: { 'Content-Type': 'multipart/form-data' } };
-
-		axios.post('/upload/image', this.form, config).then(function (response) {
-			//success
-
-
-			if (response.data.length == 0) {
-				_this38.uploadDelay = [];
-
-				return;
-			}
-
-			_this38.productImage = [];
-			_this38.uploadDelay = [];
-			_this38.productImage.push(response.data);
-			var container = document.getElementById('uploadedContainer');
-			container.classList.remove('hidden');
-		}).catch(function (response) {
-			//errors
-		});
-	}), _defineProperty(_methods, 'sellerImageChange', function sellerImageChange(e) {
 		var _this39 = this;
 
 		var selected = e.target.files[0];
@@ -14322,9 +14290,44 @@ var app = new Vue({
 				return;
 			}
 
-			_this39.sellerImage = [];
+			_this39.productImage = [];
 			_this39.uploadDelay = [];
-			_this39.sellerImage.push(response.data);
+			_this39.productImage.push(response.data);
+			var container = document.getElementById('uploadedContainer');
+			container.classList.remove('hidden');
+		}).catch(function (response) {
+			//errors
+		});
+	}), _defineProperty(_methods, 'sellerImageChange', function sellerImageChange(e) {
+		var _this40 = this;
+
+		var selected = e.target.files[0];
+
+		if (!selected) {
+			return 0;
+		}
+
+		this.uploadDelay.push('File');
+
+		var selectedFile = e.target.files[0];
+
+		this.attachment = selectedFile;
+		this.form.append('img', this.attachment);
+		var config = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+		axios.post('/upload/image', this.form, config).then(function (response) {
+			//success
+
+
+			if (response.data.length == 0) {
+				_this40.uploadDelay = [];
+
+				return;
+			}
+
+			_this40.sellerImage = [];
+			_this40.uploadDelay = [];
+			_this40.sellerImage.push(response.data);
 		}).catch(function (response) {
 			//errors
 		});

@@ -818,18 +818,20 @@ showPosition(position) {
     var geocoder = new google.maps.Geocoder();
 
   var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  geocoder.geocode({'latLng': latlng}, function(results, status) {
+  geocoder.geocode({'latLng': latlng}, (results, status) => {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
         address = results[1].formatted_address;
-        this.place = address
+        if(this.place = address) {
+			
+			this.queryLocation();
+		}
 		
       }else{
         error("Unable to reverse Geocode");
       }
     }
   });
-			this.queryLocation()
   
 
 
