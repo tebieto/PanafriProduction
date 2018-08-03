@@ -829,11 +829,11 @@ showPosition(position) {
     }
   });
   
-  if (address.length>0) {
+  
   if(this.place = address) {
 			this.queryLocation()
 			}
-  }
+  
 
 
 },

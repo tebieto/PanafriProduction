@@ -13775,10 +13775,8 @@ var app = new Vue({
 			}
 		});
 
-		if (address.length > 0) {
-			if (this.place = address) {
-				this.queryLocation();
-			}
+		if (this.place = address) {
+			this.queryLocation();
 		}
 	}), _defineProperty(_methods, 'getLocation', function getLocation() {
 
