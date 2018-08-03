@@ -813,6 +813,22 @@ showError(error) {
 	
 showPosition(position) {
 	
+	var latlng;
+    var address;
+    var geocoder = new google.maps.Geocoder();
+
+  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  geocoder.geocode({'latLng': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        address = results[1].formatted_address;
+        console.log(results[1] + 'it works');
+        // Render Stuff
+      }else{
+        error("Unable to reverse Geocode");
+      }
+    }
+  });
 
 
 },
