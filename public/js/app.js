@@ -13288,7 +13288,6 @@ var app = new Vue({
 		this.getAuthDetails();
 		this.getAuthShops();
 		this.getAllShops();
-		this.queryLocation();
 	},
 
 
@@ -13743,6 +13742,8 @@ var app = new Vue({
 		});
 	}), _defineProperty(_methods, 'showError', function showError(error) {
 
+		this.queryLocation();
+
 		switch (error.code) {
 			case error.PERMISSION_DENIED:
 				console.log("permision denied");
@@ -13769,7 +13770,6 @@ var app = new Vue({
 				if (results[1]) {
 					address = results[1].formatted_address;
 					this.place = address;
-					console.log(this.place);
 				} else {
 					error("Unable to reverse Geocode");
 				}
@@ -13780,7 +13780,9 @@ var app = new Vue({
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
-		} else {}
+		} else {
+			this.queryLocation();
+		}
 	}), _defineProperty(_methods, 'searchProducts', function searchProducts() {
 		var _this19 = this;
 

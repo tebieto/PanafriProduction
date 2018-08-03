@@ -142,7 +142,7 @@ this.allProducts()
 this.getAuthDetails()
 this.getAuthShops()
 this.getAllShops()
-this.queryLocation()	
+	
 },
 	
 methods: {
@@ -792,7 +792,7 @@ getAllShops(){
 
 showError(error) {
 	
-	
+	this.queryLocation()
 
     switch(error.code) {
         case error.PERMISSION_DENIED:
@@ -823,7 +823,7 @@ showPosition(position) {
       if (results[1]) {
         address = results[1].formatted_address;
         this.place = address
-		console.log (this.place)
+		
       }else{
         error("Unable to reverse Geocode");
       }
@@ -840,7 +840,7 @@ getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
     } else { 
-        
+        this.queryLocation()
     }
 	
 },
