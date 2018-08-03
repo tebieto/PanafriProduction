@@ -49,7 +49,7 @@ if (token) {
 
  window.Echo = new Echo({
      broadcaster: 'pusher',
-     key: '43ca42e815eab5b9296d',
+     key: '9f947ae147022a8002f7',
 	 cluster: 'mt1',
 	 authEndpoint: '/broadcasting/auth'
  });

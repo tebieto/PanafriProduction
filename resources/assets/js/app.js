@@ -18,7 +18,7 @@ window.Vue = require('vue');
  /**
  * Uncomment below when compiling to production
  */
-Vue.config.devtools = true
+Vue.config.devtools = false
 Vue.config.debug = false
 Vue.config.silent = true
 
@@ -43,7 +43,7 @@ Vue.component('buyer-pending', require('./components/BuyerPending.vue'));
 Vue.component('buyer-loader', require('./components/BuyerLoader.vue'));
 
 var algoliasearch = require('algoliasearch');
-var client = algoliasearch('Z47FXBRF0T', '3efcf7ba7656c62c257f0a201211686d');
+var client = algoliasearch('RXJQSMB7Z9', '498d6d14f688e4ae0321d4a0166d75ae');
 var productIndex = client.initIndex('products');
 var storeIndex = client.initIndex('stores');
 import { store } from './store'

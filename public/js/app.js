@@ -13168,7 +13168,7 @@ window.Vue = __webpack_require__(21);
 /**
 * Uncomment below when compiling to production
 */
-Vue.config.devtools = true;
+Vue.config.devtools = false;
 Vue.config.debug = false;
 Vue.config.silent = true;
 
@@ -13193,7 +13193,7 @@ Vue.component('buyer-pending', __webpack_require__(123));
 Vue.component('buyer-loader', __webpack_require__(128));
 
 var algoliasearch = __webpack_require__(22);
-var client = algoliasearch('Z47FXBRF0T', '3efcf7ba7656c62c257f0a201211686d');
+var client = algoliasearch('RXJQSMB7Z9', '498d6d14f688e4ae0321d4a0166d75ae');
 var productIndex = client.initIndex('products');
 var storeIndex = client.initIndex('stores');
 
@@ -14511,7 +14511,7 @@ window.Pusher = __webpack_require__(55);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
-  key: '43ca42e815eab5b9296d',
+  key: '9f947ae147022a8002f7',
   cluster: 'mt1',
   authEndpoint: '/broadcasting/auth'
 });
