@@ -934,6 +934,9 @@
 	<!-- Scripts -->
 	 <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/welcome.js') }}"></script>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU">
+    </script>
 	
 </body>
 </html>
