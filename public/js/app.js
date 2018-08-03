@@ -13168,7 +13168,7 @@ window.Vue = __webpack_require__(21);
 /**
 * Uncomment below when compiling to production
 */
-Vue.config.devtools = false;
+Vue.config.devtools = true;
 Vue.config.debug = false;
 Vue.config.silent = true;
 
@@ -13271,7 +13271,7 @@ var app = new Vue({
 		};
 	},
 	mounted: function mounted() {
-
+		this.getLocation();
 		this.getBuyerChat();
 		this.getSellerChat();
 		this.getSellerRequests();
@@ -13472,7 +13472,7 @@ var app = new Vue({
 
 			if (this.again == 0) {
 
-				setTimeout(this.getSearchQuery, 1100);
+				setTimeout(this.getSearchQuery, 1200);
 
 				this.again = 1;
 			}
@@ -13665,7 +13665,6 @@ var app = new Vue({
 			}
 
 		}).then(function (response) {
-			_this14.getAuthShops();
 
 			_this14.shopLocation = '';
 			_this14.shopName = '';
@@ -13744,35 +13743,25 @@ var app = new Vue({
 		});
 	}), _defineProperty(_methods, 'showError', function showError(error) {
 
-		var x = document.getElementById("demo");
-
 		switch (error.code) {
 			case error.PERMISSION_DENIED:
-				x.innerHTML = "User denied the request for Geolocation.";
+				console.log("permision denied");
 				break;
 			case error.POSITION_UNAVAILABLE:
-				x.innerHTML = "Location information is unavailable.";
+				console.log("position unavailable");
 				break;
 			case error.TIMEOUT:
-				x.innerHTML = "The request to get user location timed out.";
+				console.log("Timeout");
 				break;
 			case error.UNKNOWN_ERROR:
-				x.innerHTML = "An unknown error occurred.";
+				console.log("unknown");
 				break;
 		}
-	}), _defineProperty(_methods, 'showPosition', function showPosition(position) {
-		var lat = position.coords.latitude;
-		var lng = position.coords.longitude;
-		var latlon = position.coords.latitude + "," + position.coords.longitude;
-		var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlon + "&zoom=14&size=400x300&key=AIzaSyAh3prpUKLUAW3z5ylYBjUgORLidrBdRMU";
-		document.getElementById("map").innerHTML = "<img src='" + img_url + "'>";
-	}), _defineProperty(_methods, 'getLocation', function getLocation() {
-		var x = document.getElementById("demo");
+	}), _defineProperty(_methods, 'showPosition', function showPosition(position) {}), _defineProperty(_methods, 'getLocation', function getLocation() {
+
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
-		} else {
-			x.innerHTML = "Geolocation is not supported by this browser.";
-		}
+		} else {}
 	}), _defineProperty(_methods, 'searchProducts', function searchProducts() {
 		var _this19 = this;
 
@@ -51426,11 +51415,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ['id', 'name', 'root', 'online'],
+	props: ['id', 'name', 'online'],
 
 	mounted: function mounted() {
 		if (this.online == 0) {
@@ -51439,6 +51430,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 		this.getAuthDetails();
 		this.getStoreProducts();
+		setTimeout(this.startLoadingProducts, 5000);
 	},
 	data: function data() {
 
@@ -51446,29 +51438,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			authDetails: [],
 			products: [],
-			storeOn: true
+			storeOn: true,
+			loadProducts: false
 
 		};
 	},
 
 
 	methods: {
+		startLoadingProducts: function startLoadingProducts() {
+
+			this.loadProducts = true;
+		},
 		onStore: function onStore() {
 
 			this.storeOn = true;
 
-			axios.get(this.root + '/on/store/' + this.id).then(function (response) {});
+			axios.get('/on/store/' + this.id).then(function (response) {});
 		},
 		offStore: function offStore() {
 
 			this.storeOn = false;
 
-			axios.get(this.root + '/off/store/' + this.id).then(function (response) {});
+			axios.get('/off/store/' + this.id).then(function (response) {});
 		},
 		getAuthDetails: function getAuthDetails() {
 			var _this = this;
 
-			axios.get(this.root + '/auth/details').then(function (response) {
+			axios.get('/auth/details/').then(function (response) {
 
 				_this.authDetails.push(response.data);
 			});
@@ -51476,7 +51473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getStoreProducts: function getStoreProducts() {
 			var _this2 = this;
 
-			axios.get(this.root + '/products/store/' + this.id).then(function (response) {
+			axios.get('/products/store/' + this.id).then(function (response) {
 				response.data.forEach(function (product) {
 					_this2.products.push(product);
 				});
@@ -51506,105 +51503,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        { staticClass: "office" },
-        [
-          _c("center", [
-            _c(
-              "div",
-              {
-                staticStyle: {
-                  height: "80px",
-                  width: "250px",
-                  "overflow-y": "auto"
-                }
-              },
-              [
-                _c("h4", [
-                  _vm._v(
-                    "Office, " +
-                      _vm._s("#" + this.id) +
-                      ", " +
-                      _vm._s(this.name)
-                  )
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            !_vm.storeOn
-              ? _c("span", { attrs: { id: "onStore" } }, [
-                  _c(
-                    "span",
-                    { staticStyle: { color: "#ddd", margin: "7px" } },
-                    [_vm._v("Offline")]
-                  ),
-                  _c(
-                    "button",
-                    {
-                      staticStyle: { background: "green" },
-                      on: {
-                        click: function($event) {
-                          _vm.onStore()
-                        }
-                      }
-                    },
-                    [_vm._v("Go Online")]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.storeOn
-              ? _c("span", { attrs: { id: "offStore" } }, [
-                  _c(
-                    "button",
-                    {
-                      staticStyle: { background: "red", color: "#fff" },
-                      on: {
-                        click: function($event) {
-                          _vm.offStore()
-                        }
-                      }
-                    },
-                    [_vm._v("Go Offline")]
-                  ),
-                  _c(
-                    "span",
-                    { staticStyle: { color: "#ddd", margin: "7px" } },
-                    [_vm._v("online")]
-                  )
-                ])
-              : _vm._e()
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._l(this.products, function(product) {
-        return _c(
-          "div",
-          [
-            _c("product", {
-              attrs: {
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                status: product.status,
-                store: this.id,
-                category: product.category_id,
-                image: product.image
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "office" },
+      [
+        _c("center", [
+          _c(
+            "div",
+            {
+              staticStyle: {
+                height: "80px",
+                width: "250px",
+                "overflow-y": "auto"
               }
-            })
-          ],
-          1
+            },
+            [
+              _c("h4", [
+                _vm._v(
+                  "Office, " + _vm._s("#" + this.id) + ", " + _vm._s(this.name)
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          !_vm.storeOn
+            ? _c("span", { attrs: { id: "onStore" } }, [
+                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
+                  _vm._v("Offline")
+                ]),
+                _c(
+                  "button",
+                  {
+                    staticStyle: { background: "green" },
+                    on: {
+                      click: function($event) {
+                        _vm.onStore()
+                      }
+                    }
+                  },
+                  [_vm._v("Go Online")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.storeOn
+            ? _c("span", { attrs: { id: "offStore" } }, [
+                _c(
+                  "button",
+                  {
+                    staticStyle: { background: "red", color: "#fff" },
+                    on: {
+                      click: function($event) {
+                        _vm.offStore()
+                      }
+                    }
+                  },
+                  [_vm._v("Go Offline")]
+                ),
+                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
+                  _vm._v("online")
+                ])
+              ])
+            : _vm._e()
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.loadProducts
+      ? _c(
+          "div",
+          { staticClass: "products" },
+          _vm._l(this.products, function(product) {
+            return _c(
+              "span",
+              [
+                _c("product", {
+                  attrs: {
+                    id: product.id,
+                    name: product.name,
+                    description: product.description,
+                    status: product.status,
+                    store: this.id,
+                    category: product.category_id,
+                    image: product.image
+                  }
+                })
+              ],
+              1
+            )
+          })
         )
-      })
-    ],
-    2
-  )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53191,13 +53183,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53242,7 +53227,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			this.prices.splice(index, 1);
 
-			axios.get(this.root + '/remove/prices/' + pid).then(function (response) {
+			axios.get('/remove/prices/' + pid).then(function (response) {
 
 				_this.getPrices();
 			});
@@ -53257,7 +53242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			});
 
-			axios.post(this.root + '/send/price', data, {
+			axios.post('/send/price', data, {
 				headers: {
 					'Content-Type': 'application/json'
 
@@ -53274,7 +53259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getPrices: function getPrices() {
 			var _this3 = this;
 
-			axios.get(this.root + '/get/prices/' + this.id).then(function (response) {
+			axios.get('/get/prices/' + this.id).then(function (response) {
 
 				_this3.prices = [];
 				response.data.forEach(function (price) {
@@ -53285,7 +53270,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getAuthDetails: function getAuthDetails() {
 			var _this4 = this;
 
-			axios.get(this.root + '/auth/details').then(function (response) {
+			axios.get('/auth/details').then(function (response) {
 
 				_this4.authDetails.push(response.data);
 			});
@@ -53303,13 +53288,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			this.available = true;
 
-			axios.get(this.root + '/on/product/' + this.id).then(function (response) {});
+			axios.get('/on/product/' + this.id).then(function (response) {});
 		},
 		offProduct: function offProduct() {
 
 			this.available = false;
 
-			axios.get(this.root + '/off/product/' + this.id).then(function (response) {});
+			axios.get('/off/product/' + this.id).then(function (response) {});
 		}
 	}
 
@@ -53323,78 +53308,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "products" }, [
-      _c("div", { staticClass: "seller-products" }, [
-        this.image
-          ? _c("img", {
-              attrs: {
-                src: this.image,
-                height: "150px",
-                width: "200px",
-                alt: ""
-              }
-            })
+  return _c("div", { staticClass: "seller-product-container" }, [
+    _c("div", { staticClass: "seller-products" }, [
+      this.image
+        ? _c("img", {
+            attrs: { src: this.image, height: "150px", width: "200px", alt: "" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(this.name))]),
+      _vm._v(" "),
+      _c("span", [_vm._v(_vm._s(this.description))]),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          staticClass: "grey-button",
+          on: {
+            click: function($event) {
+              _vm.showProductPrice()
+            }
+          }
+        },
+        [_vm._v("Price Menu")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "product-details" }, [
+        !_vm.available
+          ? _c("span", { attrs: { id: "onproduct" } }, [
+              _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
+                _vm._v("off")
+              ]),
+              _c(
+                "button",
+                {
+                  staticStyle: { background: "green" },
+                  on: {
+                    click: function($event) {
+                      _vm.onProduct()
+                    }
+                  }
+                },
+                [_vm._v("On")]
+              )
+            ])
           : _vm._e(),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(this.name))]),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(this.description))]),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "grey-button",
-            on: {
-              click: function($event) {
-                _vm.showProductPrice()
-              }
-            }
-          },
-          [_vm._v("Price Menu")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "product-details" }, [
-          !_vm.available
-            ? _c("span", { attrs: { id: "onproduct" } }, [
-                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
-                  _vm._v("off")
-                ]),
-                _c(
-                  "button",
-                  {
-                    staticStyle: { background: "green" },
-                    on: {
-                      click: function($event) {
-                        _vm.onProduct()
-                      }
+        _vm.available
+          ? _c("span", { attrs: { id: "offproduct" } }, [
+              _c(
+                "button",
+                {
+                  staticStyle: { background: "red" },
+                  on: {
+                    click: function($event) {
+                      _vm.offProduct()
                     }
-                  },
-                  [_vm._v("On")]
-                )
+                  }
+                },
+                [_vm._v("Off")]
+              ),
+              _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
+                _vm._v("on")
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.available
-            ? _c("span", { attrs: { id: "offproduct" } }, [
-                _c(
-                  "button",
-                  {
-                    staticStyle: { background: "red" },
-                    on: {
-                      click: function($event) {
-                        _vm.offProduct()
-                      }
-                    }
-                  },
-                  [_vm._v("Off")]
-                ),
-                _c("span", { staticStyle: { color: "#ddd", margin: "7px" } }, [
-                  _vm._v("on")
-                ])
-              ])
-            : _vm._e()
-        ])
+            ])
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),

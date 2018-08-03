@@ -16,9 +16,11 @@
 			</center>
 			
 			</div>
-			<div v-for="product in this.products">
 			
+			<div class="products" v-if="loadProducts">
+			<span v-for="product in this.products">
 			<product :id="product.id" :name="product.name" :description="product.description" :status="product.status" :store="this.id" :category="product.category_id" :image="product.image"></product>
+			</span>
 			</div>
 	
 </div>
@@ -31,7 +33,7 @@
 
 export default {
 
-props:['id', 'name', 'root', 'online'],
+props:['id', 'name', 'online'],
 
 mounted() {
 if (this.online==0) {
@@ -41,6 +43,7 @@ this.storeOn= false
 }
 this.getAuthDetails()
 this.getStoreProducts()
+setTimeout(this.startLoadingProducts, 5000)
 
 
 },
@@ -52,6 +55,7 @@ return {
 authDetails: [],
 products: [],
 storeOn: true,
+loadProducts: false,
 
 
 
@@ -64,12 +68,18 @@ storeOn: true,
 
 methods: {
 
+startLoadingProducts() {
+
+this.loadProducts=true
+
+},
+
 onStore() {
 
 this.storeOn = true
 
 
-axios.get(this.root + '/on/store/' + this.id ).then(response=>{
+axios.get('/on/store/' + this.id ).then(response=>{
 		
 		
 	})
@@ -80,7 +90,7 @@ offStore() {
 
 this.storeOn = false
 
-axios.get(this.root + '/off/store/' + this.id ).then(response=>{
+axios.get('/off/store/' + this.id ).then(response=>{
 		
 		
 	})		
@@ -90,7 +100,7 @@ axios.get(this.root + '/off/store/' + this.id ).then(response=>{
 
 getAuthDetails(){
 	
-	axios.get(this.root + '/auth/details').then(response=>{
+	axios.get('/auth/details/').then(response=>{
 		
 		this.authDetails.push(response.data)
 	})
@@ -99,7 +109,7 @@ getAuthDetails(){
 
 getStoreProducts(){
 	
-	axios.get(this.root + '/products/store/' + this.id).then(response=>{
+	axios.get('/products/store/' + this.id).then(response=>{
 		response.data.forEach((product)=> {
 		this.products.push(product)
 		})

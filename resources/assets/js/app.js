@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19,7 +18,7 @@ window.Vue = require('vue');
  /**
  * Uncomment below when compiling to production
  */
-Vue.config.devtools = false
+Vue.config.devtools = true
 Vue.config.debug = false
 Vue.config.silent = true
 
@@ -126,7 +125,7 @@ const app = new Vue({
 	},
 	
 mounted() {	
-	
+this.getLocation()	
 this.getBuyerChat()
 this.getSellerChat()
 this.getSellerRequests()
@@ -369,7 +368,7 @@ storeIndex.search(searchLocation, (err, store) => {
 
 if(this.again==0) {
 
-setTimeout(this.getSearchQuery, 1100)
+setTimeout(this.getSearchQuery, 1200)
 
 this.again= 1
 }
@@ -689,7 +688,7 @@ let data = JSON.stringify({
 						
 					})
 				.then( (response) => { 
-				this.getAuthShops()
+				
 				
 				this.shopLocation=''
 				this.shopName=''
@@ -793,40 +792,37 @@ getAllShops(){
 
 showError(error) {
 	
-	var x = document.getElementById("demo");
+	
 
     switch(error.code) {
         case error.PERMISSION_DENIED:
-            x.innerHTML = "User denied the request for Geolocation."
+            console.log("permision denied")
             break;
         case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "Location information is unavailable."
+            console.log("position unavailable")
             break;
         case error.TIMEOUT:
-            x.innerHTML = "The request to get user location timed out."
+           console.log("Timeout")
             break;
         case error.UNKNOWN_ERROR:
-            x.innerHTML = "An unknown error occurred."
+           console.log("unknown")
             break;
     }
 },
 	
 	
 showPosition(position) {
-	var lat = position.coords.latitude;
-	var lng = position.coords.longitude
-	var latlon = position.coords.latitude + "," + position.coords.longitude;
-    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
-    +latlon+"&zoom=14&size=400x300&key=AIzaSyAh3prpUKLUAW3z5ylYBjUgORLidrBdRMU";
-    document.getElementById("map").innerHTML = "<img src='"+img_url+"'>";
+	
+
+
 },
 	
 getLocation() {
-	var x = document.getElementById("demo");
+	
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
     } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        
     }
 	
 },
@@ -1701,7 +1697,7 @@ computed: {
 	
 	sellerChats() {
 				
-	var pending = this.$store.getters.all_seller_chats
+   var pending = this.$store.getters.all_seller_chats
 
 	return pending;
 	},
@@ -1839,11 +1835,10 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 		} else {
 	
 	this.pdisabled= true
-	return this.pdisabled
+	return this.pdisabled;
 	
 	
 }
-
 
 }	
 	

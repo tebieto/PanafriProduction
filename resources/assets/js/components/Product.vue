@@ -1,9 +1,7 @@
 <template>
-<div>
+<div class="seller-product-container">
 
 			<!-- Begin Office Product Class -->
-			
-		<div class="products">
 
 		<div class="seller-products">
 		
@@ -24,18 +22,13 @@
 			 <span id="offproduct" class="" v-if="available">
 			 <button style="background:red;" @click="offProduct()">Off</button><span style="color:#ddd; margin:7px;">on</span>
 			</span>
-		   </div>
-		   <!-- End of Product details Class -->
-		   </div>
-		<!-- End Product in products Class -->
-		
-		
 		</div>
+		   
+		   <!-- End of Product details Class -->
+		   
+		   </div>
 		
-		<!-- End products Class -->
-		
-		
-		<!-- End of Office Product class-->
+		<!-- End Product seller products Class -->
 		
 		
 		
@@ -44,7 +37,7 @@
 		
 		<div id="product-price" class="product-price" v-if="showPrice">
 		<div class="price-menu">
-		<div class="hide-price"  >
+		<div class="hide-price" >
 		<span @click="hideProductPrice()">x</span>
 		</div>
 		
@@ -106,19 +99,7 @@ authDetails: [],
 products: [],
 showPrice:false,
 available: true,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-root:'http://localhost',
-=======
 root:'https://jokesterbox.com',
->>>>>>> 08131f3750a8a173a8713d34e83c52bd26ef5ef2
-=======
-root:'http://jokesterbox.com',
->>>>>>> 2ca84d3aa0ee2839f863542aed349abb84212903
-=======
-root:'https://jokesterbox.com',
->>>>>>> e1e392baa3ffc85d2861e73812220121d32df375
 pprice:'',
 punit:'',
 prices: []
@@ -146,7 +127,7 @@ var price = this.prices.find ( p => {
 	this.prices.splice(index, 1)
 
 
-axios.get(this.root + '/remove/prices/' + pid).then(response=>{
+axios.get('/remove/prices/' + pid).then(response=>{
 	
      this.getPrices()	
 		
@@ -165,7 +146,7 @@ let data = JSON.stringify({
     })
 				
 				
-				axios.post(this.root + '/send/price', data, {
+				axios.post('/send/price', data, {
 					headers: {
 						'Content-Type': 'application/json'
 						
@@ -186,7 +167,7 @@ let data = JSON.stringify({
 
 getPrices() {
 
-axios.get(this.root + '/get/prices/' + this.id).then(response=>{
+axios.get('/get/prices/' + this.id).then(response=>{
 		
 		this.prices = []
 		response.data.forEach((price) => {
@@ -200,7 +181,7 @@ axios.get(this.root + '/get/prices/' + this.id).then(response=>{
 
 getAuthDetails(){
 	
-	axios.get(this.root + '/auth/details').then(response=>{
+	axios.get('/auth/details').then(response=>{
 		
 		this.authDetails.push(response.data)
 	})
@@ -229,7 +210,7 @@ onProduct() {
 	
 this.available = true
 
-axios.get(this.root + '/on/product/' + this.id ).then(response=>{
+axios.get('/on/product/' + this.id ).then(response=>{
 		
 		
 	})
@@ -240,7 +221,7 @@ offProduct() {
 	
 this.available = false
 
-axios.get(this.root + '/off/product/' + this.id ).then(response=>{
+axios.get('/off/product/' + this.id ).then(response=>{
 		
 		
 	})		
