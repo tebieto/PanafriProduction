@@ -822,7 +822,7 @@ showPosition(position) {
     if (status == google.maps.GeocoderStatus.OK) {
 		console.log(results)
       if (results[0]) {
-        address = results[0].address_component[4].long_name + ',' + results[0].address_component[5].short_name;
+        address = results[6].address_component[0].long_name + ',' + results[6].address_component[1].long_name;
         if(this.place = address) {
 			
 			this.queryLocation();
