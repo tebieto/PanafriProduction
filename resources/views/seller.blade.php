@@ -361,7 +361,7 @@
 	 
 	 <td><select name="ostore"  v-model="activeShop">
 	 <option value=''>Select</option>
-	 <option v-for="shop in authShops" :value="shop.id">@{{shop.name}}</option>
+	 <option v-for="shop in newShops" :value="shop.id">@{{shop.name}}</option>
 	 </select><small><a v-if="!openNewShop"@click="openShop" class="learn-more">New office</a></small>
 	 </td>
 	 </tr> 

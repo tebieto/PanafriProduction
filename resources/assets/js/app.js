@@ -722,6 +722,7 @@ getAuthShops() {
 		this.authShops= []
 		response.data.forEach((shop) => {
 		this.authShops.push(shop)
+		this.newShops.push(shop)
 		
 		})
 	})

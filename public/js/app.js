@@ -13688,6 +13688,7 @@ var app = new Vue({
 			_this16.authShops = [];
 			response.data.forEach(function (shop) {
 				_this16.authShops.push(shop);
+				_this16.newShops.push(shop);
 			});
 		});
 	}), _defineProperty(_methods, 'sendTypedMessage', function sendTypedMessage(tid) {
