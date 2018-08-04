@@ -117,6 +117,7 @@ const app = new Vue({
 				place: "Everywhere",
 				onlineShops: [],
 				again: 0,
+				newShops: [],
 			
 		}
 		
@@ -694,7 +695,23 @@ let data = JSON.stringify({
 				
 				this.shopLocation=''
 				this.shopName=''
+				this.getNewShops()
+				
+				
 				})
+	
+	
+},
+
+getNewShops() {
+	
+	axios.get('/auth/shops').then(response=>{
+		this.newShops= []
+		response.data.forEach((shop) => {
+		this.newShops.push(shop)
+		
+		})
+	})
 	
 	
 },
