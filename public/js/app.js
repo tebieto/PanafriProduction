@@ -13793,7 +13793,7 @@ var app = new Vue({
 		var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 		geocoder.geocode({ 'latLng': latlng }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				console.log(results);
+
 				if (results[0]) {
 					_this20.ulga = results[1].address_components[1].long_name;
 					_this20.ustate = results[1].address_components[2].long_name;
@@ -14550,10 +14550,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   authEndpoint: '/broadcasting/auth'
 });
 
-Pusher.log = function (message) {
-
-  window.console.log(message);
-};
+Pusher.log = function (message) {};
 
 /***/ }),
 /* 31 */

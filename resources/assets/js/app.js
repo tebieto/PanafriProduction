@@ -854,7 +854,7 @@ showPosition(position) {
   var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   geocoder.geocode({'latLng': latlng}, (results, status) => {
     if (status == google.maps.GeocoderStatus.OK) {
-		console.log(results)
+		
       if (results[0]) {
 		 this.ulga = results[1].address_components[1].long_name;
 		 this.ustate = results[1].address_components[2].long_name;

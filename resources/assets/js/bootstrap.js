@@ -58,6 +58,6 @@ if (token) {
  
  {
 	 
-	 window.console.log(message)
+	
 	 
  }
