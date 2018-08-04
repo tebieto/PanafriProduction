@@ -118,8 +118,8 @@ const app = new Vue({
 				onlineShops: [],
 				again: 0,
 				newShops: [],
-				ulga: [],
-				ustate: [],
+				ulga: "",
+				ustate: "",
 		}
 		
 		
@@ -157,10 +157,16 @@ if(this.place.length==0) {
 
 this.place= "Everywhere"
 
+
+if(this.ustate.length>0) {
+
+this.place= this.ustate
+
+}
 }
 	
 var location
-if(this.place== "Everywhere" || this.place == "No result, showing everywhere") {
+if(this.place== "Everywhere") {
 	var location= ' ' 	
 } else {
 	location= this.place;	
@@ -185,7 +191,7 @@ storeIndex.search(location, (err, store) => {
 	});
 	
 	if(this.onlineShops.length==0) {
-		this.place = 'No result, showing everywhere';
+		this.place = 'Everywhere . No result for '+ this.place;
 	}
 	
 	
@@ -204,12 +210,14 @@ input.classList.add("hidden")
 },
 	
 changeLocation(){
-if (this.place.length==0) {
+if (this.place.length==0 || this.place.length>19) {
 this.place = "Everywhere"
-}
+
 
 if (this.ustate.length>0) {
 this.place = this.ustate
+}
+
 }
 
 var everywhere = document.getElementById('everyWhere')

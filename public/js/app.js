@@ -13268,8 +13268,8 @@ var app = new Vue({
 			onlineShops: [],
 			again: 0,
 			newShops: [],
-			ulga: [],
-			ustate: []
+			ulga: "",
+			ustate: ""
 		};
 	},
 	mounted: function mounted() {
@@ -13302,10 +13302,15 @@ var app = new Vue({
 			if (this.place.length == 0) {
 
 				this.place = "Everywhere";
+
+				if (this.ustate.length > 0) {
+
+					this.place = this.ustate;
+				}
 			}
 
 			var location;
-			if (this.place == "Everywhere" || this.place == "No result, showing everywhere") {
+			if (this.place == "Everywhere") {
 				var location = ' ';
 			} else {
 				location = this.place;
@@ -13327,7 +13332,7 @@ var app = new Vue({
 				});
 
 				if (_this.onlineShops.length == 0) {
-					_this.place = 'No result, showing everywhere';
+					_this.place = 'Everywhere . No result for ' + _this.place;
 				}
 			});
 
@@ -13340,12 +13345,12 @@ var app = new Vue({
 			}
 		},
 		changeLocation: function changeLocation() {
-			if (this.place.length == 0) {
+			if (this.place.length == 0 || this.place.length > 19) {
 				this.place = "Everywhere";
-			}
 
-			if (this.ustate.length > 0) {
-				this.place = this.ustate;
+				if (this.ustate.length > 0) {
+					this.place = this.ustate;
+				}
 			}
 
 			var everywhere = document.getElementById('everyWhere');
