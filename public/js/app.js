@@ -13267,8 +13267,9 @@ var app = new Vue({
 			place: "Everywhere",
 			onlineShops: [],
 			again: 0,
-			newShops: []
-
+			newShops: [],
+			ulga: [],
+			ustate: []
 		};
 	},
 	mounted: function mounted() {
@@ -13342,6 +13343,11 @@ var app = new Vue({
 			if (this.place.length == 0) {
 				this.place = "Everywhere";
 			}
+
+			if (this.ustate.length > 0) {
+				this.place = this.ustate;
+			}
+
 			var everywhere = document.getElementById('everyWhere');
 			var input = document.getElementById('enterLocation');
 
@@ -13784,8 +13790,10 @@ var app = new Vue({
 			if (status == google.maps.GeocoderStatus.OK) {
 				console.log(results);
 				if (results[0]) {
-					address = results[6].address_components[0].long_name + ', ' + results[6].address_components[1].long_name;
-					if (_this20.place = address) {
+					_this20.ulga = results[6].address_components[0].long_name;
+					_this20.ustate = results[6].address_components[1].long_name;
+					address = _this20.ulga + ', ' + _this20.ustate;
+					if (_this20.place = _this20.ustate) {
 
 						_this20.queryLocation();
 					}

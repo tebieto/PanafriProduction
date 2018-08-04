@@ -118,7 +118,8 @@ const app = new Vue({
 				onlineShops: [],
 				again: 0,
 				newShops: [],
-			
+				ulga: [],
+				ustate: [],
 		}
 		
 		
@@ -206,6 +207,11 @@ changeLocation(){
 if (this.place.length==0) {
 this.place = "Everywhere"
 }
+
+if (this.ustate.length>0) {
+this.place = this.ustate
+}
+
 var everywhere = document.getElementById('everyWhere')
 var input = document.getElementById('enterLocation')
 
@@ -842,8 +848,10 @@ showPosition(position) {
     if (status == google.maps.GeocoderStatus.OK) {
 		console.log(results)
       if (results[0]) {
-        address = results[6].address_components[0].long_name + ', ' + results[6].address_components[1].long_name;
-        if(this.place = address) {
+		 this.ulga = results[6].address_components[0].long_name;
+		 this.ustate = results[6].address_components[1].long_name;
+         address = this.ulga + ', ' + this.ustate
+        if(this.place = this.ustate) {
 			
 			this.queryLocation();
 		}
