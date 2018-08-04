@@ -54069,7 +54069,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		finishTransaction: function finishTransaction() {
 			this.finished = true;
 
-			axios.get('/finish/transaction/' + this.id).then(function (response) {});
+			axios.get('/delivered/transaction/' + this.id).then(function (response) {});
 		},
 		acceptRequest: function acceptRequest() {
 			this.accepted = true;
@@ -54791,7 +54791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		finishTransaction: function finishTransaction() {
 			this.finished = true;
 
-			axios.get('/finish/transaction/' + this.id).then(function (response) {});
+			axios.get('/received/transaction/' + this.id).then(function (response) {});
 		},
 		acceptRequest: function acceptRequest() {
 			this.accepted = true;
@@ -55157,7 +55157,7 @@ var render = function() {
                           },
                           on: { click: _vm.finishTransaction }
                         },
-                        [_vm._v("Delivered")]
+                        [_vm._v("Received")]
                       ),
                       _vm._v(" "),
                       _c(

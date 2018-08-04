@@ -210,9 +210,14 @@ Route::get('/cancel/transaction/{tracker}', [
 	'as' => 'cancelTransaction'
 	]);
 	
-Route::get('/finish/transaction/{tracker}', [
-	'uses' => 'ShopController@finishTransaction',
-	'as' => 'finishTransaction'
+Route::get('/received/transaction/{tracker}', [
+	'uses' => 'ShopController@receivedTransaction',
+	'as' => 'receivedTransaction'
+	]);
+	
+Route::get('/delivered/transaction/{tracker}', [
+	'uses' => 'ShopController@deliveredTransaction',
+	'as' => 'deliveredTransaction'
 	]);
 	
 Route::get('/request/transaction/{tracker}/{location}/{seller}', [

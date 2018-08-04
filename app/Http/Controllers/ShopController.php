@@ -115,7 +115,7 @@ class ShopController extends Controller
 	}
 	
 	
-	public function finishTransaction($tracker) 
+	public function receivedTransaction($tracker) 
 	
 	{
 		
@@ -123,6 +123,24 @@ class ShopController extends Controller
 	  ->update([
 			
 			'status' => 6,
+			'buyer_status' => 2,
+			
+		]);	
+		
+		
+		
+	}
+	
+	
+	public function deliveredTransaction($tracker) 
+	
+	{
+		
+	 $tracker = Tracker::where('id', $tracker)->first()
+	  ->update([
+			
+			'status' => 6,
+			'seller_status' => 2,
 			
 		]);	
 		
@@ -275,7 +293,7 @@ public function buyerChatTrackers()
 	
 	$all = array();
 	
-	$trackers = Tracker::where('status', 2)->where('buyer_id', auth::id())->where('seller_status', 1)->where('buyer_status', 1)->orderBy('created_at', 'DESC')->get();
+	$trackers = Tracker::where('status', 2)->where('buyer_id', auth::id())->where('seller_status', 1)->where('buyer_status', 1)->orWhere('status', 6)->where('buyer_id', auth::id())->where('buyer_status', 1)->orderBy('created_at', 'DESC')->get();
 	
 	
 	 foreach ($trackers as $tracker):
@@ -320,7 +338,7 @@ public function sellerChatTrackers()
 	
 	$all = array();
 	
-	$trackers = Tracker::where('status', 2)->where('seller_id', auth::id())->where('seller_status', 1)->where('buyer_status', 1)->orderBy('created_at', 'DESC')->get();
+	$trackers = Tracker::where('status', 2)->where('seller_id', auth::id())->where('seller_status', 1)->where('buyer_status', 1)->orWhere('status', 6)->where('seller_id', auth::id())->where('seller_status', 1)->orderBy('created_at', 'DESC')->get();
 	
 	
 	 foreach ($trackers as $tracker):

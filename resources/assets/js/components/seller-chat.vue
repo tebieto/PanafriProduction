@@ -243,7 +243,7 @@ this.showChat=false
 finishTransaction(){
 this.finished = true
 
-axios.get('/finish/transaction/' + this.id).then(response=>{
+axios.get('/delivered/transaction/' + this.id).then(response=>{
 
 })
 },
