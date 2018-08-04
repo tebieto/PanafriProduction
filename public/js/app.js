@@ -13338,7 +13338,9 @@ var app = new Vue({
 			}
 		},
 		changeLocation: function changeLocation() {
-			this.place = "Everywhere";
+			if (this.place.length == 0) {
+				this.place = "Everywhere";
+			}
 			var everywhere = document.getElementById('everyWhere');
 			var input = document.getElementById('enterLocation');
 
@@ -13770,7 +13772,7 @@ var app = new Vue({
 			if (status == google.maps.GeocoderStatus.OK) {
 				console.log(results);
 				if (results[0]) {
-					address = results[6].address_components[0].long_name + ',' + results[6].address_components[1].long_name;
+					address = results[6].address_components[0].long_name + ', ' + results[6].address_components[1].long_name;
 					if (_this19.place = address) {
 
 						_this19.queryLocation();
