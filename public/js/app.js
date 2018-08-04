@@ -13795,8 +13795,8 @@ var app = new Vue({
 			if (status == google.maps.GeocoderStatus.OK) {
 				console.log(results);
 				if (results[0]) {
-					_this20.ulga = results[6].address_components[0].long_name;
-					_this20.ustate = results[6].address_components[1].long_name;
+					_this20.ulga = results[1].address_components[1].long_name;
+					_this20.ustate = results[1].address_components[2].long_name;
 					address = _this20.ulga + ', ' + _this20.ustate;
 					if (_this20.place = _this20.ustate) {
 
