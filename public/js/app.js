@@ -53091,7 +53091,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("audio", {
-        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
+        attrs: { id: "seller_audio", src: "/storage/audios/seller-alarm.mp3" }
       })
     ])
   }
@@ -55803,7 +55803,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.getBuyerChats();
 				_this.getSellerChats();
 
-				document.getElementById('noty_audio').play();
+				var audio = document.getElementById('seller_audio');
+				audio.play();
 			});
 		},
 		getBuyerPendingTransactions: function getBuyerPendingTransactions() {
@@ -55966,7 +55967,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.getBuyerChats();
 				_this.getSellerChats();
 
-				document.getElementById('noty_audio').play();
+				var audio = document.getElementById('buyer_audio');
+				audio.play();
 			});
 		},
 		getBuyerPendingTransactions: function getBuyerPendingTransactions() {
@@ -56721,7 +56723,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("audio", {
-        attrs: { id: "noty_audio", src: "/storage/audios/definite.mp3" }
+        attrs: { id: "buyer_audio", src: "/storage/audios/buyer-alarm.mp3" }
       })
     ])
   }
