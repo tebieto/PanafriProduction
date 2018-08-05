@@ -55960,7 +55960,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			Echo.private('App.User.' + this.id).notification(function (notification) {
-
+				if (notification.status == 1) {
+					return;
+				}
 				_this.getBuyerPendingTransactions();
 				_this.getBuyerActiveTransactions();
 				_this.getSellerActiveTransactions();

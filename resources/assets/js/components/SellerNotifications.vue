@@ -36,7 +36,7 @@ listen() {
 	this.getBuyerChats()
 	this.getSellerChats()
 	
-	var audio=document.getElementById('seller_audio')
+	var audio = document.getElementById('seller_audio')
 	audio.play();
 	})
 	
