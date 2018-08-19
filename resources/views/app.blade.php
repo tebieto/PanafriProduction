@@ -39,7 +39,7 @@
 			
 			</div>
 
-<span class="welcome-mantra">Find whatever you want... <br>Wherever you you want...</span>			
+<span class="welcome-mantra">Find whatever you want... <br>Wherever you want...</span>			
 <img id="panafri-cover"  src="{{Storage::url('public/icons/new-cover.jpg')}}" alt="Panafri Icon" />
 <a href="/app"><img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
 
