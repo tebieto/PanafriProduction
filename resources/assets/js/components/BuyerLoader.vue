@@ -26,7 +26,7 @@ methods: {
 reload() {
 setInterval(refresh, 1800000)
 function refresh() {	
-window.location = "/";
+window.location = "/app";
 }
 },
 

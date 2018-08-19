@@ -436,7 +436,7 @@
 				 <video v-if="file.type=='video'" class="uploadedFile" width="100" height="100" controls >
 				 <source :src="file.URL" :type="file.mime">
 				</video>
-				 <div id="uploadInfo" ><span class="uploadDelete" @click="removeUploaded"><b>x</b></span></div>
+				 <div id="uploadInfo" ><span  @click="removeUploaded"><b>x</b></span></div>
 			     </div>
 				 <!-- Add Image Spinner -->
 				 

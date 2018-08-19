@@ -51,10 +51,7 @@ class RegisterController extends Controller
     {
 	
         return Validator::make($data, [
-           'fname' => 'required|string|max:255',
-		   'mname' => 'string|max:255',
-		   'lname' => 'required|string|max:255',
-		   'avatar' => 'required|string|max:500',
+           'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
 			'phone' => 'required|string|max:11|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -71,18 +68,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
        	
-		$avatar = 'public/default/avatars/default.png';	
+		$avatar = 'public/default/avatars/default-avatar.png';	
 		$avatar = asset(Storage::url($avatar));
 		
         $user= User::create([
-            'fname' => $data['fname'],
-			'mname' => $data['mname'],
-			'lname' => $data['lname'],
+            'name' => $data['name'],
             'email' => $data['email'],
 			'phone' => $data['phone'],
 			'status' => 0,
 			'online' => 1,
-			'avatar' => $data['avatar'],
+			'avatar' => $avatar,
 			'role' => 0,
             'password' => bcrypt($data['password']),
         ]);

@@ -16,7 +16,7 @@ class User extends Authenticatable
      */
 	public $with = ['profile'];
     protected $fillable = [
-        'fname', 'mname', 'lname', 'phone','status', 'online', 'role', 'avatar', 'email', 'password',
+        'name', 'phone','status', 'online', 'role', 'avatar', 'email', 'password',
     ];
 
     /**

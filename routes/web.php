@@ -17,10 +17,141 @@ Auth::routes();
 Route::get('/', function () {
 	if (auth::check()) {
 
-	return view('dashboard');	
+	return view('app');	
 		
 	}
-    return view('public');
+    return view('app');
+});
+
+Route::get('/app', function () {
+	if (auth::check()) {
+
+	return view('app');	
+		
+	}
+    return view('app');
+});
+
+Route::get('/seller/app', function () {
+	if (auth::check()) {
+
+	return view('app-seller');	
+		
+	}
+    return view('app-seller');
+});
+
+
+Route::get('/admin/panafri/admin', function () {
+	
+	if (!auth::check()) {
+
+	 return redirect()->intended('/');	
+		
+	}
+	
+	if (auth::user()->role>1) {
+
+	return view('admin');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+
+Route::get('/products/admin/products', function () {
+	
+	if (!auth::check()) {
+
+	 return redirect()->intended('/');	
+		
+	}
+	
+	if (auth::user()->role>1) {
+
+	return view('check-products');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+Route::get('/products/seller/products', function () {
+
+	
+	if (auth::check()) {
+
+	return view('seller-products');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+
+Route::get('/services/seller/services', function () {
+	
+	if (auth::check()) {
+
+	return view('seller-services');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+Route::get('/profile/seller/profile', function () {
+	
+	if (auth::check()) {
+
+	return view('seller-profile');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+Route::get('/profile/all/profile', function () {
+	
+	if (auth::check()) {
+
+	return view('all-profile');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+
+
+Route::get('/categories/admin/categories', function () {
+	
+	if (!auth::check()) {
+
+	 return redirect()->intended('/');	
+		
+	}
+	
+	if (auth::user()->role>1) {
+
+	return view('check-categories');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+
+
+
+Route::get('/services/admin/services', function () {
+	
+	if (!auth::check()) {
+
+	 return redirect()->intended('/');	
+		
+	}
+	
+	if (auth::user()->role>1) {
+
+	return view('check-services');	
+		
+	}
+   return redirect()->intended('/');
 });
 
 
@@ -63,6 +194,16 @@ Route::get('/buyers/pending/transactions', function () {
     return view('public');
 });
 
+Route::get('/seller/recover', function () {
+    
+});
+
+Route::get('/all/recover', function () {
+    
+});
+
+
+
 Route::get('/check/auth', function () {
 	if (auth::check()) {
 		
@@ -73,7 +214,7 @@ Route::get('/check/auth', function () {
 	}
 });
 
-Route::get('/home', 'HomeController@index')->name('dashboard');
+Route::get('/home', 'HomeController@index')->name('app');
 
 Route::get('/save/category/{name}', [
 	'uses' => 'HomeController@saveCategory',
@@ -85,9 +226,40 @@ Route::get('/all/categories', [
 	'as' => 'categories'
 	]);
 	
+Route::get('/admin/delete/product/{pid}', [
+	'uses' => 'HomeController@adminDeleteProduct',
+	'as' => 'adminDeleteProduct'
+	]);
+	
+Route::get('/auth/delete/product/{pid}', [
+	'uses' => 'HomeController@authDeleteProduct',
+	'as' => 'authDeleteProduct'
+	]);
+	
+Route::get('/admin/delete/category/{cid}', [
+	'uses' => 'HomeController@adminDeleteCategory',
+	'as' => 'adminDeleteCategory'
+	]);
+	
 Route::get('/all/products', [
 	'uses' => 'HomeController@products',
 	'as' => 'products'
+	]);
+	
+Route::get('/auth/products', [
+	'uses' => 'HomeController@authProducts',
+	'as' => 'authProducts'
+	]);
+	
+Route::get('/auth/services', [
+	'uses' => 'HomeController@authServices',
+	'as' => 'authServices'
+	]);
+	
+	
+Route::get('/all/services', [
+	'uses' => 'HomeController@services',
+	'as' => 'services'
 	]);
 	
 	
@@ -398,6 +570,11 @@ Route::post('/submit/product', [
 	'as' => 'product'
 	]);
 	
+Route::post('/submit/admin/category', [
+	'uses' => 'HomeController@submitCat',
+	'as' => 'submitCat'
+	]);
+	
 Route::post('/send/price', [
 	'uses' => 'HomeController@sendPrice',
 	'as' => 'sendPrice'
@@ -416,19 +593,35 @@ Route::post('/register/seller/register', [
 Route::get('/login/seller/login', function () {
 	if(auth::check()) {
 		
-	return view('seller');	
+	return view('app-seller');	
 		
 	}
-    return view('sellerLogin');
+    return view('new-seller-login');
 });
+
+Route::get('/seller/logout', [
+
+	'uses' => 'HomeController@sellerLogout',
+	'as' => 'sellerLogout'
+	
+	
+]);
+
+Route::get('/all/logout', [
+
+	'uses' => 'HomeController@allLogout',
+	'as' => 'allLogout'
+	
+	
+]);
 
 Route::get('/register/seller/register', function () {
 	if(auth::check()) {
 		
-	return view('seller');	
+	return view('app-seller');	
 		
 	}
-    return view('sellerRegistration');
+    return view('new-seller-register');
 });
 
 	

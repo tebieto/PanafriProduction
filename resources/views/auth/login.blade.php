@@ -1,123 +1,108 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+       
         <title>Buy and Sell in Realtime on Panafri</title>
-
-        @extends('layouts.app2') 
+		 @extends('layouts.app2') 
 		<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+	<!-- Styles -->
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
-	
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     </head>
 <body>
 
-
-
-<!--Begin Container class DIV-->
-      
 <div id="app" class="container">
+
 
 <div id="loader" class="loader">
 
 			
-	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Connect</span>
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
 	 
-	 <buyer-loader></buyer-loader>
+	 <loader></loader>
 	 
 	
-</div>
+</div>	
 
-<!--Begin login class div-->
 
-	
-<div id="login-page"  class="start-selling" style="position:fixed;">
-	
-	 
-	 <!--Begin form-container class div-->	
-	 
-	 <div class="form-container " @click.stop >
-	
-	 <div class="logo">
+<!--Creating Menu Icon from scatch with Css-->
+
+		  
+			<div id="showmenu" class="menu-bar" @click="toggleBar()">
 			
-		<a >  <img @click="homeUrl()" class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"></a>
-	 </div>
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
 
-	  <form class="welcome-login-form" method="POST" action="{{ route('login') }}">
+<img id="panafri-cover"  src="{{Storage::url('public/icons/panafri-cover.jpeg')}}" alt="Panafri Icon" />
+<a href="/app"><img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
+
+
+<div id="toggle-menu" class="menu-holder toggle-menu">
+<p id="menu-spacing"></p>
+<a href="/home"><p><span class="glyphicon glyphicon-home" ></span> Home</p></a>
+<a href="/login"><p><span class="glyphicon glyphicon-arrow-right" ></span>Login</p></a>
+<a href="/register"><p><span class="glyphicon glyphicon-user" ></span> Register</p></a>
+</div>
+
+<div id="login-form-holder">
+<form class="welcome-login-form" method="POST" action="/login">
                         {{ csrf_field() }}
-	 
-	 <table>
-	
-	 <tr>
-	  <td>EMAIL</td>
-	 </tr>
-	 
-	 <tr>
-	
-	 <td><input type="email" name="email"  value="{{ old('email') }}" placeholder="john.doe@example.com" required /></td>
-	 </tr>
-	 @if ($errors->has('email'))
-     <tr>
-       <td><strong>{{ $errors->first('email') }}</strong></td>
-     </tr>
-     @endif
-	 
-	 @if (session('error'))
-     <tr>
-       <td><strong>{{ session('error') }}</strong></td>
-     </tr>
-     @endif
-	 
-	  <tr>
-	  <td>PASSWORD</td>
-	 </tr>
-	 
-	 <tr>
-	 
-	 <td><input  type="password"  name="password"  value="" required /></td>
-	 </tr>
-	 @if ($errors->has('password'))
-     <tr>
-       <td><strong>{{ $errors->first('password') }}</strong></td>
-     </tr>
-     @endif
-	 
-	<tr>
-    <td>	
-	<strong><span><small>By clicking  "Login" you agree with Panafri </small><a class="learn-more">Terms of Service</a> </strong></span>
-	 </td>
-	 </tr>
-	 
-	 <tr>
-	
-	 <td><button type="submit">LOGIN</button><a href="/register" class="learn-more">Register new account</a></td>
-	 </tr>
-	 
-	 
-	 </table>
-	 
-	  <input type="hidden" name="login" value="login">
-	 </form>
-	 
-	 </div>
-	 
-	 <!--End of form-container class div-->
-	 
-	 </div>
-	 
-	  <!--End of login class div-->
-	  
+<span id="type-login-email"> <span class="glyphicon glyphicon-envelope"></span> <input  name="email" type="email" placeholder="ENTER EMAIL ADDRESS" /></span>
+
+<span id="type-login-password" > <span class="glyphicon glyphicon-lock"></span> <input type="password" name="password" placeholder=" ENTER PASSWORD" autofocus/></span>
+
+<a id="login-register" href="/register">OPEN NEW ACCOUNT</a>
+<a id="recover-password" href="/all/recover">RECOVER LOST PASSWORD</a>
+
+<button id="login-button">LOGIN</button>
+
+</form>
+</div>
+
+<div id="location-search" class="">
+
+<div class="menu-bar change" @click="locationModal()" >
+			
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+			
+<span id="modal-location-span" > <span class="glyphicon glyphicon-map-marker"></span> <input type="text"  id="modal-location-input" placeholder="LOCATION" autofocus></span>
+
+			
+</div>
+<div id="product-search" class="">
+
+<div class="menu-bar change" @click="productModal()" >
+			
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+
+
+<span id="modal-product-span" > <span class="glyphicon glyphicon-search"></span> <input type="text" id="modal-product-input" placeholder="WHAT ARE YOU LOOKING FOR?" autofocus></span>
 
 </div>
+
+
+</div>
+	  
 	 
-	 <!--End of container class div-->
-		
-		
-		
-		@yield('content')
-   
-		
-	<!-- Scripts -->
+<!--End of container class div-->
+
+<!-- Scripts -->
+	
 	 <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/welcome.js') }}"></script>
+	
 </body>
 </html>

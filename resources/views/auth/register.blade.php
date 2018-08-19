@@ -1,221 +1,108 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+       
         <title>Buy and Sell in Realtime on Panafri</title>
-
-        @extends('layouts.app2') 
+		 @extends('layouts.app2') 
 		<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+	<!-- Styles -->
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
-	
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     </head>
 <body>
 
-<!--Begin Container class DIV-->
-      
 <div id="app" class="container">
 
-		
-	<div id="loader" class="loader">
+
+<div id="loader" class="loader">
 
 			
-	 <img  @click="homeUrl()" class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Connect</span>
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
 	 
 	 <buyer-loader></buyer-loader>
 	 
 	
-</div>
-	
-	  <!--Begin register class div-->
+</div>	
 
-	
-	 <div id="login-page"  class="start-selling" >
-	 
-	 <div class="form-container" @click.stop >
-	
-	<div class="logo">
+
+<!--Creating Menu Icon from scatch with Css-->
+
+		  
+			<div id="showmenu" class="menu-bar" @click="toggleBar()">
 			
-		<a >  <img @click="homeUrl()" class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"></a>
-	 </div>
-	
-	<div class="hidden" id="uploadedContainer" v-if="productImage.length>0 || uploadDelay.length>0">
-				 
-		<div v-if="productImage.length>0" class="showUploaded" v-for="file in productImage">
-				 <div class="uploaded_file_container">
-				 <img  v-if="file.type=='image'" class="uploadedFile" :src="file.URL" width="100" height="100"  alt="" />
-				
-				 <video v-if="file.type=='video'" class="uploadedFile" width="100" height="100" controls >
-				 <source :src="file.URL" :type="file.mime">
-				</video>
-				 <div id="uploadInfo" ><span class="uploadDelete" @click="removeUploaded"><b>x</b></span></div>
-			     </div>
-				 <!-- Add Image Spinner -->
-				 
-				 
-	  </div>
-	  </div>
-	  
-	  <form class="start-selling-form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-	 
-	 <table>
-	 
-	 <tr>
-	 <td>FIRST NAME</td>
-	 </tr>
-	 
-	 <tr>
-	
-	 <td><input type="text" name="fname"  placeholder="First Name" value="{{ old('fname') }}" required autofocus /></td>
-	 </tr>
-	 @if ($errors->has('fname'))
-     <tr>
-       <td><strong>{{ $errors->first('fname') }}</strong></td>
-     </tr>
-     @endif
-	 
-	 <tr style="display:none">
-	 <td>MIDDLE NAME</td>
-	 </tr>
-	 
-	 <tr style="display:none">
-	 
-	 <td><input type="text" name="mname"  value="N.A" placeholder="Middle Name" /></td>
-	 </tr>
-	 @if ($errors->has('mname'))
-     <tr>
-      <td><strong>{{ $errors->first('mname') }}</strong></td>
-     </tr>
-     @endif
-	 
-	  <tr>
-	  <td>LAST NAME</td>
-	 </tr>
-	 
-	 <tr>
-	
-	 <td><input type="text" placeholder="Last Name" name="lname"  value="{{ old('lname') }}" required /></td>
-	 </tr>
-	 @if ($errors->has('lname'))
-     <tr>
-        <td><strong>{{ $errors->first('lname') }}</strong></td>
-     </tr>
-     @endif
-	 
-	<tr>
-	  <td>AVATAR</td>
-	 </tr>
-	 
-	 @if ($errors->has('avatar'))
-     <tr>
-       <td><strong>{{ $errors->first('avatar') }}</strong></td>
-     </tr>
-     @endif
-	 
-	 <tr>
-	 
-	 <td>
-	 <input type="file" id="productimage"  style="display:none;" accept="image/*" v-on:change="imageChange">
-				<span @click="showProductImagePicker" class="image-picker" title="Choose file"  ><img  id="" src="/storage/icons/photo_icon.png" width="15px" height="15px"  alt="" /><span class="photo_icon_text"><b> Select</b></span></span>
-	 </td>
-	 </tr>
-	 
-	 <div  class="hidden showUploaded" v-for="file in productImage">
-	 <input type="text" name="avatar"  placeholder="" :value="file.URL"/>
-	 </div>
-	 
-	 <tr>
-	  <td>EMAIL</td>
-	 </tr>
-	 
-	 <tr>
-	 
-	 <td><input type="email" placeholder="xyz@example.com" name="email"  value="{{ old('email') }}" required /></td>
-	 </tr>
-	 @if ($errors->has('email'))
-     <tr>
-       <td><strong>{{ $errors->first('email') }}</strong></td>
-     </tr>
-     @endif
-	 
-	 <tr>
-	  <td>PHONE NUMBER</td>
-	 </tr>
-	 
-	 <tr>
-	 
-	 <td><input type="number" placeholder="Phone Number" max="9999999999" name="phone"  value="{{ old('phone') }}" required /></td>
-	 </tr>
-	 @if ($errors->has('phone'))
-     <tr>
-       <td><strong>{{ $errors->first('phone') }}</strong></td>
-     </tr>
-     @endif
-	 
-	 <tr>
-	  <td>PASSWORD</td>
-	 </tr>
-	 
-	
-	 <tr>
-	
-	 <td><input  type="password"  name="password"  value="{{ old('password') }}" required /></td>
-	 </tr>
-	 @if ($errors->has('password'))
-     <tr>
-        <td><strong>{{ $errors->first('password') }}</strong></td>
-     </tr>
-     @endif
-	 
-	 <tr>
-	  <td>CONFIRM PASSWORD </td>
-	 </tr>
-	 
-	  <tr>
-	
-	 <td><input type="password"  name=" password_confirmation"  value="" required /></td>
-	 </tr>
-	 @if ($errors->has('password_confirmation'))
-     <tr>
-       <td><strong>{{ $errors->first('password_confirmation') }}</strong></td>
-     </tr>
-     @endif
-	 <tr>
-	 <td>
-	 <strong><span><small>By clicking  "Register" you agree to our </small><a class="learn-more">Terms of Service</a> </strong></span>
-	 </td>
-	 </tr>
-	 <tr>
-	 
-	 <td><button type="submit">SUBMIT</button><a href="/login" class="learn-more">Already have an account?</a></td>
-	 </tr>
-	 
-	 
-	 </table>
-	 
-	  <input type="hidden" name="reg" value="register">
-	 </form>
-	 
-	 </div>
-	 
-	 <!--End of form-container class div-->
-	 
-	 </div>
-	 
-	  <!--End of register class div-->
-	  
-	
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+
+<img id="panafri-cover"  src="{{Storage::url('public/icons/panafri-cover.jpeg')}}" alt="Panafri Icon" />
+<a href="/app"><img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
+
+
+<div id="toggle-menu" class="menu-holder toggle-menu">
+<p id="menu-spacing"></p>
+<a href="/home"><p><span class="glyphicon glyphicon-home" ></span> Home</p></a>
+<a href="/login"><p><span class="glyphicon glyphicon-arrow-right" ></span>Login</p></a>
+<a href="/register"><p><span class="glyphicon glyphicon-user" ></span> Register</p></a>
 </div>
+
+<div id="register-form-holder">
+<form class="start-selling-form" method="POST" action="/register">
+                        {{ csrf_field() }}
+<span id="type-register-name"> <span class="glyphicon glyphicon-user"></span> <input  name="name" type="text" value="{{ old('name') }}" placeholder="ENTER FULL NAME" required></span>
+<span id="type-register-email"> <span class="glyphicon glyphicon-envelope"></span> <input  name="email" type="email" value="{{ old('email') }}" placeholder="ENTER EMAIL ADDRESS" required></span>
+<span id="type-register-phone"> <span class="glyphicon glyphicon-phone"></span> <input  name="phone" type="number" value="{{ old('phone') }}" placeholder="ENTER PHONE NUMBER" required></span>
+<span id="type-register-password" > <span class="glyphicon glyphicon-lock"></span> <input type="password" value="{{ old('password') }}" name="password" placeholder=" ENTER PASSWORD" required autofocus></span>
+<span id="type-register-confirm" > <span class="glyphicon glyphicon-lock"></span> <input type="password" name="password_confirmation" placeholder=" CONFIRM PASSWORD" required autofocus></span>
+<a id="register-login" href="/login">I ALREADY HAVE AN ACCOUNT</a>
+<button id="register-button">REGISTER</button>
+@if ($errors->has('name') || $errors->has('email') || $errors->has('phone') || $errors->has('password'))
+<span class="register-form-error"><center>ALL FIELDS ARE REQUIRED, TRY AGAIN</center></span>
+@endif</form>
+</div>
+
+<div id="location-search" class="">
+
+<div class="menu-bar change" @click="locationModal()" >
+			
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+			
+<span id="modal-location-span" > <span class="glyphicon glyphicon-map-marker"></span> <input type="text"  id="modal-location-input" placeholder="LOCATION" autofocus></span>
+
+			
+</div>
+<div id="product-search" class="">
+
+<div class="menu-bar change" @click="productModal()" >
+			
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+			
+			</div>
+
+
+<span id="modal-product-span" > <span class="glyphicon glyphicon-search"></span> <input type="text" id="modal-product-input" placeholder="WHAT ARE YOU LOOKING FOR?" autofocus></span>
+
+</div>
+
+
+</div>
+	  
 	 
-	 <!--End of container class div-->
-		
-		
-		
-		@yield('content')
-   
-		
-	<!-- Scripts -->
+<!--End of container class div-->
+
+<!-- Scripts -->
+	
 	 <script src="{{ asset('js/app.js') }}"></script>
-  
+    <script src="{{ asset('js/welcome.js') }}"></script>
+	
 </body>
 </html>

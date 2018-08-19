@@ -18,9 +18,9 @@ window.Vue = require('vue');
  /**
  * Uncomment below when compiling to production
  */
-Vue.config.devtools = false
-Vue.config.debug = false
-Vue.config.silent = true
+Vue.config.devtools = true
+Vue.config.debug = true
+Vue.config.silent = false
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('welcome', require('./components/Welcome.vue'));
@@ -41,9 +41,11 @@ Vue.component('seller-not', require('./components/SellerNotifications.vue'));
 Vue.component('buyer-not', require('./components/buyerNotifications.vue'));
 Vue.component('buyer-pending', require('./components/BuyerPending.vue'));
 Vue.component('buyer-loader', require('./components/BuyerLoader.vue'));
+Vue.component('partner', require('./components/partner.vue'));
+Vue.component('delete-product', require('./components/deleteProduct.vue'));
 
 var algoliasearch = require('algoliasearch');
-var client = algoliasearch('RXJQSMB7Z9', '498d6d14f688e4ae0321d4a0166d75ae');
+var client = algoliasearch('2UETKW6SEX', 'a2289773a26c35d74d6f21cd61ba140d');
 var productIndex = client.initIndex('products');
 var storeIndex = client.initIndex('stores');
 import { store } from './store'
@@ -66,11 +68,13 @@ const app = new Vue({
 				sendingPost: false,
 				show_post_spinner:false,
 				productName: '',
-				ocategory: '',
-				ncategory: '',
+				ocategory: "",
+				ncategory: "",
 				pdisabled: true,
 				categories: [],
 				products: [],
+				productPrice: "",
+				productLocation: "",
 				sellerEmail: '',
 				sellerImage: [],
 				adminEmail: '',
@@ -120,6 +124,26 @@ const app = new Vue({
 				newShops: [],
 				ulga: "",
 				ustate: "",
+				showSaving: false,
+				showSaved: false,
+				catType: 1,
+				searchedLocation: "",
+				searchedProduct: "",
+				productResults: [],
+				locationResults: [],
+				productSuggest: false,
+				locationSuggest: false,
+				locationMainResults:[],
+				productMainResults:[],
+				mainSearchResult:[],
+				showSpinnerModal:false,
+				partnerProduct:0,
+				categoryName:"",
+				categoryType:0,
+				cdisabled:true,
+				services:[],
+				authProducts:[],
+				authServices:[],
 		}
 		
 		
@@ -141,13 +165,424 @@ this.getBuyerActive()
 this.scroller()	
 this.allCategories()
 this.allProducts()
+this.allServices()
 this.getAuthDetails()
 this.getAuthShops()
 this.getAllShops()
-	
+this.getAuthProducts()
+this.getAuthServices()	
 },
 	
 methods: {
+
+adminDeleteProduct(pid){
+	
+	var product = this.products.find ( p => {
+				return p.id === pid
+				
+			});
+			
+			
+			var index = this.products.indexOf(product)
+			
+			this.products.splice(index, 1)
+	
+	axios.get('/admin/delete/product/' + pid).then(response=>{
+
+		
+	})
+	
+},
+
+adminDeleteService(pid){
+	
+	var product = this.services.find ( p => {
+				return p.id === pid
+				
+			});
+			
+			
+			var index = this.services.indexOf(product)
+			
+			this.services.splice(index, 1)
+	
+	axios.get('/admin/delete/product/' + pid).then(response=>{
+
+		
+	})
+	
+},
+
+
+authDeleteProduct(pid){
+	
+	var product = this.authProducts.find ( p => {
+				return p.id === pid
+				
+			});
+			
+			
+			var index = this.authProducts.indexOf(product)
+			
+			this.authProducts.splice(index, 1)
+	
+	axios.get('/auth/delete/product/' + pid).then(response=>{
+
+		
+	})
+	
+},
+
+authDeleteService(pid){
+	
+	var product = this.authServices.find ( p => {
+				return p.id === pid
+				
+			});
+			
+			
+			var index = this.authServices.indexOf(product)
+			
+			this.authServices.splice(index, 1)
+	
+	axios.get('/auth/delete/product/' + pid).then(response=>{
+
+		
+	})
+	
+},
+
+
+adminDeleteCategory(cid){
+	
+	var category = this.categories.find ( c => {
+				return c.id === cid
+				
+			});
+			
+			
+			var index = this.categories.indexOf(category)
+			
+			this.categories.splice(index, 1)
+	
+	axios.get('/admin/delete/category/' + cid).then(response=>{
+
+		
+	})
+	
+},
+	
+callPartner(pid) {
+
+this.partnerProduct= pid;	
+	
+	
+},
+
+removeContact() {
+
+this.partnerProduct= 0;	
+	
+	
+},
+	
+pushProduct(p) {
+this.productSuggest=false
+this.locationSuggest=false
+
+this.searchedProduct= p;	
+	
+	
+},
+
+pushLocation(l) {
+
+this.productSuggest=false
+this.locationSuggest=false
+
+this.searchedLocation= l;	
+	
+	
+},
+
+
+	
+findProducts() {
+
+this.productSuggest=true
+this.locationSuggest=false
+	
+this.productResults=[]
+this.mainSearchResult=[]
+if (this.searchedProduct.length==0) {
+
+return	
+	
+}
+	
+productIndex.search(this.searchedProduct, (err, product) => {
+
+this.productResults=[]
+	product.hits.forEach((product) => {
+	
+	var verify = this.productResults.find ( p => {
+				return p.name === product.name
+				
+			})
+
+		if(!verify) {
+		
+		this.productResults.push (product)
+		
+		
+		}
+	
+	});		
+	
+});
+	
+},
+
+findLocations() {
+
+this.productSuggest=false
+this.locationSuggest=true
+this.mainSearchResult=[]
+this.locationResults=[]
+
+if (this.searchedLocation.length==0) {
+
+return	
+	
+}
+
+productIndex.search(this.searchedLocation, (err, location) => {
+
+this.locationResults=[]
+	location.hits.forEach((location) => {
+	
+	var verify = this.locationResults.find ( l => {
+				return l.location === location.location
+				
+			})
+
+		if(!verify) {
+		
+		this.locationResults.push (location)
+		
+		
+		}
+	
+	});	
+	
+});
+	
+},
+
+hideSpinner() {
+
+this.showSpinnerModal=false	
+	
+},
+
+startSearch() {
+this.showSpinnerModal=true	
+this.initSearch()
+this.initSearch()
+	
+setTimeout(this.initSearch, 3000)
+
+	
+},
+
+initSearch() {
+this.productSearchModal()	
+this.prepareSearch() 
+this.showSpinnerModal=true
+this.mainSearchResult=[]
+
+if	(this.searchedProduct.length==0 && this.searchedLocation.length>0) {
+	this.mainSearchResult=[];
+	this.mainSearchResult=this.locationMainResults	
+	return
+}
+
+this.productMainResults.forEach((product) => {
+
+
+if	(this.searchedLocation.length==0) {
+	this.mainSearchResult=[];
+	this.mainSearchResult.push(product)	
+	
+} else {
+var verify = this.locationMainResults.find ( l => {
+				return l.id === product.id
+				
+			});	
+	
+	if(verify) {
+		
+
+	this.mainSearchResult.push(product)	
+		
+	}
+}
+});
+
+
+if(this.searchedLocation.length==0 && this.searchedProduct.length==0 ) {
+
+this.mainSearchResult=[]
+
+}	
+	
+},
+
+prepareSearch(){
+
+
+
+if(this.searchedLocation.length>0){
+	
+productIndex.search(this.searchedLocation, (err, location) => {
+	this.locationMainResults=[]
+	location.hits.forEach((location) => {
+	
+	var verify = this.locationMainResults.find ( l => {
+				return l.id === location.id
+				
+			})
+
+		if(!verify) {
+		
+		this.locationMainResults.push (location)
+		
+		
+		}
+	
+	});	
+	
+
+	
+});
+
+}
+
+productIndex.search(this.searchedProduct, (err, product) => {
+
+this.productMainResults=[]
+	product.hits.forEach((product) => {
+	
+	var verify = this.productMainResults.find ( p => {
+				return p.id === product.id
+				
+			})
+
+		if(!verify) {
+		
+		this.productMainResults.push (product)
+		
+		
+		}
+	
+	});		
+	
+});
+	
+if(this.searchedLocation.length==0 && this.searchedProduct.length==0 ) {
+
+this.mainSearchResult=[]
+
+}
+
+},
+	
+showProductPage() {
+
+if(this.catType=1){
+this.productServicePage()
+}		
+	
+},
+
+showServicePage() {
+
+if(this.catType=2) {
+this.productServicePage()
+} 
+	
+},
+
+productServicePage() {
+
+var toggle = document.getElementById("product-page")
+	
+ if(toggle.style.left !=0 + 'px') {
+	 toggle.style.left=0 + 'px'
+	 
+ } else {
+	 toggle.style.left=-2000 + 'px'
+	
+}
+
+this.productImage = []
+this.productName = ''
+this.pdescription = ''
+this.productLocation = ''
+this.productPrice = ''
+	
+	
+	
+},
+
+
+	
+locationModal() {
+	
+	var toggle = document.getElementById("location-search")
+	var modal = document.getElementById("modal-location-span")
+ if(toggle.style.left !=0 + 'px') {
+	 toggle.style.left=0 + 'px'
+	 modal.style.top=3 + '%'
+ } else {
+	 toggle.style.left=-2000 + 'px'
+	 modal.style.top=50 + '%'
+}
+	
+	
+},
+
+productSearchModal() {
+	
+	var toggle = document.getElementById("product-search")
+	
+ if(toggle.style.left !=0 + 'px') {
+	 toggle.style.left=0 + 'px'
+	
+ } else {
+	 toggle.style.left=-2000 + 'px'
+	 this.showSpinnerModal=false
+
+	 
+ }
+},
+	
+toggleBar() {
+ 
+ var x = document.getElementById("showmenu")
+ x.classList.toggle("change")
+ 
+ var toggle = document.getElementById("toggle-menu")
+ 
+ if(toggle.style.top !=0 + 'px') {
+	 toggle.style.top=0 + 'px'
+	 
+ } else {
+	 toggle.style.top=-2000 + 'px'
+}
+	
+	
+},
 	
 queryLocation() {
 
@@ -928,6 +1363,56 @@ axios.get('/all/products').then(response=>{
 
 },
 
+getAuthProducts() {
+
+axios.get('/auth/products').then(response=>{
+		
+		this.authProducts=[]
+		response.data.forEach((product)=> {
+			
+		this.authProducts.push(product)
+			
+		})
+		
+		
+});
+
+},
+
+
+getAuthServices() {
+
+axios.get('/auth/services').then(response=>{
+		
+		this.authServices=[]
+		response.data.forEach((product)=> {
+			
+		this.authServices.push(product)
+			
+		})
+		
+		
+});
+
+},
+
+
+
+allServices() {
+
+axios.get('/all/services').then(response=>{
+		
+		this.services=[]
+		response.data.forEach((service)=> {
+			
+		this.services.push(service)
+			
+		})
+		
+		
+});
+
+},
 
 guestProducts() {
 
@@ -962,6 +1447,9 @@ axios.get('/all/categories').then(response=>{
 
 
 
+
+
+
 },
 		
 sendCategory() {
@@ -988,9 +1476,64 @@ axios.get('/save/category/' + this.ncategory).then(response=>{
 
 
 
+submitCategory() {
+	
+	if (this.productImage.length>0 && this.categoryType>0 && (this.categoryName.length>0)) {
+			
+		this.cdisabled= false
+			
+		} else {
+	
+	this.cdisabled= true
+	return
+	
+	
+}
+
+this.showSaving= true;
+
+let data = JSON.stringify({
+        name: this.categoryName,
+        image: this.productImage[0].URL,
+		type: this.categoryType,
+		
+    })
+				
+				this.show_post_spinner=true
+				
+				axios.post('/submit/admin/category', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+					
+					this.categoryName=""
+					this.categoryType=0
+					this.productImage = []
+					this.productName = ''
+					this.pdescription = ''
+					this.productLocation = ''
+					this.productPrice = ''
+					this.show_post_spinner=false
+					this.showSaved=true;
+					this.allProducts();
+					
+					
+					
+					
+					
+				 
+				})
+			},
+
+
+
 submitProduct() {
 	
-	if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+	if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productLocation.length>0) && (this.productName.length>0) && (this.pdescription.length>0)) {
 			
 		this.pdisabled= false
 			
@@ -1002,12 +1545,17 @@ submitProduct() {
 	
 }
 
+this.showSaving= true;
+
 let data = JSON.stringify({
         name: this.productName,
         image: this.productImage[0].URL,
 		description: this.pdescription,
 		category: this.ocategory,
-		shop: this.activeShop,
+		price: this.productPrice,
+		location: this.productLocation,
+		type: 1,
+		
     })
 				
 				this.show_post_spinner=true
@@ -1025,16 +1573,81 @@ let data = JSON.stringify({
 					this.productImage = []
 					this.productName = ''
 					this.pdescription = ''
+					this.productLocation = ''
+					this.productPrice = ''
 					this.show_post_spinner=false
-					
+					this.showSaved=true;
 					this.allProducts();
-					window.location = "/login/seller/login";
+					
 					
 					
 					
 				 
 				})
 			},
+			
+submitService() {
+	
+	if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productLocation.length>0) && (this.productName.length>0) && (this.pdescription.length>0)) {
+			
+		this.pdisabled= false
+			
+		} else {
+	
+	this.pdisabled= true
+	return
+	
+	
+}
+
+this.showSaving= true;
+
+let data = JSON.stringify({
+        name: this.productName,
+        image: this.productImage[0].URL,
+		description: this.pdescription,
+		category: this.ocategory,
+		price: this.productPrice,
+		location: this.productLocation,
+		type: 2,
+		
+    })
+				
+				this.show_post_spinner=true
+				
+				axios.post('/submit/product', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+					
+					
+					this.productImage = []
+					this.productName = ''
+					this.pdescription = ''
+					this.productLocation = ''
+					this.productPrice = ''
+					this.show_post_spinner=false
+					this.showSaved=true;
+					this.allProducts();
+					
+					
+					
+					
+				 
+				})
+			},
+			
+			
+closeSaver() {
+
+this.showSaving=false
+this.showSaved=false	
+	
+},
 
 findSeller(pid, cid){
 		
@@ -1818,31 +2431,39 @@ if ((this.sellerImage.length>0) && (this.sellerEmail.length>0 ) && (this.adminEm
 	
 productImage() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productName.length>0 && this.productLocation.length>0) && (this.pdescription.length>0)) {
 			
 		this.pdisabled= false
 			
+		} 
+		
+else if (this.productImage.length>0 && this.categoryName.length>0  && this.categoryType>0) {
+			
+		this.cdisabled= false
+			
 		} else {
 	
+	this.cdisabled= true
 	this.pdisabled= true
 	return this.pdisabled
 	
 	
-}
+} 
+
+
 
 },
 
 
 ncategory() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
-		this.pdisabled= false
+		
 			
 		} else {
 	
-	this.pdisabled= true
-	return this.pdisabled
+
 	
 	
 }
@@ -1850,9 +2471,41 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 },
 
 
+categoryType() {
+
+if ((this.productImage.length>0) && (this.categoryName.length>0)  && this.categoryType>0) {
+			
+		this.cdisabled= false
+			
+		} else {
+	
+	this.cdisabled= true
+	return this.cdisabled
+	
+	
+}
+},
+
+
+categoryName() {
+
+if ((this.productImage.length>0) && (this.categoryName.length>0)  && this.categoryType>0) {
+			
+		this.cdisabled= false
+			
+		} else {
+	
+	this.cdisabled= true
+	return this.cdisabled
+	
+	
+}
+},
+
+
 ocategory() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productName.length>0 && this.productLocation.length>0) && (this.pdescription.length>0)) {
 			
 		this.pdisabled= false
 			
@@ -1868,14 +2521,12 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 
 activeShop() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
 			
-		this.pdisabled= false
-			
+				
 		} else {
 	
-	this.pdisabled= true
-	return this.pdisabled
+	
 	
 	
 }
@@ -1883,7 +2534,7 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 
 productName() {
 
-if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==0 && this.shopName.length==0 && this.shopLocation.length==0) && (this.productName.length>0) && (this.pdescription.length>0) && (this.activeShop>0)) {
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productName.length>0 && this.productLocation.length>0) && (this.pdescription.length>0)) {
 			
 		this.pdisabled= false
 			
@@ -1895,7 +2546,55 @@ if ((this.productImage.length>0) && (this.ocategory>0 && this.ncategory.length==
 	
 }
 
-}	
+},
+
+	productLocation() {
+
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productName.length>0 && this.productLocation.length>0) && (this.pdescription.length>0)) {
+			
+		this.pdisabled= false
+			
+		} else {
+	
+	this.pdisabled= true
+	return this.pdisabled;
+	
+	
+}
+
+},
+
+productPrice() {
+
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productName.length>0 && this.productLocation.length>0) && (this.pdescription.length>0)) {
+			
+		this.pdisabled= false
+			
+		} else {
+	
+	this.pdisabled= true
+	return this.pdisabled;
+	
+	
+}
+
+},
+
+pdescription() {
+
+if ((this.productImage.length>0) && (this.ocategory.length>0 && this.productPrice>0 && this.productName.length>0 && this.productLocation.length>0) && (this.pdescription.length>0)) {
+			
+		this.pdisabled= false
+			
+		} else {
+	
+	this.pdisabled= true
+	return this.pdisabled;
+	
+	
+}
+
+}
 	
 	
 }

@@ -37,12 +37,23 @@ class HomeController extends Controller
     { 
 	if(!Auth::check()){
 		
-		return view('public');
+		return view('app');
 		
 	}
-        return view('dashboard');
+        return view('app');
     }
 	
+	 public function sellerLogout()
+    {
+      Auth::logout();
+      return redirect()->intended('login/seller/login');
+    }
+	
+	 public function allLogout()
+    {
+      Auth::logout();
+      return redirect()->intended('/app');
+    }
 	
 	 public function Categories()
     {
@@ -59,12 +70,59 @@ class HomeController extends Controller
 	   return $all;
     }
 	
-	 public function Products()
+	
+	public function services()
     {
 	  $all= array();
       
 		
-	   $products = Product::get();
+	   $products = Product::where('type', 2)->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   
+	   return $all;
+    }
+	
+	 public function products()
+    {
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 1)->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   
+	   return $all;
+    }
+	
+	
+	public function authProducts()
+    {
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 1)->where('owner', auth::id())->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   
+	   return $all;
+    }
+	
+public function authServices()
+    {
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 2)->where('owner', auth::id())->get();
 	   
 	   foreach ($products as $product):
 	   array_push($all, $product);
@@ -305,6 +363,56 @@ class HomeController extends Controller
 	
 	}
 	
+	public function adminDeleteProduct($pid)
+    {
+		
+	if(auth::user()->role<2) {
+	return;	
+	}
+	$product = Product::where('id', $pid)
+		->first();
+		
+		if(!empty($product)) {
+		
+		$product->delete();
+		
+		}
+		
+	}
+	
+	public function authDeleteProduct($pid)
+    {
+	
+	$product = Product::where('id', $pid)->where('owner', auth::id())
+		->first();
+		
+		if(!empty($product)) {
+		
+		$product->delete();
+		
+		}
+		
+	}
+	
+	
+	public function adminDeleteCategory($cid)
+    {
+		
+	if(auth::user()->role<2) {
+	return;	
+	}
+	$category = Category::where('id', $cid)
+		->first();
+		
+		if(!empty($category)) {
+		
+		$category->delete();
+		
+		}
+		
+	}
+	
+	
 	public function removeProduct($pid)
     {
 	$product = Store::where('seller', Auth::id())
@@ -422,13 +530,31 @@ class HomeController extends Controller
     {
 
 	  $add = Product::create([
-			
+			'owner' => auth::id(),
 			'name' => $request->name,
-			'category_id' => $request->category,
+			'type' => $request->type,
+			'category' => $request->category,
 			'image' => $request->image,
 			'status' => 1,
 			'description' => $request->description,
-			'store_id' => $request->shop,
+			'location' => $request->location,
+			'price' => $request->price,
+		]);
+		
+		return 1;
+		
+    }
+	
+	
+	public function submitCat(Request $request)
+    {
+
+	  $add = Category::create([
+
+			'name' => $request->name,
+			'type' => $request->type,
+			'image' => $request->image,
+			
 		]);
 		
 		return 1;

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
 	use Searchable;
-    protected $fillable = ['name', 'category_id', 'image', 'status','store_id', 'description'];
+    protected $fillable = ['name', 'owner', 'type', 'price', 'category', 'image', 'status','location', 'description'];
 }
