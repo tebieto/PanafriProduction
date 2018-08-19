@@ -19,9 +19,9 @@
 <div id="loader" class="loader">
 
 			
-	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Partner</span>
+	 <img class="panafri-logo"  width="50px" height="auto" src="{{Storage::url('public/icons/panafri-icon.jpg')}}" alt="Panafri icon"><span>Panafri Connect</span>
 	 
-	 <loader></loader>
+	 <buyer-loader></buyer-loader>
 	 
 	
 </div>	

@@ -40,7 +40,7 @@
 			
 			</div>
 
-<a href="/app"><img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
+<a href="/login/seller/login"><img class="panafri-logo"  width="150px" height="auto" src="{{Storage::url('public/icons/panafri-logo.png')}}" alt="Panafri logo"></a>
 <div class="content-header"><span id="add-product-plus" @click="toggleBar()" >+</span></div>
 <div class="seller-content-holder">
 

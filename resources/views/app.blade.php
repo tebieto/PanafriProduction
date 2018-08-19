@@ -101,7 +101,7 @@
 <!-- Products right here -->
 
 
-<div class="no-result" v-if="services.length==0">You services at the moment</div>
+<div class="no-result" v-if="services.length==0">No services at the moment</div>
 <div v-else class="main-search-result" v-for="product in services">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
