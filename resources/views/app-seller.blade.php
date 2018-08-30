@@ -28,6 +28,8 @@
 	
 </div>	
 
+<seller-not :id="{{auth::id()}}"></seller-not>
+
 
 <!--Creating Menu Icon from scatch with Css-->
 

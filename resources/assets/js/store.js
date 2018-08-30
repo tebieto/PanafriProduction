@@ -12,6 +12,8 @@ export const store = new  Vuex.Store ({
 		sellerActiveTransactions: [],
 		buyerChats: [],
 		sellerChats: [],
+		cancel: false,
+		accept: false,
 		
 	},
 	
@@ -90,6 +92,30 @@ export const store = new  Vuex.Store ({
 			if (!verify) {
 			state.sellerActiveTransactions.push(transactions)
 			}
+		},
+		
+		cancel_transaction(state) {
+			
+			state.cancel=true
+			
+		},
+		
+		accept_transaction(state) {
+			
+			state.accept=true
+			
+		},
+		
+		reset_accept(state) {
+			
+			state.accept=false
+			
+		},
+		
+		reset_cancel(state) {
+			
+			state.cancel=false
+			
 		},
 		
 		

@@ -4,9 +4,11 @@ namespace App;
 
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class product extends Model
 {
 	use Searchable;
+	use Notifiable;
     protected $fillable = ['name', 'owner', 'type', 'price', 'category', 'image', 'status','location', 'description'];
 }

@@ -57,10 +57,10 @@ class NewRequest extends Notification implements ShouldQueue
     {
         return [
             
-			'fname' => $this->user->fname,
-			'lname' => $this->user->lname,
+			'name' => $this->user->name,
 			'status' => 1,
 			'ntype' => 1,
+			'uid' => $this->user->id,
 			'message' => 'requested your product(s)',
 			
         ];

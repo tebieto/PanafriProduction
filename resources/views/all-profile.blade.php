@@ -47,12 +47,12 @@
 <div class="user-profile">
 <div v-for="user in authDetails">
 <img class="user-avatar"  width="200px" height="200px" :src="user.avatar" alt="User avatar">
-<span id="accolades">You have @{{authProducts.length}} product(s) and @{{authServices.length}} service(s)</span> 
+<span id="accolades">@{{authProducts.length}} product(s) and @{{authServices.length}} service(s) by You</span> 
 </div>
 </div>
 
 
-
+<div id="shadow" class="shadow hidden"></div>
 <div id="product-holder">
 
 <div class="content-title">Your Products </div>
@@ -60,13 +60,13 @@
 <!-- Products right here -->
 
 
-<div class="no-result" v-if="authProducts.length==0">You have no products</div>
+<div class="no-result" v-if="authProducts.length==0">No products to display</div>
 <div v-else class="main-search-result" v-for="product in authProducts">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
 <div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
-<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE THIS</div>
+<div class="send-request" style="background:red;" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE</div>
 
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
 <button v-if="partnerProduct==product.id"  @click="authDeleteProduct(product.id)" id="yes-button">Yes</button>  <button v-if="partnerProduct==product.id"  @click="removeContact()" id="no-button">No</button>
@@ -86,13 +86,13 @@
 <!-- Products right here -->
 
 
-<div class="no-result" v-if="authServices.length==0">You have no services</div>
+<div class="no-result" v-if="authServices.length==0">No services to display</div>
 <div v-else class="main-search-result" v-for="product in authServices">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
 <div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
-<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE THIS</div>
+<div class="send-request" style="background:red;" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE</div>
 
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
 <button v-if="partnerProduct==product.id"  @click="authDeleteService(product.id)" id="yes-button">Yes</button>  <button v-if="partnerProduct==product.id"  @click="removeContact()" id="no-button">No</button>

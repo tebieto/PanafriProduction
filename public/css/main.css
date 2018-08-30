@@ -3641,3 +3641,24 @@ width: 200px;
 	box-shadow:none;
 	
 }
+
+
+@media only screen and (max-width: 288px) {
+
+body {
+	
+	display:none;
+}
+
+}
+
+
+@media only screen and (max-height: 1000px) and (max-width: 800px) {
+	
+.loader span {
+
+top:250px;
+
+}	
+	
+}

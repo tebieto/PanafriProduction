@@ -303,6 +303,11 @@ Route::get('/create/transaction/tracker/{store}/{owner}', [
 	'as' => 'createTracker'
 	]);
 	
+Route::get('/start/transaction/{store}', [
+	'uses' => 'ShopController@startTransaction',
+	'as' => 'startTransaction'
+	]);
+	
 Route::get('/add/to/cart/{product}/{price}/{quantity}', [
 	'uses' => 'ShopController@addToCart',
 	'as' => 'addToCart'
@@ -484,6 +489,16 @@ Route::get('/get/recent/seller/chat/{seller}/{tacker}', [
 Route::get('/get/recent/buyer/chat/{buyer}/{tacker}', [
 	'uses' => 'ShopController@recentBuyerChat',
 	'as' => 'recentBuyerChat'
+	]);
+	
+Route::get('/accept/recent/transaction/{bid}', [
+	'uses' => 'ShopController@acceptRecent',
+	'as' => 'acceptRecent'
+	]);
+	
+Route::get('/get/recent/transaction/{bid}', [
+	'uses' => 'ShopController@recentTransaction',
+	'as' => 'recentTransaction'
 	]);
 	
 Route::get('/on/product/{pid}', [

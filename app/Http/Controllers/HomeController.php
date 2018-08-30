@@ -76,13 +76,13 @@ class HomeController extends Controller
 	  $all= array();
       
 		
-	   $products = Product::where('type', 2)->get();
+	   $products = Product::where('type', 2)->orderBy(DB::raw('RAND()'))->get();
 	   
 	   foreach ($products as $product):
 	   array_push($all, $product);
 	   
 	   endforeach;
-	   
+	   $all= array_slice($all, 0, 10);
 	   return $all;
     }
 	
@@ -91,13 +91,13 @@ class HomeController extends Controller
 	  $all= array();
       
 		
-	   $products = Product::where('type', 1)->get();
+	   $products = Product::where('type', 1)->orderBy(DB::raw('RAND()'))->get();
 	   
 	   foreach ($products as $product):
 	   array_push($all, $product);
 	   
 	   endforeach;
-	   
+	    $all= array_slice($all, 0, 10);
 	   return $all;
     }
 	
@@ -113,7 +113,7 @@ class HomeController extends Controller
 	   array_push($all, $product);
 	   
 	   endforeach;
-	   
+	  
 	   return $all;
     }
 	

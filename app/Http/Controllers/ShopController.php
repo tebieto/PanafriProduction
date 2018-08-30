@@ -14,6 +14,7 @@ use App\Store;
 use App\Location;
 use App\Price;
 use App\Tracker;
+use App\PendingTransactions;
 use Auth;
 use DB;
 
@@ -25,6 +26,15 @@ class ShopController extends Controller
         
     }
 	
+	
+	public function recentTransaction($bid) 
+	
+	{
+		
+	 $transaction = PendingTransactions::where('buyer_id', $bid)->where('seller_id', auth::id())->orderBy('created_at', 'DESC')
+	 ->first();	
+	 return $transaction;
+	}
 	
 	public function createTracker($store, $owner) 
 	
@@ -61,7 +71,40 @@ class ShopController extends Controller
 	}
 	
 	
+	public function acceptRecent($bid) 
 	
+	{
+		
+	 $transaction = pendingTransactions::where('buyer_id', $bid )->where('seller_id', auth::id())->first()
+	  ->update([
+			
+			'seller_status' => 1,
+			
+		]);	
+		
+	User::find($bid)->notify(new \App\Notifications\NewAccept(Auth::user()));		
+		
+	}
+	
+	
+	public function startTransaction($pid) 
+	
+	{
+		
+	 $product = Product::where('id', $pid)->first();
+	 $owner= $product->owner;
+	 
+	 $transaction = pendingTransactions::create([
+			'product_id' => $pid,
+			'buyer_id' => auth::id(),
+			'seller_id' => $owner,
+			'seller_status' => 0,
+			'buyer_status' => 0,
+		]);	
+		
+	User::find($owner)->notify(new \App\Notifications\NewRequest(Auth::user()));		
+		
+	}
 	
 	
 	

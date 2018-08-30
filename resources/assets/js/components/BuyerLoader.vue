@@ -2,6 +2,8 @@
 
 <div>
 <audio id="buyer_audio"  src="/storage/audios/buyer-alarm.mp3"></audio>
+<audio id="timer-alert"  src="/storage/audios/definite.mp3"></audio>
+
 </div>
 
 </template>
@@ -13,7 +15,7 @@ export default {
 
 mounted() {
 
-this.reload()
+
 
 this.removeLoader()
 

@@ -26,8 +26,9 @@
 	 
 	
 </div>	
-
-
+@if (auth::check())
+<buyer-not :id="{{auth::id()}}"></buyer-not>
+@endif
 <!--Creating Menu Icon from scatch with Css-->
 
 		  
@@ -45,7 +46,7 @@
 
 
 
-
+<div id="shadow" class="shadow hidden"></div>
 <div class="main-content-holder">
 
 
@@ -53,16 +54,16 @@
 
 <div id="main-category-holder">
 
-<div class="content-title">Top Categories</div>
+<div class="content-title">TOP CATEGORIES</div>
 
-<!-- Products right here -->
+<!-- Categories right here -->
 
 
 <div class="no-result" v-if="categories.length==0 ">No category at the moment</div>
-<div v-else class="main-search-result" v-for="product in categories">
-<img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
-<div class="product-name" v-if="product.type==1">PRODUCT - @{{product.name.slice(0, 25).toUpperCase()}}</div>
-<div class="product-name" v-else>SERVICE - @{{product.name.slice(0, 25).toUpperCase()}}</div>
+<div v-else class="main-category-result" v-for="product in categories">
+<img class="category-image"  width="100px" height="100px" :src="product.image" :title="product.name" :alt="product.name">
+<div class="category-name" v-if="product.type==1">@{{product.name.slice(0, 25).toUpperCase()}}</div>
+<div class="category-name" v-else>@{{product.name.slice(0, 25).toUpperCase()}}</div>
 </div>
 
 
@@ -72,7 +73,7 @@
 
 <div id="main-product-holder">
 
-<div class="content-title">Hot Products </div>
+<div class="content-title">HOT PRODUCTS </div>
 
 <!-- Products right here -->
 
@@ -81,14 +82,12 @@
 <div v-else class="main-search-result" v-for="product in products">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
-<div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
+<div class="new-product-price"><span style="font-size:10px; color:#000; margin-right:5px;">FROM</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
-<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> CALL PARTNER</div>
-<div class="view-seller">EXPLORE PARTNER </div>
+<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> REQUEST</div>
+<!-- <div class="view-seller">EXPLORE PARTNER </div> -->
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
-<partner :pid="product.owner" v-if="partnerProduct==product.id"></partner>
-
-
+<partner :pid="product.owner" :pname="product.name" :pimage="product.image" v-if="partnerProduct==product.id"></partner>
 </div>
 
 
@@ -96,7 +95,7 @@
 
 <div id="main-service-holder">
 
-<div class="content-title">Hot Services </div>
+<div class="content-title">HOT SERVICES </div>
 
 <!-- Products right here -->
 
@@ -105,14 +104,12 @@
 <div v-else class="main-search-result" v-for="product in services">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
-<div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
+<div class="new-product-price"><span style="font-size:10px; color:#000; margin-right:5px;">FROM</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
-<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> CALL PARTNER</div>
-<div class="view-seller">EXPLORE PARTNER </div>
+<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> REQUEST</div>
+<!-- <div class="view-seller">EXPLORE PARTNER </div>-->
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
-<partner :pid="product.owner" v-if="partnerProduct==product.id"></partner>
-
-
+<partner :pid="product.owner" :pname="product.name" :pimage="product.image" v-if="partnerProduct==product.id"></partner>
 </div>
 
 
@@ -138,6 +135,39 @@
 @endif
 </div>
 
+<!--Register form holder is next -->
+
+<div id="register-form-holder" class="hidden">
+<form class="start-selling-form" method="POST" action="/register">
+                        {{ csrf_field() }}
+<span id="type-register-name"> <span class="glyphicon glyphicon-user"></span> <input  name="name" type="text" value="{{ old('name') }}" placeholder="ENTER FULL NAME" required></span>
+<span id="type-register-email"> <span class="glyphicon glyphicon-envelope"></span> <input  name="email" type="email" value="{{ old('email') }}" placeholder="ENTER EMAIL ADDRESS" required></span>
+<span id="type-register-phone"> <span class="glyphicon glyphicon-phone"></span> <input  name="phone" type="number" value="{{ old('phone') }}" placeholder="ENTER PHONE NUMBER" required></span>
+<span id="type-register-password" > <span class="glyphicon glyphicon-lock"></span> <input type="password" value="{{ old('password') }}" name="password" placeholder=" ENTER PASSWORD" required autofocus></span>
+<span id="type-register-confirm" > <span class="glyphicon glyphicon-lock"></span> <input type="password" name="password_confirmation" placeholder=" CONFIRM PASSWORD" required autofocus></span>
+<a id="register-login" @click="showLogin">I ALREADY HAVE AN ACCOUNT</a>
+<button id="register-button" @click="regUser()">REGISTER</button>
+@if ($errors->has('name') || $errors->has('email') || $errors->has('phone') || $errors->has('password'))
+<span class="register-form-error"><center>ALL FIELDS ARE REQUIRED, TRY AGAIN</center></span>
+@endif</form>
+</div>
+
+<!--login form holder is next -->
+
+<div id="login-form-holder" class="hidden">
+<form class="welcome-login-form" method="POST" action="/login">
+                        {{ csrf_field() }}
+<span id="type-login-email"> <span class="glyphicon glyphicon-envelope"></span> <input  name="email" type="email" placeholder="ENTER EMAIL ADDRESS" /></span>
+
+<span id="type-login-password" > <span class="glyphicon glyphicon-lock"></span> <input type="password" name="password" placeholder=" ENTER PASSWORD" autofocus/></span>
+
+<a id="login-register" @click="showRegister">OPEN NEW ACCOUNT</a>
+<a id="recover-password" href="/all/recover">RECOVER LOST PASSWORD</a>
+
+<button id="login-button">LOGIN</button>
+
+</form>
+</div>
 
 <div id="search-holder">
 <span><input id="product-input" type="text" placeholder="SEARCH KEYWORD" @keyup="findProducts" @change="prepareSearch" v-model="searchedProduct" /><span id="location-span" > <span class="glyphicon glyphicon-map-marker"></span> <input type="text"  id="location-input" placeholder="LOCATION" @keyup="findLocations" @change="prepareSearch" v-model="searchedLocation" /></span><button @click="startSearch"><span class="glyphicon glyphicon-search"></span></button></span>
@@ -186,10 +216,10 @@
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
 <div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
-<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> CALL PARTNER</div>
-<div class="view-seller">EXPLORE PARTNER </div>
+<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> REQUEST</div>
+<!-- <div class="view-seller">EXPLORE PARTNER </div> -->
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
-<partner :pid="product.owner" v-if="partnerProduct==product.id"></partner>
+<partner :pid="product.owner" :pname="product.name" :pimage="product.image" v-if="partnerProduct==product.id"></partner>
 
 </div>
 </div>

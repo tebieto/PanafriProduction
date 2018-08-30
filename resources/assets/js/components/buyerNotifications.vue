@@ -25,11 +25,21 @@ props: ['id'],
 
 methods: {
 
+acceptTransaction() {
+
+this.$store.commit('accept_transaction')
+
+
+},
+
 listen() {
 
 	Echo.private('App.User.' + this.id)
 	.notification( (notification) => {
 	if(notification.status==1) {return}
+	if(notification.ntype==3) {
+	this.acceptTransaction()
+	}
 	this.getBuyerPendingTransactions()
 	this.getBuyerActiveTransactions()
 	this.getSellerActiveTransactions()

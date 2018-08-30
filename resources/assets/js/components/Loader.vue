@@ -12,7 +12,6 @@ export default {
 
 mounted() {
 
-this.reload()
 
 this.removeLoader()
 

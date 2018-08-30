@@ -57,11 +57,11 @@ class NewAccept extends Notification implements ShouldQueue
     {
         return [
             
-			'fname' => $this->user->fname,
-			'lname' => $this->user->lname,
-			'status' => 1,
+			'name' => $this->user->name,
+			'status' => 0,
 			'ntype' => 3,
-			'message' => 'accepted your available product(s)',
+			'uid' => $this->user->id,
+			'message' => 'accepted your product(s)',
 			
         ];
     }

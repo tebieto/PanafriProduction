@@ -43,6 +43,8 @@ Vue.component('buyer-pending', require('./components/BuyerPending.vue'));
 Vue.component('buyer-loader', require('./components/BuyerLoader.vue'));
 Vue.component('partner', require('./components/partner.vue'));
 Vue.component('delete-product', require('./components/deleteProduct.vue'));
+Vue.component('user', require('./components/user.vue'));
+
 
 var algoliasearch = require('algoliasearch');
 var client = algoliasearch('2UETKW6SEX', 'a2289773a26c35d74d6f21cd61ba140d');
@@ -144,6 +146,16 @@ const app = new Vue({
 				services:[],
 				authProducts:[],
 				authServices:[],
+				targetProduct:"",
+				regName:"",
+				regEmail:"",
+				regPhone:"",
+				regPass:"",
+				regConfirm:"",
+				logEmail:"",
+				logPass:"",
+				log:false,
+				reg:false,
 		}
 		
 		
@@ -174,6 +186,56 @@ this.getAuthServices()
 },
 	
 methods: {
+	
+regUser() {
+
+let data = JSON.stringify({
+        name: this.regName,
+        email: this.regEmail,
+		phone: this.regPhone,
+		password: this.regPass,
+		password_confirmation: this.regConfirm
+    })
+	
+axios.post('/register/login/register', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				console.log("done")
+				this.getAuthDetails();
+				this.callPartner(this.targetProduct)
+				
+				})
+	
+},
+
+logUser() {
+
+let data = JSON.stringify({
+      
+        email: this.logEmail,
+		password: this.logPass,
+    })
+	
+axios.post('/login/seller/login', data, {
+					headers: {
+						'Content-Type': 'application/json'
+						
+						}
+						
+					})
+				.then( (response) => { 
+				console.log("done")
+				this.getAuthDetails();
+				this.callPartner(this.targetProduct)
+				
+				})
+	
+},
 
 adminDeleteProduct(pid){
 	
@@ -271,16 +333,58 @@ adminDeleteCategory(cid){
 	})
 	
 },
+
+showLogin() {
+var shadow = document.getElementById('shadow')	
+var login = document.getElementById('login-form-holder')
+var register = document.getElementById('register-form-holder')
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+shadow.classList.remove('hidden')		
+login.classList.remove('hidden')	
+register.classList.add('hidden')		
+},
+
+showRegister() {
+var shadow = document.getElementById('shadow')
+var register = document.getElementById('register-form-holder')
+var login = document.getElementById('login-form-holder')
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+shadow.classList.remove('hidden')		
+register.classList.remove('hidden')	
+login.classList.add('hidden')		
+},
 	
 callPartner(pid) {
+		
+this.targetProduct=pid
+if (this.authDetails[0].length==0) {
+
+this.showLogin()
+return	
+}
+
+shadow.classList.remove('hidden')
 
 this.partnerProduct= pid;	
+
+
+axios.get('/start/transaction/' + pid).then(response=>{
+		
+		
+		this.activeTransaction= []
+		console.log(response.data)
+
+	})	
 	
 	
 },
 
 removeContact() {
-
+this.$store.commit('cancel_transaction')
+var shadow = document.getElementById('shadow')
+shadow.classList.add('hidden')
 this.partnerProduct= 0;	
 	
 	
@@ -1224,7 +1328,7 @@ getAuthDetails(){
         this.appOn = false
 
        }
-		
+		this.authDetails=[]
 		this.authDetails.push(response.data)
 	})
 	
