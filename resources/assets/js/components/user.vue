@@ -72,6 +72,9 @@ acceptTransaction() {
 
 this.accepted=true
 
+var audio = document.getElementById('seller_audio')
+	audio.pause();
+
 axios.get('/accept/recent/transaction/' + this.bid).then(response=>{
 		
 
@@ -82,6 +85,10 @@ axios.get('/accept/recent/transaction/' + this.bid).then(response=>{
 cancelTransaction() {
 
 this.cancelled=true
+
+var audio = document.getElementById('seller_audio')
+	audio.play();
+
 this.$store.commit('cancel_transaction')
 
 },

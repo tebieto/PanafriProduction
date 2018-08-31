@@ -58014,11 +58014,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			this.accepted = true;
 
+			var audio = document.getElementById('seller_audio');
+			audio.pause();
+
 			axios.get('/accept/recent/transaction/' + this.bid).then(function (response) {});
 		},
 		cancelTransaction: function cancelTransaction() {
 
 			this.cancelled = true;
+
+			var audio = document.getElementById('seller_audio');
+			audio.play();
+
 			this.$store.commit('cancel_transaction');
 		},
 		getPartnerDetails: function getPartnerDetails() {
