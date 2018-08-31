@@ -14,7 +14,7 @@ use App\Store;
 use App\Location;
 use App\Price;
 use App\Tracker;
-use App\PendingTransactions;
+use App\pendingTransactions;
 use Auth;
 use DB;
 
