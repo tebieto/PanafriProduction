@@ -58024,7 +58024,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.cancelled = true;
 
 			var audio = document.getElementById('seller_audio');
-			audio.play();
+			audio.pause();
 
 			this.$store.commit('cancel_transaction');
 		},

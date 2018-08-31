@@ -87,7 +87,7 @@ cancelTransaction() {
 this.cancelled=true
 
 var audio = document.getElementById('seller_audio')
-	audio.play();
+	audio.pause();
 
 this.$store.commit('cancel_transaction')
 
