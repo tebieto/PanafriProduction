@@ -13168,9 +13168,9 @@ window.Vue = __webpack_require__(21);
 /**
 * Uncomment below when compiling to production
 */
-Vue.config.devtools = true;
-Vue.config.debug = true;
-Vue.config.silent = false;
+Vue.config.devtools = false;
+Vue.config.debug = false;
+Vue.config.silent = true;
 
 Vue.component('example', __webpack_require__(58));
 Vue.component('welcome', __webpack_require__(61));
@@ -15137,10 +15137,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   authEndpoint: '/broadcasting/auth'
 });
 
-Pusher.log = function (message) {
-
-  window.console.log(message);
-};
+Pusher.log = function (message) {};
 
 /***/ }),
 /* 31 */
