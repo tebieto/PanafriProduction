@@ -338,7 +338,7 @@ font-weight:bold;
 
 .loader img {
 position: fixed;	
-top: 30%;
+top: 220px;
 left:45%;	
 	
 }
@@ -346,7 +346,7 @@ left:45%;
 .loader span {
 	
 position: fixed;	
-top: 38%;
+top: 280px;
 left:43.5%;		
 	
 }
@@ -1219,7 +1219,7 @@ width: 1048px;
 
 .loader span {
 		
-top: 35%;
+
 left:42%;		
 	
 }
@@ -1527,7 +1527,7 @@ background:#ddd;
 
 .loader span {
 		
-top: 36%;
+
 left:42%;		
 	
 }
@@ -1960,7 +1960,7 @@ min-width: 400px;
 
 .loader span {
 		
-top: 36%;
+
 left:40%;		
 	
 }
@@ -2071,7 +2071,7 @@ max-width:300px;
 
 .loader span {
 		
-top: 37%;
+
 left:40%;		
 	
 }
@@ -2342,7 +2342,7 @@ min-width: 200px;
 
 .loader span {
 		
-top: 39%;
+
 left:39%;		
 	
 }
@@ -2598,7 +2598,7 @@ min-width: 200px;
 
 .loader span {
 		
-top: 39%;
+
 left:39%;		
 	
 }
@@ -2826,7 +2826,7 @@ background:#ddd;
 
 .loader span {
 		
-top: 39%;
+
 left:38%;		
 	
 }
@@ -3125,7 +3125,7 @@ min-width: 200px;
 
 .loader span {
 		
-top: 41%;
+
 left:38%;		
 	
 }
@@ -3452,7 +3452,7 @@ font-size:15px;
 
 .loader span {
 		
-top: 45%;		
+	
 	
 }
 
@@ -3657,7 +3657,7 @@ body {
 	
 .loader span {
 
-top:250px;
+
 
 }	
 	
