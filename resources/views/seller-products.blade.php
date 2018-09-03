@@ -59,7 +59,7 @@
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
 <div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
-<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE THIS</div>
+<div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE</div>
 
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
 <button v-if="partnerProduct==product.id"  @click="authDeleteProduct(product.id)" id="yes-button">Yes</button>  <button v-if="partnerProduct==product.id"  @click="removeContact()" id="no-button">No</button>

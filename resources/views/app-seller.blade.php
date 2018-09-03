@@ -164,8 +164,8 @@
 			
 			<span id="type-product-name">
 			<span class="glyphicon glyphicon-pencil"></span>
-			<input v-if="catType==1" type="text" name="name" maxlength="12" placeholder="NAME OF PRODUCT" v-model="productName">
-			<input v-if="catType==2" type="text" name="name" maxlength="12" placeholder="NAME OF SERVICE" v-model="productName">
+			<input v-if="catType==1" type="text" name="name" maxlength="30" placeholder="NAME OF PRODUCT" v-model="productName">
+			<input v-if="catType==2" type="text" name="name" maxlength="30" placeholder="NAME OF SERVICE" v-model="productName">
 			</span>
 			
 			<span id="type-product-price">
