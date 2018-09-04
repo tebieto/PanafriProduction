@@ -47,7 +47,7 @@ Vue.component('user', require('./components/user.vue'));
 
 
 var algoliasearch = require('algoliasearch');
-var client = algoliasearch('Y3X815DU84', 'c736f4d831ffaa03fd0740b93596709b');
+var client = algoliasearch('Y3X815DU84', 'a0ed93769dde50d9d3c34cfb692668a1');
 var productIndex = client.initIndex('products');
 var storeIndex = client.initIndex('stores');
 import { store } from './store'
