@@ -13196,7 +13196,7 @@ Vue.component('delete-product', __webpack_require__(136));
 Vue.component('user', __webpack_require__(141));
 
 var algoliasearch = __webpack_require__(22);
-var client = algoliasearch('2UETKW6SEX', 'a2289773a26c35d74d6f21cd61ba140d');
+var client = algoliasearch('Y3X815DU84', 'a0ed93769dde50d9d3c34cfb692668a1');
 var productIndex = client.initIndex('products');
 var storeIndex = client.initIndex('stores');
 
