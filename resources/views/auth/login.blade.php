@@ -60,7 +60,9 @@
 <a id="recover-password" href="/all/recover">RECOVER LOST PASSWORD</a>
 
 <button id="login-button">LOGIN</button>
-
+@if ($errors->has('name') || $errors->has('email') || $errors->has('phone') || $errors->has('password'))
+<span class="register-form-error"><center>This account does not exist</center></span>
+@endif
 </form>
 </div>
 
