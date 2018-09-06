@@ -59,10 +59,12 @@
 <a id="login-register" href="/register">OPEN NEW ACCOUNT</a>
 <a id="recover-password" href="/all/recover">RECOVER LOST PASSWORD</a>
 
-<button id="login-button">LOGIN</button>
-@if ($errors->has('name') || $errors->has('email') || $errors->has('phone') || $errors->has('password'))
-<span class="register-form-error"><center>This account does not exist</center></span>
+@if ($errors->has('email') || $errors->has('password'))
+<span class="login-form-error"><center>INVALID EMAIL ADDRESS OR PASSWORD, TRY AGAIN</center></span>
 @endif
+
+<button id="login-button">LOGIN</button>
+
 </form>
 </div>
 
