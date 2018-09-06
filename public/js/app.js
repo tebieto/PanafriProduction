@@ -13487,6 +13487,8 @@ var app = new Vue({
 			this.locationSuggest = false;
 
 			this.searchedProduct = p;
+
+			this.startSearch();
 		},
 		pushLocation: function pushLocation(l) {
 
@@ -13494,6 +13496,8 @@ var app = new Vue({
 			this.locationSuggest = false;
 
 			this.searchedLocation = l;
+
+			this.startSearch();
 		},
 		findProducts: function findProducts() {
 			var _this4 = this;

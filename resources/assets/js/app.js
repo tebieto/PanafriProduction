@@ -396,7 +396,7 @@ this.locationSuggest=false
 
 this.searchedProduct= p;	
 	
-	
+this.startSearch()	
 },
 
 pushLocation(l) {
@@ -406,7 +406,7 @@ this.locationSuggest=false
 
 this.searchedLocation= l;	
 	
-	
+this.startSearch()	
 },
 
 
@@ -569,6 +569,7 @@ productIndex.search(this.searchedLocation, (err, location) => {
 
 	
 });
+
 
 }
 
