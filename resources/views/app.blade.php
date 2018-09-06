@@ -245,6 +245,8 @@
 	
 	 <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/welcome.js') }}"></script>
-	
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9UvOBBIiDC2jHTXnhkRkFstMvgNfRHmI">
+    </script>
 </body>
 </html>

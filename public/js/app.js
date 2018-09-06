@@ -14214,6 +14214,7 @@ var app = new Vue({
 					_this27.ulga = results[1].address_components[1].long_name;
 					_this27.ustate = results[1].address_components[2].long_name;
 					address = _this27.ulga + ', ' + _this27.ustate;
+					_this27.searchedLocation = address;
 					if (_this27.place = _this27.ustate) {
 
 						_this27.queryLocation();

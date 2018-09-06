@@ -1399,7 +1399,8 @@ showPosition(position) {
 		 this.ulga = results[1].address_components[1].long_name;
 		 this.ustate = results[1].address_components[2].long_name;
          address = this.ulga + ', ' + this.ustate
-        if(this.place = this.ustate) {
+        this.searchedLocation= address
+		if(this.place = this.ustate) {
 			
 			this.queryLocation();
 		}
