@@ -97,6 +97,26 @@ Route::get('/services/seller/services', function () {
    return redirect()->intended('/');
 });
 
+Route::get('/seller/change/password', function () {
+	
+	if (auth::check()) {
+
+	return view('seller-password');	
+		
+	}
+   return redirect()->intended('/login/seller/login');
+});
+
+Route::get('/password/change/password', function () {
+	
+	if (auth::check()) {
+
+	return view('buyer-password');	
+		
+	}
+   return redirect()->intended('/');
+});
+
 Route::get('/profile/seller/profile', function () {
 	
 	if (auth::check()) {
@@ -104,7 +124,7 @@ Route::get('/profile/seller/profile', function () {
 	return view('seller-profile');	
 		
 	}
-   return redirect()->intended('/');
+   return redirect()->intended('/login/seller/login');
 });
 
 Route::get('/profile/all/profile', function () {
@@ -117,6 +137,27 @@ Route::get('/profile/all/profile', function () {
    return redirect()->intended('/');
 });
 
+Route::get('/profile/edit/profile', function () {
+
+	
+	if (auth::check()) {
+
+	return view('edit-buyer');	
+		
+	}
+   return redirect()->intended('/');
+});
+
+Route::get('/seller/edit/profile', function () {
+
+	
+	if (auth::check()) {
+
+	return view('edit-seller');	
+		
+	}
+   return redirect()->intended('/');
+});
 
 
 Route::get('/categories/admin/categories', function () {
@@ -564,6 +605,15 @@ Route::post('/upload/image', [
 	'as' => 'image'
 	]);	
 	
+Route::post('/profile/edit/profile', [
+	'uses' => 'HomeController@editProfile',
+	'as' => 'editProfile'
+	]);	
+	
+Route::post('/password/change/password', [
+	'uses' => 'HomeController@changePassword',
+	'as' => 'changePassword'
+	]);	
 	
 Route::post('/send/chat', [
 	'uses' => 'HomeController@sendChat',

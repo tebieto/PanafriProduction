@@ -55,9 +55,16 @@
 
 <div id="toggle-menu" class="menu-holder toggle-menu">
 <p id="menu-spacing"></p>
+<img id="toggle-avatar" class="uploadedFile" src="{{auth::user()->avatar}}" width="200px" height="200px"  alt="" />
+
+
+<a ><p style="font-size:20px;"></span>{{auth::user()->name}}</p></a>
+
 <a href="/login/seller/login"><p><span class="glyphicon glyphicon-home" ></span> Home</p></a>
 <a href="/products/seller/products"><p><span class="glyphicon glyphicon-book" ></span> Your products</p></a>
 <a href="/services/seller/services"><p><span class="glyphicon glyphicon-briefcase" ></span> Your services</p></a>
+<a href="/seller/edit/profile"><p><span class="glyphicon glyphicon-cog" ></span> Edit profile</p></a>
+<a href="/seller/change/password"><p><span class="glyphicon glyphicon-lock" ></span>Change password</p></a>
 <a href="/profile/seller/profile"><p><span class="glyphicon glyphicon-user" ></span> View profile</p></a>
 <!--
 <a href="/edit/seller/profile"><p><span class="glyphicon glyphicon-cog" ></span> Edit profile</p></a>

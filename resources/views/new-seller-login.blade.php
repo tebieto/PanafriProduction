@@ -44,6 +44,8 @@
 
 <div id="toggle-menu" class="menu-holder toggle-menu">
 <p id="menu-spacing"></p>
+
+
 <a href="/login/seller/login"><p><span class="glyphicon glyphicon-arrow-right" ></span>Login</p></a>
 <a href="/register/seller/register"><p><span class="glyphicon glyphicon-user" ></span> Register</p></a>
 </div>

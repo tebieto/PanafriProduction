@@ -4,7 +4,7 @@
 #accolades {
 
 position:absolute;
-top:210px;
+top:100px;
 left:5px;
 	
 }
@@ -149,6 +149,14 @@ background:#fff;
 color:#fff;
 }
 
+.new-content-holder {
+
+position:absolute;
+left:0px;
+width:100%;	
+	
+}
+
 #main-service-holder {
 
 position:relative;
@@ -260,4 +268,14 @@ top:125px;
 
 }	
 	
+}
+
+#edit-spinner, #edit-avatar {
+
+position:absolute;
+left: 40px;
+top: 200px;	
+width:100px;
+height:100px;	
+border-radius:50%;	
 }

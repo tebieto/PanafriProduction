@@ -55,6 +55,66 @@ class HomeController extends Controller
       return redirect()->intended('/app');
     }
 	
+	
+	
+	
+	public function editProfile(Request $r)
+	{
+	
+ $this->validate($r, [
+ 
+		'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|',
+		'phone' => 'required|string|max:11|',
+		
+	]);	
+	
+	$update= User::where('id', auth::id())->first()		
+	->update([
+		'name' => $r->name,
+		'email'=> $r->email,
+		'phone'=>$r->phone,
+		]);
+		
+	$avatar= $r->avatar;
+	if(!empty($avatar)) {
+		
+	$update= User::where('id', auth::id())->first()		
+	->update([
+		'avatar' => $r->avatar,
+		]);	
+		
+	}
+		//Session::flash('success', 'Upload edited successfully.');
+	    return redirect()->back();
+		
+	}
+	
+	
+	public function changePassword(Request $r)
+	
+	{
+	
+	$this->validate($r, [
+ 
+	'password' => 'required|string|min:6|confirmed',		
+		
+	]);	
+	
+	$update= User::where('id', auth::id())->first()		
+	->update([
+		
+		'password' => bcrypt($r->password),
+		
+		]);
+	
+		//Session::flash('success', 'Upload edited successfully.');
+	   Auth::logout(); 
+	   return redirect()->back();
+		
+	}
+	
+	
 	 public function Categories()
     {
 	  $all= array();

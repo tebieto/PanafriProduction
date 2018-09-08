@@ -95,7 +95,7 @@
 
 <div id="main-service-holder">
 
-<div class="content-title">HOT SERVICES </div>
+<div class="content-title">HOT SERVICES</div>
 
 <!-- Products right here -->
 
@@ -123,6 +123,13 @@
 
 <div id="toggle-menu" class="menu-holder toggle-menu">
 <p id="menu-spacing"></p>
+
+
+
+<img id="toggle-avatar" class="uploadedFile" src="{{auth::user()->avatar}}" width="200px" height="200px"  alt="" />
+
+
+<a ><p style="font-size:20px;"></span>{{auth::user()->name}}</p></a>
 <a href="/home"><p><span class="glyphicon glyphicon-home" ></span> Home</p></a>
 @if(!auth::check())
 <a href="/login"><p><span class="glyphicon glyphicon-arrow-right" ></span>Login</p></a>
@@ -130,9 +137,12 @@
 @endif
 
 @if(auth::check())
+<a href="/profile/edit/profile"><p><span class="glyphicon glyphicon-cog" ></span> Edit profile</p></a>
+<a href="/password/change/password"><p><span class="glyphicon glyphicon-lock" ></span>Change password</p></a>
 <a href="/profile/all/profile"><p><span class="glyphicon glyphicon-user" ></span> Profile</p></a>
 <a id="app-logout" href="/all/logout"><p><span class="glyphicon glyphicon-arrow-left" ></span> Logout</p></a>
 @endif
+
 </div>
 
 <!--Register form holder is next -->

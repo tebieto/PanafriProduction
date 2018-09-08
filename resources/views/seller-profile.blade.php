@@ -46,13 +46,15 @@
 
 <div class="user-profile">
 <div v-for="user in authDetails">
-<img class="user-avatar"  width="200px" height="200px" :src="user.avatar" alt="User avatar">
-<span id="accolades">@{{authProducts.length}} product(s) and @{{authServices.length}} service(s) by You</span> 
+<img class="user-avatar"  width="100px" height="100px" :src="user.avatar" alt="User avatar">
+<span class="user-name" style="color:rgba(0,0,0,0.5);">{{auth::user()->name}}</span><span id="accolades">@{{authProducts.length}} product(s) and @{{authServices.length}} service(s) by You</span> 
 </div>
 </div>
 
 
 <div id="shadow" class="shadow hidden"></div>
+
+<div class="new-content-holder">
 <div id="product-holder">
 
 <div class="content-title">Your Products </div>
@@ -64,7 +66,7 @@
 <div v-else class="main-search-result" v-for="product in authProducts">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
-<div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
+<div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
 <div class="send-request" style="background:red;" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE</div>
 
@@ -90,7 +92,7 @@
 <div v-else class="main-search-result" v-for="product in authServices">
 <img class="product-image"  width="500px" height="auto" :src="product.image" :title="product.name" :alt="product.name">
 <div class="product-name">@{{product.name.slice(0, 25).toUpperCase()}}</div>
-<div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">Starting from</span><span>&#8358;</span>@{{product.price}}</div>
+<div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
 <div class="send-request" style="background:red;" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-remove"></span> DELETE</div>
 
@@ -102,12 +104,18 @@
 
 </div>
 
-
+</div>
 </div>
 
 
 <div id="toggle-menu" class="menu-holder toggle-menu">
 <p id="menu-spacing"></p>
+
+<img id="toggle-avatar" class="uploadedFile" src="{{auth::user()->avatar}}" width="200px" height="200px"  alt="" />
+
+
+<a ><p style="font-size:20px;"></span>{{auth::user()->name}}</p></a>
+
 <a href="/login/seller/login"><p><span class="glyphicon glyphicon-home" ></span> Home</p></a>
 <a href="/products/seller/products"><p><span class="glyphicon glyphicon-book" ></span> Your products</p></a>
 <a href="/services/seller/services"><p><span class="glyphicon glyphicon-briefcase" ></span> Your services</p></a>

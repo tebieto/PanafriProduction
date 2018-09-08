@@ -14,6 +14,22 @@ margin:5px;
 font-size:10px;	
 }
 
+#toggle-avatar, .user-avatar{
+
+width: 80px;
+height:80px;
+border-radius:50%;
+margin-left:5px;
+	
+}
+
+.user-name {
+
+color: rgba(0,0,0,.5);
+font-size:20px;	
+	
+}
+
 .category-image {
 width:80px;
 height:80px;
@@ -257,6 +273,7 @@ font-size:20px;
 	border-radius:5px;
 	width:500px;
 	height:400px;
+	
 
 }
 
@@ -891,7 +908,7 @@ top:2px;
 border-radius:5px;
 background:rgb(255,1,1);
 cursor:pointer;
-z-index: 3;
+z-index:23;
 	
 }
 
@@ -926,7 +943,7 @@ transition: 0.4s;
 position:absolute;
 top: 2px;
 left:2px;
- z-index:3;	
+ z-index:22;	
 	
 }
 
@@ -967,7 +984,7 @@ border:2px solid red;
 border-top:none;
 transition: top 0.4s;
 -webkit-transition: top 0.4s;
-z-index:2;
+z-index:21;
 }
 
 
@@ -1069,13 +1086,77 @@ border-radius:5px;
 
 }
 
+@media only screen and (max-width: 1300px) {
+
+.add-a-product, .add-a-service {
+	
+
+top:100px;
+left: 200px;
+
+	
+}
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+.add-a-product, .add-a-service {
+	
+
+top:100px;
+left: 150px;
+
+	
+}
+
+}
+
+@media only screen and (max-width: 1150px) {
+
+#login-form-holder, #register-form-holder {
+	
+	position:absolute;
+	top:100px;
+	left: 30%;
+}
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+.add-a-product, .add-a-service {
+	
+
+top:100px;
+left: 50px;
+
+	
+}
+
+}
+
+@media only screen and (max-width: 870px) {
+
+.add-a-product, .add-a-service {
+	
+
+top:100px;
+left: 10px;
+
+	
+}
+
+}
+
+
 @media only screen and (max-width: 800px) {
 
 #login-form-holder, #register-form-holder {
 	
 	position:absolute;
 	top:100px;
-	left: 50px;
+	left: 150px;
 }
 
 
@@ -1336,6 +1417,28 @@ width:50px;
 	
 }
 
+@media only screen and (max-width: 700px) {
+
+#login-form-holder, #register-form-holder {
+	
+	position:absolute;
+	top:100px;
+	left: 100px;
+}
+
+}
+
+@media only screen and (max-width: 650px) {
+
+#login-form-holder, #register-form-holder {
+	
+	position:absolute;
+	top:100px;
+	left: 50px;
+}
+
+}
+
 @media only screen and (max-width: 634px) {
 	
 #search-holder button{
@@ -1484,6 +1587,17 @@ border-bottom: 1px solid #eee;
 top:250px;
 }	
 	
+}
+
+@media only screen and (max-width: 573px) {
+
+#login-form-holder, #register-form-holder {
+	
+	position:absolute;
+	top:100px;
+	left: 15px;
+}
+
 }
 
 @media only screen and (max-width: 552px) {

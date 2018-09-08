@@ -2,14 +2,12 @@
 
 /public/storage/images
 
-/storage/log
+/storage/logs
 
 /storage/app/public/images
-
 *.out
-
 *.rar
 
 *.zip
-
 *.log
+*.env
