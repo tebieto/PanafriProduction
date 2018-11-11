@@ -14,7 +14,9 @@ export const store = new  Vuex.Store ({
 		sellerChats: [],
 		cancel: false,
 		accept: false,
-		
+		userDetails: [],
+		userProducts: [],
+		userServices: [],
 	},
 	
 	getters: {
@@ -34,6 +36,19 @@ export const store = new  Vuex.Store ({
 		all_seller_chats(state) {
 			return state.sellerChats
 		},
+		
+		all_user_products(state) {
+			return state.userProducts
+		},
+		
+		all_user_services(state) {
+			return state.userServices
+		},
+		
+		all_user_details(state) {
+			return state.userDetails
+		},
+		
 		all_nots(state) {
 			return state.all_nots
 		},
@@ -159,6 +174,18 @@ export const store = new  Vuex.Store ({
 		
 		add_upload(state, upload) {
 			state.uploads.push(upload)
+		},
+		
+		add_user_products(state, product) {
+			state.userProducts.push(product)
+		},
+		
+		add_user_services(state, service) {
+			state.userServices.push(service)
+		},
+		
+		add_user_details(state, user) {
+			state.userDetails.push(user)
 		},
 		
 		add_post(state, post) {

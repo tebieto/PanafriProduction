@@ -162,12 +162,12 @@ height:15px;
 
 position: absolute; 
 top:163px;
-left:30%;
-background:green;
+left:10px;
+ background:#fff;
+ color:#000;
 width:65px;
 border-radius:10px;
 padding:5px;
-color:#fff;	
 font-size: 9px;
 border:1px solid #eee;
 border-left: 1px solid #eee;
@@ -176,9 +176,16 @@ border-radius: 5px;
 cursor:pointer;	
 }
 
-.send-request:hover, .view-seller:hover {
+.view-seller:hover {
 
-background:#eee;	
+background:#ddd;	
+	
+}
+
+.send-request:hover{
+
+ background:#fff;
+ color:#000;	
 	
 }
 
@@ -189,8 +196,10 @@ background:#eee;
 }
 
 .view-seller {
- left:140px;
- width:130px;
+ left:85px;
+ width:60px;
+ background:#fff;
+ color:#000;
 }
 
 #post_spinner{
@@ -2376,7 +2385,7 @@ border-radius:5px;
 
 .send-request {
 	
-left:25%;	
+left:10px;	
 }
 
 .product-name {
@@ -2428,7 +2437,7 @@ border-radius:5px;
 
 .send-request {
 	
-left:25%;	
+left:10px;	
 }
 
 .product-name {

@@ -56,7 +56,59 @@ class HomeController extends Controller
     }
 	
 	
+	public function userProfile($id)
+	{
+	$user = User::where('id', $id)->first();
+	if(!empty($user)){
+	return view('user-profile')	
 	
+	->with('user', $user);
+	} else {
+	return redirect()->back();	
+	}
+	}
+	
+	public function newUserDetails($id)
+	{
+	  $all= array();
+      
+		
+	   $user = User::where('id', $id)->first();
+	   
+	   return $user;
+    }
+	
+	
+	public function userProducts($id)
+	{
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 1)->where('owner', $id)->orderBy(DB::raw('RAND()'))->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   $all= array_slice($all, 0, 10);
+	   return $all;
+    }
+	
+	
+	public function userServices($id)
+	{
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 2)->where('owner', $id)->orderBy(DB::raw('RAND()'))->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   $all= array_slice($all, 0, 10);
+	   return $all;
+    }
 	
 	public function editProfile(Request $r)
 	{

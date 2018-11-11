@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\AccountCreated;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,15 @@
 
 
 Auth::routes();
+
+
+Route::get('/testMail', function () {
+
+   Mail::to('tebieto@gmail.com')->send(new AccountCreated);
+
+return view('emails.AccountCreated');
+
+});
 
 Route::get('/', function () {
 	if (auth::check()) {
@@ -550,6 +561,26 @@ Route::get('/on/product/{pid}', [
 Route::get('/off/product/{pid}', [
 	'uses' => 'HomeController@offProduct',
 	'as' => 'offProduct'
+	]);
+	
+Route::get('/user/{id}', [
+	'uses' => 'HomeController@userProfile',
+	'as' => 'userProfile'
+	]);
+	
+Route::get('/get/user/details/{id}', [
+	'uses' => 'HomeController@newUserDetails',
+	'as' => 'newUserDetails'
+	]);
+	
+Route::get('/get/user/products/{id}', [
+	'uses' => 'HomeController@userProducts',
+	'as' => 'userProducts'
+	]);
+	
+Route::get('/get/user/services/{id}', [
+	'uses' => 'HomeController@userServices',
+	'as' => 'userServices'
 	]);
 	
 	

@@ -85,7 +85,7 @@
 <div class="new-product-price"><span style="font-size:10px; color:#000; margin-right:5px;">FROM</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
 <div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> REQUEST</div>
-<!-- <div class="view-seller">EXPLORE PARTNER </div> -->
+<div class="view-seller" @click="viewProfile(product.owner)"><span class="glyphicon glyphicon-user" ></span> EXPLORE</div>
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
 <partner :pid="product.owner" :pname="product.name" :pimage="product.image" v-if="partnerProduct==product.id"></partner>
 </div>
@@ -107,7 +107,7 @@
 <div class="new-product-price"><span style="font-size:10px; color:#000; margin-right:5px;">FROM</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
 <div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> REQUEST</div>
-<!-- <div class="view-seller">EXPLORE PARTNER </div>-->
+<div class="view-seller"  @click="viewProfile(product.owner)" ><span class="glyphicon glyphicon-user"></span> EXPLORE</div>
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
 <partner :pid="product.owner" :pname="product.name" :pimage="product.image" v-if="partnerProduct==product.id"></partner>
 </div>
@@ -228,7 +228,7 @@
 <div class="new-product-price"><span style="font-size:15px; color:#000; margin-right:5px;">from</span><span>&#8358;</span>@{{product.price}}</div>
 <div class="new-product-description">@{{product.category.toUpperCase()}} in @{{product.location.toUpperCase()}}</div>
 <div class="send-request" @click="callPartner(product.id)"> <span class="glyphicon glyphicon-phone"></span> REQUEST</div>
-<!-- <div class="view-seller">EXPLORE PARTNER </div> -->
+<div class="view-seller"  @click="viewProfile(product.owner)"><span class="glyphicon glyphicon-user" ></span> EXPLORE </div>
 <span v-if="partnerProduct==product.id" id="remove-contact" @click="removeContact()" class="glyphicon glyphicon-remove"></span>
 <partner :pid="product.owner" :pname="product.name" :pimage="product.image" v-if="partnerProduct==product.id"></partner>
 

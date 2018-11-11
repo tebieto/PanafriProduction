@@ -18,8 +18,8 @@ window.Vue = require('vue');
  /**
  * Uncomment below when compiling to production
  */
-Vue.config.devtools = false
-Vue.config.debug = false
+Vue.config.devtools = true
+Vue.config.debug = true
 Vue.config.silent = true
 
 Vue.component('example', require('./components/Example.vue'));
@@ -44,7 +44,7 @@ Vue.component('buyer-loader', require('./components/BuyerLoader.vue'));
 Vue.component('partner', require('./components/partner.vue'));
 Vue.component('delete-product', require('./components/deleteProduct.vue'));
 Vue.component('user', require('./components/user.vue'));
-
+Vue.component('user-profile', require('./components/userProfile.vue'));
 
 var algoliasearch = require('algoliasearch');
 var client = algoliasearch('Y3X815DU84', 'a0ed93769dde50d9d3c34cfb692668a1');
@@ -1128,6 +1128,12 @@ getSellerChats(){
 pendingUrl() {
 
 window.location = "/buyers/pending/transactions";
+
+},
+
+viewProfile(pid) {
+
+window.location = "/user/" + pid ;
 
 },
 
@@ -2446,7 +2452,29 @@ sellerImageChange(e) {
 	
 	
 computed: {
-		
+	
+	userDetails() {
+				
+	var details = this.$store.getters.all_user_details
+
+	return details;
+	},
+	
+	userProducts() {
+				
+	var products = this.$store.getters.all_user_products
+
+	return products;
+	},
+	
+	userServices() {
+				
+	var services = this.$store.getters.all_user_services
+
+	return services;
+	},
+	
+	
 				
 	pendingTrans() {
 				

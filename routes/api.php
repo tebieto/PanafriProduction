@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::prefix('app')->group(function () {
+    Route::get('products', [
+        'uses' => 'HomeController@products',
+        'as' => 'appProducts'
+        ]);
+});
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -1196,7 +1196,7 @@ process.umask = function() { return 0; };
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(154);
+exports = module.exports = __webpack_require__(157);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -12604,8 +12604,8 @@ module.exports = Vue$3;
 "use strict";
 
 
-var AlgoliaSearch = __webpack_require__(146);
-var createAlgoliasearch = __webpack_require__(157);
+var AlgoliaSearch = __webpack_require__(149);
+var createAlgoliasearch = __webpack_require__(160);
 
 module.exports = createAlgoliasearch(AlgoliaSearch);
 
@@ -13102,7 +13102,7 @@ module.exports = function merge(destination/* , sources */) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(148);
+  var keys = __webpack_require__(151);
   var foreach = __webpack_require__(8);
 
   var filtered = {};
@@ -13135,7 +13135,7 @@ module.exports = function exitPromise(fn, _setTimeout) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(29);
-module.exports = __webpack_require__(167);
+module.exports = __webpack_require__(170);
 
 
 /***/ }),
@@ -13144,7 +13144,7 @@ module.exports = __webpack_require__(167);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(168);
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -13168,8 +13168,8 @@ window.Vue = __webpack_require__(21);
 /**
 * Uncomment below when compiling to production
 */
-Vue.config.devtools = false;
-Vue.config.debug = false;
+Vue.config.devtools = true;
+Vue.config.debug = true;
 Vue.config.silent = true;
 
 Vue.component('example', __webpack_require__(58));
@@ -13194,6 +13194,7 @@ Vue.component('buyer-loader', __webpack_require__(128));
 Vue.component('partner', __webpack_require__(131));
 Vue.component('delete-product', __webpack_require__(136));
 Vue.component('user', __webpack_require__(141));
+Vue.component('user-profile', __webpack_require__(146));
 
 var algoliasearch = __webpack_require__(22);
 var client = algoliasearch('Y3X815DU84', 'a0ed93769dde50d9d3c34cfb692668a1');
@@ -14032,6 +14033,9 @@ var app = new Vue({
 	}), _defineProperty(_methods, 'pendingUrl', function pendingUrl() {
 
 		window.location = "/buyers/pending/transactions";
+	}), _defineProperty(_methods, 'viewProfile', function viewProfile(pid) {
+
+		window.location = "/user/" + pid;
 	}), _defineProperty(_methods, 'publicLoginUrl', function publicLoginUrl() {
 
 		window.location = "/login";
@@ -14908,6 +14912,24 @@ var app = new Vue({
 	}), _methods),
 
 	computed: {
+		userDetails: function userDetails() {
+
+			var details = this.$store.getters.all_user_details;
+
+			return details;
+		},
+		userProducts: function userProducts() {
+
+			var products = this.$store.getters.all_user_products;
+
+			return products;
+		},
+		userServices: function userServices() {
+
+			var services = this.$store.getters.all_user_services;
+
+			return services;
+		},
 		pendingTrans: function pendingTrans() {
 
 			var pending = this.$store.getters.all_pending_transactions;
@@ -58204,12 +58226,149 @@ if (false) {
 /* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(147)
+/* template */
+var __vue_template__ = __webpack_require__(148)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\userProfile.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dd32da52", Component.options)
+  } else {
+    hotAPI.reload("data-v-dd32da52", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 147 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+		props: ['id'],
+		data: function data() {
+
+				return {};
+		},
+		mounted: function mounted() {
+				this.getUserServices();
+				this.getUserProducts();
+				this.getUserDetails();
+		},
+
+
+		methods: {
+				getUserProducts: function getUserProducts() {
+						var _this = this;
+
+						axios.get('/get/user/products/' + this.id).then(function (response) {
+								if (response.data.length == 0) {
+										return;
+								}
+								response.data.forEach(function (product) {
+										_this.$store.commit('add_user_products', product);
+								});
+						});
+				},
+				getUserServices: function getUserServices() {
+						var _this2 = this;
+
+						axios.get('/get/user/services/' + this.id).then(function (response) {
+								if (response.data.length == 0) {
+										return;
+								}
+
+								response.data.forEach(function (service) {
+										_this2.$store.commit('add_user_services', service);
+								});
+						});
+				},
+				getUserDetails: function getUserDetails() {
+						var _this3 = this;
+
+						axios.get('/get/user/details/' + this.id).then(function (response) {
+
+								if (response.data.length == 0) {
+										return;
+								}
+								_this3.$store.commit('add_user_details', response.data);
+						});
+				}
+		}
+
+});
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dd32da52", module.exports)
+  }
+}
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = AlgoliaSearch;
 
-var Index = __webpack_require__(147);
+var Index = __webpack_require__(150);
 var deprecate = __webpack_require__(14);
 var deprecatedMessage = __webpack_require__(15);
-var AlgoliaSearchCore = __webpack_require__(152);
+var AlgoliaSearchCore = __webpack_require__(155);
 var inherits = __webpack_require__(10);
 var errors = __webpack_require__(7);
 
@@ -58377,7 +58536,7 @@ AlgoliaSearch.prototype.initAnalytics = function(opts) {
   // - move initAnalytics to a property on the main module (algoliasearch.initAnalytics),
   // same as places.
   // The current API was made mostly to mimic the one made in PHP
-  var createAnalyticsClient = __webpack_require__(156);
+  var createAnalyticsClient = __webpack_require__(159);
   return createAnalyticsClient(this.applicationID, this.apiKey, opts);
 };
 
@@ -58876,7 +59035,7 @@ function notImplemented() {
 
 
 /***/ }),
-/* 147 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var inherits = __webpack_require__(10);
@@ -59309,7 +59468,7 @@ Index.prototype.browseAll = function(query, queryParameters) {
 
   var merge = __webpack_require__(25);
 
-  var IndexBrowser = __webpack_require__(150);
+  var IndexBrowser = __webpack_require__(153);
 
   var browser = new IndexBrowser();
   var client = this.as;
@@ -60127,7 +60286,7 @@ Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
 
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60137,7 +60296,7 @@ Index.prototype.updateApiKey = deprecate(function(key, acls, params, callback) {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(149);
+var isArgs = __webpack_require__(152);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -60274,7 +60433,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60298,7 +60457,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 150 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60309,7 +60468,7 @@ module.exports = function isArguments(value) {
 module.exports = IndexBrowser;
 
 var inherits = __webpack_require__(10);
-var EventEmitter = __webpack_require__(151).EventEmitter;
+var EventEmitter = __webpack_require__(154).EventEmitter;
 
 function IndexBrowser() {
 }
@@ -60344,7 +60503,7 @@ IndexBrowser.prototype._clean = function() {
 
 
 /***/ }),
-/* 151 */
+/* 154 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -60652,7 +60811,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 152 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = AlgoliaSearchCore;
@@ -60660,7 +60819,7 @@ module.exports = AlgoliaSearchCore;
 var errors = __webpack_require__(7);
 var exitPromise = __webpack_require__(27);
 var IndexCore = __webpack_require__(23);
-var store = __webpack_require__(153);
+var store = __webpack_require__(156);
 
 // We will always put the API KEY in the JSON body in case of too long API KEY,
 // to avoid query string being too long and failing in various conditions (our server limit, browser limit,
@@ -61624,7 +61783,7 @@ function removeCredentials(headers) {
 
 
 /***/ }),
-/* 153 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(12)('algoliasearch:src/hostIndexState.js');
@@ -61717,7 +61876,7 @@ function cleanup() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 154 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -61733,7 +61892,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(155);
+exports.humanize = __webpack_require__(158);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -61925,7 +62084,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 155 */
+/* 158 */
 /***/ (function(module, exports) {
 
 /**
@@ -62083,7 +62242,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 156 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = createAnalyticsClient;
@@ -62174,14 +62333,14 @@ function createAnalyticsClient(appId, apiKey, opts) {
 
 
 /***/ }),
-/* 157 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var global = __webpack_require__(158);
-var Promise = global.Promise || __webpack_require__(159).Promise;
+var global = __webpack_require__(161);
+var Promise = global.Promise || __webpack_require__(162).Promise;
 
 // This is the standalone browser build entry point
 // Browser implementation of the Algolia Search JavaScript client,
@@ -62189,9 +62348,9 @@ var Promise = global.Promise || __webpack_require__(159).Promise;
 module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   var inherits = __webpack_require__(10);
   var errors = __webpack_require__(7);
-  var inlineHeaders = __webpack_require__(160);
-  var jsonpRequest = __webpack_require__(162);
-  var places = __webpack_require__(163);
+  var inlineHeaders = __webpack_require__(163);
+  var jsonpRequest = __webpack_require__(165);
+  var places = __webpack_require__(166);
   uaSuffix = uaSuffix || '';
 
   if (false) {
@@ -62208,7 +62367,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
     return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
   }
 
-  algoliasearch.version = __webpack_require__(164);
+  algoliasearch.version = __webpack_require__(167);
   algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
   algoliasearch.initPlaces = places(algoliasearch);
 
@@ -62414,7 +62573,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
 
 
 /***/ }),
-/* 158 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -62434,7 +62593,7 @@ module.exports = win;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 159 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -63620,7 +63779,7 @@ return Promise$1;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(6)))
 
 /***/ }),
-/* 160 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63628,7 +63787,7 @@ return Promise$1;
 
 module.exports = inlineHeaders;
 
-var encode = __webpack_require__(161);
+var encode = __webpack_require__(164);
 
 function inlineHeaders(url, headers) {
   if (/\?/.test(url)) {
@@ -63642,7 +63801,7 @@ function inlineHeaders(url, headers) {
 
 
 /***/ }),
-/* 161 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63734,7 +63893,7 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 162 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63867,7 +64026,7 @@ function jsonpRequest(url, opts, cb) {
 
 
 /***/ }),
-/* 163 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = createPlacesClient;
@@ -63910,7 +64069,7 @@ function createPlacesClient(algoliasearch) {
 
 
 /***/ }),
-/* 164 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63920,12 +64079,12 @@ module.exports = '3.29.0';
 
 
 /***/ }),
-/* 165 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 
@@ -63942,8 +64101,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 		buyerChats: [],
 		sellerChats: [],
 		cancel: false,
-		accept: false
-
+		accept: false,
+		userDetails: [],
+		userProducts: [],
+		userServices: []
 	},
 
 	getters: {
@@ -63961,6 +64122,15 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 		},
 		all_seller_chats: function all_seller_chats(state) {
 			return state.sellerChats;
+		},
+		all_user_products: function all_user_products(state) {
+			return state.userProducts;
+		},
+		all_user_services: function all_user_services(state) {
+			return state.userServices;
+		},
+		all_user_details: function all_user_details(state) {
+			return state.userDetails;
 		},
 		all_nots: function all_nots(state) {
 			return state.all_nots;
@@ -64058,6 +64228,15 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 		},
 		add_upload: function add_upload(state, upload) {
 			state.uploads.push(upload);
+		},
+		add_user_products: function add_user_products(state, product) {
+			state.userProducts.push(product);
+		},
+		add_user_services: function add_user_services(state, service) {
+			state.userServices.push(service);
+		},
+		add_user_details: function add_user_details(state, user) {
+			state.userDetails.push(user);
 		},
 		add_post: function add_post(state, post) {
 
@@ -64158,7 +64337,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 });
 
 /***/ }),
-/* 166 */
+/* 169 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65103,10 +65282,10 @@ var index_esm = {
 
 
 /***/ }),
-/* 167 */
+/* 170 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime (64)\nFor more information on which environments are supported please see:\nhttps://github.com/sass/node-sass/releases/tag/v4.7.2\n    at module.exports (C:\\wamp64\\www\\panafriProduction\\node_modules\\node-sass\\lib\\binding.js:13:13)\n    at Object.<anonymous> (C:\\wamp64\\www\\panafriProduction\\node_modules\\node-sass\\lib\\index.js:14:35)\n    at Module._compile (internal/modules/cjs/loader.js:688:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:699:10)\n    at Module.load (internal/modules/cjs/loader.js:598:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:537:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:529:3)\n    at Module.require (internal/modules/cjs/loader.js:636:17)\n    at require (internal/modules/cjs/helpers.js:20:18)\n    at Object.<anonymous> (C:\\wamp64\\www\\panafriProduction\\node_modules\\sass-loader\\lib\\loader.js:3:14)\n    at Module._compile (internal/modules/cjs/loader.js:688:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:699:10)\n    at Module.load (internal/modules/cjs/loader.js:598:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:537:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:529:3)\n    at Module.require (internal/modules/cjs/loader.js:636:17)\n    at require (internal/modules/cjs/helpers.js:20:18)\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:13:17)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at runLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:362:2)\n    at NormalModule.doBuild (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModule.js:182:3)\n    at NormalModule.build (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModule.js:275:15)\n    at Compilation.buildModule (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\Compilation.js:151:10)\n    at moduleFactory.create (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\Compilation.js:454:10)\n    at runLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:170:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:27:11)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at runLoaders (C:\\wamp64\\www\\panafriProduction\\node_modules\\loader-runner\\lib\\LoaderRunner.js:362:2)\n    at NormalModule.doBuild (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModule.js:182:3)\n    at NormalModule.build (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModule.js:275:15)\n    at Compilation.buildModule (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\Compilation.js:151:10)\n    at moduleFactory.create (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\Compilation.js:454:10)\n    at factory (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModuleFactory.js:94:13)\n    at C:\\wamp64\\www\\panafriProduction\\node_modules\\tapable\\lib\\Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (C:\\wamp64\\www\\panafriProduction\\node_modules\\tapable\\lib\\Tapable.js:272:13)\n    at resolver (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModuleFactory.js:69:10)\n    at process.nextTick (C:\\wamp64\\www\\panafriProduction\\node_modules\\webpack\\lib\\NormalModuleFactory.js:196:7)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ })
 /******/ ]);
