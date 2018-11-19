@@ -27,6 +27,34 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('app')->group(function () {
+    Route::get('categories', [
+        'uses' => 'HomeController@categories',
+        'as' => 'appCategories'
+        ]);
+});
+
+Route::prefix('app')->group(function () {
+    Route::get('requests', [
+        'uses' => 'HomeController@requests',
+        'as' => 'appRequests'
+        ]);
+});
+
+Route::prefix('app')->group(function () {
+    Route::get('chats', [
+        'uses' => 'HomeController@requests',
+        'as' => 'appChats'
+        ]);
+});
+
+Route::prefix('app')->group(function () {
+    Route::get('notifications', [
+        'uses' => 'HomeController@requests',
+        'as' => 'appNotifications'
+        ]);
+});
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
