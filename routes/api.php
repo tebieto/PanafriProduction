@@ -21,6 +21,20 @@ Route::prefix('app')->group(function () {
 });
 
 Route::prefix('app')->group(function () {
+    Route::post('login', [
+        'uses' => 'LoginController@LoginUser',
+	    'as' => 'LoginUser'
+        ]);
+});
+
+Route::prefix('app')->group(function () {
+    Route::post('register', [
+        'uses' => 'RegisterController@registerUser',
+	    'as' => 'registerUser'
+        ]);
+});
+
+Route::prefix('app')->group(function () {
     Route::get('services', [
         'uses' => 'HomeController@services',
         'as' => 'appServices'
@@ -55,6 +69,17 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+    
+    Route::prefix('app')->group(function () {
+        Route::get('products', [
+            'uses' => 'HomeController@products',
+            'as' => 'appProducts'
+            ]);
+    });
+
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

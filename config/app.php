@@ -169,6 +169,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,7 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		'Pusher' =>  Pusher\Pusher::class,
+        'Pusher' =>  Pusher\Pusher::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];
