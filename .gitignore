@@ -5,6 +5,7 @@
 /storage/logs
 
 /storage/app/public/images
+/vendor/lcobucci/jwt
 *.out
 *.rar
 
