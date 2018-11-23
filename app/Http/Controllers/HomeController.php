@@ -15,6 +15,8 @@ use App\Location;
 use App\Price;
 use Auth;
 use DB;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class HomeController extends Controller
 {
@@ -41,7 +43,33 @@ class HomeController extends Controller
 		
 	}
         return view('app');
-    }
+	}
+	
+
+	public function getAuthenticatedUser()
+	{
+			try {
+
+					if (! $user = JWTAuth::parseToken()->authenticate()) {
+							return response()->json(['user_not_found'], 404);
+					}
+
+			} catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+					return response()->json(['token_expired'], $e->getStatusCode());
+
+			} catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+					return response()->json(['token_invalid'], $e->getStatusCode());
+
+			} catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+					return response()->json(['token_absent'], $e->getStatusCode());
+
+			}
+
+			return response()->json(compact('user'));
+	}
 	
 	 public function sellerLogout()
     {

@@ -44,6 +44,7 @@ class RegisterController extends Controller
            return redirect()->intended('login/seller/login');
         }
     }
+    
 
     public function registerUser(Request $request)
     {

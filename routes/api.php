@@ -48,24 +48,11 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
-Route::prefix('app')->group(function () {
-    Route::get('requests', [
-        'uses' => 'HomeController@requests',
-        'as' => 'appRequests'
-        ]);
-});
 
 Route::prefix('app')->group(function () {
-    Route::get('chats', [
-        'uses' => 'HomeController@requests',
-        'as' => 'appChats'
-        ]);
-});
-
-Route::prefix('app')->group(function () {
-    Route::get('notifications', [
-        'uses' => 'HomeController@requests',
-        'as' => 'appNotifications'
+    Route::get('products', [
+        'uses' => 'HomeController@products',
+        'as' => 'appProducts'
         ]);
 });
 
@@ -73,11 +60,33 @@ Route::prefix('app')->group(function () {
 Route::group(['middleware' => ['jwt.verify']], function() {
     
     Route::prefix('app')->group(function () {
-        Route::get('products', [
-            'uses' => 'HomeController@products',
-            'as' => 'appProducts'
+        Route::get('user', [
+            'uses' => 'HomeController@getAuthenticatedUser',
+            'as' => 'appUser'
             ]);
     });
+
+    Route::prefix('app')->group(function () {
+        Route::get('requests', [
+            'uses' => 'HomeController@requests',
+            'as' => 'appRequests'
+            ]);
+    });
+    
+    Route::prefix('app')->group(function () {
+        Route::get('chats', [
+            'uses' => 'HomeController@requests',
+            'as' => 'appChats'
+            ]);
+    });
+
+    Route::prefix('app')->group(function () {
+        Route::get('notifications', [
+            'uses' => 'HomeController@requests',
+            'as' => 'appNotifications'
+            ]);
+    });
+    
 
 });
 
