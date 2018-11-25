@@ -55,6 +55,13 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('app')->group(function () {
+    Route::get('search/{name}', [
+        'uses' => 'ApiController@search',
+        'as' => 'appSearch'
+        ]);
+});
+
 
 Route::prefix('app')->group(function () {
     Route::get('products', [

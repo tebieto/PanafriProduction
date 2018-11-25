@@ -35,6 +35,22 @@ class ApiController extends Controller
 	   $all= array_slice($all, 0, 10);
 	   return $all;
 	}
+
+
+	public function search($name)
+    {
+	  $all= array();
+      
+		
+	   $products = Product::where('name', 'Like', '%'. $name .'%')->orWhere('category', 'Like', '%'. $name .'%')->orWhere('description', 'Like', '%'. $name .'%')->orderBy(DB::raw('RAND()'))->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   $all= array_slice($all, 0, 10);
+	   return $all;
+	}
 	
 	
 }
