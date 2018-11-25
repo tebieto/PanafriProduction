@@ -48,6 +48,13 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('app')->group(function () {
+    Route::get('category/{name}', [
+        'uses' => 'ApiController@category',
+        'as' => 'appCategory'
+        ]);
+});
+
 
 Route::prefix('app')->group(function () {
     Route::get('products', [
@@ -67,22 +74,29 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     });
 
     Route::prefix('app')->group(function () {
+        Route::post('request', [
+            'uses' => 'HomeController@AppRequest',
+            'as' => 'AppRequest'
+            ]);
+    });
+
+    Route::prefix('app')->group(function () {
         Route::get('requests', [
-            'uses' => 'HomeController@requests',
-            'as' => 'appRequests'
+            'uses' => 'HomeController@AppRequests',
+            'as' => 'AppRequests'
             ]);
     });
     
     Route::prefix('app')->group(function () {
         Route::get('chats', [
-            'uses' => 'HomeController@requests',
+            'uses' => 'HomeController@chat',
             'as' => 'appChats'
             ]);
     });
 
     Route::prefix('app')->group(function () {
         Route::get('notifications', [
-            'uses' => 'HomeController@requests',
+            'uses' => 'HomeController@note',
             'as' => 'appNotifications'
             ]);
     });

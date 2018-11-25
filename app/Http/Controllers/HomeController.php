@@ -9,6 +9,7 @@ use App\category;
 use App\product;
 use App\Transaction;
 use App\Chat;
+use App\AppRequest;
 use App\referral;
 use App\Store;
 use App\Location;
@@ -43,6 +44,41 @@ class HomeController extends Controller
 		
 	}
         return view('app');
+	}
+
+	public function AppRequest(Request $request) 
+	
+	{
+	 
+	 $r = AppRequest::create([
+			'type' => $request->type,
+			'buyer_id' => $request->buyer_id,
+			'seller_id' => $request->seller_id,
+			'seller_status' => 0,
+			'buyer_status' => 0,
+			'status' => 0,
+			'location' => $request->location,
+			'delivery' => $request->delivery,
+		]);	
+		return response()->json(['success' => 'Request sent successfully'], 201);		
+		
+	}
+
+	public function AppRequests() 
+	
+	{
+		$all= array();
+      
+		
+		$requests = AppRequest::where('buyer_id', auth::id())->orderBy('created_at', 'DESC')->get();
+		
+		foreach ($requests as $request):
+		array_push($all, $request);
+		
+		endforeach;
+		$all= array_slice($all, 0, 10);
+		return $all;
+		
 	}
 	
 

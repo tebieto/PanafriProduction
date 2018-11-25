@@ -10,5 +10,5 @@ class product extends Model
 {
 	use Searchable;
 	use Notifiable;
-    protected $fillable = ['name', 'owner', 'type', 'price', 'category', 'image', 'status','location', 'description'];
+    protected $fillable = ['name', 'owner', 'store', 'type', 'price', 'category', 'image', 'status','location', 'description'];
 }

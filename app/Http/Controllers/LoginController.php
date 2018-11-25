@@ -33,6 +33,8 @@ class LoginController extends Controller
 		}
     }
 
+    
+
      public function loginUser(Request $request)
     {
         $credentials = $request->only('email', 'password');
