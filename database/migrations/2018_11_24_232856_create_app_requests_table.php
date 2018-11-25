@@ -15,6 +15,7 @@ class CreateAppRequestsTable extends Migration
     {
         Schema::create('app_requests', function (Blueprint $table) {
            $table->increments('id');
+           $table->integer('product_id');
             $table->integer('type');
             $table->integer('seller_id');
 			$table->integer('buyer_id');

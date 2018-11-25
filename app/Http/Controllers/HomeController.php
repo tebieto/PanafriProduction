@@ -54,6 +54,7 @@ class HomeController extends Controller
 			'type' => $request->type,
 			'buyer_id' => $request->buyer_id,
 			'seller_id' => $request->seller_id,
+			'product_id' => $request->product_id,
 			'seller_status' => 0,
 			'buyer_status' => 0,
 			'status' => 0,
