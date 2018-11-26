@@ -21,6 +21,15 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class ApiController extends Controller
 {
+
+	public function appSeller($id)
+    {
+	
+	   $seller = User::where('id', $id)->first();
+	   
+	   return $seller;
+	}
+
     public function category($name)
     {
 	  $all= array();
