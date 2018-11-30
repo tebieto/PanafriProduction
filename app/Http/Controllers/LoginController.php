@@ -47,6 +47,11 @@ class LoginController extends Controller
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
 
+            $update= profile::where('user_id', auth::id())->first()		
+	        ->update([
+            'about' =>$request->deviceToken,
+            ]);
+
             return response()->json(compact('token'));
     }
 
