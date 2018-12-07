@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Storage;
-use Illuminate\Http\Request;
 use App\User;
 use App\category;
 use App\product;

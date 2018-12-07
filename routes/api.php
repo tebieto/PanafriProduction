@@ -20,10 +20,24 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('partner')->group(function () {
+    Route::get('products', [
+        'uses' => 'HomeController@PartnerProducts',
+        'as' => 'partnerProducts'
+        ]);
+});
+
 Route::prefix('app')->group(function () {
     Route::post('login', [
         'uses' => 'LoginController@LoginUser',
 	    'as' => 'LoginUser'
+        ]);
+});
+
+Route::prefix('partner')->group(function () {
+    Route::post('login', [
+        'uses' => 'LoginController@LoginPartner',
+	    'as' => 'LoginPartner'
         ]);
 });
 
@@ -34,10 +48,24 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('partner')->group(function () {
+    Route::post('register', [
+        'uses' => 'RegisterController@registerPartner',
+	    'as' => 'registerPartner'
+        ]);
+});
+
 Route::prefix('app')->group(function () {
     Route::get('services', [
         'uses' => 'HomeController@services',
         'as' => 'appServices'
+        ]);
+});
+
+Route::prefix('partner')->group(function () {
+    Route::get('services', [
+        'uses' => 'HomeController@PartnerServices',
+        'as' => 'partnerServices'
         ]);
 });
 
@@ -48,10 +76,24 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('partner')->group(function () {
+    Route::get('categories', [
+        'uses' => 'HomeController@categories',
+        'as' => 'partnerCategories'
+        ]);
+});
+
 Route::prefix('app')->group(function () {
     Route::get('category/{name}', [
         'uses' => 'ApiController@category',
         'as' => 'appCategory'
+        ]);
+});
+
+Route::prefix('partner')->group(function () {
+    Route::get('category/{name}', [
+        'uses' => 'ApiController@category',
+        'as' => 'partnerCategory'
         ]);
 });
 
@@ -62,6 +104,13 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('partner')->group(function () {
+    Route::get('buyer/{id}', [
+        'uses' => 'ApiController@appBuyer',
+        'as' => 'appBuyer'
+        ]);
+});
+
 Route::prefix('app')->group(function () {
     Route::get('search/{name}', [
         'uses' => 'ApiController@search',
@@ -69,11 +118,10 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
-
-Route::prefix('app')->group(function () {
-    Route::get('products', [
-        'uses' => 'HomeController@products',
-        'as' => 'appProducts'
+Route::prefix('partner')->group(function () {
+    Route::get('search/{name}', [
+        'uses' => 'ApiController@search',
+        'as' => 'partnerSearch'
         ]);
 });
 
@@ -84,6 +132,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('user', [
             'uses' => 'HomeController@getAuthenticatedUser',
             'as' => 'appUser'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::get('user', [
+            'uses' => 'HomeController@getAuthenticatedUser',
+            'as' => 'appPartner'
             ]);
     });
 
@@ -98,6 +153,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('requests', [
             'uses' => 'HomeController@AppRequests',
             'as' => 'AppRequests'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::get('requests', [
+            'uses' => 'HomeController@PartnerRequests',
+            'as' => 'PartnerRequests'
             ]);
     });
     

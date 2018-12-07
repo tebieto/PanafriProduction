@@ -30,6 +30,14 @@ class ApiController extends Controller
 	   return $seller;
 	}
 
+	public function appBuyer($id)
+    {
+	
+	   $seller = User::where('id', $id)->first();
+	   
+	   return $buyer;
+	}
+
     public function category($name)
     {
 	  $all= array();

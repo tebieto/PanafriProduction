@@ -81,6 +81,23 @@ class HomeController extends Controller
 		return $all;
 		
 	}
+
+	public function PartnerRequests() 
+	
+	{
+		$all= array();
+      
+		
+		$requests = AppRequest::where('seller_id', auth::id())->orderBy('created_at', 'DESC')->get();
+		
+		foreach ($requests as $request):
+		array_push($all, $request);
+		
+		endforeach;
+		$all= array_slice($all, 0, 10);
+		return $all;
+		
+	}
 	
 
 	public function getAuthenticatedUser()
@@ -166,6 +183,36 @@ class HomeController extends Controller
       
 		
 	   $products = Product::where('type', 2)->where('owner', $id)->orderBy(DB::raw('RAND()'))->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   $all= array_slice($all, 0, 10);
+	   return $all;
+	}
+
+	public function PartnerProducts()
+	{
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 1)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get();
+	   
+	   foreach ($products as $product):
+	   array_push($all, $product);
+	   
+	   endforeach;
+	   $all= array_slice($all, 0, 10);
+	   return $all;
+    }
+	
+	public function PartnerServices()
+	{
+	  $all= array();
+      
+		
+	   $products = Product::where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get();
 	   
 	   foreach ($products as $product):
 	   array_push($all, $product);

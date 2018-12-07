@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\profile;
+use App\AppRequest;
+use App\product;
+use DB;
 use Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +69,40 @@ class RegisterController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->json(compact('user','token'),201);
+
+    }
+
+    public function registerPartner(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+			'phone' => 'required|string|max:11|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        //Create user
+        $user = $this->create($request->all());
+
+        $token = JWTAuth::fromUser($user);
+        $products = Product::where('type', 1)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
+        $services = Product::where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
+        $customers = AppRequest::where('status', 0)->where('seller_id', auth::id())->get()->count();
+        $earnings = 0;
+        $sales = AppRequest::select("buyer_id", "product_id")->where('status', 0)->where('seller_id', auth::id())->get()->groupBy('buyer_id');
+	   
+        foreach ($sales as $sale):
+        
+        $earnings = $earnings + $sale[0]->product->price;
+        
+        endforeach;
+
+        return response()->json(compact('token', 'products', 'services', 'customers', 'earnings', 'requests' ),201);
 
     }
 
