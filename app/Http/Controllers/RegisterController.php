@@ -106,6 +106,7 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
         $products = Product::where('type', 1)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
         $services = Product::where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
+        $requests = AppRequest::select("buyer_id")->where('seller_id', auth::id())->get()->count();
         $customers = AppRequest::where('status', 0)->where('seller_id', auth::id())->get()->count();
         $earnings = 0;
         $sales = AppRequest::select("buyer_id", "product_id")->where('status', 0)->where('seller_id', auth::id())->get()->groupBy('buyer_id');
