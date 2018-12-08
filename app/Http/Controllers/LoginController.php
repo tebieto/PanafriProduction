@@ -87,7 +87,7 @@ class LoginController extends Controller
         
         endforeach;
 
-        return response()->json(compact('token', 'products', 'services', 'customers', 'requests', 'earnings', 'requests' ),201);
+        return response()->json(compact('token', 'products', 'services', 'customers', 'earnings', 'requests' ),201);
     }
 
     

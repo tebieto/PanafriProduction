@@ -68,6 +68,11 @@ class RegisterController extends Controller
 
         $token = JWTAuth::fromUser($user);
 
+        $update= profile::where('user_id', auth::id())->first()		
+	        ->update([
+            'about' =>$request->deviceToken,
+            ]);
+
         return response()->json(compact('user','token'),201);
 
     }
@@ -101,6 +106,11 @@ class RegisterController extends Controller
         $earnings = $earnings + $sale[0]->product->price;
         
         endforeach;
+
+        $update= profile::where('user_id', auth::id())->first()		
+	        ->update([
+            'about' =>$request->deviceToken,
+            ]);
 
         return response()->json(compact('token', 'products', 'services', 'customers', 'earnings', 'requests' ),201);
 
