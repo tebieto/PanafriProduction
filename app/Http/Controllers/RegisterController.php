@@ -67,7 +67,16 @@ class RegisterController extends Controller
         //Create user
         $user = $this->create($request->all());
 
-        $token = JWTAuth::fromUser($user);
+        $credentials = $request->only('email', 'password');
+
+            try {
+                if (! $token = JWTAuth::attempt($credentials)) {
+                    return response()->json(['error' => 'invalid_credentials'], 400);
+                }
+            } catch (JWTException $e) {
+                return response()->json(['error' => 'could_not_create_token'], 500);
+            }
+
 
         $update= profile::where('user_id', auth::id())->first()		
 	        ->update([
@@ -95,8 +104,6 @@ class RegisterController extends Controller
 
         //Create user
         $user = $this->create($request->all());
-
-        $token = JWTAuth::fromUser($user);
         $products = Product::where('type', 1)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
         $services = Product::where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
         $customers = AppRequest::where('status', 0)->where('seller_id', auth::id())->get()->count();
@@ -108,6 +115,17 @@ class RegisterController extends Controller
         $earnings = $earnings + $sale[0]->product->price;
         
         endforeach;
+
+        $credentials = $request->only('email', 'password');
+
+            try {
+                if (! $token = JWTAuth::attempt($credentials)) {
+                    return response()->json(['error' => 'invalid_credentials'], 400);
+                }
+            } catch (JWTException $e) {
+                return response()->json(['error' => 'could_not_create_token'], 500);
+            }
+
 
         $update= profile::where('user_id', auth::id())->first()		
 	        ->update([
