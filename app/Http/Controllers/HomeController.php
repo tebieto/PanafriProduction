@@ -72,6 +72,7 @@ class HomeController extends Controller
 	{
 	 
 	 $r = Shop::create([
+		 	'owner' => auth::id(),
 			'name' => $request->name,
 			'description' => $request->description,
 			'image' => $request->image,
@@ -83,7 +84,7 @@ class HomeController extends Controller
 			'landmark' => $request->landdmark,
 			'identity' => $request->identity,
 		]);	
-		return response()->json(['success' => 'Request sent successfully'], 201);		
+		return response()->json(['success' => 'Shop added successfully'], 201);		
 		
 	}
 
@@ -102,7 +103,7 @@ class HomeController extends Controller
 			'location' => $request->location,
 			'price' => $request->price,
 		]);
-		return response()->json(['success' => 'Request sent successfully'], 201);		
+		return response()->json(['success' => 'Product added successfully'], 201);		
 		
 	}
 
@@ -121,7 +122,7 @@ class HomeController extends Controller
 			'location' => $request->location,
 			'price' => $request->price,
 		]);
-		return response()->json(['success' => 'Request sent successfully'], 201);		
+		return response()->json(['success' => 'Service added successfully'], 201);		
 		
 	}
 

@@ -20,12 +20,7 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
-Route::prefix('partner')->group(function () {
-    Route::get('products', [
-        'uses' => 'HomeController@PartnerProducts',
-        'as' => 'partnerProducts'
-        ]);
-});
+
 
 Route::prefix('app')->group(function () {
     Route::post('login', [
@@ -63,19 +58,7 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
-Route::prefix('partner')->group(function () {
-    Route::get('services', [
-        'uses' => 'HomeController@PartnerServices',
-        'as' => 'partnerServices'
-        ]);
-});
 
-Route::prefix('partner')->group(function () {
-    Route::get('stores', [
-        'uses' => 'HomeController@PartnerStores',
-        'as' => 'partnerStores'
-        ]);
-});
 
 Route::prefix('app')->group(function () {
     Route::get('categories', [
@@ -135,7 +118,28 @@ Route::prefix('partner')->group(function () {
 
 
 Route::group(['middleware' => ['jwt.verify']], function() {
+
+    Route::prefix('partner')->group(function () {
+        Route::get('products', [
+            'uses' => 'HomeController@PartnerProducts',
+            'as' => 'partnerProducts'
+            ]);
+    });
     
+    Route::prefix('partner')->group(function () {
+        Route::get('services', [
+            'uses' => 'HomeController@PartnerServices',
+            'as' => 'partnerServices'
+            ]);
+    });
+    
+    Route::prefix('partner')->group(function () {
+        Route::get('stores', [
+            'uses' => 'HomeController@PartnerStores',
+            'as' => 'partnerStores'
+            ]);
+    });
+
     Route::prefix('app')->group(function () {
         Route::get('user', [
             'uses' => 'HomeController@getAuthenticatedUser',
