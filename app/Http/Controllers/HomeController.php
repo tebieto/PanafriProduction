@@ -158,6 +158,23 @@ class HomeController extends Controller
 		return $all;
 		
 	}
+
+	public function PartnerStores() 
+	
+	{
+		$all= array();
+      
+		
+		$stores = Shop::where('owner', auth::id())->orderBy('created_at', 'DESC')->get();
+		
+		foreach ($stores as $store):
+		array_push($all, $store);
+		
+		endforeach;
+		$all= array_slice($all, 0, 10);
+		return $all;
+		
+	}
 	
 
 	public function getAuthenticatedUser()
