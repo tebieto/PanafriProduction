@@ -41,6 +41,7 @@ Route::prefix('partner')->group(function () {
         ]);
 });
 
+
 Route::prefix('app')->group(function () {
     Route::post('register', [
         'uses' => 'RegisterController@registerUser',
@@ -66,6 +67,13 @@ Route::prefix('partner')->group(function () {
     Route::get('services', [
         'uses' => 'HomeController@PartnerServices',
         'as' => 'partnerServices'
+        ]);
+});
+
+Route::prefix('partner')->group(function () {
+    Route::get('stores', [
+        'uses' => 'HomeController@PartnerStores',
+        'as' => 'partnerStores'
         ]);
 });
 
@@ -146,6 +154,27 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::post('request', [
             'uses' => 'HomeController@AppRequest',
             'as' => 'AppRequest'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('product', [
+            'uses' => 'HomeController@saveProduct',
+            'as' => 'saveProduct'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('service', [
+            'uses' => 'HomeController@saveService',
+            'as' => 'saveService'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('store', [
+            'uses' => 'HomeController@saveStore',
+            'as' => 'saveStore'
             ]);
     });
 

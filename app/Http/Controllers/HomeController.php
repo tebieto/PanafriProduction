@@ -12,6 +12,7 @@ use App\Chat;
 use App\AppRequest;
 use App\referral;
 use App\Store;
+use App\Shop;
 use App\Location;
 use App\Price;
 use Auth;
@@ -61,6 +62,65 @@ class HomeController extends Controller
 			'location' => $request->location,
 			'delivery' => $request->delivery,
 		]);	
+		return response()->json(['success' => 'Request sent successfully'], 201);		
+		
+	}
+
+
+	public function saveStore(Request $request) 
+	
+	{
+	 
+	 $r = Shop::create([
+			'name' => $request->name,
+			'description' => $request->description,
+			'image' => $request->image,
+			'email' => $request->email,
+			'phone' => $request->phone,
+			'status' => 0,
+			'address' => $request->address,
+			'state' => $request->state,
+			'landmark' => $request->landdmark,
+			'identity' => $request->identity,
+		]);	
+		return response()->json(['success' => 'Request sent successfully'], 201);		
+		
+	}
+
+	public function saveProduct(Request $request) 
+	
+	{
+	 
+		$add = Product::create([
+			'owner' => auth::id(),
+			'name' => $request->name,
+			'type' => 1,
+			'category' => $request->category,
+			'image' => $request->image,
+			'status' => 1,
+			'description' => $request->description,
+			'location' => $request->location,
+			'price' => $request->price,
+		]);
+		return response()->json(['success' => 'Request sent successfully'], 201);		
+		
+	}
+
+	public function saveService(Request $request) 
+	
+	{
+	 
+		$add = Product::create([
+			'owner' => auth::id(),
+			'name' => $request->name,
+			'type' => 2,
+			'category' => $request->category,
+			'image' => $request->image,
+			'status' => 1,
+			'description' => $request->description,
+			'location' => $request->location,
+			'price' => $request->price,
+		]);
 		return response()->json(['success' => 'Request sent successfully'], 201);		
 		
 	}
@@ -472,6 +532,43 @@ public function authServices()
 	  ->update([
 			
 			'online' => 0,
+		
+		]);
+		
+	}
+
+
+	public function onShop($sid)
+    {
+		
+		$store = Shop::where('id', $sid)->first();
+		
+		if($store->status==1) {
+		return 0;
+		}
+		
+		$store = shop::where('id', $sid)->first()
+	  ->update([
+			
+			'status' => 1,
+		
+		]);
+		
+	}
+	
+	public function offShop($sid)
+    {
+		
+		$store = Shop::where('id', $sid)->first();
+		
+		if($store->status==0) {
+		return 0;
+		}
+		
+		$store = Shop::where('id', $sid)->first()
+	  ->update([
+			
+			'status' => 0,
 		
 		]);
 		

@@ -12,7 +12,7 @@ class product extends Model
 	use Notifiable;
 
 
-    protected $fillable = ['name', 'owner', 'store', 'type', 'price', 'category', 'image', 'status','location', 'description'];
+    protected $fillable = ['name', 'owner', 'store', 'type', 'price', 'category', 'image', 'status','location', 'description', 'quantity'];
 
 	
 
