@@ -8,7 +8,6 @@ use Illuminate\Notifications\Notifiable;
 
 class product extends Model
 {
-	use Searchable;
 	use Notifiable;
 
 
