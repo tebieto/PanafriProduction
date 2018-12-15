@@ -265,21 +265,21 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::prefix('partner')->group(function () {
         Route::post('edit/user', [
             'uses' => 'RegisterController@editAppUser',
-            'as' => 'editAppUser'
+            'as' => 'editPartnerUser'
             ]);
     });
 
     Route::prefix('app')->group(function () {
         Route::post('change/password', [
             'uses' => 'RegisterController@changeAppPassword',
-            'as' => 'changePassword'
+            'as' => 'changeAppPassword'
             ]);
     });
 
     Route::prefix('partner')->group(function () {
         Route::post('change/password', [
             'uses' => 'RegisterController@changeAppPassword',
-            'as' => 'changeAppPassword'
+            'as' => 'changePartnerPassword'
             ]);
     });
     
