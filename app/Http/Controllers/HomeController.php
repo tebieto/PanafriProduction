@@ -661,6 +661,8 @@ public function authServices()
 			'online' => 1,
 		
 		]);
+
+		return 1;
 		
 		
 		
@@ -681,6 +683,8 @@ public function authServices()
 			'online' => 0,
 		
 		]);
+
+		return 1;
 		
 	}
 	
