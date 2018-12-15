@@ -1219,7 +1219,7 @@ public function authServices()
 		
 		// This class process an uploaded image and returns a valid URL
 		
-		
+		return "It worked";
 		$image=  base64_decode($request->img);
 		
 		
