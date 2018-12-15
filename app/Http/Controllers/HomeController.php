@@ -19,6 +19,7 @@ use Auth;
 use DB;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -177,6 +178,56 @@ class HomeController extends Controller
 		return response()->json(['success' => 'Service updated successfully'], 201);		
 		
 	}
+
+	public function changePassword(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $update= user::where('id', auth::id())->first()		
+	        ->update([
+            'password' =>bcrypt($request->password)
+            ]);
+            
+            $success= "Password changed successfully";
+            return response()->json(compact( 'success' ),201);
+
+    }
+
+    public function editUser(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'avatar' => 'required',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'required|string|max:11',
+            
+        ]);
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $update= user::where('id', auth::id())->first()		
+	        ->update([
+            'name' =>$request->name,
+            'email' =>$request->email,
+            'phone' =>$request->phone,
+            'avatar' =>$request->avatar
+            ]);
+            
+            $success= "Profile updated successfully";
+            return response()->json(compact( 'success' ),201);
+
+    }
+
 
 
 	public function AppRequests() 
@@ -353,7 +404,7 @@ class HomeController extends Controller
 	   return $all;
     }
 	
-	public function editProfile(Request $r)
+	public function editAppUser(Request $r)
 	{
 	
  $this->validate($r, [
@@ -386,7 +437,7 @@ class HomeController extends Controller
 	}
 	
 	
-	public function changePassword(Request $r)
+	public function changeAppPassword(Request $r)
 	
 	{
 	

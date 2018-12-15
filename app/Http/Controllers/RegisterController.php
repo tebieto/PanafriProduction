@@ -136,55 +136,7 @@ class RegisterController extends Controller
     }
 
 
-    public function changePassword(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        if($validator->fails()){
-                return response()->json($validator->errors()->toJson(), 400);
-        }
-
-        $update= user::where('id', auth::id())->first()		
-	        ->update([
-            'password' =>bcrypt($request->password)
-            ]);
-            
-            $success= "Password changed successfully";
-            return response()->json(compact( 'success' ),201);
-
-    }
-
-    public function editUser(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'avatar' => 'required',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'required|string|max:11',
-            
-        ]);
-
-        if($validator->fails()){
-                return response()->json($validator->errors()->toJson(), 400);
-        }
-
-        $update= user::where('id', auth::id())->first()		
-	        ->update([
-            'name' =>$request->name,
-            'email' =>$request->email,
-            'phone' =>$request->phone,
-            'avatar' =>$request->avatar
-            ]);
-            
-            $success= "Profile updated successfully";
-            return response()->json(compact( 'success' ),201);
-
-    }
-
+   
     /**
      * Where to redirect users after registration.
      *
