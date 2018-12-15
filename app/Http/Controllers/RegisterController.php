@@ -147,7 +147,7 @@ class RegisterController extends Controller
                 return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $update= user::where('user_id', auth::id())->first()		
+        $update= user::where('id', auth::id())->first()		
 	        ->update([
             'password' =>bcrypt($request->password)
             ]);
@@ -162,9 +162,9 @@ class RegisterController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'avatar' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|max:11|unique:users',
+            'avatar' => 'required',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'required|string|max:11',
             
         ]);
 
@@ -172,7 +172,7 @@ class RegisterController extends Controller
                 return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $update= user::where('user_id', auth::id())->first()		
+        $update= user::where('id', auth::id())->first()		
 	        ->update([
             'name' =>$request->name,
             'email' =>$request->email,
