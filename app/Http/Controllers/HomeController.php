@@ -1214,7 +1214,7 @@ public function authServices()
 		
 	}
 
-	public function image64(Request $request)
+	public function appImage(Request $request)
 	{
 		
 		// This class process an uploaded image and returns a valid URL

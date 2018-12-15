@@ -194,8 +194,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::prefix('partner')->group(function () {
         Route::post('save/image', [
-            'uses' => 'HomeController@image64',
-            'as' => 'image64'
+            'uses' => 'HomeController@appImage',
+            'as' => 'appImage'
             ]);
     });
 
