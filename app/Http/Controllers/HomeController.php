@@ -179,7 +179,7 @@ class HomeController extends Controller
 		
 	}
 
-	public function changePassword(Request $request)
+	public function changeAppPassword(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -200,7 +200,7 @@ class HomeController extends Controller
 
     }
 
-    public function editUser(Request $request)
+    public function editAppUser(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -404,7 +404,7 @@ class HomeController extends Controller
 	   return $all;
     }
 	
-	public function editAppUser(Request $r)
+	public function editProfile(Request $r)
 	{
 	
  $this->validate($r, [
@@ -437,7 +437,7 @@ class HomeController extends Controller
 	}
 	
 	
-	public function changeAppPassword(Request $r)
+	public function changePassword(Request $r)
 	
 	{
 	
