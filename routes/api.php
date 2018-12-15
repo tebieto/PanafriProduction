@@ -44,12 +44,14 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+
 Route::prefix('partner')->group(function () {
     Route::post('register', [
         'uses' => 'RegisterController@registerPartner',
 	    'as' => 'registerPartner'
         ]);
 });
+
 
 Route::prefix('app')->group(function () {
     Route::get('services', [
@@ -169,6 +171,14 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     });
 
     Route::prefix('partner')->group(function () {
+        Route::post('edit/product', [
+            'uses' => 'HomeController@editProduct',
+            'as' => 'editProduct'
+            ]);
+    });
+
+
+    Route::prefix('partner')->group(function () {
         Route::post('service', [
             'uses' => 'HomeController@saveService',
             'as' => 'saveService'
@@ -176,9 +186,30 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     });
 
     Route::prefix('partner')->group(function () {
+        Route::post('edit/service', [
+            'uses' => 'HomeController@editService',
+            'as' => 'editService'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('save/image', [
+            'uses' => 'HomeController@image64',
+            'as' => 'image64'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
         Route::post('store', [
             'uses' => 'HomeController@saveStore',
             'as' => 'saveStore'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('edit/store', [
+            'uses' => 'HomeController@editStore',
+            'as' => 'editStore'
             ]);
     });
 
@@ -207,6 +238,48 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('notifications', [
             'uses' => 'HomeController@note',
             'as' => 'appNotifications'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::get('user/on/app', [
+            'uses' => 'HomeController@onApp',
+            'as' => 'onApp'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::get('user/off/app', [
+            'uses' => 'HomeController@offApp',
+            'as' => 'offApp'
+            ]);
+    });
+
+    Route::prefix('app')->group(function () {
+        Route::post('edit/user', [
+            'uses' => 'RegisterController@editUser',
+            'as' => 'editUser'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('edit/user', [
+            'uses' => 'RegisterController@editUser',
+            'as' => 'editUser'
+            ]);
+    });
+
+    Route::prefix('app')->group(function () {
+        Route::post('change/password', [
+            'uses' => 'RegisterController@changePassword',
+            'as' => 'changePassword'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('change/password', [
+            'uses' => 'RegisterController@changePassword',
+            'as' => 'changePassword'
             ]);
     });
     

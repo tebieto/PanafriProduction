@@ -78,13 +78,32 @@ class HomeController extends Controller
 			'image' => $request->image,
 			'email' => $request->email,
 			'phone' => $request->phone,
-			'status' => 0,
+			'status' => 1,
 			'address' => $request->address,
 			'state' => $request->state,
-			'landmark' => $request->landdmark,
+			'landmark' => $request->landmark,
 			'identity' => $request->identity,
 		]);	
-		return response()->json(['success' => 'Shop added successfully'], 201);		
+		return response()->json(['success' => 'Store added successfully'], 201);		
+		
+	}
+
+	public function editStore(Request $request) 
+	
+	{
+	$update= Shop::where('id', $request->id)->where('owner', auth::id())->first()
+	 ->update([
+			'name' => $request->name,
+			'description' => $request->description,
+			'image' => $request->image,
+			'email' => $request->email,
+			'phone' => $request->phone,
+			'address' => $request->address,
+			'state' => $request->state,
+			'landmark' => $request->landmark,
+			'identity' => $request->identity,
+		]);	
+		return response()->json(['success' => 'Store updated successfully'], 201);		
 		
 	}
 
@@ -107,10 +126,27 @@ class HomeController extends Controller
 		
 	}
 
-	public function saveService(Request $request) 
+	public function editProduct(Request $request) 
 	
 	{
 	 
+	  $update= Product::where('id', $request->id)->where('owner', auth::id())->first()
+	 ->update([
+			'name' => $request->name,
+			'category' => $request->category,
+			'image' => $request->image,
+			'description' => $request->description,
+			'location' => $request->location,
+			'price' => $request->price,
+		]);
+		return response()->json(['success' => 'Product updated successfully'], 201);		
+		
+	}
+
+
+	public function saveService(Request $request) 
+	
+	{
 		$add = Product::create([
 			'owner' => auth::id(),
 			'name' => $request->name,
@@ -125,6 +161,23 @@ class HomeController extends Controller
 		return response()->json(['success' => 'Service added successfully'], 201);		
 		
 	}
+
+	public function editService(Request $request) 
+	
+	{
+		$update= Product::where('id', $request->id)->where('owner', auth::id())->first()
+		 ->update([
+			'name' => $request->name,
+			'category' => $request->category,
+			'image' => $request->image,
+			'description' => $request->description,
+			'location' => $request->location,
+			'price' => $request->price,
+		]);
+		return response()->json(['success' => 'Service updated successfully'], 201);		
+		
+	}
+
 
 	public function AppRequests() 
 	
@@ -1069,6 +1122,50 @@ public function authServices()
 		
 		
 		$image= $request->img;
+		
+		
+		
+		$ext = $image->extension();
+		
+		
+		if ($ext== 'jpg' || $ext== 'jpeg' || $ext == 'png' || $ext == 'gif') {
+			$type = 'image';
+			
+			//  we save the image in image folder
+			
+			$link = $image->store('public/images');
+		} else {
+			
+			// If the user mistakenly upload a video instead of an image we save the video in video folder
+			$type = 'video';
+			$link = $image->store('public/videos');
+		}
+		
+		if ($ext!= 'jpg' && $ext!= 'jpeg' && $ext != 'png' && $ext != 'gif' && $ext != '3gp' && $ext != 'ogg' && $ext != 'mp4' && $ext != 'webm' && $ext != 'avi' && $ext != 'flv' && $ext != 'wmv' && $ext != 'mov' ) {
+			// If file format is not acceptable, we delete the file
+			
+			Storage::delete($link);
+			
+			// we return false instead of a valid URL
+			
+			return 0;
+			
+		}
+		
+	// If every thing goes well, we return a valid URL.
+	
+	return response(['URL'=>asset(Storage::url($link)), 'link'=>$link, 'type' => $type, 'ext' => $ext, 'mime' => $type .'/'. $ext]);
+		
+		
+	}
+
+	public function image64(Request $request)
+	{
+		
+		// This class process an uploaded image and returns a valid URL
+		
+		
+		$image=  base64_decode($request->img);
 		
 		
 		
