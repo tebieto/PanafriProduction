@@ -70,6 +70,13 @@ Route::prefix('app')->group(function () {
 });
 
 Route::prefix('partner')->group(function () {
+    Route::post('save/image', [
+        'uses' => 'HomeController@appImage',
+        'as' => 'appImage'
+        ]);
+});
+
+Route::prefix('partner')->group(function () {
     Route::get('categories', [
         'uses' => 'HomeController@categories',
         'as' => 'partnerCategories'
@@ -192,12 +199,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
-    Route::prefix('partner')->group(function () {
-        Route::post('save/image', [
-            'uses' => 'HomeController@appImage',
-            'as' => 'appImage'
-            ]);
-    });
 
     Route::prefix('partner')->group(function () {
         Route::post('store', [
