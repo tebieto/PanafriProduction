@@ -1218,9 +1218,6 @@ public function authServices()
 	{
 		
 		// This class process an uploaded image and returns a valid URL
-		
-		return $request->img;
-		
 		$image = $request->input('img'); // image base64 encoded
  		preg_match("/data:image\/(.*?);/",$image,$ext); // extract the image extension
  		$image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
