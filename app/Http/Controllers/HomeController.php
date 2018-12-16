@@ -1221,7 +1221,13 @@ public function authServices()
 		
 		return $request->img;
 		
-		$image=  base64_decode($request->img);
+		$image = $request->input('img'); // image base64 encoded
+ 		preg_match("/data:image\/(.*?);/",$image,$ext); // extract the image extension
+ 		$image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
+ 		$image = str_replace(' ', '+', $image);
+ 		$imageName = 'image_' . time() . '.' . $ext[1]; //generating unique file name;
+		$link=Storage::disk('public')->put($imageName,base64_decode($image));
+		return asset(Storage::url($link));
 		
 		
 		
