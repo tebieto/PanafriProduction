@@ -1175,7 +1175,7 @@ public function authServices()
 		
 		// This class process an uploaded image and returns a valid URL
 		
-		return $image= $request->file(img);
+		return $image= $request->img;
 		
 		$image= $request->img;
 		
