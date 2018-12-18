@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Storage;
 use Illuminate\Http\Request;
 use App\User;
+use App\review;
 use App\category;
 use App\product;
 use App\Transaction;
@@ -63,9 +64,13 @@ class HomeController extends Controller
 			'location' => $request->location,
 			'delivery' => $request->delivery,
 		]);	
-		return response()->json(['success' => 'Request sent successfully'], 201);		
+			$id = $r->id;
+			$success= "Request sent successfully";
+            return response()->json(compact( 'success', 'id' ),201);		
 		
 	}
+
+
 
 
 	public function saveStore(Request $request) 
@@ -89,6 +94,23 @@ class HomeController extends Controller
 		
 	}
 
+	public function saveReview(Request $request) 
+	
+	{
+	 
+	 $r = Review::create([
+		 	'user_id' => auth::id(),
+			'partner_id' => $request->partner_id,
+			'name' => $request->name,
+			'avatar' => $request->avatar,
+			'message' => $request->message,
+			'rating' => $request->rating,
+			'status' => 0,
+		]);	
+		return response()->json(['success' => 'Store added successfully'], 201);		
+		
+	}
+
 	public function editStore(Request $request) 
 	
 	{
@@ -105,6 +127,30 @@ class HomeController extends Controller
 			'identity' => $request->identity,
 		]);	
 		return response()->json(['success' => 'Store updated successfully'], 201);		
+		
+	}
+
+	public function acceptRequest(Request $request) 
+	
+	{
+	$update= AppRequest::where('id', $request->id)->where('owner', auth::id())->first()
+	 ->update([
+			'status' => 1,
+			'seller_status' => 1,
+		]);	
+		return response()->json(['success' => 'Request accepted successfully'], 201);		
+		
+	}
+
+	public function declineRequest(Request $request) 
+	
+	{
+	$update= AppRequest::where('id', $request->id)->where('owner', auth::id())->first()
+	 ->update([
+			'status' => 2,
+			'seller_status' => 2,
+		]);	
+		return response()->json(['success' => 'Request declinned successfully'], 201);		
 		
 	}
 
@@ -222,7 +268,7 @@ class HomeController extends Controller
             'phone' =>$request->phone,
             'avatar' =>$request->avatar
             ]);
-            
+           
             $success= "Profile updated successfully";
             return response()->json(compact( 'success' ),201);
 
@@ -259,7 +305,6 @@ class HomeController extends Controller
 		array_push($all, $request);
 		
 		endforeach;
-		$all= array_slice($all, 0, 10);
 		return $all;
 		
 	}
@@ -476,6 +521,34 @@ class HomeController extends Controller
 	   return $all;
     }
 	
+	public function appReviews()
+    {
+	  $all= array();
+      
+		
+	  $reviews = AppRequest::select("seller_id")->where('seller_id', auth::id())->get()->groupBy('buyer_id');
+	   
+	   foreach ($reviews as $review):
+		$user= User::where('id', $review->seller_id)->first();
+	   array_push($all, $user);
+	   endforeach;
+	    $all= array_slice($all, 0, 10);
+	   return $all;
+	}
+
+	public function partnerReviews()
+    {
+	  $all= array();
+      
+		
+	  $reviews = Review::where('partner_id', auth::id())->get();
+	   
+	   foreach ($reviews as $review):
+	   array_push($all, $review);
+	   endforeach;
+	    $all= array_slice($all, 0, 10);
+	   return $all;
+	}
 	
 	public function services()
     {
@@ -836,6 +909,48 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
+		
+		}
+		
+	}
+
+	public function deleteProduct(Request $request)
+    {
+	
+	$product = Product::where('id', $request->id)->where('owner', auth::id())
+		->first();
+		
+		if(!empty($product)) {
+		
+		$product->delete();
+		
+		}
+		
+	}
+
+	public function deleteService(Request $request)
+    {
+	
+	$product = Product::where('id', $request->id)->where('owner', auth::id())
+		->first();
+		
+		if(!empty($product)) {
+		
+		$product->delete();
+		
+		}
+		
+	}
+
+	public function deleteStore(Request $request)
+    {
+	
+	$store = Shop::where('id', $request->id)->where('owner', auth::id())
+		->first();
+		
+		if(!empty($store)) {
+		
+		$store->delete();
 		
 		}
 		

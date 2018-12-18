@@ -171,11 +171,33 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     });
 
     Route::prefix('partner')->group(function () {
+        Route::post('accept/request', [
+            'uses' => 'HomeController@acceptRequest',
+            'as' => 'acceptRequest'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('decline/request', [
+            'uses' => 'HomeController@declineRequest',
+            'as' => 'declineRequest'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
         Route::post('product', [
             'uses' => 'HomeController@saveProduct',
             'as' => 'saveProduct'
             ]);
     });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('delete/product', [
+            'uses' => 'HomeController@deleteProduct',
+            'as' => 'deleteProduct'
+            ]);
+    });
+
 
     Route::prefix('partner')->group(function () {
         Route::post('edit/product', [
@@ -189,6 +211,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::post('service', [
             'uses' => 'HomeController@saveService',
             'as' => 'saveService'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::post('delete/service', [
+            'uses' => 'HomeController@deleteService',
+            'as' => 'deleteService'
             ]);
     });
 
@@ -214,10 +243,66 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
+    Route::prefix('partner')->group(function () {
+        Route::post('delete/store', [
+            'uses' => 'HomeController@deleteStore',
+            'as' => 'deleteStore'
+            ]);
+    });
+
     Route::prefix('app')->group(function () {
         Route::get('requests', [
             'uses' => 'HomeController@AppRequests',
             'as' => 'AppRequests'
+            ]);
+    });
+
+    Route::prefix('partner')->group(function () {
+        Route::get('reviews', [
+            'uses' => 'HomeController@partnerReviews',
+            'as' => 'partnerReviews'
+            ]);
+    });
+
+    Route::prefix('app')->group(function () {
+        Route::get('reviews', [
+            'uses' => 'HomeController@appReviews',
+            'as' => 'appReviews'
+            ]);
+    });
+
+    Route::prefix('app')->group(function () {
+        Route::post('review', [
+            'uses' => 'HomeController@saveReview',
+            'as' => 'saveReview'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('category', [
+            'uses' => 'HomeController@saveCategory',
+            'as' => 'saveCategory'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('delete/category', [
+            'uses' => 'HomeController@deleteCategory',
+            'as' => 'deleteCategory'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('delete/product', [
+            'uses' => 'HomeController@deleteProduct',
+            'as' => 'deleteProduct'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('delete/service', [
+            'uses' => 'HomeController@deleteService',
+            'as' => 'deleteService'
             ]);
     });
 
