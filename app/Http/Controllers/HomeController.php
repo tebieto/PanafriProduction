@@ -526,10 +526,10 @@ class HomeController extends Controller
 	  $all= array();
       
 		
-	  $reviews = AppRequest::select("seller_id")->where('buyer_id', auth::id())->get()->groupBy('seller_id');
+	  $reviews = AppRequest::select("seller_id")->where('buyer_id', auth::id())->groupBy('seller_id')->get();
 	   
-	   foreach ($reviews as $review):
-		$user= User::where('id', $review->seller_id)->first();
+	  foreach ($reviews as $review):
+		$user= User::where('id', $review['seller_id'])->first();
 	   array_push($all, $user);
 	   endforeach;
 	    $all= array_slice($all, 0, 10);

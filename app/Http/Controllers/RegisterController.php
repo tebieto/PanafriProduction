@@ -102,12 +102,12 @@ class RegisterController extends Controller
 
         //Create user
         $user = $this->create($request->all());
-        $products = Product::where('type', 1)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
-        $services = Product::where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
+        $products = Product::select("id")->where('type', 1)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
+        $services = Product::select("id")->where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
+        $customers = AppRequest::select("buyer_id")->where('status', 1)->where('seller_id', auth::id())->groupBy('buyer_id')->get()->count();
         $requests = AppRequest::select("buyer_id")->where('seller_id', auth::id())->get()->count();
-        $customers = AppRequest::where('status', 0)->where('seller_id', auth::id())->get()->count();
         $earnings = 0;
-        $sales = AppRequest::select("buyer_id", "product_id")->where('status', 0)->where('seller_id', auth::id())->get()->groupBy('buyer_id');
+        $sales = AppRequest::select("product_id")->where('status', 1)->where('seller_id', auth::id())->get();
 	   
         foreach ($sales as $sale):
         
