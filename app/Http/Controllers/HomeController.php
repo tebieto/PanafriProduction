@@ -526,7 +526,7 @@ class HomeController extends Controller
 	  $all= array();
       
 		
-	  $reviews = AppRequest::select("seller_id")->where('seller_id', auth::id())->get()->groupBy('buyer_id');
+	  $reviews = AppRequest::select("seller_id")->where('buyer_id', auth::id())->get()->groupBy('seller_id');
 	   
 	   foreach ($reviews as $review):
 		$user= User::where('id', $review->seller_id)->first();
