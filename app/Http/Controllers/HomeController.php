@@ -113,7 +113,7 @@ class HomeController extends Controller
 			'rating' => $request->rating,
 			'status' => 0,
 		]);	
-		return response()->json(['success' => 'Store added successfully'], 201);		
+		return response()->json(['success' => 'Review sent successfully'], 201);		
 		
 	}
 
