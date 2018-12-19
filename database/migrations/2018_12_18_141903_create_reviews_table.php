@@ -18,7 +18,7 @@ class CreateReviewsTable extends Migration
             $table->integer('partner_id');
             $table->integer('user_id');
             $table->string('message');
-            $table->string('ratings');
+            $table->integer('rating');
             $table->string('name');
             $table->string('avatar');
             $table->integer('status');

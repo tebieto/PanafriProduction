@@ -97,13 +97,19 @@ class HomeController extends Controller
 	public function saveReview(Request $request) 
 	
 	{
-	 
+
+	$message= $request->message;
+	if (empty($message)) {
+
+		$message= "No message";
+	}
+
 	 $r = Review::create([
 		 	'user_id' => auth::id(),
 			'partner_id' => $request->partner_id,
 			'name' => $request->name,
 			'avatar' => $request->avatar,
-			'message' => $request->message,
+			'message' => $message,
 			'rating' => $request->rating,
 			'status' => 0,
 		]);	
