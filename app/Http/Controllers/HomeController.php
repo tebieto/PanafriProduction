@@ -915,7 +915,8 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
-		return 1;
+		$success= "Product deleted successfully";
+            return response()->json(compact( 'success', 'id' ),201);
 		
 		}
 		
@@ -930,7 +931,8 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
-		return 1;
+		$success= "Product deleted successfully";
+            return response()->json(compact( 'success', 'id' ),201);
 		
 		}
 		
@@ -945,7 +947,8 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
-		return 1;
+		$success= "Service deleted successfully";
+            return response()->json(compact( 'success', 'id' ),201);
 		}
 		
 	}
@@ -959,7 +962,8 @@ public function authServices()
 		if(!empty($store)) {
 		
 		$store->delete();
-		return 1;
+		$success= "Store deleted successfully";
+            return response()->json(compact( 'success', 'id' ),201);
 		
 		}
 		
