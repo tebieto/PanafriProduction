@@ -915,6 +915,7 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
+		return 1
 		
 		}
 		
@@ -929,6 +930,7 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
+		return 1
 		
 		}
 		
@@ -943,7 +945,7 @@ public function authServices()
 		if(!empty($product)) {
 		
 		$product->delete();
-		
+		return 1
 		}
 		
 	}
@@ -957,6 +959,7 @@ public function authServices()
 		if(!empty($store)) {
 		
 		$store->delete();
+		return 1;
 		
 		}
 		
