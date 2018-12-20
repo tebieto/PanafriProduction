@@ -538,7 +538,7 @@ class HomeController extends Controller
 		$user= User::where('id', $review['seller_id'])->first();
 	   array_push($all, $user);
 	   endforeach;
-	    $all= array_slice($all, 0, 10);
+	    $all= array_slice($all, 0, 30);
 	   return $all;
 	}
 
@@ -547,12 +547,12 @@ class HomeController extends Controller
 	  $all= array();
       
 		
-	  $reviews = Review::where('partner_id', auth::id())->get();
+	  $reviews = Review::where('partner_id', auth::id())->orderBy('created_at', 'DESC')->get();
 	   
 	   foreach ($reviews as $review):
 	   array_push($all, $review);
 	   endforeach;
-	    $all= array_slice($all, 0, 10);
+	    $all= array_slice($all, 0, 30);
 	   return $all;
 	}
 	

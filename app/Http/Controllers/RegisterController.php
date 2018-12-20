@@ -106,6 +106,7 @@ class RegisterController extends Controller
         $services = Product::select("id")->where('type', 2)->where('owner', auth::id())->orderBy(DB::raw('RAND()'))->get()->count();
         $customers = AppRequest::select("buyer_id")->where('status', 1)->where('seller_id', auth::id())->groupBy('buyer_id')->get()->count();
         $requests = AppRequest::select("buyer_id")->where('seller_id', auth::id())->get()->count();
+        $reviews = Review::select("partner_id")->where('partner_id', auth::id())->get()->count();
         $earnings = 0;
         $sales = AppRequest::select("product_id")->where('status', 1)->where('seller_id', auth::id())->get();
 	   
@@ -131,7 +132,7 @@ class RegisterController extends Controller
             'about' =>$request->deviceToken,
             ]);
 
-        return response()->json(compact('token', 'products', 'services', 'customers', 'earnings', 'requests' ),201);
+        return response()->json(compact('token', 'products', 'reviews', 'services', 'customers', 'earnings', 'requests' ),201);
 
     }
 
