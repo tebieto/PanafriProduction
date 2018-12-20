@@ -8,7 +8,7 @@ use App\User;
 use App\profile;
 use App\product;
 use App\AppRequest;
-use App\Review;
+use App\review;
 use DB;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
