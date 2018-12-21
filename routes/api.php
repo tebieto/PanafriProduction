@@ -427,6 +427,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
+    Route::prefix('admin')->group(function () {
+        Route::post('edit/user', [
+            'uses' => 'HomeController@editAppUser',
+            'as' => 'editPartnerUser'
+            ]);
+    });
+
     Route::prefix('app')->group(function () {
         Route::post('change/password', [
             'uses' => 'HomeController@changeAppPassword',
@@ -443,7 +450,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::prefix('admin')->group(function () {
         Route::post('change/password', [
-            'uses' => 'HomeController@adminChangeAppPassword',
+            'uses' => 'HomeController@changeAppPassword',
             'as' => 'changePartnerPassword'
             ]);
     });

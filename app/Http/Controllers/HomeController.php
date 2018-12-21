@@ -1010,6 +1010,21 @@ public function authServices()
 		
 	}
 
+	public function deleteCategory(Request $request)
+    {
+	
+	$category = Category::where('id', $request->id)
+		->first();
+		
+		if(!empty($category)) {
+		
+		$category->delete();
+		$success= "Category deleted successfully";
+            return response()->json(compact( 'success'),201);
+		}
+		
+	}
+
 	public function deleteStore(Request $request)
     {
 	
