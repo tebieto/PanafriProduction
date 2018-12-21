@@ -463,6 +463,7 @@ class HomeController extends Controller
 		'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|',
 		'phone' => 'required|string|max:11|',
+		'phone' => 'required',
 		
 	]);	
 	
@@ -471,17 +472,9 @@ class HomeController extends Controller
 		'name' => $r->name,
 		'email'=> $r->email,
 		'phone'=>$r->phone,
-		]);
-		
-	$avatar= $r->avatar;
-	if(!empty($avatar)) {
-		
-	$update= User::where('id', auth::id())->first()		
-	->update([
 		'avatar' => $r->avatar,
-		]);	
-		
-	}
+		]);
+	
 		//Session::flash('success', 'Upload edited successfully.');
 	    return redirect()->back();
 		
