@@ -92,5 +92,36 @@ class LoginController extends Controller
         return response()->json(compact('token', 'products','reviews', 'services', 'customers', 'earnings', 'requests' ),201);
     }
 
+    public function loginAdmin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+            try {
+                if (! $token = JWTAuth::attempt($credentials)) {
+                    return response()->json(['error' => 'invalid_credentials'], 400);
+                }
+            } catch (JWTException $e) {
+                return response()->json(['error' => 'could_not_create_token'], 500);
+            }
+
+            $update= profile::where('user_id', auth::id())->first()		
+	        ->update([
+            'about' =>$request->deviceToken,
+            ]);
+
+            if((auth::user()->role)<2) {
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
+
+        $products = Product::select("id")->where('type', 1)->orderBy(DB::raw('RAND()'))->get()->count();
+        $services = Product::select("id")->where('type', 2)->orderBy(DB::raw('RAND()'))->get()->count();
+        $partners = Product::select("owner")->groupBy('owner')->get()->count();
+        $requests = AppRequest::select("buyer_id")->get()->count();
+        $reviews = Review::select("partner_id")->get()->count();
+        $users = User::select("id")->get()->count();
+    
+        return response()->json(compact('token', 'products','reviews', 'services', 'categories', 'stores', 'partners', 'requests' ),201);
+    }
+
     
 }

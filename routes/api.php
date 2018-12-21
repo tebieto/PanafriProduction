@@ -20,6 +20,13 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('admin')->group(function () {
+    Route::get('products', [
+        'uses' => 'HomeController@products',
+        'as' => 'appProducts'
+        ]);
+});
+
 
 
 Route::prefix('app')->group(function () {
@@ -33,6 +40,13 @@ Route::prefix('partner')->group(function () {
     Route::post('login', [
         'uses' => 'LoginController@LoginPartner',
 	    'as' => 'LoginPartner'
+        ]);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::post('login', [
+        'uses' => 'LoginController@LoginAdmin',
+	    'as' => 'LoginAdmin'
         ]);
 });
 
@@ -60,6 +74,20 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('admin')->group(function () {
+    Route::get('services', [
+        'uses' => 'HomeController@services',
+        'as' => 'appServices'
+        ]);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('stores', [
+        'uses' => 'HomeController@adminStores',
+        'as' => 'adminStores'
+        ]);
+});
+
 
 
 Route::prefix('app')->group(function () {
@@ -76,10 +104,10 @@ Route::prefix('partner')->group(function () {
         ]);
 });
 
-Route::prefix('partner')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('categories', [
         'uses' => 'HomeController@categories',
-        'as' => 'partnerCategories'
+        'as' => 'adminCategories'
         ]);
 });
 
@@ -134,6 +162,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             'as' => 'partnerProducts'
             ]);
     });
+
     
     Route::prefix('partner')->group(function () {
         Route::get('services', [
@@ -198,6 +227,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
+    Route::prefix('admin')->group(function () {
+        Route::post('delete/product', [
+            'uses' => 'HomeController@deleteProduct',
+            'as' => 'deleteProduct'
+            ]);
+    });
+
 
     Route::prefix('partner')->group(function () {
         Route::post('edit/product', [
@@ -221,6 +257,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
+    Route::prefix('admin')->group(function () {
+        Route::post('delete/service', [
+            'uses' => 'HomeController@deleteService',
+            'as' => 'deleteService'
+            ]);
+    });
+
     Route::prefix('partner')->group(function () {
         Route::post('edit/service', [
             'uses' => 'HomeController@editService',
@@ -233,6 +276,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::post('store', [
             'uses' => 'HomeController@saveStore',
             'as' => 'saveStore'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('category', [
+            'uses' => 'HomeController@adminSaveCategory',
+            'as' => 'adminSaveCategory'
             ]);
     });
 
@@ -250,9 +300,23 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
+    Route::prefix('admin')->group(function () {
+        Route::post('delete/store', [
+            'uses' => 'HomeController@deleteStore',
+            'as' => 'deleteStore'
+            ]);
+    });
+
     Route::prefix('app')->group(function () {
         Route::get('requests', [
             'uses' => 'HomeController@AppRequests',
+            'as' => 'AppRequests'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::get('requests', [
+            'uses' => 'HomeController@adminRequests',
             'as' => 'AppRequests'
             ]);
     });
@@ -261,6 +325,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('reviews', [
             'uses' => 'HomeController@partnerReviews',
             'as' => 'partnerReviews'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::get('reviews', [
+            'uses' => 'HomeController@adminReviews',
+            'as' => 'adminReviews'
             ]);
     });
 
@@ -278,17 +349,18 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
-    Route::prefix('admin')->group(function () {
-        Route::post('category', [
-            'uses' => 'HomeController@saveCategory',
-            'as' => 'saveCategory'
-            ]);
-    });
 
     Route::prefix('admin')->group(function () {
         Route::post('delete/category', [
             'uses' => 'HomeController@deleteCategory',
             'as' => 'deleteCategory'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('edit/category', [
+            'uses' => 'HomeController@editCategory',
+            'as' => 'editCategory'
             ]);
     });
 
@@ -365,6 +437,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::prefix('partner')->group(function () {
         Route::post('change/password', [
             'uses' => 'HomeController@changeAppPassword',
+            'as' => 'changePartnerPassword'
+            ]);
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('change/password', [
+            'uses' => 'HomeController@adminChangeAppPassword',
             'as' => 'changePartnerPassword'
             ]);
     });

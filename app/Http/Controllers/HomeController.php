@@ -136,6 +136,19 @@ class HomeController extends Controller
 		
 	}
 
+	public function editCategory(Request $request) 
+	
+	{
+	$update= Category::where('id', $request->id)->first()
+	 ->update([
+			'name' => $request->name,
+			'type' => $request->type,
+			'image' => $request->image,
+		]);	
+		return response()->json(['success' => 'Category updated successfully'], 201);		
+		
+	}
+
 	public function acceptRequest(Request $request) 
 	
 	{
@@ -315,6 +328,22 @@ class HomeController extends Controller
 		
 	}
 
+	public function adminRequests() 
+	
+	{
+		$all= array();
+      
+		
+		$requests = AppRequest::orderBy('created_at', 'DESC')->get();
+		
+		foreach ($requests as $request):
+		array_push($all, $request);
+		
+		endforeach;
+		return $all;
+		
+	}
+
 	public function PartnerStores() 
 	
 	{
@@ -328,6 +357,22 @@ class HomeController extends Controller
 		
 		endforeach;
 		$all= array_slice($all, 0, 10);
+		return $all;
+		
+	}
+
+	public function adminStores() 
+	
+	{
+		$all= array();
+      
+		
+		$stores = Shop::orderBy('created_at', 'DESC')->get();
+		
+		foreach ($stores as $store):
+		array_push($all, $store);
+		
+		endforeach;
 		return $all;
 		
 	}
@@ -463,7 +508,7 @@ class HomeController extends Controller
 		'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|',
 		'phone' => 'required|string|max:11|',
-		'phone' => 'required',
+		'avatar' => 'required',
 		
 	]);	
 	
@@ -535,6 +580,9 @@ class HomeController extends Controller
 	   return $all;
 	}
 
+
+
+
 	public function partnerReviews()
     {
 	  $all= array();
@@ -548,6 +596,20 @@ class HomeController extends Controller
 	    $all= array_slice($all, 0, 30);
 	   return $all;
 	}
+
+	public function adminReviews()
+    {
+	  $all= array();
+      
+		
+	  $reviews = Review::orderBy('created_at', 'DESC')->get();
+	   
+	   foreach ($reviews as $review):
+	   array_push($all, $review);
+	   endforeach;
+	   return $all;
+	}
+	
 	
 	public function services()
     {
@@ -899,6 +961,7 @@ public function authServices()
 		
 	}
 	
+	
 	public function authDeleteProduct($pid)
     {
 	
@@ -930,6 +993,7 @@ public function authServices()
 		}
 		
 	}
+	
 
 	public function deleteService(Request $request)
     {
@@ -1126,6 +1190,22 @@ public function authServices()
 		]);
 		
 		return 1;
+		
+	}
+	
+	public function adminSaveCategory(Request $request)
+    {
+
+	  $add = Category::create([
+
+			'name' => $request->name,
+			'type' => $request->type,
+			'image' => $request->image,
+			
+		]);
+		
+		$success= "Category added successfully";
+            return response()->json(compact( 'success' ),201);	
 		
     }
 	
