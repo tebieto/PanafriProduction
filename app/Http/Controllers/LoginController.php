@@ -9,6 +9,8 @@ use App\profile;
 use App\product;
 use App\AppRequest;
 use App\review;
+use App\Shop;
+use App\category;
 use DB;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -118,6 +120,8 @@ class LoginController extends Controller
         $partners = Product::select("owner")->groupBy('owner')->get()->count();
         $requests = AppRequest::select("buyer_id")->get()->count();
         $reviews = Review::select("partner_id")->get()->count();
+        $categories = Category::select("id")->get()->count();
+        $stores = Shop::select("id")->get()->count();
         $users = User::select("id")->get()->count();
     
         return response()->json(compact('token', 'products','reviews', 'services', 'categories', 'stores', 'partners', 'requests' ),201);
