@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 namespace App\Http\Controllers;
+namespace App\Mail;
 use Illuminate\Http\Request;
+use Mail; 
 use App\User;
 use App\profile;
 use App\AppRequest;
@@ -132,6 +134,18 @@ class RegisterController extends Controller
 	        ->update([
             'about' =>$request->deviceToken,
             ]);
+
+            $from_email='noreply@panafri.com';
+            $to_name = 'Panafri';
+            $to_email = 'tebieto@gmail.com';
+            $data = array('name'=>"Terry Ebieto", "body" => "Thank you for registering with us. We promise to give you the best service ever.");
+                
+            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('Thank you for registering with Panafri');
+                $message->from($from_email,'Panafri Registration');
+            });
+            
 
         return response()->json(compact('token', 'products', 'reviews', 'services', 'customers', 'earnings', 'requests' ),201);
 

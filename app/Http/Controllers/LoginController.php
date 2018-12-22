@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Mail; 
 Use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,6 +124,17 @@ class LoginController extends Controller
         $categories = Category::select("id")->get()->count();
         $stores = Shop::select("id")->get()->count();
         $users = User::select("id")->get()->count();
+
+            $from_email='noreply@panafri.com';
+            $to_name = 'Panafri';
+            $to_email = 'tebieto@gmail.com';
+            $data = array('name'=>"Terry Ebieto", "body" => "Thank you for registering with us. We promise to give you the best service ever.");
+                
+            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email, $from_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('Thank you for registering with Panafri');
+                $message->from($from_email,'Panafri Registration');
+            });
     
         return response()->json(compact('token', 'products','reviews', 'users', 'services', 'categories', 'stores', 'partners', 'requests' ),201);
     }
