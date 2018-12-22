@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 namespace App\Http\Controllers;
-namespace App\Mail;
 use Illuminate\Http\Request;
 use Mail; 
 use App\User;
@@ -49,6 +48,17 @@ class RegisterController extends Controller
             // Authentication passed...
            return redirect()->intended('login/seller/login');
         }
+
+        $from_email='noreply@panafri.com';
+            $to_name = auth::user()->name;
+            $to_email = auth::user()->email;
+            $data = array('name'=>$to_name, "body" => "Thank you for registering.");
+                
+            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email, $from_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('Thank you for registering with us.');
+                $message->from($from_email,'Panafri Registration');
+            });
     }
     
 
@@ -84,6 +94,17 @@ class RegisterController extends Controller
 	        ->update([
             'about' =>$request->deviceToken,
             ]);
+
+            $from_email='noreply@panafri.com';
+            $to_name = auth::user()->name;
+            $to_email = auth::user()->email;
+            $data = array('name'=>$to_name, "body" => "Thank you for registering.");
+                
+            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email, $from_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('Thank you for registering with us.');
+                $message->from($from_email,'Panafri Registration');
+            });
 
         return response()->json(compact('user','token'),201);
 
@@ -136,13 +157,13 @@ class RegisterController extends Controller
             ]);
 
             $from_email='noreply@panafri.com';
-            $to_name = 'Panafri';
-            $to_email = 'tebieto@gmail.com';
-            $data = array('name'=>"Terry Ebieto", "body" => "Thank you for registering with us. We promise to give you the best service ever.");
+            $to_name = auth::user()->name;
+            $to_email = auth::user()->email;
+            $data = array('name'=>$to_name, "body" => "Thank you for registering.");
                 
-            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email) {
+            Mail::send('emails.registered', $data, function($message) use ($to_name, $to_email, $from_email) {
                 $message->to($to_email, $to_name)
-                        ->subject('Thank you for registering with Panafri');
+                        ->subject('Thank you for registering with us.');
                 $message->from($from_email,'Panafri Registration');
             });
             
