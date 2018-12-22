@@ -192,6 +192,13 @@ Route::group(['middleware' => ['jwt.verify']], function() {
             ]);
     });
 
+    Route::prefix('admin')->group(function () {
+        Route::get('user', [
+            'uses' => 'HomeController@getAuthenticatedUser',
+            'as' => 'appAdmin'
+            ]);
+    });
+
     Route::prefix('app')->group(function () {
         Route::post('request', [
             'uses' => 'HomeController@AppRequest',

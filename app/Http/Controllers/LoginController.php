@@ -124,7 +124,7 @@ class LoginController extends Controller
         $stores = Shop::select("id")->get()->count();
         $users = User::select("id")->get()->count();
     
-        return response()->json(compact('token', 'products','reviews', 'services', 'categories', 'stores', 'partners', 'requests' ),201);
+        return response()->json(compact('token', 'products','reviews', 'users', 'services', 'categories', 'stores', 'partners', 'requests' ),201);
     }
 
     
