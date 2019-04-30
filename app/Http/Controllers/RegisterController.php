@@ -172,6 +172,53 @@ class RegisterController extends Controller
 
     }
 
+    public function resetPassword(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255',
+        ]);
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'unique:users',
+        ]);
+
+        if($validator->fails()){
+
+            $password = str_random(8);
+
+            
+            $update= User::where('email', $request->email)->first()		
+	        ->update([
+		
+		    'password' => bcrypt($password),
+		
+		    ]);
+
+            $from_email='noreply@panafri.com';
+            $to_name = $request->email;
+            $to_email = $request->email;
+            $data = array('name'=>$to_name, "password" => $password);
+                
+            Mail::send('emails.reset', $data, function($message) use ($to_name, $to_email, $from_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('Password reset was successful.');
+                $message->from($from_email,'Panafri Team');
+            });
+
+            return response()->json(['success' => 'Password reset was successful'], 201);
+        }
+
+        return response()->json(['error' => 'invalid_credentials'], 400);
+
+       
+    }
+
+
 
    
     /**

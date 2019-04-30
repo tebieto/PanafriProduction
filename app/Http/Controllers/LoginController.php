@@ -113,7 +113,7 @@ class LoginController extends Controller
             ]);
 
             if((auth::user()->role)<2) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                return response()->json(['error' => 'unauthorised'], 401);
             }
 
         $products = Product::select("id")->where('type', 1)->orderBy(DB::raw('RAND()'))->get()->count();

@@ -58,6 +58,20 @@ Route::prefix('app')->group(function () {
         ]);
 });
 
+Route::prefix('app')->group(function () {
+    Route::post('reset', [
+        'uses' => 'RegisterController@resetPassword',
+	    'as' => 'resetPassword'
+        ]);
+});
+
+Route::prefix('partner')->group(function () {
+    Route::post('reset', [
+        'uses' => 'RegisterController@resetPassword',
+	    'as' => 'resetPassword'
+        ]);
+});
+
 
 Route::prefix('partner')->group(function () {
     Route::post('register', [

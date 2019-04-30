@@ -183,6 +183,7 @@ class HomeController extends Controller
 			'type' => 1,
 			'category' => $request->category,
 			'image' => $request->image,
+			'store' => $request->store,
 			'status' => 1,
 			'description' => $request->description,
 			'location' => $request->location,
@@ -203,6 +204,7 @@ class HomeController extends Controller
 			'image' => $request->image,
 			'description' => $request->description,
 			'location' => $request->location,
+			'store' => $request->store,
 			'price' => $request->price,
 		]);
 		return response()->json(['success' => 'Product updated successfully'], 201);		
@@ -220,6 +222,7 @@ class HomeController extends Controller
 			'category' => $request->category,
 			'image' => $request->image,
 			'status' => 1,
+			'store' => $request->store,
 			'description' => $request->description,
 			'location' => $request->location,
 			'price' => $request->price,
@@ -237,6 +240,7 @@ class HomeController extends Controller
 			'category' => $request->category,
 			'image' => $request->image,
 			'description' => $request->description,
+			'store' => $request->store,
 			'location' => $request->location,
 			'price' => $request->price,
 		]);
@@ -258,7 +262,19 @@ class HomeController extends Controller
         $update= user::where('id', auth::id())->first()		
 	        ->update([
             'password' =>bcrypt($request->password)
-            ]);
+			]);
+			
+			$from_email='noreply@panafri.com';
+            $to_name = auth::user()->name;
+            $to_email = auth::user()->email;
+            $data = array('name'=>$to_name, 'email'=>$to_email, "password" => $request->password);
+                
+            Mail::send('emails.changed', $data, function($message) use ($to_name, $to_email, $from_email) {
+                $message->to($to_email, $to_name)
+                        ->subject('Password changed sucessfully.');
+                $message->from($from_email,'Panafri Team');
+            });
+
             
             $success= "Password changed successfully";
             return response()->json(compact( 'success' ),201);
