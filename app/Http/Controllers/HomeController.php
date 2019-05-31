@@ -152,7 +152,7 @@ class HomeController extends Controller
 	public function acceptRequest(Request $request) 
 	
 	{
-	$update= AppRequest::where('id', $request->id)->where('owner', auth::id())->first()
+	$update= AppRequest::where('id', $request->id)->where('seller_id', auth::id())->first()
 	 ->update([
 			'status' => 1,
 			'seller_status' => 1,
@@ -164,7 +164,7 @@ class HomeController extends Controller
 	public function declineRequest(Request $request) 
 	
 	{
-	$update= AppRequest::where('id', $request->id)->where('owner', auth::id())->first()
+	$update= AppRequest::where('id', $request->id)->where('seller_id', auth::id())->first()
 	 ->update([
 			'status' => 2,
 			'seller_status' => 2,
